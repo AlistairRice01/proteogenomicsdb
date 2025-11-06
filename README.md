@@ -1,9 +1,9 @@
-# ![nf-core/pgdb](docs/images/nf-core-pgdb_logo.png)
+# ![nf-core/proteogenomicsdb](docs/images/nf-core-pgdb_logo.png)
 
-The ProteoGenomics database generation workflow (**pgdb**) use the [pypgatk](https://github.com/bigbio/py-pgatk) and [nextflow](https://www.nextflow.io/) to create different protein databases for ProteoGenomics data analysis.
+The **proteogenomicsdb** ProteoGenomics database generation workflow (formerly known as **pgdb**) uses the [pypgatk](https://github.com/bigbio/py-pgatk) and [nextflow](https://www.nextflow.io/) to create different protein databases for ProteoGenomics data analysis.
 
-[![GitHub Actions CI Status](https://github.com/nf-core/pgdb/workflows/nf-core%20CI/badge.svg)](https://github.com/nf-core/pgdb/actions)
-[![GitHub Actions Linting Status](https://github.com/nf-core/pgdb/workflows/nf-core%20linting/badge.svg)](https://github.com/nf-core/pgdb/actions)
+[![GitHub Actions CI Status](https://github.com/nf-core/proteogenomicsdb/workflows/nf-core%20CI/badge.svg)](https://github.com/nf-core/proteogenomicsdb/actions)
+[![GitHub Actions Linting Status](https://github.com/nf-core/proteogenomicsdb/workflows/nf-core%20linting/badge.svg)](https://github.com/nf-core/proteogenomicsdb/actions)
 [![Nextflow](https://img.shields.io/badge/nextflow-%E2%89%A520.04.0-brightgreen.svg)](https://www.nextflow.io/)
 [![Cite with Zenodo](http://img.shields.io/badge/DOI-10.5281/zenodo.4722661-1073c8?labelColor=000000)](https://doi.org/10.5281/zenodo.4722661)
 
@@ -13,7 +13,7 @@ The ProteoGenomics database generation workflow (**pgdb**) use the [pypgatk](htt
 
 ## Introduction
 
-**nf-core/pgdb** is a bioinformatics pipeline to generate proteogenomics databases. pgdb allows users to create proteogenomics databases using EMSEMBL as the reference proteome database. Three different major databases can be attached to the final proteogenomics database:
+**nf-core/proteogenomicsdb** is a bioinformatics pipeline to generate proteogenomics databases. proteogenomicsdb allows users to create proteogenomics databases using EMSEMBL as the reference proteome database. Three different major databases can be attached to the final proteogenomics database:
 
 * The reference proteome (ENSEMBL Reference proteome)
 * Non canonical proteins: pseudo-genes, sORFs, lncRNA.
@@ -32,7 +32,7 @@ The pipeline is built using [Nextflow](https://www.nextflow.io), a workflow tool
 3. Download the pipeline and test it on a minimal dataset with a single command (This run will download the canonical ENSEMBL reference proteome and create proteomics database with it):
 
     ```bash
-    nextflow run nf-core/pgdb -profile test,<docker/singularity/podman/shifter/charliecloud/conda/institute>
+    nextflow run nf-core/proteogenomicsdb -profile test,<docker/singularity/podman/shifter/charliecloud/conda/institute>
     ```
 
     > Please check [nf-core/configs](https://github.com/nf-core/configs#documentation) to see if a custom config file to run nf-core pipelines already exists for your Institute. If so, you can simply use `-profile <institute>` in your command. This will enable either `docker` or `singularity` and set the appropriate execution settings for your local compute environment.
@@ -40,12 +40,12 @@ The pipeline is built using [Nextflow](https://www.nextflow.io), a workflow tool
 4. Start running your own analysis!
 
     ```bash
-    nextflow run nf-core/pgdb -profile <docker/singularity/podman/conda/institute> --ncrna true --pseudogenes true --altorfs true
+    nextflow run nf-core/proteogenomicsdb -profile <docker/singularity/podman/conda/institute> --ncrna true --pseudogenes true --altorfs true
     ```
 
     > This will create a proteogenomics database with the ENSEMBL reference proteome and non canonical proteins like pseudo genes, non coding rnas or alternative open reading frames.
 
-See [usage docs](https://nf-co.re/pgdb/usage) for all of the available options when running the pipeline.
+See [usage docs](https://nf-co.re/proteogenomicsdb/usage) for all of the available options when running the pipeline.
 
 ## Pipeline Summary
 
@@ -60,17 +60,17 @@ By default, the pipeline currently performs the following:
 
 ## Documentation
 
-The nf-core/pgdb pipeline comes with documentation about the pipeline: [usage](https://nf-co.re/pgdb/usage) and [output](https://nf-co.re/pgdb/output).
+The nf-core/proteogenomicsdb pipeline comes with documentation about the pipeline: [usage](https://nf-co.re/proteogenomicsdb/usage) and [output](https://nf-co.re/proteogenomicsdb/output).
 
 ## Credits
 
-nf-core/pgdb was originally written by Husen M. Umer (EMBL-EBI) & Yasset Perez-Riverol (Karolinska Institute)
+nf-core/proteogenomicsdb was originally written by Husen M. Umer (EMBL-EBI) & Yasset Perez-Riverol (Karolinska Institute)
 
 ## Contributions and Support
 
 If you would like to contribute to this pipeline, please see the [contributing guidelines](.github/CONTRIBUTING.md).
 
-For further information or help, don't hesitate to get in touch on the [Slack `#pgdb` channel](https://nfcore.slack.com/channels/pgdb) (you can join with [this invite](https://nf-co.re/join/slack)).
+For further information or help, don't hesitate to get in touch on the [Slack `#proteogenomicsdb` channel](https://nfcore.slack.com/channels/proteogenomicsdb) (you can join with [this invite](https://nf-co.re/join/slack)).
 
 ## Citations
 
