@@ -9,7 +9,7 @@ The **proteogenomicsdb** ProteoGenomics database generation workflow (formerly k
 
 [![install with bioconda](https://img.shields.io/badge/install%20with-bioconda-brightgreen.svg)](https://bioconda.github.io/)
 [![Docker](https://img.shields.io/docker/automated/nfcore/pgdb.svg)](https://hub.docker.com/r/nfcore/pgdb)
-[![Get help on Slack](http://img.shields.io/badge/slack-nf--core%20%23pgdb-4A154B?logo=slack)](https://nfcore.slack.com/channels/pgdb)
+[![Get help on Slack](http://img.shields.io/badge/slack-nf--core%20%23proteogenomicsdb-4A154B?logo=slack)](https://nfcore.slack.com/channels/pgdb)
 
 ## Introduction
 
