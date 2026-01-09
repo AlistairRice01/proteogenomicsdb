@@ -1,0 +1,127 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://raw.githubusercontent.com/nf-core/proteogenomicsdb/main/nextflow_schema.json",
+    "title": "nf-core/proteogenomicsdb pipeline parameters",
+    "description": "The proteogenomicsdb pipeline (formerly known as pgdb) creates custom protein databases for ProteoGenomics data analysis.",
+    "type": "object",
+    "$defs": {
+        "input_output_options": {
+            "title": "Input/output options",
+            "type": "object",
+            "fa_icon": "fas fa-terminal",
+            "description": "Define where the pipeline should find input data and save output data.",
+            "required": [
+                "input",
+                "outdir"
+            ],
+            "properties": {
+                "input": {
+                    "type": "string",
+                    "format": "file-path",
+                    "exists": true,
+                    "schema": "assets/schema_input.json",
+                    "mimetype": "text/csv",
+                    "pattern": "^\\S+\\.csv$",
+                    "description": "Path to comma-separated file containing information about the samples in the experiment.",
+                    "help_text": "You will need to create a design file with information about the samples in your experiment before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 3 columns, and a header row.",
+                    "fa_icon": "fas fa-file-csv"
+                },
+                "outdir": {
+                    "type": "string",
+                    "format": "directory-path",
+                    "description": "The output directory where the results will be saved. You have to use absolute paths to storage on Cloud infrastructure.",
+                    "fa_icon": "fas fa-folder-open"
+                }
+            }
+        },
+        "generic_options": {
+            "title": "Generic options",
+            "type": "object",
+            "fa_icon": "fas fa-file-import",
+            "description": "Less common options for the pipeline, typically set in a config file.",
+            "help_text": "These options are common to all nf-core pipelines and allow you to customise some of the core preferences for how the pipeline runs.\n\nTypically these options would be set in a Nextflow config file loaded for all pipeline runs, such as `~/.nextflow/config`.",
+            "properties": {
+                "version": {
+                    "type": "boolean",
+                    "description": "Display version and exit.",
+                    "fa_icon": "fas fa-question-circle",
+                    "hidden": true
+                },
+                "validate_params": {
+                    "type": "boolean",
+                    "description": "Boolean whether to validate parameters against the schema at runtime",
+                    "default": true,
+                    "fa_icon": "fas fa-check-square",
+                    "hidden": true
+                }
+            }
+        },
+    
+        "other_options": {
+                "title": "other options",
+                "type": "object",
+                "description": "input files for running the workflow.",
+        "properties": {
+            "fasta": {
+                "type": "string",
+                "description": "placeholder text"
+            },
+            "monochrome_logs": {
+                "type": "string",
+                "description": "placeholder text"
+            },
+            "args": {
+                "type": "string",
+                "description": "placeholder text"
+            },
+            "help_full": {
+                "type": "string",
+                "description": "placeholder text"
+            },
+            "show_hidden": {
+                "type": "string",
+                "description": "placeholder text"
+            },
+            "email": {
+                "type": "string",
+                "description": "placeholder text"
+            },
+            "email_on_fail": {
+                "type": "string",
+                "description": "placeholder text"
+            },
+            "plaintext_email": {
+                "type": "string",
+                "description": "placeholder text"
+            },
+            "hook_url": {
+                "type": "string",
+                "description": "placeholder text"
+            },
+            "custom_config_base": {
+                "type": "string",
+                "default": "https://raw.githubusercontent.com/nf-core/configs/master",
+                "description": "placeholder text"
+            },
+            "custom_config_version": {
+                "type": "string",
+                "default": "master",
+                "description": "placeholder text"
+            }
+        }
+    }
+},
+
+    "allOf": [
+        {
+            "$ref": "#/$defs/input_output_options"
+        },
+        {
+            "$ref": "#/$defs/generic_options"
+        },
+        {
+            "$ref": "#/$defs/other_options"
+        }
+    ]
+
+}
