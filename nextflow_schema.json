@@ -67,7 +67,7 @@
                 "description": "placeholder text"
             },
             "monochrome_logs": {
-                "type": "string",
+                "type": "boolean",
                 "description": "placeholder text"
             },
             "args": {
@@ -75,11 +75,11 @@
                 "description": "placeholder text"
             },
             "help_full": {
-                "type": "string",
+                "type": "boolean",
                 "description": "placeholder text"
             },
             "show_hidden": {
-                "type": "string",
+                "type": "boolean",
                 "description": "placeholder text"
             },
             "email": {
@@ -91,7 +91,7 @@
                 "description": "placeholder text"
             },
             "plaintext_email": {
-                "type": "string",
+                "type": "boolean",
                 "description": "placeholder text"
             },
             "hook_url": {
@@ -109,8 +109,131 @@
                 "description": "placeholder text"
             }
         }
-    }
-},
+    },
+        "pipeline_options": {
+            "title": "pipeline_options",
+            "type": "object",
+            "description": "Paramiters for running the pipeline.",
+            "properties": {
+                "proteogenomicsdb": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "ensembldb": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "cosmicdb": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "gnomaddb": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "cbioportaldb": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "dna_config": {
+                    "type": "string",
+                    "default": "/exports/eddie/scratch/s2215490/nextflow/conf/dna_config.yaml"
+                },
+                "custom_config": {
+                    "type": "string",
+                    "default": "/exports/eddie/scratch/s2215490/nextflow/conf/custom_config.yaml"
+                },
+                "gtf": {
+                    "type": "string",
+                    "default": "/exports/eddie/scratch/s2215490/nextflow/proteogenomicsDB_inputs/Saccharomyces_cerevisiae.R64-1-1.115.gtf"
+                },
+                "reference": {
+                    "type": "string",
+                    "default": "/exports/eddie/scratch/s2215490/nextflow/proteogenomicsDB_inputs/Saccharomyces_cerevisiae.R64-1-1.dna.toplevel.fa"
+                },
+                "cdna": {
+                    "type": "string",
+                    "default": "/exports/eddie/scratch/s2215490/nextflow/proteogenomicsDB_inputs/Saccharomyces_cerevisiae.R64-1-1.cdna.all.fa"
+                },
+                "ensembl_downloader": {
+                    "type": "string",
+                    "default": "/exports/eddie/scratch/s2215490/nextflow/conf/ensembl_downloader_config.yaml"
+                },
+                "ensembl": {
+                    "type": "string",
+                    "default": "/exports/eddie/scratch/s2215490/nextflow/conf/ensembl_config.yaml"
+                },
+                "species": {
+                    "type": "integer",
+                    "default": 559292
+                },
+                "ncrna": {
+                    "type": "string",
+                    "default": "/exports/eddie/scratch/s2215490/nextflow/conf/ncrna_config.yaml"
+                },
+                "pseudogenes": {
+                    "type": "string",
+                    "default": "/exports/eddie/scratch/s2215490/nextflow/conf/pseudogenes_config.yaml"
+                },
+                "altorfs": {
+                    "type": "string",
+                    "default": "/exports/eddie/scratch/s2215490/nextflow/conf/altorfs_config.yaml"
+                },
+                "cosmic": {
+                    "type": "string",
+                    "default": "/exports/eddie/scratch/s2215490/nextflow/conf/cosmic_config.yaml"
+                },
+                "username": {
+                    "type": "string",
+                    "default": "s2215490@ed.ac.uk"
+                },
+                "password": {
+                    "type": "string",
+                    "default": "BeepBoop8294!"
+                },
+                "genecode_transcripts": {
+                    "type": "string",
+                    "default": "https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.transcripts.fa.gz"
+                },
+                "genecode_annotation": {
+                    "type": "string",
+                    "default": "https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.annotation.gtf.gz"
+                },
+                "gnomad_vcf": {
+                    "type": "string",
+                    "default": "gs://gcp-public-data--gnomad/release/2.1.1/vcf/exomes/gnomad.exomes.r2.1.1.sites.18.vcf.bgz"
+                },
+                "gnomad_config": {
+                    "type": "string",
+                    "default": "/exports/eddie/scratch/s2215490/nextflow/conf/gnomad_config.yaml"
+                },
+                "grch37": {
+                    "type": "string",
+                    "default": "ftp://ftp.ensembl.org/pub/release-75/fasta/homo_sapiens/cds/Homo_sapiens.GRCh37.75.cds.all.fa.gz"
+                },
+                "cbio_config": {
+                    "type": "string",
+                    "default": "/exports/eddie/scratch/s2215490/nextflow/conf/cbioportal_config.yaml"
+                },
+                "studies": {
+                    "type": "string",
+                    "default": "es_iocurie_2014"
+                },
+                "minimum": {
+                    "type": "integer",
+                    "default": 50
+                },
+                "stop_codons": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "decoy": {
+                    "type": "string",
+                    "default": "/exports/eddie/scratch/s2215490/nextflow/conf/protein_decoy.yaml"
+                }
+            }
+        }
+    },
 
     "allOf": [
         {
@@ -121,6 +244,9 @@
         },
         {
             "$ref": "#/$defs/other_options"
+        },
+        {
+            "$ref": "#/$defs/pipeline_options"
         }
     ]
 

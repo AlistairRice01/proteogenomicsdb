@@ -25,6 +25,10 @@ include { FREEBAYES            } from '../../../modules/nf-core/freebayes/main.n
 include { GUNZIP as GUNZIP_VCF } from '../../../modules/nf-core/gunzip/main.nf'
 include { PYPGATKCUSTOM        } from '../../../modules/local/pypgatk_custom/main.nf'
 
+//modules involved in reporting
+include { MULTIQC } from '../../../modules/nf-core/multiqc/main.nf'
+include { FASTQC  } from '../../../modules/nf-core/fastqc/main.nf'
+
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         RUN MAIN WORKFLOW
@@ -50,7 +54,7 @@ main:
     Channel
         .empty()
         .set { merged_databases_ch }
-
+        
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -29,7 +29,8 @@ include { getGenomeAttribute      } from './subworkflows/local/utils_nfcore_prot
 // TODO nf-core: Remove this line if you don't need a FASTA file
 //   This is an example of how to use getGenomeAttribute() to fetch parameters
 //   from igenomes.config using `--genome`
-params.fasta = getGenomeAttribute('fasta')
+params.reference = getGenomeAttribute('fasta')
+params.annotation = getGenomeAttribute('gtf')
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -51,10 +52,45 @@ workflow NFCORE_PROTEOGENOMICSDB {
     // WORKFLOW: Run pipeline
     //
     PROTEOGENOMICS (
-        samplesheet
+        //proteogenomics paramiters
+        samplesheet,            //samplesheet containing the rna-seq transcripts
+        params.reference,       //
+        params.annotation,      //
+        params.transcripts,     //
+        params.custom_config,   //path to the custom_config
+        params.dna_config,      //path to the dna_config
+        //ensembl paramaters
+        params.ensembl_downloader_config,   //path to the ensembl_downloader_config
+        params.species_id,                  //species id to download from ensembl
+        params.ensembl_config,              //path to the ensembl_config
+        params.altorfs_config,              //path to the altorfs_config
+        params.pseudogenes_config,          //path to the pseudogenes_config
+        params.ncrna_config,                //path to the ncrna_config
+        //cosmic paramiters
+        params.cosmic_config,   //path to the cosmic_config
+        params.username,        //            
+        params.password,        //
+        //genecode/gnomad paramaters
+        params.genecode_transcripts_url,    //
+        params.genecode_annotations_url,    //
+        params.gnomad_url,                  //
+        params.gnomad_config,               //path to the gnomad_config
+        //cbioportal paramaters
+        params.grch37_url,      //      
+        params.cbio_config,     //path to the cbioportal_config
+        params.cbio_study,      //
+        //merge paramaters
+        params.minimum_aa,      //
+        params.stop_codons,     //
+        params.decoy_config     //path to the decoy_config
+
     )
     emit:
-    multiqc_report = PROTEOGENOMICS.out.multiqc_report // channel: /path/to/multiqc_report.html
+    mixed_databases = PROTEOGENOMICS.out.mixed_databases    //channel: contains the final peptide database
+    decoy_database  = PROTEOGENOMICS.out.decoy_database     //channel: contains the decoy database
+    versions        = PROTEOGENOMICS.out.versions           //channel: contains the version information for each of the tools used in the pipeline
+    multiqc_report  = PROTEOGENOMICS.out.multiqc_report     // channel: /path/to/multiqc_report.html
+
 }
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -96,7 +132,10 @@ workflow {
         params.outdir,
         params.monochrome_logs,
         params.hook_url,
-        NFCORE_PROTEOGENOMICSDB.out.multiqc_report
+        NFCORE_PROTEOGENOMICSDB.out.multiqc_report,
+        NFCORE_PROTEOGENOMICS.out.mixed_databases,  
+        PROTEOGENOMICS.out.decoy_database,     
+        NFCORE_PROTEOGENOMICS.out.versions, 
     )
 }
 

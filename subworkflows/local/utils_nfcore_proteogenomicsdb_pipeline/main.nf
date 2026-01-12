@@ -142,6 +142,9 @@ workflow PIPELINE_COMPLETION {
     monochrome_logs // boolean: Disable ANSI colour codes in log output
     hook_url        //  string: hook URL for notifications
     multiqc_report  //  string: Path to MultiQC report
+    mixed_databases  
+    decoy_database     
+    versions
 
     main:
     summary_params = paramsSummaryMap(workflow, parameters_schema: "nextflow_schema.json")
@@ -160,6 +163,9 @@ workflow PIPELINE_COMPLETION {
                 outdir,
                 monochrome_logs,
                 multiqc_reports.getVal(),
+                mixed_databases,
+                decoy_database,
+                versions
             )
         }
 
