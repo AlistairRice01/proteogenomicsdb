@@ -64,7 +64,7 @@ main:
     //create an empty channel which will later contain the version information for each of the tools
     Channel
         .empty()
-        .set { versions }
+        .set { versions_ch }
     
     Channel
         .empty()
@@ -72,10 +72,10 @@ main:
     
     FASTQC_WORKFLOW (
     samplesheet,
-    versions,
+    versions_ch,
     multiqc_report
     )
-    versions = versions.mix(FASTQC_WORKFLOW.out.versions).collect()
+    versions_ch = versions_ch.mix(FASTQC_WORKFLOW.out.versions_ch).collect()
     multiqc_report = FASTQC_WORKFLOW.out.multiqc_report.collect() 
 
     //create an empty channel which will later contain all of the databases mixed together
@@ -94,10 +94,10 @@ main:
             custom_config,
             dna_config,
             transcripts,
-            versions
+            versions_ch
         )
         //extract the version information from the subworkflow
-        versions = versions.mix(RNASEQDB.out.versions).collect()
+        versions_ch = versions_ch.mix(RNASEQDB.out.versions_ch).collect()
         //extract the databases from PROTEOGENOMICSDB and add them to mixed_databases_ch
         mixed_databases_ch = mixed_databases_ch.mix(RNASEQDB.out.merged_databases).collect()
         //extract the multiqc report from PROTEOGENOMICSDB
@@ -119,10 +119,10 @@ main:
             altorfs_config,
             pseudogenes_config,
             ncrna_config,
-            versions
+            versions_ch
         )
         //extract the version information from the subworkflow
-        versions = versions.mix(ENSEMBLDB.out.versions).collect()
+        versions_ch = versions_ch.mix(ENSEMBLDB.out.versions_ch).collect()
         //extract the databases from ENSEMBLDB and add them to mixed_databases_ch
         mixed_databases = mixed_databases.mix(ENSEMBLDB.out.mixed_databases).collect()
 
@@ -140,10 +140,10 @@ main:
             cosmic_config,
             username,
             password,
-            versions
+            versions_ch
         )
         //extract the version information from the subworkflow
-        versions = versions.mix(COSMICDB.out.versions).collect()   
+        versions_ch = versions_ch.mix(COSMICDB.out.versions_ch).collect()   
         //extract the databases from COSMICDB and add them to mixed_databases
         mixed_databases = mixed_databases.mix(COSMICDB.out.cosmic_database).collect()
 
@@ -162,10 +162,10 @@ main:
             genecode_annotations_url,
             gnomad_url,
             gnomad_config,
-            versions
+            versions_ch
         )
         //extract the version information from the subworkflow
-        versions = versions.mix(GNOMADDB.out.versions).collect()
+        versions_ch = versions_ch.mix(GNOMADDB.out.versions_ch).collect()
         //extract the databases from GNOMADDB and add them to mixed_databases_ch
         mixed_databases = mixed_databases.mix(GNOMADDB.out.gnomad_database).collect()
 
@@ -183,10 +183,10 @@ main:
             grch37_url,
             cbio_config,
             cbio_study,
-            versions
+            versions_ch
         )
         //extract the version information from the subworkflow
-        versions = versions.mix(CBIOPORTALDB.out.versions).collect()
+        versions_ch = versions_ch.mix(CBIOPORTALDB.out.versions_ch).collect()
         //extract the databases from CBIOPORTALDB and add them to mixed_databases_ch
         mixed_databases_ch = mixed_databases.mix(CBIOPORTALDB.out.cbioportal_database).collect()
 
@@ -203,10 +203,10 @@ main:
         minimum_aa,
         stop_codons,
         decoy_config,
-        versions
+        versions_ch
     )
     //extract the version information from the subworkflow
-    versions = versions.mix(MERGEDB.out.versions).collect()
+    versions_ch = versions_ch.mix(MERGEDB.out.versions_ch).collect()
 
     //extract the databases from MERGEDB and add overwrite mixed_databases
     mixed_databases = MERGEDB.out.databases.collect()
@@ -223,7 +223,7 @@ emit:
     //emit the final files from the workflow
     mixed_databases      //channel: contains the final peptide database
     decoy_database       //channel: contains the decoy database
-    versions             //channel: contains the version information for each of the tools used in the pipeline
+    versions_ch             //channel: contains the version information for each of the tools used in the pipeline
     multiqc_report       //channel: contains the multiqc report
 
 }

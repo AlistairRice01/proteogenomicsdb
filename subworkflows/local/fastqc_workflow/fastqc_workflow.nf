@@ -7,7 +7,7 @@ workflow FASTQC_WORKFLOW {
 take:
 
     samplesheet
-    versions
+    versions_ch
     multiqc_report
 
 main:
@@ -30,7 +30,7 @@ main:
     CAT_FASTQ (
         ch_fastq.multiple
     )
-    versions = versions.mix(CAT_FASTQ.out.versions_cat).collect()
+    versions_ch = versions_ch.mix(CAT_FASTQ.out.versions_cat).collect()
     ch_cat_fastq = CAT_FASTQ.out.reads.mix(ch_fastq.single)
 
     Channel 
@@ -43,12 +43,12 @@ main:
 
         // MODULE: Run FastQC, trimgalore!
     FASTQC_TRIMGALORE (
-        ch_cat_fastq.view(),
+        ch_cat_fastq,
         skip_fastqc,
         skip_trimming,
-        versions
+        versions_ch
     )
-    versions = versions.mix(FASTQC_TRIMGALORE.out.versions)
+    versions_ch = versions_ch.mix(FASTQC_TRIMGALORE.out.versions_ch)
     ch_multiqc_files  = ch_multiqc_files.mix(FASTQC_TRIMGALORE.out.trim_zip.collect{it[1]}.ifEmpty([]))
     ch_multiqc_files  = ch_multiqc_files.mix(FASTQC_TRIMGALORE.out.trim_log.collect{it[1]}.ifEmpty([]))
 
@@ -61,12 +61,12 @@ main:
         []
     )
     multiqc_report = MULTIQC.out.report.collect()
-    versions = versions.mix(MULTIQC.out.versions).collect()
+    versions_ch = versions_ch.mix(MULTIQC.out.versions).collect()
 
 emit:
 
     multiqc_report
-    versions 
+    versions_ch 
 
 
 }

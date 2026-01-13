@@ -3,7 +3,7 @@
 //
 
 include { FASTQC           } from '../../modules/nf-core/fastqc/main.nf'
-include { TRIMGALORE       } from '../../modules/local/trimgalore/main.nf'
+include { TRIMGALORE       } from '../../modules/nf-core/trimgalore/main.nf'
 
 workflow FASTQC_TRIMGALORE {
     
@@ -12,7 +12,7 @@ take:
     reads         // channel: [ val(meta), [ reads ] ]
     skip_fastqc   // boolean: true/false
     skip_trimming // boolean: true/false
-    versions
+    versions_ch
 
 main:
 
@@ -28,7 +28,7 @@ main:
         FASTQC ( 
             reads 
         )
-        versions = versions.mix(FASTQC.out.versions.first())
+        versions_ch = versions_ch.mix(FASTQC.out.versions.first())
         fastqc_html = FASTQC.out.html
         fastqc_zip  = FASTQC.out.zip
     }
@@ -58,7 +58,7 @@ main:
         trim_html  = TRIMGALORE.out.html
         trim_zip   = TRIMGALORE.out.zip
         trim_log   = TRIMGALORE.out.log
-        versions   = versions.mix(TRIMGALORE.out.versions_trimgalore.first())
+        versions_ch   = versions_ch.mix(TRIMGALORE.out.versions_trimgalore.first())
     }
 
 emit:
@@ -72,5 +72,5 @@ emit:
     trim_zip               // channel: [ val(meta), [ zip ] ]
     trim_log               // channel: [ val(meta), [ txt ] ]
 
-    versions // channel: [ versions.yml ]
+    versions_ch // channel: [ versions.yml ]
 }

@@ -25,7 +25,7 @@ take:
     minimum_aa          //channel: contains contains the minimum number of amino acids that should be considered a protein 
     stop_codons         //channel: contains a boolean statment telling if it should add a new protein into the database whenever a stop codon is found
     decoy_config        //channel: contains constains a config file defining how the decoy database should be generated 
-    versions         //channel: contains versions.yml holding the version information for each of the tools
+    versions_ch         //channel: contains versions.yml holding the version information for each of the tools
 
 main:
 
@@ -45,7 +45,7 @@ main:
     CAT_CAT (
         collected_databases.map { [ [id: 'final_database'], it ] }
     )
-    versions = versions.mix(CAT_CAT.out.versions_cat).collect()
+    versions_ch = versions_ch.mix(CAT_CAT.out.versions_cat).collect()
 
     //creates an empty channel that will then be populated with the concatenated database
     Channel
@@ -63,14 +63,14 @@ main:
         stop_codons
     )
     databases = PYPGATK_CLEAN.out.clean_database.collect()
-    versions = versions.mix(PYPGATK_CLEAN.out.versions).collect()
+    versions_ch = versions_ch.mix(PYPGATK_CLEAN.out.versions).collect()
 
     //PYPGATK_DECOY generates a decoy database from the cleaned database using the decoy_config
     PYPGATK_DECOY (
         databases.map { [ [id: 'decoy_database'], it ] },
         decoy_config
     )
-    versions = versions.mix(PYPGATK_DECOY.out.versions).collect()
+    versions_ch = versions_ch.mix(PYPGATK_DECOY.out.versions).collect()
 
     //creates an empty channel that will then be populated with the decoy database 
     Channel
@@ -83,7 +83,7 @@ emit:
     // emits to the main workflow
     databases    //channel: contains the final database 
     decoy           //channel: contains the decoy database 
-    versions     //channel: contains versions.yml holding the version information for each of the tools 
+    versions_ch     //channel: contains versions.yml holding the version information for each of the tools 
 
 }
 

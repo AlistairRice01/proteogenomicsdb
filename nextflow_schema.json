@@ -107,162 +107,207 @@
             "description": "Paramiters for running the pipeline.",
             "properties": {
                 "proteogenomicsdb": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "placeholder text"
                 },
                 "ensembldb": {
                     "type": "boolean",
-                    "default": true
+                    "default": true,
+                    "description": "placeholder text"
                 },
                 "cosmicdb": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "placeholder text"
                 },
                 "gnomaddb": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "placeholder text"
                 },
                 "cbioportaldb": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "placeholder text"
                 },
                 "dna_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/dna_config.yaml"
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/dna_config.yaml",
+                    "description": "placeholder text"
                 },
                 "custom_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/custom_config.yaml"
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/custom_config.yaml",
+                    "description": "placeholder text"
                 },
                 "reference": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "placeholder text"
                 },
                 "username": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "placeholder text"
                 },
                 "password": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "placeholder text"
                 },
                 "gnomad_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/gnomad_config.yaml"
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/gnomad_config.yaml",
+                    "description": "placeholder text"
                 },
                 "cbio_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/cbioportal_config.yaml"
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/cbioportal_config.yaml",
+                    "description": "placeholder text"
                 },
                 "stop_codons": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "placeholder text"
                 },
                 "igenomes_base": {
                     "type": "string",
-                    "default": "s3://ngi-igenomes/igenomes/"
+                    "default": "s3://ngi-igenomes/igenomes/",
+                    "description": "placeholder text"
                 },
                 "igenomes_ignore": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "placeholder text"
                 },
                 "multiqc_config": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "placeholder text"
                 },
                 "multiqc_title": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "placeholder text"
                 },
                 "multiqc_logo": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "placeholder text"
                 },
                 "max_multiqc_email_size": {
                     "type": "string",
-                    "default": "25.MB"
+                    "default": "25.MB",
+                    "description": "placeholder text"
                 },
                 "multiqc_methods_description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "placeholder text"
                 },
                 "publish_dir_mode": {
                     "type": "string",
-                    "default": "copy"
+                    "default": "copy",
+                    "description": "placeholder text"
                 },
                 "pipelines_testdata_base_path": {
                     "type": "string",
-                    "default": "https://raw.githubusercontent.com/nf-core/test-datasets/7f1614bae0ddf66e60be78c3d9fa55440465ac8/"
+                    "default": "https://raw.githubusercontent.com/nf-core/test-datasets/7f1614bae0ddf66e60be78c3d9fa55440465ac8/",
+                    "description": "placeholder text"
                 },
                 "config_profile_name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "placeholder text"
                 },
                 "config_profile_description": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "placeholder text"
                 },
                 "config_profile_contact": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "placeholder text"
                 },
                 "config_profile_url": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "placeholder text"
                 },
                 "annotation": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "placeholder text"
                 },
                 "skip_fastqc": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "placeholder text"
                 },
                 "skip_trimming": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "description": "placeholder text"
                 },
                 "transcripts": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "placeholder text"
                 },
                 "ensembl_downloader_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/ensembl_downloader_config.yaml"
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/ensembl_downloader_config.yaml",
+                    "description": "placeholder text"
                 },
                 "ensembl_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/ensembl_config.yaml"
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/ensembl_config.yaml",
+                    "description": "placeholder text"
                 },
                 "species_id": {
-                    "type": "integer",
-                    "default": 559292
+                    "type": "string",
+                    "default": "559292",
+                    "description": "placeholder text"
                 },
                 "ncrna_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/ncrna_config.yaml"
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/ncrna_config.yaml",
+                    "description": "placeholder text"
                 },
                 "pseudogenes_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pseudogenes_config.yaml"
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pseudogenes_config.yaml",
+                    "description": "placeholder text"
                 },
                 "altorfs_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/altorfs_config.yaml"
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/altorfs_config.yaml",
+                    "description": "placeholder text"
                 },
                 "cosmic_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/cosmic_config.yaml"
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/cosmic_config.yaml",
+                    "description": "placeholder text"
                 },
                 "genecode_transcripts_url": {
                     "type": "string",
-                    "default": "https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.transcripts.fa.gz"
+                    "default": "https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.transcripts.fa.gz",
+                    "description": "placeholder text"
                 },
                 "genecode_annotations_url": {
                     "type": "string",
-                    "default": "https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.annotation.gtf.gz"
+                    "default": "https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.annotation.gtf.gz",
+                    "description": "placeholder text"
                 },
                 "gnomad_url": {
                     "type": "string",
-                    "default": "gs://gcp-public-data--gnomad/release/2.1.1/vcf/exomes/gnomad.exomes.r2.1.1.sites.18.vcf.bgz"
+                    "default": "gs://gcp-public-data--gnomad/release/2.1.1/vcf/exomes/gnomad.exomes.r2.1.1.sites.18.vcf.bgz",
+                    "description": "placeholder text"
                 },
                 "grch37_url": {
                     "type": "string",
-                    "default": "ftp://ftp.ensembl.org/pub/release-75/fasta/homo_sapiens/cds/Homo_sapiens.GRCh37.75.cds.all.fa.gz"
+                    "default": "ftp://ftp.ensembl.org/pub/release-75/fasta/homo_sapiens/cds/Homo_sapiens.GRCh37.75.cds.all.fa.gz",
+                    "description": "placeholder text"
                 },
                 "cbio_study": {
                     "type": "string",
-                    "default": "es_iocurie_2014"
+                    "default": "es_iocurie_2014",
+                    "description": "placeholder text"
                 },
                 "minimum_aa": {
                     "type": "integer",
-                    "default": 50
+                    "default": 50,
+                    "description": "placeholder text"
                 },
                 "decoy_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/protein_decoy.yaml"
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/protein_decoy.yaml",
+                    "description": "placeholder text"
                 },
                 "multiqc_custom_config": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "placeholder text"
                 }
             }
         }

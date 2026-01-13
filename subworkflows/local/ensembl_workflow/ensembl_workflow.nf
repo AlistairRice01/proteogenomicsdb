@@ -40,14 +40,26 @@ take:
     altorfs_config                      //channel: contains the config file for generating a peptide database from altorfs data
     pseudogenes_config                  //channel: contains the config file for generating a peptide database from pseudogenes data
     ncrna_config                        //channel: contains the config file for generating a peptide database from ncrna data
-    versions                         //channel: contains versions.yml holding the version information for each of the tools
+    versions_ch                            //channel: contains versions.yml holding the version information for each of the tools
 
 main:
 
     //creates an empty channel to combine the two databases generated in this workflow
     Channel
         .empty()
-        .set { mixed_databases }
+        .set { mixed_databases } 
+
+    Channel
+        .fromPath(ensembl_downloader_config)
+        .set { ensembl_downloader_config_ch }
+
+    Channel
+        .from(species_name)
+        .set { species_name_ch }
+
+    Channel
+        .fromPath(ensembl_config)
+        .set { ensembl_config_ch }
 
 
 /*
@@ -59,10 +71,10 @@ main:
 
     //PYPGATK_ENSEMBL uses the species name and downloads files from ENSEMBL
     PYPGATK_ENSEMBL (
-        ensembl_downloader_config,
-        species_name
+        ensembl_downloader_config_ch.view(),
+        species_name_ch.view()
     )
-    versions = versions.mix(PYPGATK_ENSEMBL.out.versions).collect()
+    versions_ch = versions_ch.mix(PYPGATK_ENSEMBL.out.versions).collect()
 
     //creates an empty channel that will then be populated with the protein files downloaded from ENSEMBL
     Channel
@@ -83,7 +95,7 @@ main:
     CAT_DNA (
         cdna_mixed.map { [ [id: 'total_cDNA' ], it ] }
     )
-    versions = versions.mix(CAT_DNA.out.versions_cat).collect()
+    versions_ch = versions_ch.mix(CAT_DNA.out.versions_cat).collect()
 
     //creates an empty channel that will then be populates with the concatenated cdna
     Channel
@@ -113,7 +125,7 @@ main:
         total_cdna.map { [ [id: 'ncRNA'], it ] },
         ncrna_config
     )
-    versions = versions.mix(PYPGATK_NCRNA.out.versions).collect()
+    versions_ch = versions_ch.mix(PYPGATK_NCRNA.out.versions).collect()
 
     //adds the peptide database generated from ncrna data to the mixed database channel
     mixed_databases = mixed_databases.mix(PYPGATK_NCRNA.out.database).collect()
@@ -123,7 +135,7 @@ main:
         total_cdna.map { [ [id: 'pseudogenes'], it ] },
         pseudogenes_config
     )
-    versions = versions.mix(PYPGATK_PSEUDOGENES.out.versions).collect()
+    versions_ch = versions_ch.mix(PYPGATK_PSEUDOGENES.out.versions).collect()
 
     //adds the peptide database generated from pseudogenes data to the mixed database channel
     mixed_databases = mixed_databases.mix(PYPGATK_PSEUDOGENES.out.database).collect()
@@ -139,7 +151,7 @@ main:
         cdna_database.map { [ [id: 'Altorfs_database'], it ] },
         altorfs_config
     )
-    versions = versions.mix(PYPGATK_ALRORFS.out.versions).collect()
+    versions_ch = versions_ch.mix(PYPGATK_ALRORFS.out.versions).collect()
 
     //adds the peptide database generated from altorfs data to the mixed database channel
     mixed_databases = mixed_databases.mix(PYPGATK_ALRORFS.out.database).collect()
@@ -161,10 +173,10 @@ main:
 
     //PYPGATK_ENSEMBL_VCF downloads the vcf file for the defined species 
     PYPGATK_ENSEMBL_VCF (
-        ensembl_downloader_config,
-        species_name
+        ensembl_downloader_config_ch,
+        species_name_ch
     )
-    versions = versions.mix(PYPGATK_ENSEMBL_VCF.out.versions).collect()
+    versions_ch = versions_ch.mix(PYPGATK_ENSEMBL_VCF.out.versions).collect()
 
     //creates an empty channel which will be populated with the vcf file downloaded from ENSEMBL
     Channel
@@ -176,7 +188,7 @@ main:
     CAT_VCF (
         ensembl_vcf.map { [ [id: 'concatenated_vcf' ], it, [] ] }
     )
-    versions = versions.mix(CAT_VCF.out.versions_cat).collect()
+    versions_ch = versions_ch.mix(CAT_VCF.out.versions_cat).collect()
 
     //creates an empty channel which will then be populated with the concatenated vcf file 
     Channel
@@ -198,7 +210,7 @@ main:
         total_cdna.map { [ [id: 'ensembl_vcf'], it ] },
         ensembl_config
     )
-    versions = versions.mix(PYPGATK.out.versions).collect()
+    versions_ch = versions_ch.mix(PYPGATK.out.versions).collect()
 
     //adds the peptide database generated from the vcf file to the mixed database channel
     mixed_databases = mixed_databases.mix(PYPGATK.out.database).collect()
@@ -215,7 +227,7 @@ emit:
     
     //emits to the main workflow
     mixed_databases     //channel: contains the databases generated from this workflow
-    versions         //channel: contains versions.yml holding the version information for each of the tools
+    versions_ch         //channel: contains versions.yml holding the version information for each of the tools
 
 }
 
