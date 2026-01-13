@@ -35,7 +35,7 @@ include { FASTQC  } from '../../../modules/nf-core/fastqc/main.nf'
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-workflow PROTEOGENOMICSDB {
+workflow RNASEQDB {
 
 take:
 
@@ -46,14 +46,14 @@ take:
     config          //channel: contains the vcf database config file
     dna_config      //channel: contains the DNA database config file
     cdna            //channel: contains the cdna reference (fasta) file
-    versions_ch     //channel: contains versions.yml holding the version information for each of the tools 
+    versions     //channel: contains versions.yml holding the version information for each of the tools 
 
 main:
 
     //creates an empty channel to combine the two databases generated in this workflow
     Channel
         .empty()
-        .set { merged_databases_ch }
+        .set { merged_databases }
         
 
 /*
@@ -61,19 +61,6 @@ main:
         START OF THE ALIGNMENT OF READS TO A REFERENCE PATHWAY
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
-    
-
-    //applies a map to the reads channel determining if the reads are single ended or paired ended
-    reads.splitCsv(header:true)
-        .map {row -> [[id:row.sample], row.fastq_1, row.fastq_2] }
-        .map { meta, fastq_1, fastq_2 ->
-                if (!fastq_2) {
-                    return [ meta + [ single_end:true ], fastq_1  ] } 
-                else {
-                    return [ meta + [ single_end:false ], fastq_1, fastq_2 ] } }
-        .set { fastq_ch}
-        .collect()
-
 
     //applies a map to the gene annotation
     annotation.map { genome ->
@@ -86,7 +73,7 @@ main:
     HISAT2_EXTRACTSPLICESITES (
         annotation_ch
     )
-    versions_ch = versions_ch.mix(HISAT2_EXTRACTSPLICESITES.out.versions)
+    versions = versions.mix(HISAT2_EXTRACTSPLICESITES.out.versions)
 
     //this is creating an empty channel which will then be populated with the splicesites data
     Channel
@@ -107,7 +94,7 @@ main:
         annotation_ch, 
         splicesites_ch
     )
-    versions_ch = versions_ch.mix(HISAT2_BUILD.out.versions)
+    versions = versions.mix(HISAT2_BUILD.out.versions)
 
     //creates an empty channel which will then be populated with the genome index files
     Channel
@@ -118,11 +105,11 @@ main:
 
     //HISAT2 is taking the fastq files and aligning them to a reference genome using the index files and splicesites 
     HISAT2_ALIGN (
-        fastq_ch, 
+        reads, 
         index_ch, 
         splicesites_ch
     )
-    versions_ch = versions_ch.mix(HISAT2_ALIGN.out.versions)
+    versions = versions.mix(HISAT2_ALIGN.out.versions)
 
     //creates an empty channel which will then be populated with the HISAT2 alignment data (bam files) 
     Channel
@@ -144,7 +131,7 @@ main:
         reference_ch,
         sort_input
     )
-    versions_ch = versions_ch.mix(SAMTOOLS_SORT.out.versions_samtools)
+    versions = versions.mix(SAMTOOLS_SORT.out.versions_samtools)
 
     //creates an empty channel which will then be populated with the sorted bam files form SAMTOOLS_SORT
     Channel
@@ -170,7 +157,7 @@ main:
         ch_bam_sorted,
         annotation
     )
-    versions_ch = versions_ch.mix(STRINGTIE_STRINGTIE.out.versions)
+    versions = versions.mix(STRINGTIE_STRINGTIE.out.versions)
 
     //creates an empty channel that will then be populated with the STRINGTIE outputs (gtf)
     Channel
@@ -184,7 +171,7 @@ main:
         ch_stringtie_gtf, 
         annotation
     )
-        versions_ch = versions_ch.mix(STRINGTIE_MERGE.out.versions)
+        versions = versions.mix(STRINGTIE_MERGE.out.versions)
 
     //creates an empty channel that will then be populated with the output from STRINGTIE_MERGE (gtf)
     Channel
@@ -206,7 +193,7 @@ main:
         [ [], [] ],
         true_ch  
     )
-    versions_ch = versions_ch.mix(SAMTOOLS_FAIDX.out.versions_samtools)
+    versions = versions.mix(SAMTOOLS_FAIDX.out.versions_samtools)
 
     //creates an empty channel that will then be populated with the fasta index (fai) from SAMTOOLS_FAIDX
     Channel
@@ -230,7 +217,7 @@ main:
         ch_fasta_meta_fai,
         annotation_ch
     )
-    versions_ch = versions_ch.mix(GFFCOMPARE.out.versions)
+    versions = versions.mix(GFFCOMPARE.out.versions)
 
     //creates an empty channel that will then be populated with the gffcompare output (gtf)
     Channel
@@ -246,7 +233,7 @@ main:
         gffcompare_ch,
         reference
     )
-    versions_ch = versions_ch.mix(GFFREAD.out.versions)
+    versions = versions.mix(GFFREAD.out.versions)
     
     //creates an empty channel that will then be populated with the output from GFFREAD (fasta)
     Channel
@@ -259,7 +246,7 @@ main:
         gffout,
         dna_config
     )
-    versions_ch = versions_ch.mix(PYPGATKDNA.out.versions)
+    versions = versions.mix(PYPGATKDNA.out.versions)
 
 
 /*
@@ -270,7 +257,7 @@ main:
 
 
     //adds the DNA database to the merged_databases_ch
-    merged_databases_ch = merged_databases_ch.mix(PYPGATKDNA.out.database).collect()
+    merged_databases = merged_databases.mix(PYPGATKDNA.out.database).collect()
 
 
 /*
@@ -284,7 +271,7 @@ main:
     SAMTOOLS_INDEX (
         ch_bam_sorted
     )
-    versions_ch = versions_ch.mix(SAMTOOLS_INDEX.out.versions)
+    versions = versions.mix(SAMTOOLS_INDEX.out.versions)
 
     //creates an empty channel that will then be populated with the bam index (bai) generated by SAMTOOLS_INDEX
     Channel
@@ -311,7 +298,7 @@ main:
     [ [], [] ],
     [ [], [] ]
     )
-    versions_ch = versions_ch.mix(FREEBAYES.out.versions)
+    versions = versions.mix(FREEBAYES.out.versions)
 
     //creates an empty channel that will be populated with the gzipped vcf file generated by FREEBAYES
     Channel
@@ -323,7 +310,7 @@ main:
     GUNZIP_VCF (
         freebayes_ch
     )
-    versions_ch = versions_ch.mix(GUNZIP_VCF.out.versions)
+    versions = versions.mix(GUNZIP_VCF.out.versions)
 
     //creates an empty channel that will be populated with the unzipped vcf file generated by FREEBAYES
     Channel
@@ -344,7 +331,7 @@ main:
         annotation_ch,
         cdna_ch,
     )
-    versions_ch = versions_ch.mix(PYPGATKCUSTOM.out.versions)
+    versions = versions.mix(PYPGATKCUSTOM.out.versions)
 
 /*
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -353,13 +340,13 @@ main:
 */
 
     //takes the database generated with PYPGATK and combines it with the other database
-    merged_databases_ch = merged_databases_ch.mix(PYPGATKCUSTOM.out.database).collect()
+    merged_databases = merged_databases.mix(PYPGATKCUSTOM.out.database).collect()
 
 emit:
 
     // emits to the main workflow
-    merged_databases_ch         //channel: contains the databases generated from this workflow
-    versions_ch                 //channel: contains versions.yml holding the version information for each of the tools 
+    merged_databases         //channel: contains the databases generated from this workflow
+    versions                 //channel: contains versions.yml holding the version information for each of the tools 
 
 }
 

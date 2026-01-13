@@ -1,16 +1,18 @@
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        IMPORT SUBWORKFLOWS
+        IMPORT MODULES/SUBWORKFLOWS
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-include { PROTEOGENOMICSDB } from '../subworkflows/local/proteogenomics_workflow/proteogenomics_workflow.nf'
-include { ENSEMBLDB        } from '../subworkflows/local/ensembl_workflow/ensembl_workflow.nf'
-include { COSMICDB         } from '../subworkflows/local/cosmic_workflow/cosmic_workflow.nf'
-include { GNOMADDB         } from '../subworkflows/local/gnomad_workflow/gnomad_workflow.nf'
-include { CBIOPORTALDB     } from '../subworkflows/local/cbioportal_workflow/cbioportal_workflow.nf'
-include { MERGEDB          } from '../subworkflows/local/merge_workflow/merge_workflow.nf'
+include { FASTQC_WORKFLOW } from '../subworkflows/local/fastqc_workflow/fastqc_workflow.nf'
+
+include { RNASEQDB     } from '../subworkflows/local/rnaseq_workflow/rnaseq_workflow.nf'
+include { ENSEMBLDB    } from '../subworkflows/local/ensembl_workflow/ensembl_workflow.nf'
+include { COSMICDB     } from '../subworkflows/local/cosmic_workflow/cosmic_workflow.nf'
+include { GNOMADDB     } from '../subworkflows/local/gnomad_workflow/gnomad_workflow.nf'
+include { CBIOPORTALDB } from '../subworkflows/local/cbioportal_workflow/cbioportal_workflow.nf'
+include { MERGEDB      } from '../subworkflows/local/merge_workflow/merge_workflow.nf'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -18,7 +20,7 @@ include { MERGEDB          } from '../subworkflows/local/merge_workflow/merge_wo
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-workflow PROTEOGENOMICS {
+workflow DATABASE_GENERATION {
 
 take:
     //proteogenomicsdb
@@ -30,7 +32,7 @@ take:
     dna_config
 
     //ensembldb
-    ensembl_downloader_config 
+    ensembl_downloader_config
     species_id 
     ensembl_config 
     altorfs_config 
@@ -59,22 +61,35 @@ take:
     decoy_config
 
 main:
-    
-    //create an empty channel which will later contain all of the databases mixed together
-    Channel
-        .empty()
-        .set { mixed_databases }
 
     //create an empty channel which will later contain the version information for each of the tools
     Channel
         .empty()
         .set { versions }
+    
+    Channel
+        .empty()
+        .set { multiqc_report }
+    
+    FASTQC_WORKFLOW (
+    samplesheet,
+    versions,
+    multiqc_report
+    )
+    versions = versions.mix(FASTQC_WORKFLOW.out.versions).collect()
+    multiqc_report = FASTQC_WORKFLOW.out.multiqc_report.collect() 
+
+    //create an empty channel which will later contain all of the databases mixed together
+    Channel
+        .empty()
+        .set { mixed_databases }
+
 
     //conditional execution based on wether the workflow is turned on or off in the config file 
     if (params.proteogenomicsdb) {
 
         //pass the channels into the PROTEOGENOMICSDB subworkflow - this takes sequencing data to produce a novel protein database
-        PROTEOGENOMICSDB (
+        RNASEQDB (
             samplesheet,
             annotation,
             reference,
@@ -84,11 +99,11 @@ main:
             versions
         )
         //extract the version information from the subworkflow
-        versions = versions.mix(PROTEOGENOMICSDB.out.versions).collect()
+        versions = versions.mix(RNASEQDB.out.versions).collect()
         //extract the databases from PROTEOGENOMICSDB and add them to mixed_databases_ch
-        mixed_databases_ch = mixed_databases_ch.mix(PROTEOGENOMICSDB.out.merged_databases).collect()
+        mixed_databases_ch = mixed_databases_ch.mix(RNASEQDB.out.merged_databases).collect()
         //extract the multiqc report from PROTEOGENOMICSDB
-        multiqc_report = PROTEOGENOMICSDB.out.multiqc_report.collect()
+        multiqc_report = RNASEQDB.out.multiqc_report.collect()
 
     } 
     else {
@@ -97,7 +112,7 @@ main:
     }
 
     //conditional execution based on wether the workflow is turned on or off in the config file
-
+    if (params.ensembldb) {
         //pass the channels into the ENSEMBLDB subworkflow - this downloads data FROM ENSEMBL to create a protein database
         ENSEMBLDB (
             ensembl_downloader_config,
@@ -109,9 +124,9 @@ main:
             versions
         )
         //extract the version information from the subworkflow
-        versions_ch = versions_ch.mix(ENSEMBLDB.out.versions).collect()
+        versions = versions.mix(ENSEMBLDB.out.versions).collect()
         //extract the databases from ENSEMBLDB and add them to mixed_databases_ch
-        mixed_databases_ch = mixed_databases_ch.mix(ENSEMBLDB.out.mixed_databases).collect()
+        mixed_databases = mixed_databases.mix(ENSEMBLDB.out.mixed_databases).collect()
 
     }
     else {
@@ -195,8 +210,8 @@ main:
     //extract the version information from the subworkflow
     versions = versions.mix(MERGEDB.out.versions).collect()
 
-    //extract the databases from MERGEDB and add overwrite mixed_databases_ch
-    mixed_databases = MERGEDB.out.databases_ch.collect()
+    //extract the databases from MERGEDB and add overwrite mixed_databases
+    mixed_databases = MERGEDB.out.databases.collect()
     
     //create a channel containing the decoy database
     Channel

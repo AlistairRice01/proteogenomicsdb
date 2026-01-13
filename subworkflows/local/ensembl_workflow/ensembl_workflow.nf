@@ -40,7 +40,7 @@ take:
     altorfs_config                      //channel: contains the config file for generating a peptide database from altorfs data
     pseudogenes_config                  //channel: contains the config file for generating a peptide database from pseudogenes data
     ncrna_config                        //channel: contains the config file for generating a peptide database from ncrna data
-    versions_ch                         //channel: contains versions.yml holding the version information for each of the tools
+    versions                         //channel: contains versions.yml holding the version information for each of the tools
 
 main:
 
@@ -62,7 +62,7 @@ main:
         ensembl_downloader_config,
         species_name
     )
-    versions_ch = versions_ch.mix(PYPGATK_ENSEMBL.out.versions).collect()
+    versions = versions.mix(PYPGATK_ENSEMBL.out.versions).collect()
 
     //creates an empty channel that will then be populated with the protein files downloaded from ENSEMBL
     Channel
@@ -83,7 +83,7 @@ main:
     CAT_DNA (
         cdna_mixed.map { [ [id: 'total_cDNA' ], it ] }
     )
-    versions_ch = versions_ch.mix(CAT_DNA.out.versions_cat).collect()
+    versions = versions.mix(CAT_DNA.out.versions_cat).collect()
 
     //creates an empty channel that will then be populates with the concatenated cdna
     Channel
@@ -113,7 +113,7 @@ main:
         total_cdna.map { [ [id: 'ncRNA'], it ] },
         ncrna_config
     )
-    versions_ch = versions_ch.mix(PYPGATK_NCRNA.out.versions).collect()
+    versions = versions.mix(PYPGATK_NCRNA.out.versions).collect()
 
     //adds the peptide database generated from ncrna data to the mixed database channel
     mixed_databases = mixed_databases.mix(PYPGATK_NCRNA.out.database).collect()
@@ -123,7 +123,7 @@ main:
         total_cdna.map { [ [id: 'pseudogenes'], it ] },
         pseudogenes_config
     )
-    versions_ch = versions_ch.mix(PYPGATK_PSEUDOGENES.out.versions).collect()
+    versions = versions.mix(PYPGATK_PSEUDOGENES.out.versions).collect()
 
     //adds the peptide database generated from pseudogenes data to the mixed database channel
     mixed_databases = mixed_databases.mix(PYPGATK_PSEUDOGENES.out.database).collect()
@@ -139,7 +139,7 @@ main:
         cdna_database.map { [ [id: 'Altorfs_database'], it ] },
         altorfs_config
     )
-    versions_ch = versions_ch.mix(PYPGATK_ALRORFS.out.versions).collect()
+    versions = versions.mix(PYPGATK_ALRORFS.out.versions).collect()
 
     //adds the peptide database generated from altorfs data to the mixed database channel
     mixed_databases = mixed_databases.mix(PYPGATK_ALRORFS.out.database).collect()
@@ -164,7 +164,7 @@ main:
         ensembl_downloader_config,
         species_name
     )
-    versions_ch = versions_ch.mix(PYPGATK_ENSEMBL_VCF.out.versions).collect()
+    versions = versions.mix(PYPGATK_ENSEMBL_VCF.out.versions).collect()
 
     //creates an empty channel which will be populated with the vcf file downloaded from ENSEMBL
     Channel
@@ -176,7 +176,7 @@ main:
     CAT_VCF (
         ensembl_vcf.map { [ [id: 'concatenated_vcf' ], it, [] ] }
     )
-    versions_ch = versions_ch.mix(CAT_VCF.out.versions_cat).collect()
+    versions = versions.mix(CAT_VCF.out.versions_cat).collect()
 
     //creates an empty channel which will then be populated with the concatenated vcf file 
     Channel
@@ -198,7 +198,7 @@ main:
         total_cdna.map { [ [id: 'ensembl_vcf'], it ] },
         ensembl_config
     )
-    versions_ch = versions_ch.mix(PYPGATK.out.versions).collect()
+    versions = versions.mix(PYPGATK.out.versions).collect()
 
     //adds the peptide database generated from the vcf file to the mixed database channel
     mixed_databases = mixed_databases.mix(PYPGATK.out.database).collect()
@@ -215,7 +215,7 @@ emit:
     
     //emits to the main workflow
     mixed_databases     //channel: contains the databases generated from this workflow
-    versions_ch         //channel: contains versions.yml holding the version information for each of the tools
+    versions         //channel: contains versions.yml holding the version information for each of the tools
 
 }
 

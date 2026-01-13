@@ -15,7 +15,7 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-include { PROTEOGENOMICS  } from './workflows/proteogenomicsdb.nf'
+include { DATABASE_GENERATION     } from './workflows/database_generation.nf'
 include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_proteogenomicsdb_pipeline'
 include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_proteogenomicsdb_pipeline'
 include { getGenomeAttribute      } from './subworkflows/local/utils_nfcore_proteogenomicsdb_pipeline'
@@ -51,7 +51,7 @@ workflow NFCORE_PROTEOGENOMICSDB {
     //
     // WORKFLOW: Run pipeline
     //
-    PROTEOGENOMICS (
+    DATABASE_GENERATION (
         //proteogenomics paramiters
         samplesheet,            //samplesheet containing the rna-seq transcripts
         params.reference,       //
@@ -86,10 +86,10 @@ workflow NFCORE_PROTEOGENOMICSDB {
 
     )
     emit:
-    mixed_databases = PROTEOGENOMICS.out.mixed_databases    //channel: contains the final peptide database
-    decoy_database  = PROTEOGENOMICS.out.decoy_database     //channel: contains the decoy database
-    versions        = PROTEOGENOMICS.out.versions           //channel: contains the version information for each of the tools used in the pipeline
-    multiqc_report  = PROTEOGENOMICS.out.multiqc_report     // channel: /path/to/multiqc_report.html
+    mixed_databases = DATABASE_GENERATION.out.mixed_databases    //channel: contains the final peptide database
+    decoy_database  = DATABASE_GENERATION.out.decoy_database     //channel: contains the decoy database
+    versions        = DATABASE_GENERATION.out.versions           //channel: contains the version information for each of the tools used in the pipeline
+    multiqc_report  = DATABASE_GENERATION.out.multiqc_report     // channel: /path/to/multiqc_report.html
 
 }
 /*
@@ -133,9 +133,9 @@ workflow {
         params.monochrome_logs,
         params.hook_url,
         NFCORE_PROTEOGENOMICSDB.out.multiqc_report,
-        NFCORE_PROTEOGENOMICS.out.mixed_databases,  
-        PROTEOGENOMICS.out.decoy_database,     
-        NFCORE_PROTEOGENOMICS.out.versions, 
+        NFCORE_PROTEOGENOMICSDB.out.mixed_databases,  
+        NFCORE_PROTEOGENOMICSDB.out.decoy_database,     
+        NFCORE_PROTEOGENOMICSDB.out.versions 
     )
 }
 

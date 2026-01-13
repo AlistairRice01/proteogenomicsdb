@@ -1,0 +1,229 @@
+<!--
+  ~ Copyright 2013-2024, Seqera Labs
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<html>
+<head>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+</head>
+<body>
+<pre class="mermaid" style="text-align: center;">
+%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+      'primaryColor': '#B6ECE2',
+      'primaryTextColor': '#160F26',
+      'primaryBorderColor': '#065647',
+      'lineColor': '#545555',
+      'clusterBkg': '#BABCBD22',
+      'clusterBorder': '#DDDEDE',
+      'fontFamily': 'arial'
+    }
+  }
+}%%
+flowchart TB
+    subgraph " "
+    v2["Channel.fromList"]
+    v50["multiqc_config"]
+    v51["extra_multiqc_config"]
+    v52["multiqc_logo"]
+    v53["replace_names"]
+    v54["sample_names"]
+    v66["ensembl_downloader_config"]
+    v67["species_taxonomy"]
+    v90["pypgatk_config"]
+    v97["pypgatk_config"]
+    v107["pypgatk_config"]
+    v113["ensembl_downloader_config"]
+    v114["species_taxonomy"]
+    v133["pypgatk_config"]
+    v159["ensembl_config"]
+    v160["minimum_aa"]
+    v161["add_stop_codons"]
+    v167["protein_decoy_config"]
+    end
+    subgraph "NFCORE_PROTEOGENOMICSDB [NFCORE_PROTEOGENOMICSDB]"
+    subgraph "NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION [DATABASE_GENERATION]"
+    subgraph "NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:FASTQC_WORKFLOW [FASTQC_WORKFLOW]"
+    v12(["CAT_FASTQ"])
+    subgraph "NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:FASTQC_WORKFLOW:FASTQC_TRIMGALORE [FASTQC_TRIMGALORE]"
+    v22(["FASTQC"])
+    v36(["TRIMGALORE"])
+    v21(( ))
+    v25(( ))
+    v35(( ))
+    end
+    v55(["MULTIQC"])
+    v11(( ))
+    v13(( ))
+    v43(( ))
+    v58(( ))
+    end
+    subgraph "NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:ENSEMBLDB [ENSEMBLDB]"
+    v68(["PYPGATK_ENSEMBL"])
+    v82(["CAT_DNA"])
+    v91(["PYPGATK_NCRNA"])
+    v98(["PYPGATK_PSEUDOGENES"])
+    v108(["PYPGATK_ALRORFS"])
+    v115(["PYPGATK_ENSEMBL_VCF"])
+    v122(["CAT_VCF"])
+    v134(["PYPGATK"])
+    v70(( ))
+    v74(( ))
+    v79(( ))
+    v87(( ))
+    v105(( ))
+    v119(( ))
+    v127(( ))
+    v130(( ))
+    end
+    subgraph "NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:MERGEDB [MERGEDB]"
+    v151(["CAT_CAT"])
+    v162(["PYPGATK_CLEAN"])
+    v168(["PYPGATK_DECOY"])
+    v145(( ))
+    v152(( ))
+    v156(( ))
+    v163(( ))
+    v173(( ))
+    end
+    v61(( ))
+    v63(( ))
+    v141(( ))
+    v177(( ))
+    v181(( ))
+    end
+    end
+    subgraph " "
+    v23["fastqc_zip"]
+    v24["fastqc_html"]
+    v37["trim_html"]
+    v38[" "]
+    v39["reads"]
+    v56[" "]
+    v57[" "]
+    v69[" "]
+    v176["versions"]
+    v178["mixed_databases"]
+    v182["decoy_database"]
+    v184[" "]
+    end
+    subgraph "PIPELINE_INITIALISATION [PIPELINE_INITIALISATION]"
+    v3(( ))
+    end
+    subgraph "PIPELINE_COMPLETION [PIPELINE_COMPLETION]"
+    v183(( ))
+    end
+    v2 --> v3
+    v11 --> v12
+    v12 --> v11
+    v12 --> v13
+    v21 --> v22
+    v22 --> v24
+    v22 --> v23
+    v22 --> v25
+    v35 --> v36
+    v36 --> v39
+    v36 --> v38
+    v36 --> v37
+    v36 --> v25
+    v36 --> v43
+    v50 --> v55
+    v51 --> v55
+    v52 --> v55
+    v53 --> v55
+    v54 --> v55
+    v43 --> v55
+    v55 --> v57
+    v55 --> v56
+    v55 --> v13
+    v55 --> v58
+    v66 --> v68
+    v67 --> v68
+    v68 --> v69
+    v68 --> v70
+    v68 --> v74
+    v68 --> v79
+    v68 --> v105
+    v68 --> v130
+    v79 --> v82
+    v82 --> v70
+    v82 --> v87
+    v90 --> v91
+    v87 --> v91
+    v91 --> v70
+    v91 --> v74
+    v97 --> v98
+    v87 --> v98
+    v98 --> v70
+    v98 --> v74
+    v107 --> v108
+    v105 --> v108
+    v108 --> v70
+    v108 --> v74
+    v113 --> v115
+    v114 --> v115
+    v115 --> v70
+    v115 --> v119
+    v119 --> v122
+    v122 --> v70
+    v122 --> v127
+    v133 --> v134
+    v87 --> v134
+    v127 --> v134
+    v130 --> v134
+    v134 --> v70
+    v134 --> v74
+    v145 --> v151
+    v151 --> v152
+    v151 --> v156
+    v159 --> v162
+    v160 --> v162
+    v161 --> v162
+    v156 --> v162
+    v162 --> v152
+    v162 --> v163
+    v167 --> v168
+    v163 --> v168
+    v168 --> v152
+    v168 --> v173
+    v61 --> v176
+    v177 --> v178
+    v181 --> v182
+    v183 --> v184
+    v3 --> v11
+    v11 --> v21
+    v11 --> v35
+    v25 --> v13
+    v13 --> v25
+    v13 --> v61
+    v58 --> v63
+    v70 --> v61
+    v152 --> v61
+    v61 --> v70
+    v61 --> v152
+    v63 --> v183
+    v74 --> v141
+    v141 --> v145
+    v163 --> v177
+    v173 --> v181
+
+</pre>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, maxTextSize: Number.MAX_SAFE_INTEGER, maxEdges: Number.MAX_SAFE_INTEGER });
+</script>
+</body>
+</html>

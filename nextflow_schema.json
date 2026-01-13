@@ -56,112 +56,96 @@
                 }
             }
         },
-    
         "other_options": {
-                "title": "other options",
-                "type": "object",
-                "description": "input files for running the workflow.",
-        "properties": {
-            "fasta": {
-                "type": "string",
-                "description": "placeholder text"
-            },
-            "monochrome_logs": {
-                "type": "boolean",
-                "description": "placeholder text"
-            },
-            "args": {
-                "type": "string",
-                "description": "placeholder text"
-            },
-            "help_full": {
-                "type": "boolean",
-                "description": "placeholder text"
-            },
-            "show_hidden": {
-                "type": "boolean",
-                "description": "placeholder text"
-            },
-            "email": {
-                "type": "string",
-                "description": "placeholder text"
-            },
-            "email_on_fail": {
-                "type": "string",
-                "description": "placeholder text"
-            },
-            "plaintext_email": {
-                "type": "boolean",
-                "description": "placeholder text"
-            },
-            "hook_url": {
-                "type": "string",
-                "description": "placeholder text"
-            },
-            "custom_config_base": {
-                "type": "string",
-                "default": "https://raw.githubusercontent.com/nf-core/configs/master",
-                "description": "placeholder text"
-            },
-            "custom_config_version": {
-                "type": "string",
-                "default": "master",
-                "description": "placeholder text"
+            "title": "other options",
+            "type": "object",
+            "description": "input files for running the workflow.",
+            "properties": {
+                "monochrome_logs": {
+                    "type": "boolean",
+                    "description": "placeholder text"
+                },
+                "help_full": {
+                    "type": "boolean",
+                    "description": "placeholder text"
+                },
+                "show_hidden": {
+                    "type": "boolean",
+                    "description": "placeholder text"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "placeholder text"
+                },
+                "email_on_fail": {
+                    "type": "string",
+                    "description": "placeholder text"
+                },
+                "plaintext_email": {
+                    "type": "boolean",
+                    "description": "placeholder text"
+                },
+                "hook_url": {
+                    "type": "string",
+                    "description": "placeholder text"
+                },
+                "custom_config_base": {
+                    "type": "string",
+                    "default": "https://raw.githubusercontent.com/nf-core/configs/master",
+                    "description": "placeholder text"
+                },
+                "custom_config_version": {
+                    "type": "string",
+                    "default": "master",
+                    "description": "placeholder text"
+                }
             }
-        }
-    },
+        },
         "pipeline_options": {
             "title": "pipeline_options",
             "type": "object",
             "description": "Paramiters for running the pipeline.",
             "properties": {
                 "proteogenomicsdb": {
-                    "type": "boolean",
-                    "default": true
+                    "type": "boolean"
                 },
                 "ensembldb": {
                     "type": "boolean",
                     "default": true
                 },
                 "cosmicdb": {
-                    "type": "boolean",
-                    "default": false
+                    "type": "boolean"
                 },
                 "gnomaddb": {
-                    "type": "boolean",
-                    "default": true
+                    "type": "boolean"
                 },
                 "cbioportaldb": {
-                    "type": "boolean",
-                    "default": true
+                    "type": "boolean"
                 },
                 "dna_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/nextflow/conf/dna_config.yaml"
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/dna_config.yaml"
                 },
                 "custom_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/nextflow/conf/custom_config.yaml"
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/custom_config.yaml"
                 },
                 "gtf": {
-                    "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/nextflow/proteogenomicsDB_inputs/Saccharomyces_cerevisiae.R64-1-1.115.gtf"
+                    "type": "string"
                 },
                 "reference": {
-                    "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/nextflow/proteogenomicsDB_inputs/Saccharomyces_cerevisiae.R64-1-1.dna.toplevel.fa"
+                    "type": "string"
                 },
                 "cdna": {
-                    "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/nextflow/proteogenomicsDB_inputs/Saccharomyces_cerevisiae.R64-1-1.cdna.all.fa"
+                    "type": "string"
                 },
                 "ensembl_downloader": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/nextflow/conf/ensembl_downloader_config.yaml"
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/ensembl_downloader_config.yaml"
                 },
                 "ensembl": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/nextflow/conf/ensembl_config.yaml"
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/ensembl_config.yaml"
                 },
                 "species": {
                     "type": "integer",
@@ -169,27 +153,25 @@
                 },
                 "ncrna": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/nextflow/conf/ncrna_config.yaml"
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/ncrna_config.yaml"
                 },
                 "pseudogenes": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/nextflow/conf/pseudogenes_config.yaml"
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pseudogenes_config.yaml"
                 },
                 "altorfs": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/nextflow/conf/altorfs_config.yaml"
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/altorfs_config.yaml"
                 },
                 "cosmic": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/nextflow/conf/cosmic_config.yaml"
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/cosmic_config.yaml"
                 },
                 "username": {
-                    "type": "string",
-                    "default": "s2215490@ed.ac.uk"
+                    "type": "string"
                 },
                 "password": {
-                    "type": "string",
-                    "default": "BeepBoop8294!"
+                    "type": "string"
                 },
                 "genecode_transcripts": {
                     "type": "string",
@@ -205,7 +187,7 @@
                 },
                 "gnomad_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/nextflow/conf/gnomad_config.yaml"
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/gnomad_config.yaml"
                 },
                 "grch37": {
                     "type": "string",
@@ -213,7 +195,7 @@
                 },
                 "cbio_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/nextflow/conf/cbioportal_config.yaml"
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/cbioportal_config.yaml"
                 },
                 "studies": {
                     "type": "string",
@@ -224,17 +206,15 @@
                     "default": 50
                 },
                 "stop_codons": {
-                    "type": "boolean",
-                    "default": false
+                    "type": "boolean"
                 },
                 "decoy": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/nextflow/conf/protein_decoy.yaml"
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/protein_decoy.yaml"
                 }
             }
         }
     },
-
     "allOf": [
         {
             "$ref": "#/$defs/input_output_options"
@@ -248,6 +228,53 @@
         {
             "$ref": "#/$defs/pipeline_options"
         }
-    ]
-
+    ],
+    "properties": {
+        "igenomes_base": {
+            "type": "string",
+            "default": "s3://ngi-igenomes/igenomes/"
+        },
+        "igenomes_ignore": {
+            "type": "boolean"
+        },
+        "multiqc_config": {
+            "type": "string"
+        },
+        "multiqc_title": {
+            "type": "string"
+        },
+        "multiqc_logo": {
+            "type": "string"
+        },
+        "max_multiqc_email_size": {
+            "type": "string",
+            "default": "25.MB"
+        },
+        "multiqc_methods_description": {
+            "type": "string"
+        },
+        "publish_dir_mode": {
+            "type": "string",
+            "default": "copy"
+        },
+        "pipelines_testdata_base_path": {
+            "type": "string",
+            "default": "https://raw.githubusercontent.com/nf-core/test-datasets/7f1614bae0ddf66e60be78c3d9fa55440465ac8/"
+        },
+        "config_profile_name": {
+            "type": "string"
+        },
+        "config_profile_description": {
+            "type": "string"
+        },
+        "config_profile_contact": {
+            "type": "string"
+        },
+        "config_profile_url": {
+            "type": "string"
+        },
+        "annotation": {
+            "type": "string"
+        }
+    }
 }
