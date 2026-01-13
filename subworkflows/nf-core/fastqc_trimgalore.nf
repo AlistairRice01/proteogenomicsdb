@@ -26,7 +26,7 @@ main:
     
     if (!skip_fastqc) {
         FASTQC ( 
-            reads.view() 
+            reads 
         )
         versions = versions.mix(FASTQC.out.versions.first())
         fastqc_html = FASTQC.out.html
@@ -52,7 +52,7 @@ main:
 
     if (!skip_trimming) {
         TRIMGALORE ( 
-            reads.view() 
+            reads 
         )
         trim_reads = TRIMGALORE.out.reads
         trim_html  = TRIMGALORE.out.html

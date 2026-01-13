@@ -6,13 +6,12 @@
 */
 
 include { FASTQC_WORKFLOW } from '../subworkflows/local/fastqc_workflow/fastqc_workflow.nf'
-
-include { RNASEQDB     } from '../subworkflows/local/rnaseq_workflow/rnaseq_workflow.nf'
-include { ENSEMBLDB    } from '../subworkflows/local/ensembl_workflow/ensembl_workflow.nf'
-include { COSMICDB     } from '../subworkflows/local/cosmic_workflow/cosmic_workflow.nf'
-include { GNOMADDB     } from '../subworkflows/local/gnomad_workflow/gnomad_workflow.nf'
-include { CBIOPORTALDB } from '../subworkflows/local/cbioportal_workflow/cbioportal_workflow.nf'
-include { MERGEDB      } from '../subworkflows/local/merge_workflow/merge_workflow.nf'
+include { RNASEQDB        } from '../subworkflows/local/rnaseq_workflow/rnaseq_workflow.nf'
+include { ENSEMBLDB       } from '../subworkflows/local/ensembl_workflow/ensembl_workflow.nf'
+include { COSMICDB        } from '../subworkflows/local/cosmic_workflow/cosmic_workflow.nf'
+include { GNOMADDB        } from '../subworkflows/local/gnomad_workflow/gnomad_workflow.nf'
+include { CBIOPORTALDB    } from '../subworkflows/local/cbioportal_workflow/cbioportal_workflow.nf'
+include { MERGEDB         } from '../subworkflows/local/merge_workflow/merge_workflow.nf'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -83,7 +82,6 @@ main:
     Channel
         .empty()
         .set { mixed_databases }
-
 
     //conditional execution based on wether the workflow is turned on or off in the config file 
     if (params.proteogenomicsdb) {

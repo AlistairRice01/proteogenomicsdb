@@ -149,11 +149,125 @@
                 },
                 "stop_codons": {
                     "type": "boolean"
+                },
+                "igenomes_base": {
+                    "type": "string",
+                    "default": "s3://ngi-igenomes/igenomes/"
+                },
+                "igenomes_ignore": {
+                    "type": "boolean"
+                },
+                "multiqc_config": {
+                    "type": "string"
+                },
+                "multiqc_title": {
+                    "type": "string"
+                },
+                "multiqc_logo": {
+                    "type": "string"
+                },
+                "max_multiqc_email_size": {
+                    "type": "string",
+                    "default": "25.MB"
+                },
+                "multiqc_methods_description": {
+                    "type": "string"
+                },
+                "publish_dir_mode": {
+                    "type": "string",
+                    "default": "copy"
+                },
+                "pipelines_testdata_base_path": {
+                    "type": "string",
+                    "default": "https://raw.githubusercontent.com/nf-core/test-datasets/7f1614bae0ddf66e60be78c3d9fa55440465ac8/"
+                },
+                "config_profile_name": {
+                    "type": "string"
+                },
+                "config_profile_description": {
+                    "type": "string"
+                },
+                "config_profile_contact": {
+                    "type": "string"
+                },
+                "config_profile_url": {
+                    "type": "string"
+                },
+                "annotation": {
+                    "type": "string"
+                },
+                "skip_fastqc": {
+                    "type": "boolean"
+                },
+                "skip_trimming": {
+                    "type": "boolean"
+                },
+                "transcripts": {
+                    "type": "string"
+                },
+                "ensembl_downloader_config": {
+                    "type": "string",
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/ensembl_downloader_config.yaml"
+                },
+                "ensembl_config": {
+                    "type": "string",
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/ensembl_config.yaml"
+                },
+                "species_id": {
+                    "type": "integer",
+                    "default": 559292
+                },
+                "ncrna_config": {
+                    "type": "string",
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/ncrna_config.yaml"
+                },
+                "pseudogenes_config": {
+                    "type": "string",
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pseudogenes_config.yaml"
+                },
+                "altorfs_config": {
+                    "type": "string",
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/altorfs_config.yaml"
+                },
+                "cosmic_config": {
+                    "type": "string",
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/cosmic_config.yaml"
+                },
+                "genecode_transcripts_url": {
+                    "type": "string",
+                    "default": "https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.transcripts.fa.gz"
+                },
+                "genecode_annotations_url": {
+                    "type": "string",
+                    "default": "https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.annotation.gtf.gz"
+                },
+                "gnomad_url": {
+                    "type": "string",
+                    "default": "gs://gcp-public-data--gnomad/release/2.1.1/vcf/exomes/gnomad.exomes.r2.1.1.sites.18.vcf.bgz"
+                },
+                "grch37_url": {
+                    "type": "string",
+                    "default": "ftp://ftp.ensembl.org/pub/release-75/fasta/homo_sapiens/cds/Homo_sapiens.GRCh37.75.cds.all.fa.gz"
+                },
+                "cbio_study": {
+                    "type": "string",
+                    "default": "es_iocurie_2014"
+                },
+                "minimum_aa": {
+                    "type": "integer",
+                    "default": 50
+                },
+                "decoy_config": {
+                    "type": "string",
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/protein_decoy.yaml"
+                },
+                "multiqc_custom_config": {
+                    "type": "string"
                 }
             }
         }
     },
-    "allOf": [
+        "allOf": [
         {
             "$ref": "#/$defs/input_output_options"
         },
@@ -166,121 +280,5 @@
         {
             "$ref": "#/$defs/pipeline_options"
         }
-    ],
-    "properties": {
-        "igenomes_base": {
-            "type": "string",
-            "default": "s3://ngi-igenomes/igenomes/"
-        },
-        "igenomes_ignore": {
-            "type": "boolean"
-        },
-        "multiqc_config": {
-            "type": "string"
-        },
-        "multiqc_title": {
-            "type": "string"
-        },
-        "multiqc_logo": {
-            "type": "string"
-        },
-        "max_multiqc_email_size": {
-            "type": "string",
-            "default": "25.MB"
-        },
-        "multiqc_methods_description": {
-            "type": "string"
-        },
-        "publish_dir_mode": {
-            "type": "string",
-            "default": "copy"
-        },
-        "pipelines_testdata_base_path": {
-            "type": "string",
-            "default": "https://raw.githubusercontent.com/nf-core/test-datasets/7f1614bae0ddf66e60be78c3d9fa55440465ac8/"
-        },
-        "config_profile_name": {
-            "type": "string"
-        },
-        "config_profile_description": {
-            "type": "string"
-        },
-        "config_profile_contact": {
-            "type": "string"
-        },
-        "config_profile_url": {
-            "type": "string"
-        },
-        "annotation": {
-            "type": "string"
-        },
-        "skip_fastqc": {
-            "type": "boolean"
-        },
-        "skip_trimming": {
-            "type": "boolean"
-        },
-        "transcripts": {
-            "type": "string"
-        },
-        "ensembl_downloader_config": {
-            "type": "string",
-            "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/ensembl_downloader_config.yaml"
-        },
-        "ensembl_config": {
-            "type": "string",
-            "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/ensembl_config.yaml"
-        },
-        "species_id": {
-            "type": "integer",
-            "default": 559292
-        },
-        "ncrna_config": {
-            "type": "string",
-            "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/ncrna_config.yaml"
-        },
-        "pseudogenes_config": {
-            "type": "string",
-            "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pseudogenes_config.yaml"
-        },
-        "altorfs_config": {
-            "type": "string",
-            "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/altorfs_config.yaml"
-        },
-        "cosmic_config": {
-            "type": "string",
-            "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/cosmic_config.yaml"
-        },
-        "genecode_transcripts_url": {
-            "type": "string",
-            "default": "https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.transcripts.fa.gz"
-        },
-        "genecode_annotations_url": {
-            "type": "string",
-            "default": "https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.annotation.gtf.gz"
-        },
-        "gnomad_url": {
-            "type": "string",
-            "default": "gs://gcp-public-data--gnomad/release/2.1.1/vcf/exomes/gnomad.exomes.r2.1.1.sites.18.vcf.bgz"
-        },
-        "grch37_url": {
-            "type": "string",
-            "default": "ftp://ftp.ensembl.org/pub/release-75/fasta/homo_sapiens/cds/Homo_sapiens.GRCh37.75.cds.all.fa.gz"
-        },
-        "cbio_study": {
-            "type": "string",
-            "default": "es_iocurie_2014"
-        },
-        "minimum_aa": {
-            "type": "integer",
-            "default": 50
-        },
-        "decoy_config": {
-            "type": "string",
-            "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/protein_decoy.yaml"
-        },
-        "multiqc_custom_config": {
-            "type": "string"
-        }
-    }
+    ]
 }

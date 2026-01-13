@@ -33,11 +33,19 @@ main:
     versions = versions.mix(CAT_FASTQ.out.versions_cat).collect()
     ch_cat_fastq = CAT_FASTQ.out.reads.mix(ch_fastq.single)
 
+    Channel 
+        .from(params.skip_fastqc)
+        .set { skip_fastqc }
+
+    Channel 
+        .from(params.skip_trimming)
+        .set { skip_trimming }
+
         // MODULE: Run FastQC, trimgalore!
     FASTQC_TRIMGALORE (
         ch_cat_fastq.view(),
-        params.skip_fastqc,
-        params.skip_trimming,
+        skip_fastqc,
+        skip_trimming,
         versions
     )
     versions = versions.mix(FASTQC_TRIMGALORE.out.versions)
