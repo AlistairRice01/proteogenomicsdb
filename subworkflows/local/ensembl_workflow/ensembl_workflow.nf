@@ -48,7 +48,7 @@ main:
     Channel
         .empty()
         .set { mixed_databases } 
-
+/*
     Channel
         .fromPath(ensembl_downloader_config)
         .set { ensembl_downloader_config_ch }
@@ -60,7 +60,7 @@ main:
     Channel
         .fromPath(ensembl_config)
         .set { ensembl_config_ch }
-
+*/
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -71,8 +71,8 @@ main:
 
     //PYPGATK_ENSEMBL uses the species name and downloads files from ENSEMBL
     PYPGATK_ENSEMBL (
-        ensembl_downloader_config_ch.view(),
-        species_name_ch.view()
+        ensembl_downloader_config,
+        species_name
     )
     versions_ch = versions_ch.mix(PYPGATK_ENSEMBL.out.versions).collect()
 
@@ -119,6 +119,7 @@ main:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
+if (!params.skip_ncrna) {
 
     //PYPGATK_NCRNA takes the total_cdna channel and the ncrna_config to generate a peptide database
     PYPGATK_NCRNA (
@@ -130,6 +131,16 @@ main:
     //adds the peptide database generated from ncrna data to the mixed database channel
     mixed_databases = mixed_databases.mix(PYPGATK_NCRNA.out.database).collect()
 
+}
+
+else {
+        //bypass the subworkflow
+        log.info "ncrna database skipped."
+    }
+
+
+if (!params.skip_pseudogenes) {
+
     //PYPGATK_PSEUDOGENES takes the total_cdna channel and the pseudogenes_config to generate a peptide database
     PYPGATK_PSEUDOGENES (
         total_cdna.map { [ [id: 'pseudogenes'], it ] },
@@ -140,11 +151,20 @@ main:
     //adds the peptide database generated from pseudogenes data to the mixed database channel
     mixed_databases = mixed_databases.mix(PYPGATK_PSEUDOGENES.out.database).collect()
 
+}
+
+else {
+        //bypass the subworkflow
+        log.info "pseudogenes database skipped."
+    }
+
     //creates an empty channel that will then be populated with the cdna files downloaded from ENSEMBL
     Channel
         .empty()
         .set { cdna_database }
     cdna_database = PYPGATK_ENSEMBL.out.cdna.collect()
+
+if (!params.skip_altorfs) {
 
     //PYPGATK_ALTORFS takes the cdna files and the altorfs_config to generate a peptide database
     PYPGATK_ALRORFS (
@@ -155,7 +175,12 @@ main:
 
     //adds the peptide database generated from altorfs data to the mixed database channel
     mixed_databases = mixed_databases.mix(PYPGATK_ALRORFS.out.database).collect()
+}
 
+else {
+        //bypass the subworkflow
+        log.info "altorfs database skipped."
+    }
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -173,8 +198,8 @@ main:
 
     //PYPGATK_ENSEMBL_VCF downloads the vcf file for the defined species 
     PYPGATK_ENSEMBL_VCF (
-        ensembl_downloader_config_ch,
-        species_name_ch
+        ensembl_downloader_config,
+        species_name
     )
     versions_ch = versions_ch.mix(PYPGATK_ENSEMBL_VCF.out.versions).collect()
 

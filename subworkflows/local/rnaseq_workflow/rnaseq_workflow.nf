@@ -266,6 +266,8 @@ main:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
+    if (custom_config !== null) {
+
 
     //SAMTOOLS_INDEX takes the sorted bam file and generates a bam index file (bai)
     SAMTOOLS_INDEX (
@@ -332,6 +334,13 @@ main:
         cdna_ch,
     )
     versions = versions.mix(PYPGATKCUSTOM.out.versions)
+
+    }
+
+    else {
+        //bypass the subworkflow
+        log.info "rna-seq vcf database skipped."
+    }
 
 /*
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -25,6 +25,7 @@ main:
         .set { fastqc_zip }
     
     if (!skip_fastqc) {
+    
         FASTQC ( 
             reads 
         )

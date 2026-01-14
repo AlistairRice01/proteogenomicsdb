@@ -65,6 +65,8 @@ main:
     databases = PYPGATK_CLEAN.out.clean_database.collect()
     versions_ch = versions_ch.mix(PYPGATK_CLEAN.out.versions).collect()
 
+if (decoy_config !== null) {
+
     //PYPGATK_DECOY generates a decoy database from the cleaned database using the decoy_config
     PYPGATK_DECOY (
         databases.map { [ [id: 'decoy_database'], it ] },
@@ -72,6 +74,12 @@ main:
     )
     versions_ch = versions_ch.mix(PYPGATK_DECOY.out.versions).collect()
 
+}
+
+else {
+        //bypass the subworkflow
+        log.info "decoy generation skipped."
+    }
     //creates an empty channel that will then be populated with the decoy database 
     Channel
         .empty()

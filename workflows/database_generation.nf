@@ -84,7 +84,7 @@ main:
         .set { mixed_databases }
 
     //conditional execution based on wether the workflow is turned on or off in the config file 
-    if (params.proteogenomicsdb) {
+    if (!params.skip_rnaseqdb) {
 
         //pass the channels into the PROTEOGENOMICSDB subworkflow - this takes sequencing data to produce a novel protein database
         RNASEQDB (
@@ -110,7 +110,7 @@ main:
     }
 
     //conditional execution based on wether the workflow is turned on or off in the config file
-    if (params.ensembldb) {
+    if (!params.skip_ensembldb) {
         //pass the channels into the ENSEMBLDB subworkflow - this downloads data FROM ENSEMBL to create a protein database
         ENSEMBLDB (
             ensembl_downloader_config,
@@ -133,7 +133,7 @@ main:
     }
 
     //conditional execution based on wether the workflow is turned on or off in the config file
-    if (params.cosmicdb) {
+    if (!params.skip_cosmicdb) {
 
         //pass the channels into the COSMICDB subworkflow - this downloads data FROM COSMIC to create a protein database
         COSMICDB (
@@ -154,7 +154,7 @@ main:
     }
     
     //conditional execution based on wether the workflow is turned on or off in the config file
-    if (params.gnomaddb) {
+    if (!params.skip_gnomaddb) {
 
         //pass the channels into the GNOMADDB subworkflow - this downloads data FROM GENECODE and GNOMAD to create a protein database
         GNOMADDB (
@@ -176,7 +176,7 @@ main:
     }
 
     //conditional execution based on wether the workflow is turned on or off in the config file
-    if (params.cbioportaldb) {
+    if (!params.skip_cbioportaldb) {
 
         //pass the channels into the CBIOPORTALDB subworkflow - this downloads data FROM CBIOPORTAL to create a protein database
         CBIOPORTALDB (

@@ -106,27 +106,6 @@
             "type": "object",
             "description": "Paramiters for running the pipeline.",
             "properties": {
-                "proteogenomicsdb": {
-                    "type": "boolean",
-                    "description": "placeholder text"
-                },
-                "ensembldb": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "placeholder text"
-                },
-                "cosmicdb": {
-                    "type": "boolean",
-                    "description": "placeholder text"
-                },
-                "gnomaddb": {
-                    "type": "boolean",
-                    "description": "placeholder text"
-                },
-                "cbioportaldb": {
-                    "type": "boolean",
-                    "description": "placeholder text"
-                },
                 "dna_config": {
                     "type": "string",
                     "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/dna_config.yaml",
@@ -223,14 +202,6 @@
                     "type": "string",
                     "description": "placeholder text"
                 },
-                "skip_fastqc": {
-                    "type": "boolean",
-                    "description": "placeholder text"
-                },
-                "skip_trimming": {
-                    "type": "boolean",
-                    "description": "placeholder text"
-                },
                 "transcripts": {
                     "type": "string",
                     "description": "placeholder text"
@@ -247,7 +218,7 @@
                 },
                 "species_id": {
                     "type": "string",
-                    "default": "559292",
+                    "default": 559292,
                     "description": "placeholder text"
                 },
                 "ncrna_config": {
@@ -310,9 +281,70 @@
                     "description": "placeholder text"
                 }
             }
+        },
+        "skip_options": {
+            "title": "skip_options",
+            "type": "object",
+            "description": "Paramiters for running the pipeline.",
+            "properties": {
+                "skip_rnaseqdb": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "skip_dnaseq": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "skip_vcf": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "skip_ensembldb": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "skip_ncrna": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "skip_pseudogenes": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "skip_altorfs": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "skip_cosmicdb": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "skip_gnomaddb": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "skip_cbioportaldb": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "skip_decoy": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "skip_fastqc": {
+                    "type": "boolean",
+                    "description": "placeholder text",
+                    "default": true
+                },
+                "skip_trimming": {
+                    "type": "boolean",
+                    "description": "placeholder text",
+                    "default": true
+                }
+            }
         }
     },
-        "allOf": [
+    "allOf": [
         {
             "$ref": "#/$defs/input_output_options"
         },
@@ -324,6 +356,9 @@
         },
         {
             "$ref": "#/$defs/pipeline_options"
-        }
+        },
+        {
+            "$ref": "#/$defs/skip_options"
+        }        
     ]
 }
