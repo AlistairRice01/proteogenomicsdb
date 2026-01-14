@@ -95,6 +95,9 @@ workflow PIPELINE_INITIALISATION {
     //
     // Custom validation for pipeline parameters
     //
+
+    if (!params.skip_rnaseqdb) {
+
     validateInputParameters()
 
     //
@@ -121,9 +124,19 @@ workflow PIPELINE_INITIALISATION {
         }
         .set { ch_samplesheet }
 
+    }
+
+    else {
+
+        ch_samplesheet = Channel.empty()
+    
+    }
+
     emit:
     samplesheet = ch_samplesheet
     versions    = ch_versions
+
+
 }
 
 /*
@@ -179,6 +192,7 @@ workflow PIPELINE_COMPLETION {
     FUNCTIONS
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
+
 //
 // Check and validate pipeline parameters
 //
@@ -200,6 +214,7 @@ def validateInputSamplesheet(input) {
 
     return [ metas[0], fastqs ]
 }
+
 //
 // Get attribute from genome config file e.g. fasta
 //

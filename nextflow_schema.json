@@ -10,10 +10,7 @@
             "type": "object",
             "fa_icon": "fas fa-terminal",
             "description": "Define where the pipeline should find input data and save output data.",
-            "required": [
-                "input",
-                "outdir"
-            ],
+            "required": [ "outdir"],
             "properties": {
                 "input": {
                     "type": "string",
@@ -108,12 +105,10 @@
             "properties": {
                 "dna_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/dna_config.yaml",
                     "description": "placeholder text"
                 },
                 "custom_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/custom_config.yaml",
                     "description": "placeholder text"
                 },
                 "reference": {
@@ -130,12 +125,10 @@
                 },
                 "gnomad_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/gnomad_config.yaml",
                     "description": "placeholder text"
                 },
                 "cbio_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/cbioportal_config.yaml",
                     "description": "placeholder text"
                 },
                 "stop_codons": {
@@ -208,72 +201,58 @@
                 },
                 "ensembl_downloader_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/ensembl_downloader_config.yaml",
                     "description": "placeholder text"
                 },
                 "ensembl_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/ensembl_config.yaml",
                     "description": "placeholder text"
                 },
                 "species_id": {
                     "type": "string",
-                    "default": 559292,
                     "description": "placeholder text"
                 },
                 "ncrna_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/ncrna_config.yaml",
                     "description": "placeholder text"
                 },
                 "pseudogenes_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pseudogenes_config.yaml",
                     "description": "placeholder text"
                 },
                 "altorfs_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/altorfs_config.yaml",
                     "description": "placeholder text"
                 },
                 "cosmic_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/cosmic_config.yaml",
                     "description": "placeholder text"
                 },
                 "genecode_transcripts_url": {
                     "type": "string",
-                    "default": "https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.transcripts.fa.gz",
                     "description": "placeholder text"
                 },
                 "genecode_annotations_url": {
                     "type": "string",
-                    "default": "https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.annotation.gtf.gz",
                     "description": "placeholder text"
                 },
                 "gnomad_url": {
                     "type": "string",
-                    "default": "gs://gcp-public-data--gnomad/release/2.1.1/vcf/exomes/gnomad.exomes.r2.1.1.sites.18.vcf.bgz",
                     "description": "placeholder text"
                 },
                 "grch37_url": {
                     "type": "string",
-                    "default": "ftp://ftp.ensembl.org/pub/release-75/fasta/homo_sapiens/cds/Homo_sapiens.GRCh37.75.cds.all.fa.gz",
                     "description": "placeholder text"
                 },
                 "cbio_study": {
                     "type": "string",
-                    "default": "es_iocurie_2014",
                     "description": "placeholder text"
                 },
                 "minimum_aa": {
                     "type": "integer",
-                    "default": 50,
                     "description": "placeholder text"
                 },
                 "decoy_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/protein_decoy.yaml",
                     "description": "placeholder text"
                 },
                 "multiqc_custom_config": {
@@ -359,6 +338,6 @@
         },
         {
             "$ref": "#/$defs/skip_options"
-        }        
+        }
     ]
 }

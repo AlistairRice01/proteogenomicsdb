@@ -70,8 +70,6 @@ main:
         .empty()
         .set { multiqc_report_ch }
     
-    
-    
     FASTQC_WORKFLOW (
     samplesheet,
     versions_ch,

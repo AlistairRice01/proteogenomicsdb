@@ -1,4 +1,4 @@
-process PYPGATK_ENSEMBL_VCF {
+process PYPGATK_ENSEMBL_DOWNLOAD {
     label 'process_medium'
     label 'process_single_thread'
 
@@ -13,8 +13,13 @@ process PYPGATK_ENSEMBL_VCF {
 
     output:
 
-    path "*.vcf", emit: vcf
-    path  "versions.yml"           , emit: versions
+    path "*.pep.all.fa" , emit: protein
+    path "*cdna.all.fa" , emit: cdna
+    path "*ncrna.fa",     emit: ncrna
+    path "*.dna*.fa",     emit: fasta
+    path "*.gtf",         emit: gtf
+    path "*.vcf",         emit: vcf
+    path  "versions.yml", emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -27,7 +32,7 @@ process PYPGATK_ENSEMBL_VCF {
         --config_file ${ensembl_downloader_config} \\
         --output_directory . \\
         --taxonomy ${species_taxonomy} \\
-        -sg -sp -sc -sd -sn
+        -sc
  
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

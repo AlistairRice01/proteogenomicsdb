@@ -1,4 +1,4 @@
-process PYPGATKCUSTOM {
+process PYPGATK_VCF {
     tag "${meta.id}"
     label 'process_medium'
     label 'process_single_thread'
@@ -12,6 +12,7 @@ process PYPGATKCUSTOM {
     tuple val(meta), path(vcf)
     tuple val(meta), path(gtf)
     tuple val(meta), path(dna)
+    file pypgatk_config
 
     output:
     tuple val(meta), path("*.fa"), emit: database
@@ -26,14 +27,13 @@ process PYPGATKCUSTOM {
     def name = "${prefix}.fa"
 
     """
-    
     pypgatk_cli.py vcf-to-proteindb \\
+        --config_file ${pypgatk_config} \\
         --vcf ${vcf} \\
         --input_fasta ${dna} \\
         --gene_annotations_gtf ${gtf} \\
         --output_proteindb ${name} \\
         --annotation_field_name '' \\
-
  
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
@@ -51,9 +51,8 @@ process PYPGATKCUSTOM {
         pypgatk: \$(echo \$(pypgatk --version 2>&1) | sed 's/^pypgatk v//')
     END_VERSIONS
     """
-}
 
-/*   
+    /*   
 pypgatk_cli.py vcf-to-proteindb \\
         --config_file ${pypgatk_config} \\
         --vcf ${vcf.baseName}_changedChrNames.vcf \\
