@@ -65,7 +65,7 @@ main:
     databases = PYPGATK_CLEAN.out.clean_database.collect()
     versions_ch = versions_ch.mix(PYPGATK_CLEAN.out.versions).collect()
 
-if (decoy_config !== null) {
+if (!params.skip_decoy) {
 
     //PYPGATK_DECOY generates a decoy database from the cleaned database using the decoy_config
     PYPGATK_DECOY (
@@ -74,6 +74,12 @@ if (decoy_config !== null) {
     )
     versions_ch = versions_ch.mix(PYPGATK_DECOY.out.versions).collect()
 
+    Channel
+        .empty()
+        .set { decoy }
+    decoy = PYPGATK_DECOY.out.decoy_database.collect()
+
+
 }
 
 else {
@@ -81,10 +87,6 @@ else {
         log.info "decoy generation skipped."
     }
     //creates an empty channel that will then be populated with the decoy database 
-    Channel
-        .empty()
-        .set { decoy }
-    decoy = PYPGATK_DECOY.out.decoy_database.collect()
 
 emit:
 

@@ -31,7 +31,7 @@ main:
         ch_fastq.multiple
     )
     versions_ch = versions_ch.mix(CAT_FASTQ.out.versions_cat).collect()
-    ch_cat_fastq = CAT_FASTQ.out.reads.mix(ch_fastq.single).view()
+    ch_cat_fastq = CAT_FASTQ.out.reads.mix(ch_fastq.single)
 
 
 
@@ -40,7 +40,7 @@ main:
         ch_cat_fastq,
         params.skip_fastqc,
         params.skip_trimming,
-        versions_ch.view()
+        versions_ch
     )
     versions_ch = versions_ch.mix(FASTQC_TRIMGALORE.out.versions_ch)
     ch_multiqc_files  = ch_multiqc_files.mix(FASTQC_TRIMGALORE.out.trim_zip.collect{it[1]}.ifEmpty([]))

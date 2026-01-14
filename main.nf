@@ -86,10 +86,8 @@ workflow NFCORE_PROTEOGENOMICSDB {
 
     )
     emit:
-    mixed_databases = DATABASE_GENERATION.out.mixed_databases    //channel: contains the final peptide database
-    decoy_database  = DATABASE_GENERATION.out.decoy_database     //channel: contains the decoy database
-    versions_ch        = DATABASE_GENERATION.out.versions_ch     //channel: contains the version information for each of the tools used in the pipeline
-    multiqc_report  = DATABASE_GENERATION.out.multiqc_report     // channel: /path/to/multiqc_report.html
+
+        multiqc_report  = DATABASE_GENERATION.out.multiqc_report_ch  // channel: /path/to/multiqc_report.html
 
 }
 /*
@@ -132,10 +130,7 @@ workflow {
         params.outdir,
         params.monochrome_logs,
         params.hook_url,
-        NFCORE_PROTEOGENOMICSDB.out.multiqc_report,
-        NFCORE_PROTEOGENOMICSDB.out.mixed_databases,  
-        NFCORE_PROTEOGENOMICSDB.out.decoy_database,     
-        NFCORE_PROTEOGENOMICSDB.out.versions_ch 
+        NFCORE_PROTEOGENOMICSDB.out.multiqc_report
     )
 }
 
