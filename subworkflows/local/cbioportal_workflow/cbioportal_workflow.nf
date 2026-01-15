@@ -24,9 +24,10 @@ take:
     grch37_link         //channel: html link to the file that you want to download in the grch37 database 
     cbioportal_config   //channel: config file for both downloading and creating a database using cBioPortal data 
     sample_id           //channel: string telling the program which samples to download 
-    versions_ch         //channel: contains versions.yml holding the version information for each of the tools
 
 main:
+
+    versions_ch = Channel.empty()
 
     //WGET_GRCH37 takes the link and downloads it off the internet
      WGET_GRCH37 (
@@ -42,9 +43,7 @@ main:
     versions_ch = versions_ch.mix(PYPGATK_CBIOPORTAL_DOWNLOAD.out.versions).collect()
 
     //creates an empty channel that will then be populated with the file downloaded off the grch37 database 
-    Channel
-        .empty()
-        .set { grch37_ch }
+    grch37_ch = Channel.empty()
     grch37_ch = WGET_GRCH37.out.outfile.collect()
 
     //GUNZIP unzips the file downloaded using WGET_GRCH37 
@@ -54,21 +53,15 @@ main:
     versions_ch = versions_ch.mix(GUNZIP.out.versions).collect()
 
     //creates an empty channel which will be populated with the unzipped grch37 file 
-    Channel
-        .empty()
-        .set { grch37_unzipped }
+    grch37_unzipped = Channel.empty()
     grch37_unzipped = GUNZIP.out.gunzip.collect()
    
     //creates an empty channel that will then be populated with the cBioPortal mutations file 
-    Channel
-        .empty()
-        .set { cbio_mutations }
+    cbio_mutations = Channel.empty()
     cbio_mutations = PYPGATK_CBIOPORTAL_DOWNLOAD.out.cbio_mutations.collect()
 
     //creates an empty channel that will then be populated with the cBioPortal samples file 
-    Channel
-        .empty()
-        .set { cbio_samples }
+    cbio_samples = Channel.empty()
     cbio_samples = PYPGATK_CBIOPORTAL_DOWNLOAD.out.cbio_samples.collect()
 
     //PYPGATK_CBIOPORTAL using the grch37, mutations, and samples file generates a peptide database 
@@ -81,9 +74,7 @@ main:
     versions_ch = versions_ch.mix(PYPGATK_CBIOPORTAL.out.versions).collect()
 
     //creates an empty channel that will be populated with the database generated from PYPGATK_CBIOPORTAL
-    Channel
-        .empty()
-        .set { cbioportal_database }
+    cbioportal_database = Channel.empty()
     cbioportal_database = PYPGATK_CBIOPORTAL.out.cbioportal_proteindb.collect()
 
 emit:

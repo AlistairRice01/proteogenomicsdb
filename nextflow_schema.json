@@ -282,6 +282,10 @@
                     "type": "boolean",
                     "default": true
                 },
+                "skip_proteome": {
+                    "type": "boolean",
+                    "default": true
+                },
                 "skip_ncrna": {
                     "type": "boolean",
                     "default": true

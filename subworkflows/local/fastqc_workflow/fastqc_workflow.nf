@@ -7,14 +7,12 @@ workflow FASTQC_WORKFLOW {
 take:
 
     samplesheet
-    versions_ch
-    multiqc_report
 
 main:
 
-    Channel
-        .empty()
-        .set { ch_multiqc_files }
+    multiqc_files_ch  = Channel.empty()
+    multiqc_report_ch = Channel.empty()
+    versions_ch       = Channel.empty()
 
     samplesheet.branch {
                     meta, fastqs ->
@@ -43,23 +41,23 @@ main:
         versions_ch
     )
     versions_ch = versions_ch.mix(FASTQC_TRIMGALORE.out.versions_ch)
-    ch_multiqc_files  = ch_multiqc_files.mix(FASTQC_TRIMGALORE.out.trim_zip.collect{it[1]}.ifEmpty([]))
-    ch_multiqc_files  = ch_multiqc_files.mix(FASTQC_TRIMGALORE.out.trim_log.collect{it[1]}.ifEmpty([]))
+    multiqc_files_ch  = multiqc_files_ch.mix(FASTQC_TRIMGALORE.out.trim_zip.collect{it[1]}.ifEmpty([]))
+    multiqc_files_ch  = multiqc_files_ch.mix(FASTQC_TRIMGALORE.out.trim_log.collect{it[1]}.ifEmpty([]))
 
     MULTIQC (
-        ch_multiqc_files.collect(),
+        multiqc_files_ch.collect(),
         [],
         [],
         [],
         [],
         []
     )
-    multiqc_report = MULTIQC.out.report.collect()
-    versions_ch = versions_ch.mix(MULTIQC.out.versions).collect()
+    multiqc_report_ch = MULTIQC.out.report.collect()
+    versions_ch       = versions_ch.mix(MULTIQC.out.versions).collect()
 
 emit:
 
-    multiqc_report
+    multiqc_report_ch
     versions_ch 
 
 

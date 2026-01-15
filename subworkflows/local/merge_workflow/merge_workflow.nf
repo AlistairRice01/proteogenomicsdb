@@ -25,20 +25,18 @@ take:
     minimum_aa          //channel: contains contains the minimum number of amino acids that should be considered a protein 
     stop_codons         //channel: contains a boolean statment telling if it should add a new protein into the database whenever a stop codon is found
     decoy_config        //channel: contains constains a config file defining how the decoy database should be generated 
-    versions_ch         //channel: contains versions.yml holding the version information for each of the tools
 
 main:
 
+    versions_ch = Channel.empty()
+    decoy       = Channel.empty()
+
     //creates an empty channel that will be populated with the databases generated in other workflows and flattened into a list - this is to remove the metadata from each database
-    Channel
-        .empty()
-        .set { flat_databases }
+    flat_databases = Channel.empty()
     flat_databases = mixed_databases.flatten().filter{it instanceof java.nio.file.Path && it.isFile()}
 
     //creates an empty channel that will take the flattened databases and collect them 
-    Channel
-        .empty()
-        .set { collected_databases }
+    collected_databases = Channel.empty()
     collected_databases = flat_databases.collect()
 
     //CAT_CAT concatenates all of the databases into a single database
@@ -48,9 +46,7 @@ main:
     versions_ch = versions_ch.mix(CAT_CAT.out.versions_cat).collect()
 
     //creates an empty channel that will then be populated with the concatenated database
-    Channel
-        .empty()
-        .set { databases }
+    databases = Channel.empty()
     databases = CAT_CAT.out.file_out.collect()
         .map { meta, it ->
             return [it] }
@@ -73,11 +69,7 @@ if (!params.skip_decoy) {
         decoy_config
     )
     versions_ch = versions_ch.mix(PYPGATK_DECOY.out.versions).collect()
-
-    Channel
-        .empty()
-        .set { decoy }
-    decoy = PYPGATK_DECOY.out.decoy_database.collect()
+    decoy       = PYPGATK_DECOY.out.decoy_database.collect()
 
 
 }

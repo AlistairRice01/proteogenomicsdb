@@ -33,7 +33,6 @@ process PYPGATK_VCF {
         --input_fasta ${dna} \\
         --gene_annotations_gtf ${gtf} \\
         --output_proteindb ${name} \\
-        --annotation_field_name '' \\
  
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
@@ -51,7 +50,7 @@ process PYPGATK_VCF {
         pypgatk: \$(echo \$(pypgatk --version 2>&1) | sed 's/^pypgatk v//')
     END_VERSIONS
     """
-
+}
     /*   
 pypgatk_cli.py vcf-to-proteindb \\
         --config_file ${pypgatk_config} \\

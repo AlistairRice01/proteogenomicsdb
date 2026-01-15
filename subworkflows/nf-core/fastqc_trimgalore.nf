@@ -16,13 +16,8 @@ take:
 
 main:
 
-    Channel 
-        .empty()
-        .set { fastqc_html }
-    
-    Channel
-        .empty()
-        .set { fastqc_zip }
+    fastqc_html = Channel.empty()
+    fastqc_zip  = Channel.empty()
     
     if (!skip_fastqc) {
     
@@ -34,22 +29,15 @@ main:
         fastqc_zip  = FASTQC.out.zip
     }
 
-    Channel 
-        .empty()
-        .set { trim_reads }
-    trim_reads = reads
+    else {
+        //bypass the subworkflow
+        log.info "fastqc skipped."
+    }
 
-    Channel
-        .empty()
-        .set { trim_html }
-
-    Channel
-        .empty()
-        .set { trim_zip }
-
-    Channel
-        .empty()
-        .set { trim_log }
+    trim_reads = Channel.empty()
+    trim_html  = Channel.empty()
+    trim_zip   = Channel.empty()
+    trim_log   = Channel.empty()
 
     if (!skip_trimming) {
         TRIMGALORE ( 
@@ -60,6 +48,11 @@ main:
         trim_zip   = TRIMGALORE.out.zip
         trim_log   = TRIMGALORE.out.log
         versions_ch   = versions_ch.mix(TRIMGALORE.out.versions_trimgalore.first())
+    }
+
+    else {
+        //bypass the subworkflow
+        log.info "trimgalore skipped."
     }
 
 emit:

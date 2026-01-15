@@ -21,9 +21,10 @@ take:
     cosmic_config       //channel: contains the cosmic_config file used in both downloading and generating a database from COSMIC data
     username_ch         //channel: contains the users COSMIC username 
     password_ch         //channel: contains the users COSMIC password
-    versions_ch         //channel: contains versions.yml holding the version information for each of the tools
 
 main:
+
+    versions_ch = Channel.empty()
 
     //PYPGATK_COSMIC downlownloads data from the COSMIC database using the cosmic_config, username, and password
     PYPGATK_COSMIC (
@@ -34,15 +35,11 @@ main:
     versions_ch = versions_ch.mix(PYPGATK_COSMIC.out.versions).collect()
 
     //creates an empty channel that will then be populated by the COSMIC gene data 
-    Channel
-        .empty()
-        .set { cosmic_genes }
+    cosmic_genes = Channel.empty()
     cosmic_genes = PYPGATK_COSMIC.out.cosmic_genes.collect()
 
     //creaes an empty channel that will be populated with the COSMIC mutation data
-    Channel
-        .empty()
-        .set { comsic_mutations }
+    comsic_mutations = Channel.empty()
     cosmic_mutations = PYPGATK_COSMIC.out.cosmic_mutations.collect()
 
     //PYPGATK_COSMICDB generates a database using the COSMIC data downloaded
@@ -54,9 +51,7 @@ main:
     versions_ch = versions_ch.mix(PYPGATK_COSMICDB.out.versions).collect()
 
     //creates an empty channel that will then be populated with the COSMIC database
-    Channel
-        .empty()
-        .set { cosmic_database }
+    cosmic_database = Channel.empty()
     cosmic_database = PYPGATK_COSMICDB.out.fasta.collect()
 
 // emits to the main workflow

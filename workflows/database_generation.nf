@@ -5,7 +5,6 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-include { FASTQC_WORKFLOW } from '../subworkflows/local/fastqc_workflow/fastqc_workflow.nf'
 include { RNASEQDB        } from '../subworkflows/local/rnaseq_workflow/rnaseq_workflow.nf'
 include { ENSEMBLDB       } from '../subworkflows/local/ensembl_workflow/ensembl_workflow.nf'
 include { COSMICDB        } from '../subworkflows/local/cosmic_workflow/cosmic_workflow.nf'
@@ -62,49 +61,18 @@ take:
 main:
 
     //create an empty channel which will later contain the version information for each of the tools
-    Channel
-        .empty()
-        .set { versions_ch }
-    
-    Channel
-        .empty()
-        .set { multiqc_report_ch }
-    
-    FASTQC_WORKFLOW (
-    samplesheet,
-    versions_ch,
-    multiqc_report_ch
-    )
-    versions_ch = versions_ch.mix(FASTQC_WORKFLOW.out.versions_ch).collect()
-    multiqc_report_ch = FASTQC_WORKFLOW.out.multiqc_report.collect() 
-
-    //create an empty channel which will later contain all of the databases mixed together
-    Channel
-        .empty()
-        .set { mixed_databases_ch }
+    versions_ch        = Channel.empty()
+    mixed_databases_ch = Channel.empty()
+    multiqc_report_ch  = channel.empty()
 
     //conditional execution based on wether the workflow is turned on or off in the config file 
     if (!params.skip_rnaseqdb) {
 
-        Channel
-            .fromPath(reference)
-            .set { reference_ch }
-        
-        Channel
-            .fromPath(annotation)
-            .set { annotation_ch }
-        
-        Channel
-            .fromPath(transcripts)
-            .set { transcripts_ch }
-        
-        Channel
-            .fromPath(custom_config)
-            .set { custom_config_ch }
-        
-        Channel
-            .fromPath(dna_config)
-            .set { dna_config_ch }
+        reference_ch     = Channel.fromPath(reference)
+        annotation_ch    = Channel.fromPath(annotation)
+        transcripts_ch   = Channel.fromPath(transcripts)
+        custom_config_ch = Channel.fromPath(custom_config)
+        dna_config_ch    = Channel.fromPath(dna_config)
 
         //pass the channels into the PROTEOGENOMICSDB subworkflow - this takes sequencing data to produce a novel protein database
         RNASEQDB (
@@ -113,13 +81,12 @@ main:
             reference_ch,
             custom_config_ch,
             dna_config_ch,
-            transcripts_ch,
-            versions_ch
+            transcripts_ch
         )
         //extract the version information from the subworkflow
-        versions_ch = versions_ch.mix(RNASEQDB.out.versions_ch).collect()
-        //extract the databases from PROTEOGENOMICSDB and add them to mixed_databases_ch
+        versions_ch        = versions_ch.mix(RNASEQDB.out.versions_ch).collect()
         mixed_databases_ch = mixed_databases_ch.mix(RNASEQDB.out.merged_databases_ch).collect()
+        multiqc_report_ch  = RNASEQDB.out.multiqc_report_ch
 
     } 
     else {
@@ -130,29 +97,12 @@ main:
     //conditional execution based on wether the workflow is turned on or off in the config file
     if (!params.skip_ensembldb) {
 
-        Channel
-            .fromPath(ensembl_downloader_config)
-            .set { ensembl_downloader_config_ch }
-        
-        Channel
-            .fromPath(ensembl_config)
-            .set { ensembl_config_ch }
-        
-        Channel
-            .fromPath(altorfs_config)
-            .set { altorfs_config_ch }
-        
-        Channel
-            .fromPath(pseudogenes_config)
-            .set { pseudogenes_config_ch }
-        
-        Channel
-            .fromPath(ncrna_config)
-            .set { ncrna_config_ch }
-        
-        Channel
-            .from(species_id)
-            .set { species_id_ch }
+        ensembl_downloader_config_ch = Channel.fromPath(ensembl_downloader_config)        
+        ensembl_config_ch            = Channel.fromPath(ensembl_config)    
+        altorfs_config_ch            = Channel.fromPath(altorfs_config)
+        pseudogenes_config_ch        = Channel.fromPath(pseudogenes_config)
+        ncrna_config_ch              = Channel.fromPath(ncrna_config)
+        species_id_ch                = Channel.from(species_id)
 
         //pass the channels into the ENSEMBLDB subworkflow - this downloads data FROM ENSEMBL to create a protein database
         ENSEMBLDB (
@@ -161,8 +111,7 @@ main:
             ensembl_config_ch,
             altorfs_config_ch,
             pseudogenes_config_ch,
-            ncrna_config_ch,
-            versions_ch
+            ncrna_config_ch
         )
         //extract the version information from the subworkflow
         versions_ch = versions_ch.mix(ENSEMBLDB.out.versions_ch).collect()
@@ -178,24 +127,15 @@ main:
     //conditional execution based on wether the workflow is turned on or off in the config file
     if (!params.skip_cosmicdb) {
 
-        Channel
-            .fromPath(cosmic_config)
-            .set { cosmic_config_ch }
-
-        Channel
-            .from(username)
-            .set { username_ch }
-        
-        Channel
-            .from(password)
-            .set { password_ch }
+        cosmic_config_ch = Channel.fromPath(cosmic_config)
+        username_ch      = Channel.from(username)
+        password_ch      = Channel.from(password)
 
         //pass the channels into the COSMICDB subworkflow - this downloads data FROM COSMIC to create a protein database
         COSMICDB (
             cosmic_config_ch,
             username_ch,
-            password_ch,
-            versions_ch
+            password_ch
         )
         //extract the version information from the subworkflow
         versions_ch = versions_ch.mix(COSMICDB.out.versions_ch).collect()   
@@ -211,29 +151,17 @@ main:
     //conditional execution based on wether the workflow is turned on or off in the config file
     if (!params.skip_gnomaddb) {
 
-        Channel
-            .from(genecode_transcripts_url)
-            .set { genecode_transcripts_url_ch }
-
-        Channel
-            .from(genecode_annotations_url)
-            .set { genecode_annotations_url_ch }
+        genecode_transcripts_url_ch = Channel.from(genecode_transcripts_url)
+        genecode_annotations_url_ch = Channel.from(genecode_annotations_url)        
+        gnomad_url_ch               = Channel.from(gnomad_url)
+        gnomad_config_ch            = Channel.fromPath(gnomad_config)
         
-        Channel
-            .from(gnomad_url)
-            .set { gnomad_url_ch }
-        
-        Channel
-            .fromPath(gnomad_config)
-            .set { gnomad_config_ch }
-
         //pass the channels into the GNOMADDB subworkflow - this downloads data FROM GENECODE and GNOMAD to create a protein database
         GNOMADDB (
             genecode_transcripts_url_ch,
             genecode_annotations_url_ch,
             gnomad_url_ch,
-            gnomad_config_ch,
-            versions_ch
+            gnomad_config_ch
         )
         //extract the version information from the subworkflow
         versions_ch = versions_ch.mix(GNOMADDB.out.versions_ch).collect()
@@ -249,24 +177,15 @@ main:
     //conditional execution based on wether the workflow is turned on or off in the config file
     if (!params.skip_cbioportaldb) {
 
-        Channel
-            .from(grch37_url)
-            .set { grch37_url_ch }
-
-        Channel
-            .from(cbio_study)
-            .set { cbio_study_ch }
+        grch37_url_ch  = Channel.from(grch37_url)
+        cbio_study_ch  = Channel.from(cbio_study)
+        cbio_config_ch = Channel.fromPath(cbio_config)
         
-        Channel
-            .fromPath(cbio_config)
-            .set { cbio_config_ch }
-
         //pass the channels into the CBIOPORTALDB subworkflow - this downloads data FROM CBIOPORTAL to create a protein database
         CBIOPORTALDB (
             grch37_url_ch,
             cbio_config_ch,
-            cbio_study_ch,
-            versions_ch
+            cbio_study_ch
         )
         //extract the version information from the subworkflow
         versions_ch = versions_ch.mix(CBIOPORTALDB.out.versions_ch).collect()
@@ -279,22 +198,10 @@ main:
         log.info "cbioportaldb subworkflow skipped."
     }
 
-    Channel
-            .from(minimum_aa)
-            .set { minimum_aa_ch }
-
-        Channel
-            .from(stop_codons)
-            .set { stop_codons_ch }
-        
-        Channel
-            .from(ensembl_config)
-            .set { ensembl_config_ch }
-        
-        Channel
-            .fromPath(decoy_config)
-            .set { decoy_config_ch }
-
+        minimum_aa_ch     = Channel.from(minimum_aa)
+        stop_codons_ch    = Channel.from(stop_codons)
+        ensembl_config_ch = Channel.from(ensembl_config)
+        decoy_config_ch   = Channel.fromPath(decoy_config)
 
     //pass the channels into the MERGEDB subworkflow - this merges all of the databases together
     MERGEDB (
@@ -302,8 +209,7 @@ main:
         ensembl_config_ch,
         minimum_aa_ch,
         stop_codons_ch,
-        decoy_config_ch,
-        versions_ch
+        decoy_config_ch
     )
     //extract the version information from the subworkflow
     versions_ch = versions_ch.mix(MERGEDB.out.versions_ch).collect()
@@ -312,9 +218,7 @@ main:
     mixed_databases_ch = MERGEDB.out.databases.collect()
     
     //create a channel containing the decoy database
-    Channel
-        .empty()
-        .set { decoy_database_ch }
+    decoy_database_ch = Channel.empty()
     decoy_database_ch = MERGEDB.out.decoy.collect()
 
 

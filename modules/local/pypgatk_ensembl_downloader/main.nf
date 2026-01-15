@@ -13,12 +13,12 @@ process PYPGATK_ENSEMBL_DOWNLOAD {
 
     output:
 
-    path "*.pep.all.fa" , emit: protein
-    path "*cdna.all.fa" , emit: cdna
-    path "*ncrna.fa",     emit: ncrna
-    path "*.dna*.fa",     emit: fasta
-    path "*.gtf",         emit: gtf
-    path "*.vcf",         emit: vcf
+    path "*.pep.all.fa" , emit: protein, optional:true
+    path "*cdna.all.fa" , emit: cdna   , optional:true
+    path "*ncrna.fa",     emit: ncrna  , optional:true
+    path "*.dna*.fa",     emit: fasta  , optional:true
+    path "*.gtf",         emit: gtf    , optional:true
+    path "*.vcf",         emit: vcf    , optional:true
     path  "versions.yml", emit: versions
 
     when:
