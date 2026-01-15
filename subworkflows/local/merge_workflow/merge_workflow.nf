@@ -54,9 +54,7 @@ main:
     //PYPGATK_CLEAN takes the concatenated database and cleans it
     PYPGATK_CLEAN (
         databases.map { [ [id: 'cleaned_database'], it ] },
-        clean_config,
-        minimum_aa,
-        stop_codons
+        clean_config
     )
     databases = PYPGATK_CLEAN.out.clean_database.collect()
     versions_ch = versions_ch.mix(PYPGATK_CLEAN.out.versions).collect()

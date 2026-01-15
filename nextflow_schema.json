@@ -10,7 +10,7 @@
             "type": "object",
             "fa_icon": "fas fa-terminal",
             "description": "Define where the pipeline should find input data and save output data.",
-            "required": [ "outdir"],
+            "required": ["outdir"],
             "properties": {
                 "input": {
                     "type": "string",
@@ -105,11 +105,13 @@
             "properties": {
                 "dna_config": {
                     "type": "string",
-                    "description": "placeholder text"
+                    "description": "placeholder text",
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/dna_config.yaml"
                 },
                 "custom_config": {
                     "type": "string",
-                    "description": "placeholder text"
+                    "description": "placeholder text",
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/custom_config.yaml"
                 },
                 "reference": {
                     "type": "string",
@@ -129,7 +131,8 @@
                 },
                 "cbio_config": {
                     "type": "string",
-                    "description": "placeholder text"
+                    "description": "placeholder text",
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/cbioportal_config.yaml"
                 },
                 "stop_codons": {
                     "type": "boolean",
@@ -201,11 +204,13 @@
                 },
                 "ensembl_downloader_config": {
                     "type": "string",
-                    "description": "placeholder text"
+                    "description": "placeholder text",
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/ensembl_downloader_config.yaml"
                 },
                 "ensembl_config": {
                     "type": "string",
-                    "description": "placeholder text"
+                    "description": "placeholder text",
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/ensembl_config.yaml"
                 },
                 "species_id": {
                     "type": "string",
@@ -213,19 +218,23 @@
                 },
                 "ncrna_config": {
                     "type": "string",
-                    "description": "placeholder text"
+                    "description": "placeholder text",
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/ncrna_config.yaml"
                 },
                 "pseudogenes_config": {
                     "type": "string",
-                    "description": "placeholder text"
+                    "description": "placeholder text",
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/pseudogenes_config.yaml"
                 },
                 "altorfs_config": {
                     "type": "string",
-                    "description": "placeholder text"
+                    "description": "placeholder text",
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/altorfs_config.yaml"
                 },
                 "cosmic_config": {
                     "type": "string",
-                    "description": "placeholder text"
+                    "description": "placeholder text",
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/cosmic_config.yaml"
                 },
                 "genecode_transcripts_url": {
                     "type": "string",
@@ -251,9 +260,15 @@
                     "type": "integer",
                     "description": "placeholder text"
                 },
+                "clean_config": {
+                    "type": "string",
+                    "description": "placeholder text",
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/clean_config.yaml"
+                },
                 "decoy_config": {
                     "type": "string",
-                    "description": "placeholder text"
+                    "description": "placeholder text",
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/protein_decoy.yaml"
                 },
                 "multiqc_custom_config": {
                     "type": "string",

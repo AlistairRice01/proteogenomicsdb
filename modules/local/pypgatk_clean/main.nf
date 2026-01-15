@@ -11,12 +11,10 @@ process PYPGATK_CLEAN {
     input:
     tuple val(meta), path(database)
     path ensembl_config
-    val minimum_aa
-    val add_stop_codons
 
     output:
-    path "*.fa", emit: clean_database
-    path  "versions.yml"              , emit: versions
+    path "*.fa"         , emit: clean_database
+    path  "versions.yml", emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -32,8 +30,6 @@ process PYPGATK_CLEAN {
     pypgatk_cli.py ensembl-check \\
         --input_fasta ${database} \\
         --config_file "${ensembl_config}" \\
-        --num_aa ${minimum_aa} \\
-        ${stop_codons}
         --output ${name} \\
  
     cat <<-END_VERSIONS > versions.yml
@@ -46,6 +42,7 @@ process PYPGATK_CLEAN {
     def prefix = task.ext.prefix ?: "${meta.id}"
     
     """
+    touch ${prefix}.fa
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

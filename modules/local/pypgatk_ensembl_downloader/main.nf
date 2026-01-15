@@ -43,7 +43,12 @@ process PYPGATK_ENSEMBL_DOWNLOAD {
     stub:
     
     """
-    touch ${prefix}.fasta 
+    touch ensembl.pep.all.fa
+    touch ensembl_cdna.all.fa
+    touch ensembl_ncrna.fa
+    touch ensembl.dna_test.fa
+    touch ensembl.gtf
+    touch ensembl.vcf
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

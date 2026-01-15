@@ -81,7 +81,8 @@ workflow NFCORE_PROTEOGENOMICSDB {
         params.cbio_study,      //
         //merge paramaters
         params.minimum_aa,      //
-        params.stop_codons,     //
+        params.stop_codons,
+        params.clean_config,     //
         params.decoy_config     //path to the decoy_config
 
     )

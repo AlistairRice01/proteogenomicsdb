@@ -1,0 +1,24 @@
+{
+    "full rnaseq test": {
+        "content": [
+            7,
+            null,
+            [
+                "execution_report_2026-01-15_16-44-12.html",
+                "execution_timeline_2026-01-15_16-44-12.html",
+                "pipeline_dag_2026-01-15_16-44-12.html",
+                "pipeline_info"
+            ],
+            [
+                "execution_report_2026-01-15_16-44-12.html:md5,0c66917fc16c996cabd0fb7723c2b757",
+                "execution_timeline_2026-01-15_16-44-12.html:md5,713f73512cb08c7e074afd9008fece16",
+                "pipeline_dag_2026-01-15_16-44-12.html:md5,86d6781842a9c653aa31e83c6fdf9561"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-15T16:45:03.685843226"
+    }
+}

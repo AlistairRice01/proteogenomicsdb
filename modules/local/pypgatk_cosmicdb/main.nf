@@ -14,8 +14,8 @@ process PYPGATK_COSMICDB {
     path cosmic_config
 
     output:
-    path '*.fa', emit: database
-    path  "versions.yml"       , emit: versions
+    path '*.fa'           , emit: database
+    path  "versions.yml"  , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -44,6 +44,8 @@ process PYPGATK_COSMICDB {
     def prefix = task.ext.prefix ?: "${meta.id}"
     
     """
+
+    touch ${prefix}.fa 
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

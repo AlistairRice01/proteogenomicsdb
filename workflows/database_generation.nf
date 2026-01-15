@@ -56,6 +56,7 @@ take:
     //mergedb
     minimum_aa
     stop_codons
+    clean_config
     decoy_config
 
 main:
@@ -200,13 +201,13 @@ main:
 
         minimum_aa_ch     = Channel.from(minimum_aa)
         stop_codons_ch    = Channel.from(stop_codons)
-        ensembl_config_ch = Channel.from(ensembl_config)
+        clean_config_ch = Channel.from(clean_config)
         decoy_config_ch   = Channel.fromPath(decoy_config)
 
     //pass the channels into the MERGEDB subworkflow - this merges all of the databases together
     MERGEDB (
         mixed_databases_ch,
-        ensembl_config_ch,
+        clean_config_ch,
         minimum_aa_ch,
         stop_codons_ch,
         decoy_config_ch

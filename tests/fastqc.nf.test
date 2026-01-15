@@ -4,20 +4,20 @@ name "Test pipeline with rnaseq database generation"
     script "../main.nf"
     tag "pipeline"
 
-    test("params: --skip_cbioportaldb false") {
+    test("params: --skip_fastqc false --skip_trimgalore false") {
+
+        options "-stub"
 
         when {
             params {
 
-                skip_cbioportaldb  = false
-                grch37_url  = 'ftp://ftp.ensembl.org/pub/release-75/fasta/homo_sapiens/cds/Homo_sapiens.GRCh37.75.cds.all.fa.gz'
-                cbio_study  = 'es_iocurie_2014'
-                outdir      = "${outputDir}" 
+                skip_fastqc   = false
+                skip_trimming = false
+                input         = "$projectDir/assets/samplesheet.csv"
+                outdir        = "${outputDir}"
             
             }
         }
-
-        options "-stub"
 
         then {
             // stable_name: All files + folders in ${params.outdir}/ with a stable name

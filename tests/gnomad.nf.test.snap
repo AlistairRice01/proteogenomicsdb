@@ -1,0 +1,24 @@
+{
+    "params: --skip_gnomaddb false": {
+        "content": [
+            0,
+            null,
+            [
+                "execution_report_2026-01-15_16-45-13.html",
+                "execution_timeline_2026-01-15_16-45-13.html",
+                "pipeline_dag_2026-01-15_16-45-13.html",
+                "pipeline_info"
+            ],
+            [
+                "execution_report_2026-01-15_16-45-13.html:md5,f324052b5d7c94f5e153dbf22a5ff65d",
+                "execution_timeline_2026-01-15_16-45-13.html:md5,9ac1840e34f3fa26de2239d0dd968ad6",
+                "pipeline_dag_2026-01-15_16-45-13.html:md5,eeb83820db0a78e5d08529dc44b20767"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-15T16:45:26.479838866"
+    }
+}

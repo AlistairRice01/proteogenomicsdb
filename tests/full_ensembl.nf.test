@@ -1,23 +1,26 @@
 nextflow_pipeline {
 
-name "Test pipeline with rnaseq database generation"
+    name "Test pipeline with ensembl database generation"
     script "../main.nf"
     tag "pipeline"
 
-    test("params: --skip_cbioportaldb false") {
+    test("full ensembl workflow") {
+
+        options "-stub"
 
         when {
             params {
-
-                skip_cbioportaldb  = false
-                grch37_url  = 'ftp://ftp.ensembl.org/pub/release-75/fasta/homo_sapiens/cds/Homo_sapiens.GRCh37.75.cds.all.fa.gz'
-                cbio_study  = 'es_iocurie_2014'
-                outdir      = "${outputDir}" 
-            
+                
+                skip_ensembldb   = false
+                skip_ensembldb   = false
+                skip_proteome    = false
+                skip_ncrna       = false
+                skip_pseudogenes = false
+                skip_altorfs     = false
+                species_id       = '559292'
+                outdir           = "${outputDir}"
             }
         }
-
-        options "-stub"
 
         then {
             // stable_name: All files + folders in ${params.outdir}/ with a stable name

@@ -1,0 +1,24 @@
+{
+    "params: --skip_fastqc false --skip_trimgalore false": {
+        "content": [
+            0,
+            null,
+            [
+                "execution_report_2026-01-15_16-41-40.html",
+                "execution_timeline_2026-01-15_16-41-40.html",
+                "pipeline_dag_2026-01-15_16-41-40.html",
+                "pipeline_info"
+            ],
+            [
+                "execution_report_2026-01-15_16-41-40.html:md5,9579ba57630566e70780bde718aa930e",
+                "execution_timeline_2026-01-15_16-41-40.html:md5,ce2660f8d01bca557fd3ad702dae4772",
+                "pipeline_dag_2026-01-15_16-41-40.html:md5,eeb83820db0a78e5d08529dc44b20767"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-15T16:41:54.27473004"
+    }
+}

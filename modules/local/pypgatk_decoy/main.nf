@@ -13,8 +13,8 @@ process PYPGATK_DECOY {
     path protein_decoy_config
 
     output:
-    path '*.fa', emit: decoy_database
-    path  "versions.yml"              , emit: versions
+    path '*.fa'         , emit: decoy_database
+    path  "versions.yml", emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -40,6 +40,7 @@ process PYPGATK_DECOY {
     def prefix = task.ext.prefix ?: "${meta.id}"
     
     """
+    touch ${prefix}.fa
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

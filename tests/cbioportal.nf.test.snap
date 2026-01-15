@@ -1,0 +1,24 @@
+{
+    "params: --skip_cbioportaldb false": {
+        "content": [
+            6,
+            null,
+            [
+                "execution_report_2026-01-15_16-38-41.html",
+                "execution_timeline_2026-01-15_16-38-41.html",
+                "pipeline_dag_2026-01-15_16-38-41.html",
+                "pipeline_info"
+            ],
+            [
+                "execution_report_2026-01-15_16-38-41.html:md5,b8dc29e8a941c2192643652684584a7a",
+                "execution_timeline_2026-01-15_16-38-41.html:md5,fc9d80aad72927f12fd25f1fdd4d73f4",
+                "pipeline_dag_2026-01-15_16-38-41.html:md5,8303a135db7d966fe381d90c8f457f49"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-15T16:39:40.0955251"
+    }
+}

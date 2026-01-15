@@ -1,0 +1,24 @@
+{
+    "full pipeline test": {
+        "content": [
+            0,
+            null,
+            [
+                "execution_report_2026-01-15_16-43-48.html",
+                "execution_timeline_2026-01-15_16-43-48.html",
+                "pipeline_dag_2026-01-15_16-43-48.html",
+                "pipeline_info"
+            ],
+            [
+                "execution_report_2026-01-15_16-43-48.html:md5,2c47071e64781dc890b42e4aabf3e81d",
+                "execution_timeline_2026-01-15_16-43-48.html:md5,43743c43bbbdcb4c6968a30a39176f34",
+                "pipeline_dag_2026-01-15_16-43-48.html:md5,fcd208547b263ea3df27b2b15f6356c6"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-15T16:44:02.678504418"
+    }
+}

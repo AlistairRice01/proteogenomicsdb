@@ -1,23 +1,28 @@
 nextflow_pipeline {
-
-name "Test pipeline with rnaseq database generation"
+ 
+ 
+ name "Test pipeline with rnaseq database generation"
     script "../main.nf"
     tag "pipeline"
 
-    test("params: --skip_cbioportaldb false") {
+    options "-stub"
+
+    test("full rnaseq test") {
 
         when {
             params {
 
-                skip_cbioportaldb  = false
-                grch37_url  = 'ftp://ftp.ensembl.org/pub/release-75/fasta/homo_sapiens/cds/Homo_sapiens.GRCh37.75.cds.all.fa.gz'
-                cbio_study  = 'es_iocurie_2014'
-                outdir      = "${outputDir}" 
+                skip_rnaseqdb = false
+                skip_fastqc   = false
+                skip_trimming = false
+                input         = "$projectDir/assets/samplesheet.csv"
+                annotation    = "/exports/eddie/scratch/s2215490/nextflow/proteogenomicsDB_inputs/Saccharomyces_cerevisiae.R64-1-1.115.gtf"
+                reference     = "/exports/eddie/scratch/s2215490/nextflow/proteogenomicsDB_inputs/Saccharomyces_cerevisiae.R64-1-1.dna.toplevel.fa"
+                transcripts   = "/exports/eddie/scratch/s2215490/nextflow/proteogenomicsDB_inputs/Saccharomyces_cerevisiae.R64-1-1.cdna.all.fa"
+                outdir        = "${outputDir}" 
             
             }
         }
-
-        options "-stub"
 
         then {
             // stable_name: All files + folders in ${params.outdir}/ with a stable name

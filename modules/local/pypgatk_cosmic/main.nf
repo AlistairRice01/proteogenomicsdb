@@ -15,9 +15,9 @@ process PYPGATK_COSMIC {
     output:
     path "All_COSMIC_Genes.fasta"    , emit: cosmic_genes
     path "CosmicMutantExport.tsv"    , emit: cosmic_mutations
-    path "All_CellLines_Genes.tsv" , emit: cosmSic_celllines_genes
+    path "All_CellLines_Genes.tsv"   , emit: cosmSic_celllines_genes
     path "CosmicCLP_MutantExport.tsv", emit: cosmic_celllines_mutations
-    path  "versions.yml"                             , emit: versions
+    path  "versions.yml"             , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -41,6 +41,10 @@ process PYPGATK_COSMIC {
     stub:
     
     """
+    touch All_COSMIC_Genes.fasta
+    touch CosmicMutantExport.tsv  
+    touch All_CellLines_Genes.tsv
+    touch CosmicCLP_MutantExport.tsv
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

@@ -12,9 +12,9 @@ process PYPGATK_CBIOPORTAL_DOWNLOAD {
         val cbioportal_study_id
     
     output:
-    path('cbioportal_allstudies_data_mutations.txt'), emit: cbio_mutations
+    path('cbioportal_allstudies_data_mutations.txt')      , emit: cbio_mutations
     path('cbioportal_allstudies_data_clinical_sample.txt'), emit: cbio_samples
-    path  "versions.yml"              , emit: versions
+    path  "versions.yml"                                  , emit: versions
 
     when:
     task.ext.when == null || task.ext.when
@@ -78,6 +78,8 @@ process PYPGATK_CBIOPORTAL_DOWNLOAD {
     def prefix = task.ext.prefix ?: "${meta.id}"
     
     """
+    touch cbioportal_allstudies_data_mutations.txt
+    touch cbioportal_allstudies_data_clinical_sample.txt
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
