@@ -27,13 +27,9 @@ take:
     annotation
     transcripts
     custom_config
-    dna_config
-    fasta_index              
+    dna_config            
     faidx_get_genome_sizes     
     samtools_sort_index       
-    freebayes_limit_analysis  
-    freebayes_populations     
-    freebayes_copy_number_bed
 
     //ensembldb
     ensembl_downloader_config
@@ -55,7 +51,7 @@ take:
     gnomad_config
 
     //cbioportaldb
-    grch39_url
+    grch38_url
     cbio_config
     cbio_study
 
@@ -67,10 +63,6 @@ take:
 
     //multiqc
     multiqc_config
-    multiqc_extra_config
-    multiqc_logo
-    multiqc_replace_names
-    multiqc_sample_names
 
 main:
 
@@ -87,6 +79,7 @@ main:
         transcripts_ch   = Channel.fromPath(transcripts)
         custom_config_ch = Channel.fromPath(custom_config)
         dna_config_ch    = Channel.fromPath(dna_config)
+        multiqc_config_ch = Channel.fromPath(multiqc_config)
 
         //pass the channels into the PROTEOGENOMICSDB subworkflow - this takes sequencing data to produce a novel protein database
         RNASEQDB (
@@ -95,18 +88,10 @@ main:
             reference_ch,
             custom_config_ch,
             dna_config_ch,
-            transcripts_ch,
-            fasta_index,               
+            transcripts_ch,               
             faidx_get_genome_sizes,     
-            samtools_sort_index,       
-            freebayes_limit_analysis,  
-            freebayes_populations,     
-            freebayes_copy_number_bed,
-            multiqc_config,
-            multiqc_extra_config,
-            multiqc_logo,
-            multiqc_replace_names,
-            multiqc_sample_names
+            samtools_sort_index,
+            multiqc_config
         )
         //extract the version information from the subworkflow
         versions_ch        = versions_ch.mix(RNASEQDB.out.versions_ch).collect()
@@ -228,8 +213,6 @@ main:
         log.info "cbioportaldb subworkflow skipped."
     }
 
-        minimum_aa_ch     = Channel.from(minimum_aa)
-        stop_codons_ch    = Channel.from(stop_codons)
         clean_config_ch   = Channel.from(clean_config)
         decoy_config_ch   = Channel.fromPath(decoy_config)
 
@@ -237,8 +220,6 @@ main:
     MERGEDB (
         mixed_databases_ch,
         clean_config_ch,
-        minimum_aa_ch,
-        stop_codons_ch,
         decoy_config_ch
     )
     //extract the version information from the subworkflow

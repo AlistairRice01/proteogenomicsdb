@@ -1,0 +1,78 @@
+N E X T F L O W  ~  version 25.10.2
+Launching `/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/../main.nf` [loving_jennings] DSL2 - revision: b269a75d7b
+WARN: Access to undefined parameter `genome` -- Initialise it to a default value eg. `params.genome = some_value`
+
+-[2m----------------------------------------------------[0m-
+                                        [0;32m,--.[0;30m/[0;32m,-.[0m
+[0;34m        ___     __   __   __   ___     [0;32m/,-._.--~'[0m
+[0;34m  |\ | |__  __ /  ` /  \ |__) |__         [0;33m}  {[0m
+[0;34m  | \| |       \__, \__/ |  \ |___     [0;32m\`-._,-`-,[0m
+                                        [0;32m`._,._,'[0m
+[0;35m  nf-core/proteogenomicsdb 2.0.0[0m
+-[2m----------------------------------------------------[0m-
+
+Input/output options
+  input                       : /exports/eddie/scratch/s2215490/proteogenomicsdb/assets/samplesheet.csv
+  outdir                      : /exports/eddie/scratch/s2215490/proteogenomicsdb/.nf-test/tests/5cb930974e7bf07c9f853aca2539ee29/output
+
+pipeline_options
+  reference                   : /exports/eddie/scratch/s2215490/nextflow/proteogenomicsDB_inputs/Saccharomyces_cerevisiae.R64-1-1.dna.toplevel.fa
+  pipelines_testdata_base_path: https://raw.githubusercontent.com/nf-core/test-datasets/refs/heads/proteogenomicsdb
+  config_profile_name         : Test profile
+  config_profile_description  : Minimal test dataset to check pipeline function
+  annotation                  : /exports/eddie/scratch/s2215490/nextflow/proteogenomicsDB_inputs/Saccharomyces_cerevisiae.R64-1-1.115.gtf
+  transcripts                 : /exports/eddie/scratch/s2215490/nextflow/proteogenomicsDB_inputs/Saccharomyces_cerevisiae.R64-1-1.cdna.all.fa
+
+skip_options
+  skip_rnaseqdb               : false
+  skip_fastqc                 : false
+  skip_trimming               : false
+
+Core Nextflow options
+  runName                     : loving_jennings
+  containerEngine             : singularity
+  container                   : nfcore/proteogenomicsdb:1.0.0
+  launchDir                   : /exports/eddie/scratch/s2215490/proteogenomicsdb/.nf-test/tests/5cb930974e7bf07c9f853aca2539ee29
+  workDir                     : /exports/eddie/scratch/s2215490/proteogenomicsdb/.nf-test/tests/5cb930974e7bf07c9f853aca2539ee29/work
+  projectDir                  : /exports/eddie/scratch/s2215490/proteogenomicsdb
+  userName                    : s2215490
+  profile                     : test,singularity
+  configFiles                 : /exports/eddie/scratch/s2215490/proteogenomicsdb/nextflow.config, /exports/eddie/scratch/s2215490/proteogenomicsdb/nextflow.config, /exports/eddie/scratch/s2215490/proteogenomicsdb/tests/nextflow.config
+
+!! Only displaying parameters that differ from the pipeline defaults !!
+------------------------------------------------------
+
+* The nf-core framework
+    https://doi.org/10.1038/s41587-020-0439-x
+
+* Software dependencies
+    https://github.com/nf-core/proteogenomicsdb/blob/main/CITATIONS.md
+
+WARN: The following invalid input values have been detected:
+
+* --skip_ensembl_vcf: true
+* --modules_testdata_base_path: https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/
+* --trace_report_suffix: 2026-01-16_16-00-58
+
+
+WARN: nf-core pipelines do not accept positional arguments. The positional argument `true` has been detected.
+HINT: A common mistake is to provide multiple values separated by spaces e.g. `-profile test, docker`.
+
+rna-seq dna database skipped.
+rna-seq vcf database skipped.
+ensembldb subworkflow skipped.
+cosmicdb subworkflow skipped.
+gnomaddb subworkflow skipped.
+cbioportaldb subworkflow skipped.
+decoy generation skipped.
+[38/47ed3a] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:RNASEQDB:FASTQC_WORKFLOW:FASTQC_TRIMGALORE:TRIMGALORE (input_1)
+[a2/8eb1db] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:RNASEQDB:FASTQC_WORKFLOW:FASTQC_TRIMGALORE:FASTQC (input_1)
+[0a/00fe96] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:RNASEQDB:HISAT2_EXTRACTSPLICESITES (Saccharomyces_cerevisiae.R64-1-1.115.gtf)
+[ca/ed2e84] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:RNASEQDB:FASTQC_WORKFLOW:MULTIQC (1)
+WARN: Access to undefined parameter `hisat2_build_memory` -- Initialise it to a default value eg. `params.hisat2_build_memory = some_value`
+[86/8cdcd3] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:RNASEQDB:HISAT2_BUILD (Saccharomyces_cerevisiae.R64-1-1.dna.toplevel.fa)
+WARN: Access to undefined parameter `save_unaligned` -- Initialise it to a default value eg. `params.save_unaligned = some_value`
+WARN: Access to undefined parameter `seq_center` -- Initialise it to a default value eg. `params.seq_center = some_value`
+[cd/4945c9] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:RNASEQDB:HISAT2_ALIGN (input_1)
+[00/25a84c] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:RNASEQDB:SAMTOOLS_SORT (bam_1)
+-[0;35m[nf-core/proteogenomicsdb][0;32m Pipeline completed successfully[0m-

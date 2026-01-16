@@ -22,8 +22,6 @@ take:
     // inputs from the main workflow
     mixed_databases     //channel: contains all of the databases generated from the other workflows mixed into a single channel
     clean_config        //channel: contains contains a config file defining how the database should be cleaned
-    minimum_aa          //channel: contains contains the minimum number of amino acids that should be considered a protein 
-    stop_codons         //channel: contains a boolean statment telling if it should add a new protein into the database whenever a stop codon is found
     decoy_config        //channel: contains constains a config file defining how the decoy database should be generated 
 
 main:

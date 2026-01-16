@@ -1,0 +1,119 @@
+N E X T F L O W  ~  version 25.10.2
+Launching `/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/../main.nf` [insane_jang] DSL2 - revision: b269a75d7b
+WARN: Access to undefined parameter `genome` -- Initialise it to a default value eg. `params.genome = some_value`
+
+-[2m----------------------------------------------------[0m-
+                                        [0;32m,--.[0;30m/[0;32m,-.[0m
+[0;34m        ___     __   __   __   ___     [0;32m/,-._.--~'[0m
+[0;34m  |\ | |__  __ /  ` /  \ |__) |__         [0;33m}  {[0m
+[0;34m  | \| |       \__, \__/ |  \ |___     [0;32m\`-._,-`-,[0m
+                                        [0;32m`._,._,'[0m
+[0;35m  nf-core/proteogenomicsdb 2.0.0[0m
+-[2m----------------------------------------------------[0m-
+
+Input/output options
+  input                       : /exports/eddie/scratch/s2215490/proteogenomicsdb/assets/samplesheet.csv
+  outdir                      : /exports/eddie/scratch/s2215490/proteogenomicsdb/.nf-test/tests/aa7cf53c089924e7e907b7cb15322713/output
+
+pipeline_options
+  reference                   : /exports/eddie/scratch/s2215490/nextflow/proteogenomicsDB_inputs/Saccharomyces_cerevisiae.R64-1-1.dna.toplevel.fa
+  pipelines_testdata_base_path: https://raw.githubusercontent.com/nf-core/test-datasets/refs/heads/proteogenomicsdb
+  config_profile_name         : Test profile
+  config_profile_description  : Minimal test dataset to check pipeline function
+  annotation                  : /exports/eddie/scratch/s2215490/nextflow/proteogenomicsDB_inputs/Saccharomyces_cerevisiae.R64-1-1.115.gtf
+  transcripts                 : /exports/eddie/scratch/s2215490/nextflow/proteogenomicsDB_inputs/Saccharomyces_cerevisiae.R64-1-1.cdna.all.fa
+  species_id                  : 559292
+  genecode_transcripts_url    : https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.transcripts.fa.gz
+  genecode_annotations_url    : https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.annotation.gtf.gz
+  gnomad_url                  : gs://gcp-public-data--gnomad/release/2.1.1/vcf/exomes/gnomad.exomes.r2.1.1.sites.18.vcf.bgz
+  cbio_study                  : es_iocurie_2014
+
+skip_options
+  skip_rnaseqdb               : false
+  skip_dnaseq                 : false
+  skip_vcf                    : false
+  skip_ensembldb              : false
+  skip_proteome               : false
+  skip_ncrna                  : false
+  skip_pseudogenes            : false
+  skip_altorfs                : false
+  skip_gnomaddb               : false
+  skip_cbioportaldb           : false
+  skip_decoy                  : false
+  skip_fastqc                 : false
+  skip_trimming               : false
+
+Core Nextflow options
+  runName                     : insane_jang
+  containerEngine             : singularity
+  container                   : nfcore/proteogenomicsdb:1.0.0
+  launchDir                   : /exports/eddie/scratch/s2215490/proteogenomicsdb/.nf-test/tests/aa7cf53c089924e7e907b7cb15322713
+  workDir                     : /exports/eddie/scratch/s2215490/proteogenomicsdb/.nf-test/tests/aa7cf53c089924e7e907b7cb15322713/work
+  projectDir                  : /exports/eddie/scratch/s2215490/proteogenomicsdb
+  userName                    : s2215490
+  profile                     : test,singularity
+  configFiles                 : /exports/eddie/scratch/s2215490/proteogenomicsdb/nextflow.config, /exports/eddie/scratch/s2215490/proteogenomicsdb/nextflow.config, /exports/eddie/scratch/s2215490/proteogenomicsdb/tests/nextflow.config
+
+!! Only displaying parameters that differ from the pipeline defaults !!
+------------------------------------------------------
+
+* The nf-core framework
+    https://doi.org/10.1038/s41587-020-0439-x
+
+* Software dependencies
+    https://github.com/nf-core/proteogenomicsdb/blob/main/CITATIONS.md
+
+WARN: The following invalid input values have been detected:
+
+* --modules_testdata_base_path: https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/
+* --trace_report_suffix: 2026-01-16_15-56-22
+
+
+WARN: nf-core pipelines do not accept positional arguments. The positional argument `true` has been detected.
+HINT: A common mistake is to provide multiple values separated by spaces e.g. `-profile test, docker`.
+
+cosmicdb subworkflow skipped.
+[ea/501cb9] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:ENSEMBLDB:PYPGATK_ENSEMBL_DOWNLOAD (1)
+Staging foreign file: gs://gcp-public-data--gnomad/release/2.1.1/vcf/exomes/gnomad.exomes.r2.1.1.sites.18.vcf.bgz
+[3c/f9f296] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:GNOMADDB:WGET_ANNOTATION (annotations.gtf)
+WARN: Input tuple does not match tuple declaration in process `NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:ENSEMBLDB:CAT_VCF` -- offending value: [[id:concatenated_vcf], [/exports/eddie/scratch/s2215490/proteogenomicsdb/.nf-test/tests/aa7cf53c089924e7e907b7cb15322713/work/ea/501cb99bae4fdd552afda1644778db/ensembl.vcf], []]
+[30/6082cb] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:GNOMADDB:WGET_TRANSCRIPTS (transcripts.fa)
+[54/b28c8a] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:CBIOPORTALDB:PYPGATK_CBIOPORTAL_DOWNLOAD (1)
+[db/543237] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:RNASEQDB:FASTQC_WORKFLOW:FASTQC_TRIMGALORE:FASTQC (input_1)
+[48/13a96e] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:RNASEQDB:HISAT2_EXTRACTSPLICESITES (Saccharomyces_cerevisiae.R64-1-1.115.gtf)
+[23/d41b52] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:RNASEQDB:FASTQC_WORKFLOW:FASTQC_TRIMGALORE:TRIMGALORE (input_1)
+WARN: Access to undefined parameter `hisat2_build_memory` -- Initialise it to a default value eg. `params.hisat2_build_memory = some_value`
+[32/9e6a33] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:CBIOPORTALDB:WGET_GRCH38 (grch38)
+[2e/a463fb] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:RNASEQDB:SAMTOOLS_FAIDX (Saccharomyces_cerevisiae.R64-1-1.dna.toplevel.fa)
+[31/1d6681] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:ENSEMBLDB:CAT_DNA (total_cDNA)
+[5c/753f25] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:ENSEMBLDB:PYPGATK_ALRORFS (Altorfs_database)
+[2d/4d6572] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:ENSEMBLDB:CAT_VCF (concatenated_vcf)
+[d7/29f760] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:GNOMADDB:GUNZIP_ANNOTATION (annotations.gtf.gz)
+[95/0ecd5c] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:GNOMADDB:GUNZIP_TRANSCRIPTS (transcripts.fa.gz)
+[bf/fb56d3] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:RNASEQDB:HISAT2_BUILD (Saccharomyces_cerevisiae.R64-1-1.dna.toplevel.fa)
+WARN: Access to undefined parameter `save_unaligned` -- Initialise it to a default value eg. `params.save_unaligned = some_value`
+[32/a94b44] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:RNASEQDB:FASTQC_WORKFLOW:MULTIQC (1)
+WARN: Access to undefined parameter `seq_center` -- Initialise it to a default value eg. `params.seq_center = some_value`
+[21/68cfb4] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:CBIOPORTALDB:GUNZIP (grch38.gz)
+[db/341eec] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:ENSEMBLDB:PYPGATK_NCRNA (ncRNA)
+[00/2950ac] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:ENSEMBLDB:PYPGATK_PSEUDOGENES (pseudogenes)
+[a6/bc1f2e] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:ENSEMBLDB:PYPGATK_VCF (ensembl_vcf)
+[43/27d271] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:RNASEQDB:HISAT2_ALIGN (input_1)
+[c9/5a193e] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:CBIOPORTALDB:PYPGATK_CBIOPORTAL (cbio_samples)
+[26/3f03d0] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:RNASEQDB:SAMTOOLS_SORT (bam_1)
+[42/33bb97] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:RNASEQDB:SAMTOOLS_INDEX (bam_1)
+[b9/f80583] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:RNASEQDB:STRINGTIE_STRINGTIE (bam_1)
+[bd/c41ec9] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:RNASEQDB:FREEBAYES (bam_1)
+[37/b9c696] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:RNASEQDB:STRINGTIE_MERGE (1)
+[28/49bd7a] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:RNASEQDB:GUNZIP_VCF (bam_1.vcf.gz)
+[5b/607ec4] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:RNASEQDB:GFFCOMPARE (stringtie_merged)
+[16/d5962b] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:RNASEQDB:PYPGATK_VCF (cdna)
+[5a/fbabca] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:RNASEQDB:GFFREAD (gtf_file)
+[22/8bb5ae] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:RNASEQDB:PYPGATKDNA (gtf_file)
+[e6/1e4977] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:GNOMADDB:GSUTIL (gnomad.vcf)
+[77/3ed4db] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:GNOMADDB:TABIX_BGZIP (gnomad.vcf)
+[09/f77c1c] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:GNOMADDB:PYPGATK_VCF (transcripts.fa)
+[ac/ea1b1a] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:MERGEDB:CAT_CAT (final_database)
+[4d/ee4613] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:MERGEDB:PYPGATK_CLEAN (cleaned_database)
+[94/d8c2a1] Submitted process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:MERGEDB:PYPGATK_DECOY (decoy_database)
+-[0;35m[nf-core/proteogenomicsdb][0;32m Pipeline completed successfully[0m-

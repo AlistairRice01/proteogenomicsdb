@@ -1,11 +1,11 @@
 nextflow_pipeline {
 
-    name "Test pypgatk_vcf"
+    name "Test pypgatk_ensembl_downloader"
     script "../main.nf"
     tag "module"
-    process "PYPGATK_VCF"
+    process "PYPGATK_ENSEMBL_DOWNLOAD"
 
-    test("-profile pypgatk_vcf test") {
+    test("-profile pypgatk_ensembl_downloader test") {
 
         options "-stub"
 

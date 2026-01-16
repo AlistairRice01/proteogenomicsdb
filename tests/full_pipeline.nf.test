@@ -1,6 +1,6 @@
 nextflow_pipeline {
 
-name "Test pipeline with rnaseq database generation"
+name "Test full pipeline"
     script "../main.nf"
     tag "pipeline"
 

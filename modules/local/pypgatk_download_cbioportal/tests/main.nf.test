@@ -1,11 +1,11 @@
 nextflow_pipeline {
 
-    name "Test pypgatk_vcf"
+    name "Test pypgatk_download_cbioportal"
     script "../main.nf"
     tag "module"
-    process "PYPGATK_VCF"
+    process "PYPGATK_CBIOPORTAL_DOWNLOAD"
 
-    test("-profile pypgatk_vcf test") {
+    test("-profile pypgatk_download_cbioportal test") {
 
         options "-stub"
 

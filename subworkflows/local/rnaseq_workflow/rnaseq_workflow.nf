@@ -44,17 +44,9 @@ take:
     config          //channel: contains the vcf database config file
     dna_config      //channel: contains the DNA database config file
     cdna            //channel: contains the cdna reference (fasta) file
-    fasta_index               
     faidx_get_genome_sizes     
-    samtools_sort_index       
-    freebayes_limit_analysis  
-    freebayes_populations     
-    freebayes_copy_number_bed 
+    samtools_sort_index        
     multiqc_config
-    multiqc_extra_config
-    multiqc_logo
-    multiqc_replace_names
-    multiqc_sample_names
     
 
 main:
@@ -66,11 +58,7 @@ main:
 
     FASTQC_WORKFLOW (
     samplesheet,
-    multiqc_config,
-    multiqc_extra_config,
-    multiqc_logo,
-    multiqc_replace_names,
-    multiqc_sample_names
+    multiqc_config
     )
     versions_ch       = versions_ch.mix(FASTQC_WORKFLOW.out.versions_ch).collect()
     multiqc_report_ch = FASTQC_WORKFLOW.out.multiqc_report_ch.collect()
@@ -186,17 +174,11 @@ if (!params.skip_dnaseq) {
         .map { gtf_file ->
             def meta = [ id: 'stringtie_merged' ]
             return [ meta, gtf_file ] }
-        
-    fasta_index_ch = channel.fromPath(fasta_index)
-        .map { index ->
-            def meta = [ id: 'fasta_index' ]
-            return [ meta, index ] 
-        }
 
     //SAMTOOLS_FAIDX takes the reference genome (fasta) and generates a fasta index file (fai)
     SAMTOOLS_FAIDX (
         reference_ch,
-        fasta_index_ch,
+        [ [], [] ],
         faidx_get_genome_sizes  
     )
     versions_ch = versions_ch.mix(SAMTOOLS_FAIDX.out.versions_samtools)
@@ -289,32 +271,14 @@ else {
         .map { meta, bam, bai ->
             return [ meta, bam, bai, [], [], [] ] }
 
-    freebayes_limit_analysis_ch = Channel.fromPath(freebayes_limit_analysis)
-        .map { it ->
-            def meta = [ id: 'limit_analysis' ]
-            return [ meta, it ] 
-        }
-
-    freebayes_populations_ch = Channel.fromPath(freebayes_populations)
-        .map { it ->
-            def meta = [ id: 'populations' ]
-            return [ meta, it ] 
-        }
-
-    freebayes_copy_number_bed_ch = Channel.fromPath(freebayes_copy_number_bed)
-        .map { it ->
-            def meta = [ id: 'copy_number' ]
-            return [ meta, it ] 
-        }
-
     //FREEBAYES takes the bam, bam index, and fasta index files to generate a vcf file 
     FREEBAYES (
     genome_bam_bai_ch,
     reference_ch,
     fasta_fai_ch,
-    freebayes_limit_analysis_ch,
-    freebayes_populations_ch,
-    freebayes_copy_number_bed_ch
+    [ [], [] ],
+    [ [], [] ],
+    [ [], [] ]
     )
     versions_ch = versions_ch.mix(FREEBAYES.out.versions)
 

@@ -1,0 +1,232 @@
+Jan-16 15:52:11.339 [main] DEBUG nextflow.cli.Launcher - $> nextflow -log /exports/eddie/scratch/s2215490/proteogenomicsdb/.nf-test/tests/555500fdbcc0e68d7cc4dcdbe0cd858/meta/nextflow.log run /exports/eddie/scratch/s2215490/proteogenomicsdb/tests/../main.nf -c /exports/eddie/scratch/s2215490/proteogenomicsdb/nextflow.config -c /exports/eddie/scratch/s2215490/proteogenomicsdb/tests/nextflow.config -params-file /exports/eddie/scratch/s2215490/proteogenomicsdb/.nf-test/tests/555500fdbcc0e68d7cc4dcdbe0cd858/meta/params.json -ansi-log false -profile test,singularity -with-trace /exports/eddie/scratch/s2215490/proteogenomicsdb/.nf-test/tests/555500fdbcc0e68d7cc4dcdbe0cd858/meta/trace.csv -w /exports/eddie/scratch/s2215490/proteogenomicsdb/.nf-test/tests/555500fdbcc0e68d7cc4dcdbe0cd858/work -stub
+Jan-16 15:52:11.483 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 25.10.2
+Jan-16 15:52:11.519 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/home/s2215490/.nextflow/plugins; core-plugins: nf-amazon@3.4.2,nf-azure@1.20.2,nf-cloudcache@0.5.0,nf-codecommit@0.5.0,nf-console@1.3.0,nf-google@1.23.3,nf-k8s@1.2.2,nf-tower@1.17.3,nf-wave@1.16.1
+Jan-16 15:52:11.553 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Jan-16 15:52:11.554 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Jan-16 15:52:11.563 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.12.0 in 'deployment' mode
+Jan-16 15:52:11.593 [main] DEBUG nextflow.util.RetryConfig - Missing nextflow session - using default retry config
+Jan-16 15:52:11.864 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Jan-16 15:52:11.937 [main] DEBUG nextflow.config.ConfigBuilder - Found config base: /exports/eddie/scratch/s2215490/proteogenomicsdb/nextflow.config
+Jan-16 15:52:11.942 [main] DEBUG nextflow.config.ConfigBuilder - User config file: /exports/eddie/scratch/s2215490/proteogenomicsdb/nextflow.config
+Jan-16 15:52:11.942 [main] DEBUG nextflow.config.ConfigBuilder - User config file: /exports/eddie/scratch/s2215490/proteogenomicsdb/tests/nextflow.config
+Jan-16 15:52:11.950 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /exports/eddie/scratch/s2215490/proteogenomicsdb/nextflow.config
+Jan-16 15:52:11.951 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /exports/eddie/scratch/s2215490/proteogenomicsdb/nextflow.config
+Jan-16 15:52:11.951 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /exports/eddie/scratch/s2215490/proteogenomicsdb/tests/nextflow.config
+Jan-16 15:52:12.020 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `test,singularity`
+Jan-16 15:52:15.736 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `test,singularity`
+Jan-16 15:52:16.905 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `test,singularity`
+Jan-16 15:52:16.994 [main] DEBUG nextflow.config.ConfigBuilder - Available config profiles: [bih, cfc_dev, uzl_omics, ifb_core, embl_hd, denbi_qbic, alice, mjolnir_globe, uppmax, giga, incliva, ilifu, ki_luria, uge, icr_alma, rosalind_uge, dev, lugh, mccleary, unibe_ibu, vai, czbiohub_aws, jax, roslin, iris, tes, scw, unc_longleaf, tigem, tubingen_apg, apollo, ipop_up, vsc_calcua, pdc_kth, ceci_nic5, ccga_cau, humantechnopole, stjude, daisybio, eddie, medair, biowulf, bi, bigpurple, adcra, cedars, pawsey_setonix, vsc_kul_uhasselt, pawsey_nimbus, rki, ucl_myriad, utd_ganymede, charliecloud, fred_hutch, seattlechildrens, icr_davros, ceres, munin, rosalind, hasta, cfc, uzh, shu_bmrc, ebi_codon_slurm, ebc, ccga_dx, crick, ku_sund_danhead, marvin, lrz_cm4, shifter, biohpc_gen, mana, york_viking, unc_lccc, wehi, awsbatch, wustl_htcf, arcc, ceci_dragon2, imperial, maestro, software_license, cannon, genotoul, nci_gadi, abims, eva_grace, janelia, nu_genomics, googlebatch, oist, sahmri, kaust, alliance_canada, mpcdf, leicester, vsc_ugent, create, sage, cambridge, jex, podman, ebi_codon, cheaha, xanadu, nyu_hpc, test, marjorie, computerome, ucd_sonic, seg_globe, mssm, sanger, dkfz, bluebear, pasteur, einstein, ethz_euler, m3c, test_full, imb, ucl_cscluster, tuos_stanage, azurebatch, seadragon, crukmi, csiro_petrichor, qmul_apocrita, docker, engaging, gis, hypatia, psmn, eva, unity, cropdiversityhpc, nygc, fgcz, conda, crg, singularity, mpcdf_viper, pe2, dirac, self_hosted_runner, tufts, uw_hyak_pedslabs, binac2, debug, hki_genie, genouest, cbe, unsw_katana, utd_juno, phoenix, seawulf, uod_hpc, fub_curta, lovelace, uct_hpc, aws_tower, binac, fsu_draco]
+Jan-16 15:52:17.090 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins declared=[nf-google@1.9.0, nf-schema@2.5.1]
+Jan-16 15:52:17.091 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Jan-16 15:52:17.092 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[nf-google@1.9.0, nf-schema@2.5.1]
+Jan-16 15:52:17.523 [main] DEBUG n.plugin.HttpPluginRepository - Registry request: https://registry.nextflow.io/api/v1/plugins/dependencies?plugins=nf-google%401.9.0%2Cnf-schema%402.5.1&nextflowVersion=25.10.2
+- code: 200
+- body: {"plugins":[{"id":"nf-google","downloadCount":8825,"downloadGhCount":239722,"releases":[{"version":"1.9.0","url":"https://registry.nextflow.io/api/v1/plugins/nf-google/1.9.0/download/nf-google-1.9.0.zip","date":"2023-11-24T21:39:43.476429Z","sha512sum":"afc86eafb3ba639b9fd05664bafbd547fb655509c497ae27aadeca712cf74ac60f6d26703d3083bf7c51c712171371cd4ed404f42fd467930f710ab92c9a9e14","requires":">=23.11.0-edge","dependsOn":[],"downloadCount":3,"downloadGhCount":365,"status":"PUBLISHED","spec":null,"description":null}],"projectUrl":"https://github.com/nextflow-io/nf-google","provider":"nextflow-io","description":null},{"id":"nf-schema","downloadCount":121433,"downloadGhCount":507971,"releases":[{"version":"2.5.1","url":"https://registry.nextflow.io/api/v1/plugins/nf-schema/2.5.1/download/nf-schema-2.5.1.zip","date":"2025-09-02T14:48:39.714892Z","sha512sum":"82c9c17a9f77319386e670e7b52cf79b067320001f083ccdfec77dada9fd53499506200fd10b493cf8f6fc0420f42e2314481c353ca14b3a92f354bf07ad5c13","requires":">=25.04.0","dependsOn":[],"downloadCount":58764,"downloadGhCount":31503,"status":"PUBLISHED","spec":null,"description":null}],"projectUrl":"https://github.com/nextflow-io/nf-schema","provider":"nextflow-io","description":null}]}
+Jan-16 15:52:17.583 [main] DEBUG nextflow.plugin.PluginUpdater - Installing plugin nf-google version: 1.9.0
+Jan-16 15:52:17.623 [main] INFO  org.pf4j.AbstractPluginManager - Plugin 'nf-google@1.9.0' resolved
+Jan-16 15:52:17.623 [main] INFO  org.pf4j.AbstractPluginManager - Start plugin 'nf-google@1.9.0'
+Jan-16 15:52:17.738 [main] DEBUG nextflow.plugin.BasePlugin - Plugin started nf-google@1.9.0
+Jan-16 15:52:17.738 [main] DEBUG nextflow.plugin.PluginUpdater - Installing plugin nf-schema version: 2.5.1
+Jan-16 15:52:17.749 [main] INFO  org.pf4j.AbstractPluginManager - Plugin 'nf-schema@2.5.1' resolved
+Jan-16 15:52:17.749 [main] INFO  org.pf4j.AbstractPluginManager - Start plugin 'nf-schema@2.5.1'
+Jan-16 15:52:17.753 [main] DEBUG nextflow.plugin.BasePlugin - Plugin started nf-schema@2.5.1
+Jan-16 15:52:17.771 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /home/s2215490/.nextflow/secrets/store.json
+Jan-16 15:52:17.774 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@20b54cfe] - activable => nextflow.secret.LocalSecretsProvider@20b54cfe
+Jan-16 15:52:17.775 [main] DEBUG nextflow.cli.CmdRun - Config file used secrets -- reloading config with secrets provider
+Jan-16 15:52:17.776 [main] DEBUG nextflow.config.ConfigBuilder - Found config base: /exports/eddie/scratch/s2215490/proteogenomicsdb/nextflow.config
+Jan-16 15:52:17.777 [main] DEBUG nextflow.config.ConfigBuilder - User config file: /exports/eddie/scratch/s2215490/proteogenomicsdb/nextflow.config
+Jan-16 15:52:17.778 [main] DEBUG nextflow.config.ConfigBuilder - User config file: /exports/eddie/scratch/s2215490/proteogenomicsdb/tests/nextflow.config
+Jan-16 15:52:17.778 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /exports/eddie/scratch/s2215490/proteogenomicsdb/nextflow.config
+Jan-16 15:52:17.779 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /exports/eddie/scratch/s2215490/proteogenomicsdb/nextflow.config
+Jan-16 15:52:17.780 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /exports/eddie/scratch/s2215490/proteogenomicsdb/tests/nextflow.config
+Jan-16 15:52:17.792 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `test,singularity`
+Jan-16 15:52:18.909 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `test,singularity`
+Jan-16 15:52:19.752 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `test,singularity`
+Jan-16 15:52:19.806 [main] DEBUG nextflow.config.ConfigBuilder - Available config profiles: [bih, cfc_dev, uzl_omics, ifb_core, embl_hd, denbi_qbic, alice, mjolnir_globe, uppmax, giga, incliva, ilifu, ki_luria, uge, icr_alma, rosalind_uge, dev, lugh, mccleary, unibe_ibu, vai, czbiohub_aws, jax, roslin, iris, tes, scw, unc_longleaf, tigem, tubingen_apg, apollo, ipop_up, vsc_calcua, pdc_kth, ceci_nic5, ccga_cau, humantechnopole, stjude, daisybio, eddie, medair, biowulf, bi, bigpurple, adcra, cedars, pawsey_setonix, vsc_kul_uhasselt, pawsey_nimbus, rki, ucl_myriad, utd_ganymede, charliecloud, fred_hutch, seattlechildrens, icr_davros, ceres, munin, rosalind, hasta, cfc, uzh, shu_bmrc, ebi_codon_slurm, ebc, ccga_dx, crick, ku_sund_danhead, marvin, lrz_cm4, shifter, biohpc_gen, mana, york_viking, unc_lccc, wehi, awsbatch, wustl_htcf, arcc, ceci_dragon2, imperial, maestro, software_license, cannon, genotoul, nci_gadi, abims, eva_grace, janelia, nu_genomics, googlebatch, oist, sahmri, kaust, alliance_canada, mpcdf, leicester, vsc_ugent, create, sage, cambridge, jex, podman, ebi_codon, cheaha, xanadu, nyu_hpc, test, marjorie, computerome, ucd_sonic, seg_globe, mssm, sanger, dkfz, bluebear, pasteur, einstein, ethz_euler, m3c, test_full, imb, ucl_cscluster, tuos_stanage, azurebatch, seadragon, crukmi, csiro_petrichor, qmul_apocrita, docker, engaging, gis, hypatia, psmn, eva, unity, cropdiversityhpc, nygc, fgcz, conda, crg, singularity, mpcdf_viper, pe2, dirac, self_hosted_runner, tufts, uw_hyak_pedslabs, binac2, debug, hki_genie, genouest, cbe, unsw_katana, utd_juno, phoenix, seawulf, uod_hpc, fub_curta, lovelace, uct_hpc, aws_tower, binac, fsu_draco]
+Jan-16 15:52:19.854 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 by global default
+Jan-16 15:52:19.882 [main] INFO  nextflow.cli.CmdRun - Launching `/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/../main.nf` [exotic_hawking] DSL2 - revision: b269a75d7b
+Jan-16 15:52:19.974 [main] DEBUG nextflow.Session - Session UUID: b5c177ef-42b8-4eff-8c2b-0d5cab9e4708
+Jan-16 15:52:19.975 [main] DEBUG nextflow.Session - Run name: exotic_hawking
+Jan-16 15:52:19.976 [main] DEBUG nextflow.Session - Executor pool size: 2
+Jan-16 15:52:19.997 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+Jan-16 15:52:20.002 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=10; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Jan-16 15:52:20.028 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 25.10.2 build 10555
+  Created: 28-11-2025 19:24 UTC (19:24 BST)
+  System: Linux 5.14.0-503.35.1.el9_5.x86_64
+  Runtime: Groovy 4.0.28 on OpenJDK 64-Bit Server VM 17.0.15+6-LTS
+  Encoding: UTF-8 (UTF-8)
+  Process: 3338740@node2b17.ecdf.ed.ac.uk [192.41.105.50]
+  CPUs: 1 - Mem: 1006.7 GB (986.4 GB) - Swap: 16 GB (13.1 GB)
+Jan-16 15:52:20.080 [main] DEBUG nextflow.Session - Work-dir: /exports/eddie/scratch/s2215490/proteogenomicsdb/.nf-test/tests/555500fdbcc0e68d7cc4dcdbe0cd858/work [gpfs]
+Jan-16 15:52:20.150 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[GoogleLifeSciencesExecutor, GoogleBatchExecutor]
+Jan-16 15:52:20.176 [main] DEBUG nextflow.Session - Observer factory (v2): LinObserverFactory
+Jan-16 15:52:20.179 [main] DEBUG nextflow.Session - Observer factory (v2): DefaultObserverFactory
+Jan-16 15:52:20.193 [main] DEBUG nextflow.Session - Observer factory (v2): ValidationObserverFactory
+Jan-16 15:52:20.290 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Jan-16 15:52:20.317 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 2; maxThreads: 1000
+Jan-16 15:52:20.421 [main] DEBUG nextflow.Session - Session start
+Jan-16 15:52:20.425 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow started -- trace file: /exports/eddie/scratch/s2215490/proteogenomicsdb/.nf-test/tests/555500fdbcc0e68d7cc4dcdbe0cd858/meta/trace.csv
+Jan-16 15:52:20.445 [main] DEBUG n.validation.config.ValidationConfig - Set `validation.monochromeLogs` to true due to the ANSI log settings.
+Jan-16 15:52:20.447 [main] DEBUG n.validation.config.ValidationConfig - Added the following parameters to the ignored parameters: [genomes]
+Jan-16 15:52:20.450 [main] DEBUG n.validation.config.HelpConfig - Set `validation.help.enabled` to true
+Jan-16 15:52:20.470 [main] DEBUG nextflow.Session - Using default localLib path: /exports/eddie/scratch/s2215490/proteogenomicsdb/lib
+Jan-16 15:52:20.487 [main] DEBUG nextflow.Session - Adding to the classpath library: /exports/eddie/scratch/s2215490/proteogenomicsdb/lib
+Jan-16 15:52:20.744 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Jan-16 15:52:28.796 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [paramsSummaryLog:paramsSummaryLog]; plugin Id: nf-schema
+Jan-16 15:52:28.814 [main] DEBUG n.validation.config.ValidationConfig - Set `validation.monochromeLogs` to true due to the ANSI log settings.
+Jan-16 15:52:28.814 [main] DEBUG n.validation.config.ValidationConfig - Added the following parameters to the ignored parameters: [genomes]
+Jan-16 15:52:28.814 [main] DEBUG n.validation.config.HelpConfig - Set `validation.help.enabled` to true
+Jan-16 15:52:28.815 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [validateParameters:validateParameters]; plugin Id: nf-schema
+Jan-16 15:52:28.816 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [paramsHelp:paramsHelp]; plugin Id: nf-schema
+Jan-16 15:52:28.820 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [paramsSummaryMap:paramsSummaryMap]; plugin Id: nf-schema
+Jan-16 15:52:28.821 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [samplesheetToList:samplesheetToList]; plugin Id: nf-schema
+Jan-16 15:52:28.822 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [paramsHelp:paramsHelp]; plugin Id: nf-schema
+Jan-16 15:52:29.194 [main] WARN  nextflow.script.ScriptBinding - Access to undefined parameter `genome` -- Initialise it to a default value eg. `params.genome = some_value`
+Jan-16 15:52:29.377 [main] INFO  nextflow.Nextflow - 
+-[2m----------------------------------------------------[0m-
+                                        [0;32m,--.[0;30m/[0;32m,-.[0m
+[0;34m        ___     __   __   __   ___     [0;32m/,-._.--~'[0m
+[0;34m  |\ | |__  __ /  ` /  \ |__) |__         [0;33m}  {[0m
+[0;34m  | \| |       \__, \__/ |  \ |___     [0;32m\`-._,-`-,[0m
+                                        [0;32m`._,._,'[0m
+[0;35m  nf-core/proteogenomicsdb 2.0.0[0m
+-[2m----------------------------------------------------[0m-
+
+Jan-16 15:52:29.435 [main] INFO  nextflow.Nextflow - Input/output options
+  outdir                      : /exports/eddie/scratch/s2215490/proteogenomicsdb/.nf-test/tests/555500fdbcc0e68d7cc4dcdbe0cd858/output
+
+pipeline_options
+  pipelines_testdata_base_path: https://raw.githubusercontent.com/nf-core/test-datasets/refs/heads/proteogenomicsdb
+  config_profile_name         : Test profile
+  config_profile_description  : Minimal test dataset to check pipeline function
+
+skip_options
+  skip_decoy                  : false
+
+Core Nextflow options
+  runName                     : exotic_hawking
+  containerEngine             : singularity
+  container                   : nfcore/proteogenomicsdb:1.0.0
+  launchDir                   : /exports/eddie/scratch/s2215490/proteogenomicsdb/.nf-test/tests/555500fdbcc0e68d7cc4dcdbe0cd858
+  workDir                     : /exports/eddie/scratch/s2215490/proteogenomicsdb/.nf-test/tests/555500fdbcc0e68d7cc4dcdbe0cd858/work
+  projectDir                  : /exports/eddie/scratch/s2215490/proteogenomicsdb
+  userName                    : s2215490
+  profile                     : test,singularity
+  configFiles                 : /exports/eddie/scratch/s2215490/proteogenomicsdb/nextflow.config, /exports/eddie/scratch/s2215490/proteogenomicsdb/nextflow.config, /exports/eddie/scratch/s2215490/proteogenomicsdb/tests/nextflow.config
+
+!! Only displaying parameters that differ from the pipeline defaults !!
+------------------------------------------------------
+Jan-16 15:52:29.445 [main] INFO  nextflow.Nextflow - 
+* The nf-core framework
+    https://doi.org/10.1038/s41587-020-0439-x
+
+* Software dependencies
+    https://github.com/nf-core/proteogenomicsdb/blob/main/CITATIONS.md
+
+Jan-16 15:52:29.452 [main] DEBUG n.v.parameters.ParameterValidator - Starting parameters validation
+Jan-16 15:52:29.912 [main] WARN  n.v.logging.ValidationLogger - The following invalid input values have been detected:
+
+* --modules_testdata_base_path: https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/
+* --trace_report_suffix: 2026-01-16_15-52-18
+
+
+Jan-16 15:52:29.914 [main] DEBUG n.v.parameters.ParameterValidator - Finishing parameters validation
+Jan-16 15:52:29.918 [main] WARN  nextflow.Nextflow - nf-core pipelines do not accept positional arguments. The positional argument `true` has been detected.
+HINT: A common mistake is to provide multiple values separated by spaces e.g. `-profile test, docker`.
+
+Jan-16 15:52:29.953 [main] INFO  nextflow.Nextflow - proteogenomicsdb subworkflow skipped.
+Jan-16 15:52:29.953 [main] INFO  nextflow.Nextflow - ensembldb subworkflow skipped.
+Jan-16 15:52:29.954 [main] INFO  nextflow.Nextflow - cosmicdb subworkflow skipped.
+Jan-16 15:52:29.955 [main] INFO  nextflow.Nextflow - gnomaddb subworkflow skipped.
+Jan-16 15:52:29.956 [main] INFO  nextflow.Nextflow - cbioportaldb subworkflow skipped.
+Jan-16 15:52:30.046 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:process_low` matches labels `process_low` for process with name NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:MERGEDB:CAT_CAT
+Jan-16 15:52:30.049 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withName:.*` matches process NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:MERGEDB:CAT_CAT
+Jan-16 15:52:30.050 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withName:.*` matches process NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:MERGEDB:CAT_CAT
+Jan-16 15:52:30.072 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jan-16 15:52:30.072 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jan-16 15:52:30.079 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+Jan-16 15:52:30.085 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=1; memory=1006.7 GB; capacity=1; pollInterval=100ms; dumpInterval=5m
+Jan-16 15:52:30.087 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
+Jan-16 15:52:30.132 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:MERGEDB:CAT_CAT': maxForks=0; fair=false; array=0
+Jan-16 15:52:30.212 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:process_medium` matches labels `process_medium,process_single_thread` for process with name NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:MERGEDB:PYPGATK_CLEAN
+Jan-16 15:52:30.213 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withName:.*` matches process NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:MERGEDB:PYPGATK_CLEAN
+Jan-16 15:52:30.213 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withName:.*` matches process NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:MERGEDB:PYPGATK_CLEAN
+Jan-16 15:52:30.221 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jan-16 15:52:30.221 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jan-16 15:52:30.222 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:MERGEDB:PYPGATK_CLEAN': maxForks=0; fair=false; array=0
+Jan-16 15:52:30.246 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:process_medium` matches labels `process_medium,process_single_thread` for process with name NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:MERGEDB:PYPGATK_DECOY
+Jan-16 15:52:30.247 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withName:.*` matches process NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:MERGEDB:PYPGATK_DECOY
+Jan-16 15:52:30.248 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withName:.*` matches process NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:MERGEDB:PYPGATK_DECOY
+Jan-16 15:52:30.264 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jan-16 15:52:30.264 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jan-16 15:52:30.265 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:MERGEDB:PYPGATK_DECOY': maxForks=0; fair=false; array=0
+Jan-16 15:52:30.321 [main] DEBUG nextflow.Session - Config process names validation disabled as requested
+Jan-16 15:52:30.325 [main] DEBUG nextflow.Session - Igniting dataflow network (17)
+Jan-16 15:52:30.358 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:MERGEDB:CAT_CAT
+Jan-16 15:52:30.359 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:MERGEDB:PYPGATK_CLEAN
+Jan-16 15:52:30.359 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > NFCORE_PROTEOGENOMICSDB:DATABASE_GENERATION:MERGEDB:PYPGATK_DECOY
+Jan-16 15:52:30.362 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_8251928f53ed1e0e: /exports/eddie/scratch/s2215490/proteogenomicsdb/modules/nf-core/multiqc/main.nf
+  Script_f35c3a6f98290955: /exports/eddie/scratch/s2215490/proteogenomicsdb/subworkflows/local/cbioportal_workflow/cbioportal_workflow.nf
+  Script_3163f69f07b91635: /exports/eddie/scratch/s2215490/proteogenomicsdb/subworkflows/local/rnaseq_workflow/rnaseq_workflow.nf
+  Script_1f8b206dadc812e1: /exports/eddie/scratch/s2215490/proteogenomicsdb/modules/nf-core/hisat2/build/main.nf
+  Script_2bacceee323e8044: /exports/eddie/scratch/s2215490/proteogenomicsdb/subworkflows/nf-core/fastqc_trimgalore.nf
+  Script_b198c88e9c4ec6da: /exports/eddie/scratch/s2215490/proteogenomicsdb/modules/local/pypgatk_cosmicdb/main.nf
+  Script_c828847030838925: /exports/eddie/scratch/s2215490/proteogenomicsdb/modules/nf-core/bcftools/sort/main.nf
+  Script_9e61b79b569950a4: /exports/eddie/scratch/s2215490/proteogenomicsdb/modules/nf-core/fastqc/main.nf
+  Script_ba93fd870f3d5e8f: /exports/eddie/scratch/s2215490/proteogenomicsdb/modules/nf-core/stringtie/stringtie/main.nf
+  Script_1f1a86d63d5d7a85: /exports/eddie/scratch/s2215490/proteogenomicsdb/modules/local/pypgatk_cbioportaldb/main.nf
+  Script_5c4e8d4051efa81e: /exports/eddie/scratch/s2215490/proteogenomicsdb/subworkflows/nf-core/utils_nfcore_pipeline/main.nf
+  Script_a780234b47eb3af3: /exports/eddie/scratch/s2215490/proteogenomicsdb/modules/nf-core/gunzip/main.nf
+  Script_e43b16f4ad97654a: /exports/eddie/scratch/s2215490/proteogenomicsdb/subworkflows/local/ensembl_workflow/ensembl_workflow.nf
+  Script_496ac9d18b3e0708: /exports/eddie/scratch/s2215490/proteogenomicsdb/modules/nf-core/cat/fastq/main.nf
+  Script_154e3f16fb9830a5: /exports/eddie/scratch/s2215490/proteogenomicsdb/modules/local/pypgatk_vcf/main.nf
+  Script_70c42419ebc94e2e: /exports/eddie/scratch/s2215490/proteogenomicsdb/modules/local/pypgatk_download_cbioportal/main.nf
+  Script_b4f808fa232bbe7b: /exports/eddie/scratch/s2215490/proteogenomicsdb/modules/nf-core/gffcompare/main.nf
+  Script_a64a54a01f8015c7: /exports/eddie/scratch/s2215490/proteogenomicsdb/subworkflows/nf-core/utils_nfschema_plugin/main.nf
+  Script_739121a0916a07c4: /exports/eddie/scratch/s2215490/proteogenomicsdb/modules/nf-core/samtools/faidx/main.nf
+  Script_b9984c714cc624be: /exports/eddie/scratch/s2215490/proteogenomicsdb/modules/local/pypgatk_cosmic/main.nf
+  Script_104ba625cb4cd6dc: /exports/eddie/scratch/s2215490/proteogenomicsdb/modules/nf-core/wget/main.nf
+  Script_9313e8e618c64136: /exports/eddie/scratch/s2215490/proteogenomicsdb/subworkflows/local/cosmic_workflow/cosmic_workflow.nf
+  Script_5c997fe28ed48327: /exports/eddie/scratch/s2215490/proteogenomicsdb/modules/nf-core/stringtie/merge/main.nf
+  Script_04e329140b8359be: /exports/eddie/scratch/s2215490/proteogenomicsdb/modules/local/pypgatk_dna/main.nf
+  Script_6cfeb6c53377edfd: /exports/eddie/scratch/s2215490/proteogenomicsdb/subworkflows/local/utils_nfcore_proteogenomicsdb_pipeline/main.nf
+  Script_91dc0e2bf71ccbd5: /exports/eddie/scratch/s2215490/proteogenomicsdb/modules/nf-core/samtools/index/main.nf
+  Script_376dd0babaf6d1e2: /exports/eddie/scratch/s2215490/proteogenomicsdb/modules/nf-core/trimgalore/main.nf
+  Script_8848e1221b22d5ed: /exports/eddie/scratch/s2215490/proteogenomicsdb/modules/nf-core/cat/cat/main.nf
+  Script_4f612cfd8c52e8cd: /exports/eddie/scratch/s2215490/proteogenomicsdb/subworkflows/nf-core/utils_nextflow_pipeline/main.nf
+  Script_c3e7c02f7a152102: /exports/eddie/scratch/s2215490/proteogenomicsdb/modules/nf-core/bcftools/index/main.nf
+  Script_82da85e0f01b1d7e: /exports/eddie/scratch/s2215490/proteogenomicsdb/subworkflows/local/fastqc_workflow/fastqc_workflow.nf
+  Script_ba48f1bf3c186707: /exports/eddie/scratch/s2215490/proteogenomicsdb/modules/local/gsutil/main.nf
+  Script_b6b1f345f0ad3aa3: /exports/eddie/scratch/s2215490/proteogenomicsdb/modules/nf-core/bcftools/concat/main.nf
+  Script_bb123e0c25a9e772: /exports/eddie/scratch/s2215490/proteogenomicsdb/main.nf
+  Script_7dce7feb3287bd8d: /exports/eddie/scratch/s2215490/proteogenomicsdb/modules/nf-core/hisat2/extractsplicesites/main.nf
+  Script_c5aad72d7574bf1c: /exports/eddie/scratch/s2215490/proteogenomicsdb/modules/local/pypgatk_ensembl_downloader/main.nf
+  Script_b666edf0129ec7fc: /exports/eddie/scratch/s2215490/proteogenomicsdb/modules/nf-core/gffread/main.nf
+  Script_37f89861fd161392: /exports/eddie/scratch/s2215490/proteogenomicsdb/modules/nf-core/hisat2/align/main.nf
+  Script_fcdbcab2dd8fe25b: /exports/eddie/scratch/s2215490/proteogenomicsdb/modules/nf-core/tabix/bgzip/main.nf
+  Script_449cbf04b44f5caa: /exports/eddie/scratch/s2215490/proteogenomicsdb/modules/nf-core/samtools/sort/main.nf
+  Script_f526ea333b3ea25e: /exports/eddie/scratch/s2215490/proteogenomicsdb/modules/nf-core/freebayes/main.nf
+  Script_26eece7ceb9e3806: /exports/eddie/scratch/s2215490/proteogenomicsdb/subworkflows/local/gnomad_workflow/gnomad_workflow.nf
+  Script_257ddc8a843e3588: /exports/eddie/scratch/s2215490/proteogenomicsdb/modules/local/pypgatk_clean/main.nf
+  Script_1944a878c85e6377: /exports/eddie/scratch/s2215490/proteogenomicsdb/workflows/database_generation.nf
+  Script_b026357ae2e61b8d: /exports/eddie/scratch/s2215490/proteogenomicsdb/modules/local/pypgatk_decoy/main.nf
+  Script_5d6800d58a415d4d: /exports/eddie/scratch/s2215490/proteogenomicsdb/subworkflows/local/merge_workflow/merge_workflow.nf
+Jan-16 15:52:30.362 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+Jan-16 15:52:30.362 [main] DEBUG nextflow.Session - Session await
+Jan-16 15:52:30.373 [main] DEBUG nextflow.Session - Session await > all processes finished
+Jan-16 15:52:30.404 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local) - terminating tasks monitor poll loop
+Jan-16 15:52:30.405 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Jan-16 15:52:30.411 [main] INFO  nextflow.Nextflow - -[0;35m[nf-core/proteogenomicsdb][0;32m Pipeline completed successfully[0m-
+Jan-16 15:52:30.419 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=0; failedCount=0; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=0ms; failedDuration=0ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=0; peakCpus=0; peakMemory=0; ]
+Jan-16 15:52:30.480 [main] DEBUG nextflow.trace.ReportObserver - Workflow completed -- rendering execution report
+Jan-16 15:52:31.282 [main] DEBUG nextflow.trace.TimelineObserver - Workflow completed -- rendering execution timeline
+Jan-16 15:52:31.382 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow completed -- saving trace file
+Jan-16 15:52:31.398 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+Jan-16 15:52:31.428 [main] INFO  org.pf4j.AbstractPluginManager - Stop plugin 'nf-schema@2.5.1'
+Jan-16 15:52:31.429 [main] DEBUG nextflow.plugin.BasePlugin - Plugin stopped nf-schema
+Jan-16 15:52:31.430 [main] INFO  org.pf4j.AbstractPluginManager - Stop plugin 'nf-google@1.9.0'
+Jan-16 15:52:31.430 [main] DEBUG nextflow.plugin.BasePlugin - Plugin stopped nf-google
+Jan-16 15:52:31.433 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'FileTransfer' shutdown completed (hard=false)
+Jan-16 15:52:31.434 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

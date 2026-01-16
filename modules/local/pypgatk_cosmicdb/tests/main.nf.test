@@ -1,11 +1,11 @@
 nextflow_pipeline {
 
-    name "Test pypgatk_vcf"
+    name "Test pypgatk_cosmicdb"
     script "../main.nf"
     tag "module"
-    process "PYPGATK_VCF"
+    process "PYPGATK_COSMICDB"
 
-    test("-profile pypgatk_vcf test") {
+    test("-profile pypgatk_cosmicdb test") {
 
         options "-stub"
 
@@ -26,9 +26,6 @@ nextflow_pipeline {
                 input[2] = Channel.of([
                     [ id: 'test' ], 
                     file('test_file.fasta')
-                ])
-                input[3] = Channel.of([
-                    file('test_file.config')
                 ])
 
                 """

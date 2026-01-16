@@ -1,24 +1,24 @@
 {
     "full rnaseq test": {
         "content": [
-            0,
+            7,
             null,
             [
-                "execution_report_2026-01-16_12-56-39.html",
-                "execution_timeline_2026-01-16_12-56-39.html",
-                "pipeline_dag_2026-01-16_12-56-39.html",
+                "execution_report_2026-01-16_16-00-58.html",
+                "execution_timeline_2026-01-16_16-00-58.html",
+                "pipeline_dag_2026-01-16_16-00-58.html",
                 "pipeline_info"
             ],
             [
-                "execution_report_2026-01-16_12-56-39.html:md5,803f73acc76fa8e1f7df5fe005e5bc1e",
-                "execution_timeline_2026-01-16_12-56-39.html:md5,d763a0c43fb5d7622067abd2f243335a",
-                "pipeline_dag_2026-01-16_12-56-39.html:md5,3b885fc56871508b6e8cd835559dd679"
+                "execution_report_2026-01-16_16-00-58.html:md5,574fd2dfd26ad8126e9e0f061baa1cc2",
+                "execution_timeline_2026-01-16_16-00-58.html:md5,c1068a1c8f77008350e131f82572da7a",
+                "pipeline_dag_2026-01-16_16-00-58.html:md5,9320fd252d9f5f498fff20a0260696ac"
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-16T12:56:52.933245369"
+        "timestamp": "2026-01-16T16:01:50.856561062"
     }
 }

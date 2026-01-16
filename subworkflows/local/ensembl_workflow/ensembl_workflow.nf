@@ -181,15 +181,8 @@ else {
         START OF MAIN ENSEMBL DATABASE GENERATION
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
+if (!params.skip_ensembl_vcf) {
 
-/*
-    //PYPGATK_ENSEMBL_VCF downloads the vcf file for the defined species 
-    PYPGATK_ENSEMBL_VCF (
-        ensembl_downloader_config,
-        species_name
-    )
-    versions_ch = versions_ch.mix(PYPGATK_ENSEMBL_VCF.out.versions).collect()
-*/
     //creates an empty channel which will be populated with the vcf file downloaded from ENSEMBL
     ensembl_vcf  = Channel.empty()
     ensembl_vcf = ensembl_vcf.mix(PYPGATK_ENSEMBL_DOWNLOAD.out.vcf).collect()
@@ -221,7 +214,12 @@ else {
 
     //adds the peptide database generated from the vcf file to the mixed database channel
     mixed_databases = mixed_databases.mix(PYPGATK_VCF.out.database).collect()
+}
 
+else {
+        //bypass the subworkflow
+        log.info "ensembl vcf database skipped."
+}
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

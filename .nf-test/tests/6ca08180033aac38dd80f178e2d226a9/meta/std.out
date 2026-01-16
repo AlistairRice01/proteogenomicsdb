@@ -1,0 +1,62 @@
+N E X T F L O W  ~  version 25.10.2
+Launching `/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/../main.nf` [elegant_gutenberg] DSL2 - revision: b269a75d7b
+WARN: Access to undefined parameter `genome` -- Initialise it to a default value eg. `params.genome = some_value`
+
+-[2m----------------------------------------------------[0m-
+                                        [0;32m,--.[0;30m/[0;32m,-.[0m
+[0;34m        ___     __   __   __   ___     [0;32m/,-._.--~'[0m
+[0;34m  |\ | |__  __ /  ` /  \ |__) |__         [0;33m}  {[0m
+[0;34m  | \| |       \__, \__/ |  \ |___     [0;32m\`-._,-`-,[0m
+                                        [0;32m`._,._,'[0m
+[0;35m  nf-core/proteogenomicsdb 2.0.0[0m
+-[2m----------------------------------------------------[0m-
+
+Input/output options
+  input                       : /exports/eddie/scratch/s2215490/proteogenomicsdb/assets/samplesheet.csv
+  outdir                      : /exports/eddie/scratch/s2215490/proteogenomicsdb/.nf-test/tests/6ca08180033aac38dd80f178e2d226a9/output
+
+pipeline_options
+  pipelines_testdata_base_path: https://raw.githubusercontent.com/nf-core/test-datasets/refs/heads/proteogenomicsdb
+  config_profile_name         : Test profile
+  config_profile_description  : Minimal test dataset to check pipeline function
+
+skip_options
+  skip_fastqc                 : false
+  skip_trimming               : false
+
+Core Nextflow options
+  runName                     : elegant_gutenberg
+  containerEngine             : singularity
+  container                   : nfcore/proteogenomicsdb:1.0.0
+  launchDir                   : /exports/eddie/scratch/s2215490/proteogenomicsdb/.nf-test/tests/6ca08180033aac38dd80f178e2d226a9
+  workDir                     : /exports/eddie/scratch/s2215490/proteogenomicsdb/.nf-test/tests/6ca08180033aac38dd80f178e2d226a9/work
+  projectDir                  : /exports/eddie/scratch/s2215490/proteogenomicsdb
+  userName                    : s2215490
+  profile                     : test,singularity
+  configFiles                 : /exports/eddie/scratch/s2215490/proteogenomicsdb/nextflow.config, /exports/eddie/scratch/s2215490/proteogenomicsdb/nextflow.config, /exports/eddie/scratch/s2215490/proteogenomicsdb/tests/nextflow.config
+
+!! Only displaying parameters that differ from the pipeline defaults !!
+------------------------------------------------------
+
+* The nf-core framework
+    https://doi.org/10.1038/s41587-020-0439-x
+
+* Software dependencies
+    https://github.com/nf-core/proteogenomicsdb/blob/main/CITATIONS.md
+
+WARN: The following invalid input values have been detected:
+
+* --modules_testdata_base_path: https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/
+* --trace_report_suffix: 2026-01-16_15-54-13
+
+
+WARN: nf-core pipelines do not accept positional arguments. The positional argument `true` has been detected.
+HINT: A common mistake is to provide multiple values separated by spaces e.g. `-profile test, docker`.
+
+proteogenomicsdb subworkflow skipped.
+ensembldb subworkflow skipped.
+cosmicdb subworkflow skipped.
+gnomaddb subworkflow skipped.
+cbioportaldb subworkflow skipped.
+decoy generation skipped.
+-[0;35m[nf-core/proteogenomicsdb][0;32m Pipeline completed successfully[0m-

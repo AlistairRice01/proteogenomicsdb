@@ -3,7 +3,7 @@ nextflow_pipeline {
     name "Test pypgatk_vcf"
     script "../main.nf"
     tag "module"
-    process "PYPGATK_VCF"
+    process "PYPGATK_CBIOPORTAL"
 
     test("-profile pypgatk_vcf test") {
 

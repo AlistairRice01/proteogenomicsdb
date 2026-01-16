@@ -58,13 +58,9 @@ workflow NFCORE_PROTEOGENOMICSDB {
         params.annotation,      //
         params.transcripts,     //
         params.custom_config,   //path to the custom_config
-        params.dna_config,      //path to the dna_config
-        params.fasta_index,              
+        params.dna_config,      //path to the dna_config              
         params.faidx_get_genome_sizes,     
         params.samtools_sort_index,       
-        params.freebayes_limit_analysis,  
-        params.freebayes_populations,     
-        params.freebayes_copy_number_bed,
         //ensembl paramaters
         params.ensembl_downloader_config,   //path to the ensembl_downloader_config
         params.species_id,                  //species id to download from ensembl
@@ -91,11 +87,7 @@ workflow NFCORE_PROTEOGENOMICSDB {
         params.clean_config,     //
         params.decoy_config,     //path to the decoy_config
         //multiqc
-        params.multiqc_config,        
-        params.multiqc_extra_config,     
-        params.multiqc_logo,         
-        params.multiqc_replace_names,
-        params.multiqc_sample_names  
+        params.multiqc_config
     )
     emit:
 

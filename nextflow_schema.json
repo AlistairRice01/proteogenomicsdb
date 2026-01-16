@@ -150,7 +150,8 @@
                 },
                 "multiqc_config": {
                     "type": "string",
-                    "description": "placeholder text"
+                    "description": "placeholder text",
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/assets/multiqc_config.yaml"
                 },
                 "multiqc_logo": {
                     "type": "string",
@@ -242,10 +243,6 @@
                     "description": "placeholder text"
                 },
                 "gnomad_url": {
-                    "type": "string",
-                    "description": "placeholder text"
-                },
-                "grch37_url": {
                     "type": "string",
                     "description": "placeholder text"
                 },
@@ -381,6 +378,10 @@
         },
         "multiqc_sample_names": {
             "type": "string"
+        },
+        "grch38_url": {
+            "type": "string",
+            "default": "ftp://ftp.ensembl.org/pub/release-115/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz"
         }
     }
 }

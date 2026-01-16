@@ -1,11 +1,11 @@
 nextflow_pipeline {
 
-    name "Test pypgatk_vcf"
+    name "Test pypgatk_clean"
     script "../main.nf"
     tag "module"
-    process "PYPGATK_VCF"
+    process "PYPGATK_CLEAN"
 
-    test("-profile pypgatk_vcf test") {
+    test("-profile pypgatk_clean test") {
 
         options "-stub"
 

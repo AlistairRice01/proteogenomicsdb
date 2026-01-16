@@ -1,11 +1,11 @@
 nextflow_pipeline {
 
-    name "Test pypgatk_vcf"
+    name "Test gsutil"
     script "../main.nf"
     tag "module"
-    process "PYPGATK_VCF"
+    process "GSUTIL"
 
-    test("-profile pypgatk_vcf test") {
+    test("-profile gsutil test") {
 
         options "-stub"
 
@@ -16,19 +16,8 @@ nextflow_pipeline {
             process {
                 """
                 input[0] = Channel.of([
-                    [ id: 'test' ], 
-                    file('test_file.vcf')
-                ])
-                input[1] = Channel.of([
-                    [ id: 'test' ], 
-                    file('test_file.gtf')
-                ])
-                input[2] = Channel.of([
-                    [ id: 'test' ], 
-                    file('test_file.fasta')
-                ])
-                input[3] = Channel.of([
-                    file('test_file.config')
+                    [ id: 'url' ], 
+                    path('link')
                 ])
 
                 """

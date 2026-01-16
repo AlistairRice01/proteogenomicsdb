@@ -44,7 +44,7 @@ main:
 
     //creates an empty channel that will then be populated with the file downloaded off the grch38 database 
     grch38_ch = Channel.empty()
-    grch38_ch = WGET_GRCH37.out.outfile.collect()
+    grch38_ch = WGET_GRCH38.out.outfile.collect()
 
     //GUNZIP unzips the file downloaded using WGET_GRCH37 
     GUNZIP(

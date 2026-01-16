@@ -1,6 +1,6 @@
 nextflow_pipeline {
 
-    name "Test pipeline with ensembl database generation"
+    name "Test pipeline with full ensembl database generation"
     script "../main.nf"
     tag "pipeline"
 
