@@ -9,7 +9,7 @@ process PYPGATK_CBIOPORTAL {
         'community.wave.seqera.io/library/pypgatk_pip:456a1305c1d65d3a' }"
 
     input:
-    tuple val(meta), path(ch_GRCh37_cds)
+    tuple val(meta), path(grch38_cdna)
     tuple val(meta), path(cbio_mutations)
     tuple val(meta), path(cbio_samples)
     path cbioportal_config
@@ -31,7 +31,7 @@ process PYPGATK_CBIOPORTAL {
     pypgatk_cli.py cbioportal-to-proteindb \\
         --config_file ${cbioportal_config} \\
         --input_mutation ${cbio_mutations} \\
-        --input_cds ${ch_GRCh37_cds} \\
+        --input_cds ${grch38_cdna} \\
         --clinical_sample_file ${cbio_samples} \\
         --output_db ${name} \\
  

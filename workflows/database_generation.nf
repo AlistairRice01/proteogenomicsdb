@@ -55,7 +55,7 @@ take:
     gnomad_config
 
     //cbioportaldb
-    grch37_url
+    grch39_url
     cbio_config
     cbio_study
 
@@ -206,13 +206,13 @@ main:
     //conditional execution based on wether the workflow is turned on or off in the config file
     if (!params.skip_cbioportaldb) {
 
-        grch37_url_ch  = Channel.from(grch37_url)
+        grch38_url_ch  = Channel.from(grch38_url)
         cbio_study_ch  = Channel.from(cbio_study)
         cbio_config_ch = Channel.fromPath(cbio_config)
         
         //pass the channels into the CBIOPORTALDB subworkflow - this downloads data FROM CBIOPORTAL to create a protein database
         CBIOPORTALDB (
-            grch37_url_ch,
+            grch38_url_ch,
             cbio_config_ch,
             cbio_study_ch
         )
@@ -230,7 +230,7 @@ main:
 
         minimum_aa_ch     = Channel.from(minimum_aa)
         stop_codons_ch    = Channel.from(stop_codons)
-        clean_config_ch = Channel.from(clean_config)
+        clean_config_ch   = Channel.from(clean_config)
         decoy_config_ch   = Channel.fromPath(decoy_config)
 
     //pass the channels into the MERGEDB subworkflow - this merges all of the databases together

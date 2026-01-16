@@ -1,0 +1,53 @@
+name: pypgatk_download_cbioportal
+description: A module for downloading files off of cbioportal
+keywords:
+  - peptide
+  - protein
+  - vcf
+  - database
+tools:
+  - cbioportal_downloader:
+      description: downloads files off of the cbioportal database
+      documentation: https://pgatk.readthedocs.io/en/latest/pypgatk.html
+      licence: 
+      identifier: ""
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. [ id:'cbioportal_config' ]
+    - cbioportal_config:
+        type: file
+        description: config file used to define the paramiters of the process
+        pattern: ".yaml"
+        ontologies: []
+    - cbioportal_study_id:
+        type: string
+        description: name of the cbioportal study that you want to download
+        pattern: []
+        ontologies: []
+output:
+  file_out:
+      - cbio_mutations:
+          type: file
+          description: output mutations file
+          pattern: ".txt"
+          ontologies: []
+      - cbio_samples:
+          type: file
+          description: output samples file
+          pattern: ".txt"
+          ontologies: []
+      - versions:
+          versions.yml:
+          type: file
+          description: File containing software versions
+          pattern: "versions.yml"
+          ontologies:
+            - edam: http://edamontology.org/format_3750 # YAML
+
+authors:
+  - "@alistairrice"
+maintainers:
+  - "@hywelldunn-davies"

@@ -15,7 +15,7 @@ process PYPGATK_COSMIC {
     output:
     path "All_COSMIC_Genes.fasta"    , emit: cosmic_genes
     path "CosmicMutantExport.tsv"    , emit: cosmic_mutations
-    path "All_CellLines_Genes.tsv"   , emit: cosmSic_celllines_genes
+    path "All_CellLines_Genes.tsv"   , emit: cosmsic_celllines_genes
     path "CosmicCLP_MutantExport.tsv", emit: cosmic_celllines_mutations
     path  "versions.yml"             , emit: versions
 

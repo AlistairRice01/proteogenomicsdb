@@ -47,7 +47,8 @@ name "Test pipeline with rnaseq database generation"
             gnomad_url               =  'gs://gcp-public-data--gnomad/release/2.1.1/vcf/exomes/gnomad.exomes.r2.1.1.sites.18.vcf.bgz'
 
             //CBIOPORTALDB inputs
-            params.grch37_url = 'ftp://ftp.ensembl.org/pub/release-75/fasta/homo_sapiens/cds/Homo_sapiens.GRCh37.75.cds.all.fa.gz'
+            //params.grch38_url = 'ftp://ftp.ensembl.org/pub/release-75/fasta/homo_sapiens/cds/Homo_sapiens.GRCh37.75.cds.all.fa.gz'
+            params.grch38_url = 'ftp://ftp.ensembl.org/pub/release-115/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz'
             params.cbio_study = 'es_iocurie_2014'
             outdir            = "${outputDir}"
 

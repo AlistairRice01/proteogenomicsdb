@@ -9,7 +9,7 @@ process GSUTIL {
         'community.wave.seqera.io/library/gsutil:5.35--34de676970af02ec' }"
 
     input:
-    tuple val(meta), path(file)
+    tuple val(meta), path(url)
 
     output:
     tuple val(meta), path("*.vcf.bgz"), emit: vcf
@@ -24,7 +24,7 @@ process GSUTIL {
 
     """
     gsutil cp \\
-     ${file} \\
+     ${url} \\
      ./copy.vcf.bgz \\
 
         cat <<-END_VERSIONS > versions.yml

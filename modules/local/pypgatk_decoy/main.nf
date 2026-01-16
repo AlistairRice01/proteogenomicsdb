@@ -9,7 +9,7 @@ process PYPGATK_DECOY {
         'community.wave.seqera.io/library/pypgatk_pip:456a1305c1d65d3a' }"
 
     input:
-    tuple val(meta),  path(file)
+    tuple val(meta), path(file)
     path protein_decoy_config
 
     output:

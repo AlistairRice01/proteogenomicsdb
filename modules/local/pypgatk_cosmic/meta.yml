@@ -1,0 +1,69 @@
+name: pypgatk_cosmic
+description: A module for downloading files of off the cosmic database
+keywords:
+  - peptide
+  - protein
+  - vcf
+  - database
+tools:
+  - cosmic-downloader:
+      description: downloads files off of the cosmic database
+      documentation: https://pgatk.readthedocs.io/en/latest/pypgatk.html
+      licence: 
+      identifier: ""
+input:
+    - cosmic_config:
+        type: file
+        description: config file used to define the paramiters of the process
+        pattern: ".yaml"
+        ontologies: []
+    - username:
+        type: string
+        description: cosmic database username
+        pattern: []
+        ontologies: []
+    - password:
+        type: string
+        description: cosmic database username
+        pattern: []
+        ontologies: []
+output:
+  file_out:
+      - cosmic_genes:
+          type: file
+          description: output genes file from cosmic
+          pattern: ".fasta"
+          ontologies: []
+      - cosmic_mutations:
+          type: file
+          description: output mutations file from cosmic
+          pattern: ".tsv"
+          ontologies: []
+      - cosmic_celllines_genes:
+          type: file
+          description: output celllines genes file from cosmic
+          pattern: ".tsv"
+          ontologies: []
+      - cosmic_celllines_mutations:
+          type: file
+          description: output celllines mutations file from cosmic
+          pattern: ".tsv"
+          ontologies: []
+      - versions:
+          versions.yml:
+          type: file
+          description: File containing software versions
+          pattern: "versions.yml"
+          ontologies:
+            - edam: http://edamontology.org/format_3750 # YAML
+
+authors:
+  - "@alistairrice"
+maintainers:
+  - "@hywelldunn-davies"
+
+    path "All_COSMIC_Genes.fasta"    , emit: cosmic_genes
+    path "CosmicMutantExport.tsv"    , emit: cosmic_mutations
+    path "All_CellLines_Genes.tsv"   , emit: cosmSic_celllines_genes
+    path "CosmicCLP_MutantExport.tsv", emit: cosmic_celllines_mutations
+    path  "versions.yml"             , emit: versions

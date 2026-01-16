@@ -2,4 +2,6 @@ channels:
 - conda-forge
 - bioconda
 dependencies:
-- gsutil
+- pip
+- pip:
+  - gsutil==5.35

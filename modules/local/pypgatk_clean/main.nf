@@ -10,7 +10,7 @@ process PYPGATK_CLEAN {
 
     input:
     tuple val(meta), path(database)
-    path ensembl_config
+    path clean_config
 
     output:
     path "*.fa"         , emit: clean_database
@@ -29,7 +29,7 @@ process PYPGATK_CLEAN {
     """
     pypgatk_cli.py ensembl-check \\
         --input_fasta ${database} \\
-        --config_file "${ensembl_config}" \\
+        --config_file "${clean_config}" \\
         --output ${name} \\
  
     cat <<-END_VERSIONS > versions.yml
