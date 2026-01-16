@@ -7,6 +7,11 @@ workflow FASTQC_WORKFLOW {
 take:
 
     samplesheet
+    multiqc_config
+    multiqc_extra_config
+    multiqc_logo
+    multiqc_replace_names
+    multiqc_sample_names
 
 main:
 
@@ -40,17 +45,23 @@ main:
         params.skip_trimming,
         versions_ch
     )
-    versions_ch = versions_ch.mix(FASTQC_TRIMGALORE.out.versions_ch)
+    versions_ch       = versions_ch.mix(FASTQC_TRIMGALORE.out.versions_ch)
     multiqc_files_ch  = multiqc_files_ch.mix(FASTQC_TRIMGALORE.out.trim_zip.collect{it[1]}.ifEmpty([]))
     multiqc_files_ch  = multiqc_files_ch.mix(FASTQC_TRIMGALORE.out.trim_log.collect{it[1]}.ifEmpty([]))
 
+    multiqc_config_ch        = Channel.fromPath(multiqc_config)
+    multiqc_extra_config_ch  = Channel.fromPath(multiqc_extra_config)
+    multiqc_logo_ch          = Channel.fromPath(multiqc_logo)
+    multiqc_replace_names_ch = Channel.fromPath(multiqc_replace_names)
+    multiqc_sample_names_ch  = Channel.fromPath(multiqc_sample_names)
+
     MULTIQC (
         multiqc_files_ch.collect(),
-        [],
-        [],
-        [],
-        [],
-        []
+        multiqc_config_ch,
+        multiqc_extra_config_ch,
+        multiqc_logo_ch,
+        multiqc_replace_names_ch,
+        multiqc_sample_names_ch
     )
     multiqc_report_ch = MULTIQC.out.report.collect()
     versions_ch       = versions_ch.mix(MULTIQC.out.versions).collect()

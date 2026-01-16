@@ -62,10 +62,11 @@ main:
     //creates an empty channel that will then be populated with the cdna files downloaded from ENSEMBL
     cdna_mixed = Channel.empty()
     cdna_mixed = PYPGATK_ENSEMBL_DOWNLOAD.out.cdna.mix(PYPGATK_ENSEMBL_DOWNLOAD.out.ncrna).collect()
+        .map { [ [id: 'total_cDNA' ], it ] }
 
     //CAT_DNA concatinates the cdna filed downloaded from ENSEMBL into a single file
     CAT_DNA (
-        cdna_mixed.map { [ [id: 'total_cDNA' ], it ] }
+        cdna_mixed
     )
     versions_ch = versions_ch.mix(CAT_DNA.out.versions_cat).collect()
 
@@ -148,12 +149,13 @@ else {
     //creates an empty channel that will then be populated with the cdna files downloaded from ENSEMBL
     cdna_database = Channel.empty()
     cdna_database = PYPGATK_ENSEMBL_DOWNLOAD.out.cdna.collect()
+        .map { [ [id: 'Altorfs_database'], it ] }
 
 if (!params.skip_altorfs) {
 
     //PYPGATK_ALTORFS takes the cdna files and the altorfs_config to generate a peptide database
     PYPGATK_ALRORFS (
-        cdna_database.map { [ [id: 'Altorfs_database'], it ] },
+        cdna_database,
         altorfs_config
     )
     versions_ch = versions_ch.mix(PYPGATK_ALRORFS.out.versions).collect()
@@ -191,10 +193,11 @@ else {
     //creates an empty channel which will be populated with the vcf file downloaded from ENSEMBL
     ensembl_vcf  = Channel.empty()
     ensembl_vcf = ensembl_vcf.mix(PYPGATK_ENSEMBL_DOWNLOAD.out.vcf).collect()
+        .map { [ [id: 'concatenated_vcf' ], it, [] ] }
 
     //CAT_VCF concatenates the vcf files downloaded from ENSEMBL into a single file 
     CAT_VCF (
-        ensembl_vcf.map { [ [id: 'concatenated_vcf' ], it, [] ] }
+        ensembl_vcf
     )
     versions_ch = versions_ch.mix(CAT_VCF.out.versions_cat).collect()
 

@@ -127,7 +127,8 @@
                 },
                 "gnomad_config": {
                     "type": "string",
-                    "description": "placeholder text"
+                    "description": "placeholder text",
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/gnomad_config.yaml"
                 },
                 "cbio_config": {
                     "type": "string",
@@ -148,10 +149,6 @@
                     "description": "placeholder text"
                 },
                 "multiqc_config": {
-                    "type": "string",
-                    "description": "placeholder text"
-                },
-                "multiqc_title": {
                     "type": "string",
                     "description": "placeholder text"
                 },
@@ -269,10 +266,6 @@
                     "type": "string",
                     "description": "placeholder text",
                     "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/protein_decoy.yaml"
-                },
-                "multiqc_custom_config": {
-                    "type": "string",
-                    "description": "placeholder text"
                 }
             }
         },
@@ -358,5 +351,36 @@
         {
             "$ref": "#/$defs/skip_options"
         }
-    ]
+    ],
+    "properties": {
+        "fasta_index": {
+            "type": "string"
+        },
+        "faidx_get_genome_sizes": {
+            "type": "boolean",
+            "default": true
+        },
+        "samtools_sort_index": {
+            "type": "string",
+            "default": "bai"
+        },
+        "freebayes_limit_analysis": {
+            "type": "string"
+        },
+        "freebayes_populations": {
+            "type": "string"
+        },
+        "freebayes_copy_number_bed": {
+            "type": "string"
+        },
+        "multiqc_extra_config": {
+            "type": "string"
+        },
+        "multiqc_replace_names": {
+            "type": "string"
+        },
+        "multiqc_sample_names": {
+            "type": "string"
+        }
+    }
 }

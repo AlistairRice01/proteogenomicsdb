@@ -28,6 +28,12 @@ take:
     transcripts
     custom_config
     dna_config
+    fasta_index              
+    faidx_get_genome_sizes     
+    samtools_sort_index       
+    freebayes_limit_analysis  
+    freebayes_populations     
+    freebayes_copy_number_bed
 
     //ensembldb
     ensembl_downloader_config
@@ -59,6 +65,13 @@ take:
     clean_config
     decoy_config
 
+    //multiqc
+    multiqc_config
+    multiqc_extra_config
+    multiqc_logo
+    multiqc_replace_names
+    multiqc_sample_names
+
 main:
 
     //create an empty channel which will later contain the version information for each of the tools
@@ -82,7 +95,18 @@ main:
             reference_ch,
             custom_config_ch,
             dna_config_ch,
-            transcripts_ch
+            transcripts_ch,
+            fasta_index,               
+            faidx_get_genome_sizes,     
+            samtools_sort_index,       
+            freebayes_limit_analysis,  
+            freebayes_populations,     
+            freebayes_copy_number_bed,
+            multiqc_config,
+            multiqc_extra_config,
+            multiqc_logo,
+            multiqc_replace_names,
+            multiqc_sample_names
         )
         //extract the version information from the subworkflow
         versions_ch        = versions_ch.mix(RNASEQDB.out.versions_ch).collect()
@@ -90,6 +114,7 @@ main:
         multiqc_report_ch  = RNASEQDB.out.multiqc_report_ch
 
     } 
+
     else {
         //bypass the subworkflow
         log.info "proteogenomicsdb subworkflow skipped."
@@ -120,6 +145,7 @@ main:
         mixed_databases_ch = mixed_databases_ch.mix(ENSEMBLDB.out.mixed_databases).collect()
 
     }
+
     else {
         //bypass the subworkflow
         log.info "ensembldb subworkflow skipped."
@@ -144,6 +170,7 @@ main:
         mixed_databases_ch = mixed_databases_ch.mix(COSMICDB.out.cosmic_database).collect()
 
     }
+
     else {
         //bypass the subworkflow
         log.info "cosmicdb subworkflow skipped."
@@ -170,6 +197,7 @@ main:
         mixed_databases_ch = mixed_databases_ch.mix(GNOMADDB.out.gnomad_database).collect()
 
     }
+
     else {
         //bypass the subworkflow
         log.info "gnomaddb subworkflow skipped."
@@ -194,6 +222,7 @@ main:
         mixed_databases_ch = mixed_databases_ch.mix(CBIOPORTALDB.out.cbioportal_database).collect()
 
     }
+    
     else {
         //bypass the subworkflow
         log.info "cbioportaldb subworkflow skipped."

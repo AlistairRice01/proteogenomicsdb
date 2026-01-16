@@ -4,21 +4,21 @@
             0,
             null,
             [
-                "execution_report_2026-01-15_16-39-50.html",
-                "execution_timeline_2026-01-15_16-39-50.html",
-                "pipeline_dag_2026-01-15_16-39-50.html",
+                "execution_report_2026-01-16_12-52-10.html",
+                "execution_timeline_2026-01-16_12-52-10.html",
+                "pipeline_dag_2026-01-16_12-52-10.html",
                 "pipeline_info"
             ],
             [
-                "execution_report_2026-01-15_16-39-50.html:md5,7dccb08993e73086ebd57852db7b0d13",
-                "execution_timeline_2026-01-15_16-39-50.html:md5,ead195244dd62ebfd62136d1d4da19bb",
-                "pipeline_dag_2026-01-15_16-39-50.html:md5,f3ee9057dbab7609b978917d0eb6508e"
+                "execution_report_2026-01-16_12-52-10.html:md5,de3c986a3ea6e603d910d569830fd476",
+                "execution_timeline_2026-01-16_12-52-10.html:md5,028fdf041fe8029b4cc5f7973d0536b6",
+                "pipeline_dag_2026-01-16_12-52-10.html:md5,f3ee9057dbab7609b978917d0eb6508e"
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-15T16:40:02.660262925"
+        "timestamp": "2026-01-16T12:52:23.384665088"
     }
 }
