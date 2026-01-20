@@ -303,6 +303,10 @@
                     "type": "boolean",
                     "default": true
                 },
+                "skip_ensembl_vcf": {
+                    "type": "boolean",
+                    "default": true
+                },
                 "skip_cosmicdb": {
                     "type": "boolean",
                     "default": true

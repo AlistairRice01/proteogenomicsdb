@@ -38,8 +38,7 @@ main:
     FASTQC_TRIMGALORE (
         ch_cat_fastq,
         params.skip_fastqc,
-        params.skip_trimming,
-        versions_ch
+        params.skip_trimming
     )
     versions_ch       = versions_ch.mix(FASTQC_TRIMGALORE.out.versions_ch)
     multiqc_files_ch  = multiqc_files_ch.mix(FASTQC_TRIMGALORE.out.trim_zip.collect{it[1]}.ifEmpty([]))

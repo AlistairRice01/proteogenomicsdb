@@ -7,6 +7,49 @@ nextflow_pipeline {
 
     test("-profile pypgatk_vcf test") {
 
+        when {
+            params {
+                outdir = "${outputDir}"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'cdna' ], 
+                    file(', checkIfExists: true')
+                ])
+                input[1] = Channel.of([
+                    [ id: 'mutations' ], 
+                    file(', checkIfExists: true')
+                ])
+                input[2] = Channel.of([
+                    [ id: 'samples' ], 
+                    file(', checkIfExists: true')
+                ])
+                input[3] = Channel.of([
+                    file('params.cbioportal_config, checkIfExists: true')
+                ])
+
+                """
+
+            }
+        }
+        tuple val(meta), path(grch38_cdna)
+    tuple val(meta), path(cbio_mutations)
+    tuple val(meta), path(cbio_samples)
+    path cbioportal_config
+
+        then {
+            assertAll(
+
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            
+            )
+        }
+    }
+
+    test("-profile pypgatk_vcf test -stub") {
+
         options "-stub"
 
         when {
@@ -16,19 +59,19 @@ nextflow_pipeline {
             process {
                 """
                 input[0] = Channel.of([
-                    [ id: 'test' ], 
-                    file('test_file.vcf')
+                    [ id: 'grch38_dna' ], 
+                    file('test_file.fa')
                 ])
                 input[1] = Channel.of([
-                    [ id: 'test' ], 
-                    file('test_file.gtf')
+                    [ id: 'cbioportal_mutations' ], 
+                    file('mutations.txt')
                 ])
                 input[2] = Channel.of([
-                    [ id: 'test' ], 
-                    file('test_file.fasta')
+                    [ id: 'cbioportal_samples' ], 
+                    file('samples.txt')
                 ])
                 input[3] = Channel.of([
-                    file('test_file.config')
+                    file('cbioportal.config')
                 ])
 
                 """
@@ -46,3 +89,8 @@ nextflow_pipeline {
         }
     }
 }
+
+    tuple val(meta), path(grch38_cdna)
+    tuple val(meta), path(cbio_mutations)
+    tuple val(meta), path(cbio_samples)
+    path cbioportal_config

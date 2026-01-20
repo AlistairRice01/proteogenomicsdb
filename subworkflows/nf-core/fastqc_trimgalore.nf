@@ -12,19 +12,19 @@ take:
     reads         // channel: [ val(meta), [ reads ] ]
     skip_fastqc   // boolean: true/false
     skip_trimming // boolean: true/false
-    versions_ch
 
 main:
 
     fastqc_html = Channel.empty()
     fastqc_zip  = Channel.empty()
+    versions_ch = Channel.empty()
     
     if (!skip_fastqc) {
     
         FASTQC ( 
             reads 
         )
-        versions_ch = versions_ch.mix(FASTQC.out.versions.first())
+        versions_ch = versions_ch.mix(FASTQC.out.versions_fastqc.first())
         fastqc_html = FASTQC.out.html
         fastqc_zip  = FASTQC.out.zip
     }

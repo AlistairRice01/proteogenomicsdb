@@ -16,23 +16,15 @@ nextflow_pipeline {
             process {
                 """
                 input[0] = Channel.of([
-                    [ id: 'test' ], 
-                    file('test_file.vcf')
+                    file('params.cosmic_config, checkIfExists: true')
                 ])
-                input[1] = Channel.of([
-                    [ id: 'test' ], 
-                    file('test_file.gtf')
-                ])
-                input[2] = Channel.of([
-                    [ id: 'test' ], 
-                    file('test_file.fasta')
-                ])
-                input[3] = Channel.of([
-                    file('test_file.config')
-                ])
+                input[1] = ['username']
+                input[2] = ['password']
 
                 """
-
+path cosmic_config
+    val username
+    val password
             }
         }
 

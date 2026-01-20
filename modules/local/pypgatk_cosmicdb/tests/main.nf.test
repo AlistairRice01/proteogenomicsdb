@@ -16,16 +16,15 @@ nextflow_pipeline {
             process {
                 """
                 input[0] = Channel.of([
-                    [ id: 'test' ], 
-                    file('test_file.vcf')
+                    [ id: 'cosmic_genes' ], 
+                    file(', checkIfExists: true')
                 ])
                 input[1] = Channel.of([
-                    [ id: 'test' ], 
-                    file('test_file.gtf')
+                    [ id: 'cosmic_mutations' ], 
+                    file(', checkIfExists: true')
                 ])
                 input[2] = Channel.of([
-                    [ id: 'test' ], 
-                    file('test_file.fasta')
+                    file('params.cosmic_config, checkIfExists: true')
                 ])
 
                 """

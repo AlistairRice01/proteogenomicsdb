@@ -7,6 +7,42 @@ nextflow_pipeline {
 
     test("-profile pypgatk_vcf test") {
 
+        when {
+            params {
+                outdir = "${outputDir}"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'vcf' ], 
+                    file('$projectDir/tDir/assets/test_files/custom_bam_1.vcf, checkIfExists: true')
+                ])
+                input[1] = Channel.of([
+                    [ id: 'annotation' ], 
+                    file('$projectDir/assets/test_files/Saccharomyces_cerevisiae.R64-1-1.115.gtf, checkIfExists: true')
+                ])
+                input[2] = Channel.of([
+                    [ id: 'transcripts' ], 
+                    file('$projectDir/assets/test_files/Saccharomyces_cerevisiae.R64-1-1.cdna.all.fa, checkIfExists: true')
+                ])
+                input[3] = Channel.of(file('params.custom_config, checkIfExists: true'))
+
+                """
+            }
+        }
+
+        then {
+            assertAll(
+
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            
+            )
+        }
+    }
+
+    test("-profile pypgatk_vcf test -stub") {
+
         options "-stub"
 
         when {
@@ -16,23 +52,20 @@ nextflow_pipeline {
             process {
                 """
                 input[0] = Channel.of([
-                    [ id: 'test' ], 
-                    file('test_file.vcf')
+                    [ id: 'vcf' ], 
+                    file(', checkIfExists: true')
                 ])
                 input[1] = Channel.of([
-                    [ id: 'test' ], 
-                    file('test_file.gtf')
+                    [ id: 'annotation' ], 
+                    file(', checkIfExists: true')
                 ])
                 input[2] = Channel.of([
-                    [ id: 'test' ], 
-                    file('test_file.fasta')
+                    [ id: 'transcripts' ], 
+                    file(', checkIfExists: true')
                 ])
-                input[3] = Channel.of([
-                    file('test_file.config')
-                ])
+                input[3] = Channel.of(file('params.custom_config, checkIfExists: true'))
 
                 """
-
             }
         }
 

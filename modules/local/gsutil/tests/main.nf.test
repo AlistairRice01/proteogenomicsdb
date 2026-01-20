@@ -7,6 +7,34 @@ nextflow_pipeline {
 
     test("-profile gsutil test") {
 
+        when {
+            params {
+                outdir = "${outputDir}"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'url' ], 
+                    path('params.gnomad_url')
+                ])
+
+                """
+
+            }
+        }
+
+        then {
+            assertAll(
+
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            
+            )
+        }
+    }
+        
+    test("-profile gsutil test -stub") {  
+        
         options "-stub"
 
         when {
@@ -17,7 +45,7 @@ nextflow_pipeline {
                 """
                 input[0] = Channel.of([
                     [ id: 'url' ], 
-                    path('link')
+                    path('params.gnomad_url')
                 ])
 
                 """

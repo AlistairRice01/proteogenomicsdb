@@ -7,6 +7,35 @@ nextflow_pipeline {
 
     test("-profile pypgatk_download_cbioportal test") {
 
+        when {
+            params {
+                outdir = "${outputDir}"
+            }
+            process {
+                """
+                input[0] = Channel.of([
+                    [ id: 'cbioportal_config' ],
+                    file('params.cbio_config, checkIfExists: true')
+                ])
+                input[1] = ['es_iocurie_2014']
+
+                """
+
+            }
+        }
+
+        then {
+            assertAll(
+
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            
+            )
+        }
+    }
+
+    test("-profile pypgatk_download_cbioportal test -stub") {
+
         options "-stub"
 
         when {
@@ -16,20 +45,10 @@ nextflow_pipeline {
             process {
                 """
                 input[0] = Channel.of([
-                    [ id: 'test' ], 
-                    file('test_file.vcf')
+                    [ id: 'cbioportal_config' ],
+                    file('params.cbio_config, checkIfExists: true')
                 ])
-                input[1] = Channel.of([
-                    [ id: 'test' ], 
-                    file('test_file.gtf')
-                ])
-                input[2] = Channel.of([
-                    [ id: 'test' ], 
-                    file('test_file.fasta')
-                ])
-                input[3] = Channel.of([
-                    file('test_file.config')
-                ])
+                input[1] = ['es_iocurie_2014']
 
                 """
 
