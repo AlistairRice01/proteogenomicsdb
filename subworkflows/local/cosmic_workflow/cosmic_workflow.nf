@@ -5,8 +5,8 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-include { PYPGATK_COSMIC   } from '../../../modules/local/pypgatk_cosmic/main.nf'
-include { PYPGATK_COSMICDB } from '../../../modules/local/pypgatk_cosmicdb/main.nf'
+include { PYPGATK_COSMIC   } from '../../../modules/local/pypgatk/cosmic_downloader/main.nf'
+include { PYPGATK_COSMICDB } from '../../../modules/local/pypgatk/cosmic_to_proteindb/main.nf'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -19,13 +19,13 @@ include { STRINGTIE_MERGE     } from '../../../modules/nf-core/stringtie/merge/m
 include { SAMTOOLS_FAIDX      } from '../../../modules/nf-core/samtools/faidx/main.nf'
 include { GFFCOMPARE          } from '../../../modules/nf-core/gffcompare/main.nf'
 include { GFFREAD             } from '../../../modules/nf-core/gffread/main.nf'
-include { PYPGATKDNA          } from '../../../modules/local/pypgatk_dna/main.nf'
+include { PYPGATKDNA          } from '../../../modules/local/pypgatk/dnaseq_to_proteindb/main.nf'
 
 //modules involved in the generation of a database from a VCF file
 include { SAMTOOLS_INDEX       } from '../../../modules/nf-core/samtools/index/main.nf'
 include { FREEBAYES            } from '../../../modules/nf-core/freebayes/main.nf'
 include { GUNZIP as GUNZIP_VCF } from '../../../modules/nf-core/gunzip/main.nf'
-include { PYPGATK_VCF         } from '../../../modules/local/pypgatk_vcf/main.nf'
+include { PYPGATK_VCF         } from '../../../modules/local/pypgatk/vcf_to_proteindb/main.nf'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

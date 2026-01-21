@@ -1,0 +1,8 @@
+Jan-20 14:18:04.513 [main] INFO  com.askimed.nf.test.App - nf-test 0.9.3
+Jan-20 14:18:04.543 [main] INFO  com.askimed.nf.test.App - Arguments: [test]
+Jan-20 14:18:05.757 [main] INFO  com.askimed.nf.test.App - Nextflow Version: 25.10.2
+Jan-20 14:18:05.762 [main] WARN  com.askimed.nf.test.commands.RunTestsCommand - No nf-test config file found.
+Jan-20 14:18:05.796 [main] INFO  com.askimed.nf.test.lang.dependencies.DependencyResolver - Loaded 3 files from directory /exports/eddie/scratch/s2215490/proteogenomicsdb/modules/nf-core/cat/cat in 0.031 sec
+Jan-20 14:18:05.800 [main] INFO  com.askimed.nf.test.lang.dependencies.DependencyResolver - Found 0 files containing tests.
+Jan-20 14:18:05.801 [main] DEBUG com.askimed.nf.test.lang.dependencies.DependencyResolver - Found files: []
+Jan-20 14:18:05.803 [main] INFO  com.askimed.nf.test.commands.RunTestsCommand - Found 0 tests to execute.

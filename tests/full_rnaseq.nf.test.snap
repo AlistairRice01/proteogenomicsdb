@@ -20,5 +20,27 @@
             "nextflow": "25.10.2"
         },
         "timestamp": "2026-01-16T16:01:50.856561062"
+    },
+    "full rnaseq test -stub": {
+        "content": [
+            0,
+            null,
+            [
+                "execution_report_2026-01-20_14-54-02.html",
+                "execution_timeline_2026-01-20_14-54-02.html",
+                "pipeline_dag_2026-01-20_14-54-02.html",
+                "pipeline_info"
+            ],
+            [
+                "execution_report_2026-01-20_14-54-02.html:md5,e483a9a5b9a0e6b5a0d1f25d539322a0",
+                "execution_timeline_2026-01-20_14-54-02.html:md5,eedf63d72e32a9f3d8e4ce50b3f890d4",
+                "pipeline_dag_2026-01-20_14-54-02.html:md5,2d3fd3acaa68ec0f9799c44ebb9ea2f9"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-20T14:54:15.291638449"
     }
 }

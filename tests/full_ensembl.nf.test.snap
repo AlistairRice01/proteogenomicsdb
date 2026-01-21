@@ -1,4 +1,52 @@
 {
+    "full ensembl workflow -stub": {
+        "content": [
+            7,
+            null,
+            [
+                "cat",
+                "cat/final_database.fa",
+                "cat/total_cDNA.fa",
+                "execution_report_2026-01-20_14-49-30.html",
+                "execution_timeline_2026-01-20_14-49-30.html",
+                "pipeline_dag_2026-01-20_14-49-30.html",
+                "pipeline_info",
+                "pypgatk",
+                "pypgatk/Altorfs_database.fa",
+                "pypgatk/cleaned_database.fa",
+                "pypgatk/ensembl.dna_test.fa",
+                "pypgatk/ensembl.gtf",
+                "pypgatk/ensembl.pep.all.fa",
+                "pypgatk/ensembl.vcf",
+                "pypgatk/ensembl_cdna.all.fa",
+                "pypgatk/ensembl_ncrna.fa",
+                "pypgatk/ncRNA.fa",
+                "pypgatk/pseudogenes.fa"
+            ],
+            [
+                "final_database.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "total_cDNA.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "execution_report_2026-01-20_14-49-30.html:md5,c1e97b269b5355dc6039937aaeb362b2",
+                "execution_timeline_2026-01-20_14-49-30.html:md5,822e8cd834f66997e1a5501aaadc04f2",
+                "pipeline_dag_2026-01-20_14-49-30.html:md5,316ef660bc8e38d398c3d8a5dee2a29e",
+                "Altorfs_database.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "cleaned_database.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "ensembl.dna_test.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "ensembl.gtf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "ensembl.pep.all.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "ensembl.vcf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "ensembl_cdna.all.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "ensembl_ncrna.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "ncRNA.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "pseudogenes.fa:md5,d41d8cd98f00b204e9800998ecf8427e"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-20T14:52:12.783312102"
+    },
     "full ensembl workflow": {
         "content": [
             9,

@@ -7,8 +7,8 @@
 
 include { WGET as WGET_GRCH38         } from '../../../modules/nf-core/wget/main.nf'
 include { GUNZIP                      } from '../../../modules/nf-core/gunzip/main.nf'
-include { PYPGATK_CBIOPORTAL_DOWNLOAD } from '../../../modules/local/pypgatk_download_cbioportal/main.nf'
-include { PYPGATK_CBIOPORTAL          } from '../../../modules/local/pypgatk_cbioportaldb/main.nf'
+include { PYPGATK_CBIOPORTAL_DOWNLOAD } from '../../../modules/local/pypgatk/cbioportal_downloader/main.nf'
+include { PYPGATK_CBIOPORTAL          } from '../../../modules/local/pypgatk/cbioportal_to_proteindb/main.nf'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

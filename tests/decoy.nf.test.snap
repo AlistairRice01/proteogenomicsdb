@@ -1,4 +1,26 @@
 {
+    "params: --skip_decoy false -stub": {
+        "content": [
+            0,
+            null,
+            [
+                "execution_report_2026-01-20_14-38-34.html",
+                "execution_timeline_2026-01-20_14-38-34.html",
+                "pipeline_dag_2026-01-20_14-38-34.html",
+                "pipeline_info"
+            ],
+            [
+                "execution_report_2026-01-20_14-38-34.html:md5,32eda1dd54023359c939b633f54210bb",
+                "execution_timeline_2026-01-20_14-38-34.html:md5,d34e34f278db5e57d28026b599ece577",
+                "pipeline_dag_2026-01-20_14-38-34.html:md5,880ab547d719da3743674f26c17bf8f7"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-20T14:38:47.198301971"
+    },
     "params: --skip_decoy false": {
         "content": [
             0,

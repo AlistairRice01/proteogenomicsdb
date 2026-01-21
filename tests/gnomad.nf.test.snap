@@ -20,5 +20,27 @@
             "nextflow": "25.10.2"
         },
         "timestamp": "2026-01-16T16:02:13.642140306"
+    },
+    "params: --skip_gnomaddb false -stub": {
+        "content": [
+            0,
+            null,
+            [
+                "execution_report_2026-01-20_14-54-49.html",
+                "execution_timeline_2026-01-20_14-54-49.html",
+                "pipeline_dag_2026-01-20_14-54-49.html",
+                "pipeline_info"
+            ],
+            [
+                "execution_report_2026-01-20_14-54-49.html:md5,879cb2aefa218a88b1f28a7501b0ae4f",
+                "execution_timeline_2026-01-20_14-54-49.html:md5,3376ae12aeaa110145a7753f94b0b182",
+                "pipeline_dag_2026-01-20_14-54-49.html:md5,a59fae3083d3d07ae6dd481de1a9a080"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-20T14:55:02.349519842"
     }
 }

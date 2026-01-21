@@ -71,7 +71,11 @@ workflow NFCORE_PROTEOGENOMICSDB {
         //cosmic paramiters
         params.cosmic_config,   //path to the cosmic_config
         params.username,        //            
-        params.password,        //
+        params.password, 
+        params.cosmic_genes_url,
+        params.cosmic_mutations_url,
+        params.cosmic_celllines_genes_url,
+        params.cosmic_celllines_mutations_url,   //
         //genecode/gnomad paramaters
         params.genecode_transcripts_url,    //
         params.genecode_annotations_url,    //

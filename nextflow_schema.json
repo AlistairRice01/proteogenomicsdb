@@ -119,11 +119,13 @@
                 },
                 "username": {
                     "type": "string",
-                    "description": "placeholder text"
+                    "description": "placeholder text",
+                    "default": "s2215490@ed.ac.uk"
                 },
                 "password": {
                     "type": "string",
-                    "description": "placeholder text"
+                    "description": "placeholder text",
+                    "default": "BeepBoop8294!"
                 },
                 "gnomad_config": {
                     "type": "string",
@@ -308,8 +310,7 @@
                     "default": true
                 },
                 "skip_cosmicdb": {
-                    "type": "boolean",
-                    "default": true
+                    "type": "boolean"
                 },
                 "skip_gnomaddb": {
                     "type": "boolean",
@@ -386,6 +387,32 @@
         "grch38_url": {
             "type": "string",
             "default": "ftp://ftp.ensembl.org/pub/release-115/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz"
+        },
+        "skip_celllines": {
+            "type": "boolean"
+        },
+        "skip_cosmic": {
+            "type": "boolean"
+        },
+        "cosmic_genes_url": {
+            "type": "string",
+            "default": "https://cancer.sanger.ac.uk/api/mono/products/v1/downloads/scripted?path=grch38/cosmic/v103/Cosmic_Genes_Tsv_v103_GRCh38.tar&bucket=downloads"
+        },
+        "cosmic_mutations_url": {
+            "type": "string",
+            "default": "https://cancer.sanger.ac.uk/api/mono/products/v1/downloads/scripted?path=grch38/cosmic/v103/Cosmic_GenomeScreensMutant_Tsv_v103_GRCh38.tar&bucket=downloads"
+        },
+        "cosmic_celllines_genes_url": {
+            "type": "string",
+            "default": "https://cancer.sanger.ac.uk/api/mono/products/v1/downloads/scripted?path=grch38/cell_lines/v103/CellLinesProject_CompleteGeneExpression_Tsv_v103_GRCh38.tar&bucket=downloads"
+        },
+        "cosmic_celllines_mutations_url": {
+            "type": "string",
+            "default": "https://cancer.sanger.ac.uk/api/mono/products/v1/downloads/scripted?path=grch38/cell_lines/v103/CellLinesProject_MutationTracking_Tsv_v103_GRCh38.tar&bucket=downloads"
+        },
+        "cosmic_cancer_type": {
+            "type": "string",
+            "default": "all"
         }
     }
 }

@@ -11,7 +11,7 @@ include { WGET as WGET_ANNOTATION      } from '../../../modules/nf-core/wget/mai
 include { GUNZIP as GUNZIP_ANNOTATION  } from '../../../modules/nf-core/gunzip/main.nf'
 include { GSUTIL                       } from '../../../modules/local/gsutil/main.nf'
 include { TABIX_BGZIP                  } from '../../../modules/nf-core/tabix/bgzip/main.nf'
-include { PYPGATK_VCF                  } from '../../../modules/local/pypgatk_vcf/main.nf'
+include { PYPGATK_VCF                  } from '../../../modules/local/pypgatk/vcf_to_proteindb/main.nf'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

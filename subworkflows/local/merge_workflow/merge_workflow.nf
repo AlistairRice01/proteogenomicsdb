@@ -6,8 +6,8 @@
 */
 
 include { CAT_CAT       } from '../../../modules/nf-core/cat/cat/main.nf'
-include { PYPGATK_CLEAN } from '../../../modules/local/pypgatk_clean/main.nf'
-include { PYPGATK_DECOY } from '../../../modules/local/pypgatk_decoy/main.nf'
+include { PYPGATK_CLEAN } from '../../../modules/local/pypgatk/ensembl_check/main.nf'
+include { PYPGATK_DECOY } from '../../../modules/local/pypgatk/generate_decoy/main.nf'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

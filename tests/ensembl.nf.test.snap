@@ -20,5 +20,43 @@
             "nextflow": "25.10.2"
         },
         "timestamp": "2026-01-16T15:54:03.624349998"
+    },
+    "params: --skip_ensembl false -stub": {
+        "content": [
+            2,
+            null,
+            [
+                "cat",
+                "cat/total_cDNA.fa",
+                "execution_report_2026-01-20_14-42-14.html",
+                "execution_timeline_2026-01-20_14-42-14.html",
+                "pipeline_dag_2026-01-20_14-42-14.html",
+                "pipeline_info",
+                "pypgatk",
+                "pypgatk/ensembl.dna_test.fa",
+                "pypgatk/ensembl.gtf",
+                "pypgatk/ensembl.pep.all.fa",
+                "pypgatk/ensembl.vcf",
+                "pypgatk/ensembl_cdna.all.fa",
+                "pypgatk/ensembl_ncrna.fa"
+            ],
+            [
+                "total_cDNA.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "execution_report_2026-01-20_14-42-14.html:md5,fb37fdd8591b99926a2ba027c3a2eac0",
+                "execution_timeline_2026-01-20_14-42-14.html:md5,6fad1958303007e17581d9aa6eb45c80",
+                "pipeline_dag_2026-01-20_14-42-14.html:md5,40e44936485013ae3dbc8628adaa415a",
+                "ensembl.dna_test.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "ensembl.gtf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "ensembl.pep.all.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "ensembl.vcf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "ensembl_cdna.all.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "ensembl_ncrna.fa:md5,d41d8cd98f00b204e9800998ecf8427e"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-20T14:43:01.540014592"
     }
 }

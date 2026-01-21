@@ -1,0 +1,683 @@
+Jan-20 14:32:14.414 [main] INFO  com.askimed.nf.test.App - nf-test 0.9.3
+Jan-20 14:32:14.451 [main] INFO  com.askimed.nf.test.App - Arguments: [test, --verbose]
+Jan-20 14:32:15.651 [main] INFO  com.askimed.nf.test.App - Nextflow Version: 25.10.2
+Jan-20 14:32:15.656 [main] INFO  com.askimed.nf.test.commands.RunTestsCommand - Load config from file /exports/eddie/scratch/s2215490/proteogenomicsdb/nf-test.config...
+Jan-20 14:32:20.303 [main] WARN  com.askimed.nf.test.nextflow.NextflowScript - Module /exports/eddie/scratch/s2215490/proteogenomicsdb/subworkflows/nf-core/fastq_remove_rrna/main.nf: Dependency '/exports/eddie/scratch/s2215490/proteogenomicsdb/subworkflows/nf-core/fastq_remove_rrna/../../../modules/nf-core/bowtie2/build/main.nf' not found.
+Jan-20 14:32:20.303 [main] WARN  com.askimed.nf.test.nextflow.NextflowScript - Module /exports/eddie/scratch/s2215490/proteogenomicsdb/subworkflows/nf-core/fastq_remove_rrna/main.nf: Dependency '/exports/eddie/scratch/s2215490/proteogenomicsdb/subworkflows/nf-core/fastq_remove_rrna/../../../modules/nf-core/ribodetector/main.nf' not found.
+Jan-20 14:32:20.303 [main] WARN  com.askimed.nf.test.nextflow.NextflowScript - Module /exports/eddie/scratch/s2215490/proteogenomicsdb/subworkflows/nf-core/fastq_remove_rrna/main.nf: Dependency '/exports/eddie/scratch/s2215490/proteogenomicsdb/subworkflows/nf-core/fastq_remove_rrna/../../../modules/nf-core/seqkit/replace/main.nf' not found.
+Jan-20 14:32:20.303 [main] WARN  com.askimed.nf.test.nextflow.NextflowScript - Module /exports/eddie/scratch/s2215490/proteogenomicsdb/subworkflows/nf-core/fastq_remove_rrna/main.nf: Dependency '/exports/eddie/scratch/s2215490/proteogenomicsdb/subworkflows/nf-core/fastq_remove_rrna/../../../modules/nf-core/seqkit/stats/main.nf' not found.
+Jan-20 14:32:20.303 [main] WARN  com.askimed.nf.test.nextflow.NextflowScript - Module /exports/eddie/scratch/s2215490/proteogenomicsdb/subworkflows/nf-core/fastq_remove_rrna/main.nf: Dependency '/exports/eddie/scratch/s2215490/proteogenomicsdb/subworkflows/nf-core/fastq_remove_rrna/../../../modules/nf-core/sortmerna/main.nf' not found.
+Jan-20 14:32:20.303 [main] WARN  com.askimed.nf.test.nextflow.NextflowScript - Module /exports/eddie/scratch/s2215490/proteogenomicsdb/subworkflows/nf-core/fastq_remove_rrna/main.nf: Dependency '/exports/eddie/scratch/s2215490/proteogenomicsdb/subworkflows/nf-core/fastq_remove_rrna/../../../modules/nf-core/sortmerna/main.nf' not found.
+Jan-20 14:32:20.304 [main] INFO  com.askimed.nf.test.lang.dependencies.DependencyResolver - Loaded 68 files from directory /exports/eddie/scratch/s2215490/proteogenomicsdb in 1.685 sec
+Jan-20 14:32:20.306 [main] INFO  com.askimed.nf.test.lang.dependencies.DependencyResolver - Found 10 files containing tests.
+Jan-20 14:32:20.306 [main] DEBUG com.askimed.nf.test.lang.dependencies.DependencyResolver - Found files: [/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/full_pipeline.nf.test, /exports/eddie/scratch/s2215490/proteogenomicsdb/tests/rna_seq.nf.test, /exports/eddie/scratch/s2215490/proteogenomicsdb/tests/ensembl.nf.test, /exports/eddie/scratch/s2215490/proteogenomicsdb/tests/cbioportal.nf.test, /exports/eddie/scratch/s2215490/proteogenomicsdb/tests/decoy.nf.test, /exports/eddie/scratch/s2215490/proteogenomicsdb/tests/gnomad.nf.test, /exports/eddie/scratch/s2215490/proteogenomicsdb/tests/full_rnaseq.nf.test, /exports/eddie/scratch/s2215490/proteogenomicsdb/tests/default.nf.test, /exports/eddie/scratch/s2215490/proteogenomicsdb/tests/fastqc.nf.test, /exports/eddie/scratch/s2215490/proteogenomicsdb/tests/full_ensembl.nf.test]
+Jan-20 14:32:21.908 [main] INFO  com.askimed.nf.test.commands.RunTestsCommand - Found 20 tests to execute.
+Jan-20 14:32:22.018 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Started test plan
+Jan-20 14:32:22.018 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Running testsuite 'Test pipeline with cbioportal database generation' from file '/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/cbioportal.nf.test'.
+Jan-20 14:32:22.018 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '81125184: params: --skip_cbioportaldb false'. type: com.askimed.nf.test.lang.pipeline.PipelineTest
+Jan-20 14:35:08.977 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Load snapshots from file '/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/cbioportal.nf.test.snap'
+Jan-20 14:35:18.250 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshots 'params: --skip_cbioportaldb false' do not match.
+Jan-20 14:35:18.251 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '81125184: params: --skip_cbioportaldb false' finished. status: FAILED
+org.codehaus.groovy.runtime.powerassert.PowerAssertionError: 2 of 2 assertions failed
+	at com.askimed.nf.test.lang.extensions.GlobalMethods.assertAll(GlobalMethods.java:48)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.invoke(StaticMetaMethodSite.java:44)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.callStatic(StaticMetaMethodSite.java:100)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallStatic(CallSiteArray.java:55)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:217)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:240)
+	at cbioportal_nf$_run_closure1$_closure2$_closure5.doCall(cbioportal.nf.test:26)
+	at cbioportal_nf$_run_closure1$_closure2$_closure5.doCall(cbioportal.nf.test)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:274)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1030)
+	at groovy.lang.Closure.call(Closure.java:427)
+	at groovy.lang.Closure.call(Closure.java:406)
+	at com.askimed.nf.test.lang.TestCode.execute(TestCode.java:16)
+	at com.askimed.nf.test.lang.pipeline.PipelineTest.execute(PipelineTest.java:135)
+	at com.askimed.nf.test.core.TestExecutionEngine.execute(TestExecutionEngine.java:172)
+	at com.askimed.nf.test.commands.RunTestsCommand.execute(RunTestsCommand.java:322)
+	at com.askimed.nf.test.commands.AbstractCommand.call(AbstractCommand.java:43)
+	at com.askimed.nf.test.commands.AbstractCommand.call(AbstractCommand.java:18)
+	at picocli.CommandLine.executeUserObject(CommandLine.java:1953)
+	at picocli.CommandLine.access$1300(CommandLine.java:145)
+	at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2352)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2346)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2311)
+	at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2179)
+	at picocli.CommandLine.execute(CommandLine.java:2078)
+	at com.askimed.nf.test.App.run(App.java:39)
+	at com.askimed.nf.test.App.main(App.java:46)
+Jan-20 14:35:18.262 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '5728af53: params: --skip_cbioportaldb false -stub'. type: com.askimed.nf.test.lang.pipeline.PipelineTest
+Jan-20 14:37:51.718 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshot 'params: --skip_cbioportaldb false -stub' not found.
+Jan-20 14:37:51.724 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Created snapshot 'params: --skip_cbioportaldb false -stub'
+Jan-20 14:37:51.869 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Wrote snapshots to file '/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/cbioportal.nf.test.snap'
+Jan-20 14:37:51.869 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '5728af53: params: --skip_cbioportaldb false -stub' finished. status: PASSED
+Jan-20 14:37:51.869 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Testsuite 'Test pipeline with cbioportal database generation' finished. snapshot file: true, skipped tests: false, failed tests: true
+Jan-20 14:37:51.874 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Running testsuite 'Test pipeline with decoy database generation' from file '/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/decoy.nf.test'.
+Jan-20 14:37:51.874 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '555500fd: params: --skip_decoy false'. type: com.askimed.nf.test.lang.pipeline.PipelineTest
+Jan-20 14:38:23.022 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Load snapshots from file '/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/decoy.nf.test.snap'
+Jan-20 14:38:23.064 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshots 'params: --skip_decoy false' do not match.
+Jan-20 14:38:23.065 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '555500fd: params: --skip_decoy false' finished. status: FAILED
+org.codehaus.groovy.runtime.powerassert.PowerAssertionError: 1 of 2 assertions failed
+	at com.askimed.nf.test.lang.extensions.GlobalMethods.assertAll(GlobalMethods.java:48)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.invoke(StaticMetaMethodSite.java:44)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.callStatic(StaticMetaMethodSite.java:100)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallStatic(CallSiteArray.java:55)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:217)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:240)
+	at decoy_nf$_run_closure1$_closure2$_closure5.doCall(decoy.nf.test:23)
+	at decoy_nf$_run_closure1$_closure2$_closure5.doCall(decoy.nf.test)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:274)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1030)
+	at groovy.lang.Closure.call(Closure.java:427)
+	at groovy.lang.Closure.call(Closure.java:406)
+	at com.askimed.nf.test.lang.TestCode.execute(TestCode.java:16)
+	at com.askimed.nf.test.lang.pipeline.PipelineTest.execute(PipelineTest.java:135)
+	at com.askimed.nf.test.core.TestExecutionEngine.execute(TestExecutionEngine.java:172)
+	at com.askimed.nf.test.commands.RunTestsCommand.execute(RunTestsCommand.java:322)
+	at com.askimed.nf.test.commands.AbstractCommand.call(AbstractCommand.java:43)
+	at com.askimed.nf.test.commands.AbstractCommand.call(AbstractCommand.java:18)
+	at picocli.CommandLine.executeUserObject(CommandLine.java:1953)
+	at picocli.CommandLine.access$1300(CommandLine.java:145)
+	at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2352)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2346)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2311)
+	at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2179)
+	at picocli.CommandLine.execute(CommandLine.java:2078)
+	at com.askimed.nf.test.App.run(App.java:39)
+	at com.askimed.nf.test.App.main(App.java:46)
+Jan-20 14:38:23.070 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '77a14240: params: --skip_decoy false -stub'. type: com.askimed.nf.test.lang.pipeline.PipelineTest
+Jan-20 14:38:47.198 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshot 'params: --skip_decoy false -stub' not found.
+Jan-20 14:38:47.198 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Created snapshot 'params: --skip_decoy false -stub'
+Jan-20 14:38:47.259 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Wrote snapshots to file '/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/decoy.nf.test.snap'
+Jan-20 14:38:47.259 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '77a14240: params: --skip_decoy false -stub' finished. status: PASSED
+Jan-20 14:38:47.260 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Testsuite 'Test pipeline with decoy database generation' finished. snapshot file: true, skipped tests: false, failed tests: true
+Jan-20 14:38:47.261 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Running testsuite 'Test pipeline' from file '/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/default.nf.test'.
+Jan-20 14:38:47.261 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '295a2b31: -profile test'. type: com.askimed.nf.test.lang.pipeline.PipelineTest
+Jan-20 14:39:09.669 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Load snapshots from file '/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/default.nf.test.snap'
+Jan-20 14:39:09.710 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshots '-profile test' do not match.
+Jan-20 14:39:09.711 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '295a2b31: -profile test' finished. status: FAILED
+org.codehaus.groovy.runtime.powerassert.PowerAssertionError: 1 of 2 assertions failed
+	at com.askimed.nf.test.lang.extensions.GlobalMethods.assertAll(GlobalMethods.java:48)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.invoke(StaticMetaMethodSite.java:44)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.callStatic(StaticMetaMethodSite.java:100)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallStatic(CallSiteArray.java:55)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:217)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:240)
+	at default_nf$_run_closure1$_closure2$_closure5.doCall(default.nf.test:20)
+	at default_nf$_run_closure1$_closure2$_closure5.doCall(default.nf.test)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:274)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1030)
+	at groovy.lang.Closure.call(Closure.java:427)
+	at groovy.lang.Closure.call(Closure.java:406)
+	at com.askimed.nf.test.lang.TestCode.execute(TestCode.java:16)
+	at com.askimed.nf.test.lang.pipeline.PipelineTest.execute(PipelineTest.java:135)
+	at com.askimed.nf.test.core.TestExecutionEngine.execute(TestExecutionEngine.java:172)
+	at com.askimed.nf.test.commands.RunTestsCommand.execute(RunTestsCommand.java:322)
+	at com.askimed.nf.test.commands.AbstractCommand.call(AbstractCommand.java:43)
+	at com.askimed.nf.test.commands.AbstractCommand.call(AbstractCommand.java:18)
+	at picocli.CommandLine.executeUserObject(CommandLine.java:1953)
+	at picocli.CommandLine.access$1300(CommandLine.java:145)
+	at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2352)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2346)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2311)
+	at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2179)
+	at picocli.CommandLine.execute(CommandLine.java:2078)
+	at com.askimed.nf.test.App.run(App.java:39)
+	at com.askimed.nf.test.App.main(App.java:46)
+Jan-20 14:39:09.714 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test 'e75779bb: -profile test -stub'. type: com.askimed.nf.test.lang.pipeline.PipelineTest
+Jan-20 14:39:32.710 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshot '-profile test -stub' not found.
+Jan-20 14:39:32.710 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Created snapshot '-profile test -stub'
+Jan-20 14:39:32.743 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Wrote snapshots to file '/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/default.nf.test.snap'
+Jan-20 14:39:32.743 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test 'e75779bb: -profile test -stub' finished. status: PASSED
+Jan-20 14:39:32.744 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Testsuite 'Test pipeline' finished. snapshot file: true, skipped tests: false, failed tests: true
+Jan-20 14:39:32.745 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Running testsuite 'Test pipeline with ensembl database generation' from file '/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/ensembl.nf.test'.
+Jan-20 14:39:32.745 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '2142f9d4: params: --skip_ensembl false'. type: com.askimed.nf.test.lang.pipeline.PipelineTest
+Jan-20 14:41:44.241 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Load snapshots from file '/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/ensembl.nf.test.snap'
+Jan-20 14:41:49.016 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshots 'params: --skip_ensembl false' do not match.
+Jan-20 14:41:49.018 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '2142f9d4: params: --skip_ensembl false' finished. status: FAILED
+org.codehaus.groovy.runtime.powerassert.PowerAssertionError: 1 of 2 assertions failed
+	at com.askimed.nf.test.lang.extensions.GlobalMethods.assertAll(GlobalMethods.java:48)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.invoke(StaticMetaMethodSite.java:44)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.callStatic(StaticMetaMethodSite.java:100)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallStatic(CallSiteArray.java:55)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:217)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:240)
+	at ensembl_nf$_run_closure1$_closure2$_closure5.doCall(ensembl.nf.test:23)
+	at ensembl_nf$_run_closure1$_closure2$_closure5.doCall(ensembl.nf.test)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:274)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1030)
+	at groovy.lang.Closure.call(Closure.java:427)
+	at groovy.lang.Closure.call(Closure.java:406)
+	at com.askimed.nf.test.lang.TestCode.execute(TestCode.java:16)
+	at com.askimed.nf.test.lang.pipeline.PipelineTest.execute(PipelineTest.java:135)
+	at com.askimed.nf.test.core.TestExecutionEngine.execute(TestExecutionEngine.java:172)
+	at com.askimed.nf.test.commands.RunTestsCommand.execute(RunTestsCommand.java:322)
+	at com.askimed.nf.test.commands.AbstractCommand.call(AbstractCommand.java:43)
+	at com.askimed.nf.test.commands.AbstractCommand.call(AbstractCommand.java:18)
+	at picocli.CommandLine.executeUserObject(CommandLine.java:1953)
+	at picocli.CommandLine.access$1300(CommandLine.java:145)
+	at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2352)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2346)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2311)
+	at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2179)
+	at picocli.CommandLine.execute(CommandLine.java:2078)
+	at com.askimed.nf.test.App.run(App.java:39)
+	at com.askimed.nf.test.App.main(App.java:46)
+Jan-20 14:41:49.019 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '4ed59cd6: params: --skip_ensembl false -stub'. type: com.askimed.nf.test.lang.pipeline.PipelineTest
+Jan-20 14:43:01.539 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshot 'params: --skip_ensembl false -stub' not found.
+Jan-20 14:43:01.540 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Created snapshot 'params: --skip_ensembl false -stub'
+Jan-20 14:43:01.592 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Wrote snapshots to file '/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/ensembl.nf.test.snap'
+Jan-20 14:43:01.593 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '4ed59cd6: params: --skip_ensembl false -stub' finished. status: PASSED
+Jan-20 14:43:01.593 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Testsuite 'Test pipeline with ensembl database generation' finished. snapshot file: true, skipped tests: false, failed tests: true
+Jan-20 14:43:01.594 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Running testsuite 'Test pipeline with fastqc and trimming' from file '/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/fastqc.nf.test'.
+Jan-20 14:43:01.594 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '6ca08180: params: --skip_fastqc false --skip_trimgalore false'. type: com.askimed.nf.test.lang.pipeline.PipelineTest
+Jan-20 14:43:25.719 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Load snapshots from file '/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/fastqc.nf.test.snap'
+Jan-20 14:43:25.743 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshots 'params: --skip_fastqc false --skip_trimgalore false' do not match.
+Jan-20 14:43:25.744 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '6ca08180: params: --skip_fastqc false --skip_trimgalore false' finished. status: FAILED
+org.codehaus.groovy.runtime.powerassert.PowerAssertionError: 2 of 2 assertions failed
+	at com.askimed.nf.test.lang.extensions.GlobalMethods.assertAll(GlobalMethods.java:48)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.invoke(StaticMetaMethodSite.java:44)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.callStatic(StaticMetaMethodSite.java:100)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallStatic(CallSiteArray.java:55)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:217)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:240)
+	at fastqc_nf$_run_closure1$_closure2$_closure5.doCall(fastqc.nf.test:26)
+	at fastqc_nf$_run_closure1$_closure2$_closure5.doCall(fastqc.nf.test)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:274)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1030)
+	at groovy.lang.Closure.call(Closure.java:427)
+	at groovy.lang.Closure.call(Closure.java:406)
+	at com.askimed.nf.test.lang.TestCode.execute(TestCode.java:16)
+	at com.askimed.nf.test.lang.pipeline.PipelineTest.execute(PipelineTest.java:135)
+	at com.askimed.nf.test.core.TestExecutionEngine.execute(TestExecutionEngine.java:172)
+	at com.askimed.nf.test.commands.RunTestsCommand.execute(RunTestsCommand.java:322)
+	at com.askimed.nf.test.commands.AbstractCommand.call(AbstractCommand.java:43)
+	at com.askimed.nf.test.commands.AbstractCommand.call(AbstractCommand.java:18)
+	at picocli.CommandLine.executeUserObject(CommandLine.java:1953)
+	at picocli.CommandLine.access$1300(CommandLine.java:145)
+	at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2352)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2346)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2311)
+	at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2179)
+	at picocli.CommandLine.execute(CommandLine.java:2078)
+	at com.askimed.nf.test.App.run(App.java:39)
+	at com.askimed.nf.test.App.main(App.java:46)
+Jan-20 14:43:25.746 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '86d98eec: params: --skip_fastqc false --skip_trimgalore false -stub'. type: com.askimed.nf.test.lang.pipeline.PipelineTest
+Jan-20 14:43:47.975 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshot 'params: --skip_fastqc false --skip_trimgalore false -stub' not found.
+Jan-20 14:43:47.975 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Created snapshot 'params: --skip_fastqc false --skip_trimgalore false -stub'
+Jan-20 14:43:48.015 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Wrote snapshots to file '/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/fastqc.nf.test.snap'
+Jan-20 14:43:48.016 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '86d98eec: params: --skip_fastqc false --skip_trimgalore false -stub' finished. status: FAILED
+org.codehaus.groovy.runtime.powerassert.PowerAssertionError: 1 of 2 assertions failed
+	at com.askimed.nf.test.lang.extensions.GlobalMethods.assertAll(GlobalMethods.java:48)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.invoke(StaticMetaMethodSite.java:44)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.callStatic(StaticMetaMethodSite.java:100)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallStatic(CallSiteArray.java:55)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:217)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:240)
+	at fastqc_nf$_run_closure1$_closure3$_closure10.doCall(fastqc.nf.test:62)
+	at fastqc_nf$_run_closure1$_closure3$_closure10.doCall(fastqc.nf.test)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:274)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1030)
+	at groovy.lang.Closure.call(Closure.java:427)
+	at groovy.lang.Closure.call(Closure.java:406)
+	at com.askimed.nf.test.lang.TestCode.execute(TestCode.java:16)
+	at com.askimed.nf.test.lang.pipeline.PipelineTest.execute(PipelineTest.java:135)
+	at com.askimed.nf.test.core.TestExecutionEngine.execute(TestExecutionEngine.java:172)
+	at com.askimed.nf.test.commands.RunTestsCommand.execute(RunTestsCommand.java:322)
+	at com.askimed.nf.test.commands.AbstractCommand.call(AbstractCommand.java:43)
+	at com.askimed.nf.test.commands.AbstractCommand.call(AbstractCommand.java:18)
+	at picocli.CommandLine.executeUserObject(CommandLine.java:1953)
+	at picocli.CommandLine.access$1300(CommandLine.java:145)
+	at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2352)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2346)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2311)
+	at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2179)
+	at picocli.CommandLine.execute(CommandLine.java:2078)
+	at com.askimed.nf.test.App.run(App.java:39)
+	at com.askimed.nf.test.App.main(App.java:46)
+Jan-20 14:43:48.020 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Testsuite 'Test pipeline with fastqc and trimming' finished. snapshot file: true, skipped tests: false, failed tests: true
+Jan-20 14:43:48.020 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Running testsuite 'Test pipeline with full ensembl database generation' from file '/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/full_ensembl.nf.test'.
+Jan-20 14:43:48.020 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '77902190: full ensembl workflow'. type: com.askimed.nf.test.lang.pipeline.PipelineTest
+Jan-20 14:48:52.836 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Load snapshots from file '/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/full_ensembl.nf.test.snap'
+Jan-20 14:49:08.362 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshots 'full ensembl workflow' do not match.
+Jan-20 14:49:08.382 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '77902190: full ensembl workflow' finished. status: FAILED
+org.codehaus.groovy.runtime.powerassert.PowerAssertionError: 1 of 2 assertions failed
+	at com.askimed.nf.test.lang.extensions.GlobalMethods.assertAll(GlobalMethods.java:48)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.invoke(StaticMetaMethodSite.java:44)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.callStatic(StaticMetaMethodSite.java:100)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallStatic(CallSiteArray.java:55)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:217)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:240)
+	at full_ensembl_nf$_run_closure1$_closure2$_closure5.doCall(full_ensembl.nf.test:28)
+	at full_ensembl_nf$_run_closure1$_closure2$_closure5.doCall(full_ensembl.nf.test)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:274)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1030)
+	at groovy.lang.Closure.call(Closure.java:427)
+	at groovy.lang.Closure.call(Closure.java:406)
+	at com.askimed.nf.test.lang.TestCode.execute(TestCode.java:16)
+	at com.askimed.nf.test.lang.pipeline.PipelineTest.execute(PipelineTest.java:135)
+	at com.askimed.nf.test.core.TestExecutionEngine.execute(TestExecutionEngine.java:172)
+	at com.askimed.nf.test.commands.RunTestsCommand.execute(RunTestsCommand.java:322)
+	at com.askimed.nf.test.commands.AbstractCommand.call(AbstractCommand.java:43)
+	at com.askimed.nf.test.commands.AbstractCommand.call(AbstractCommand.java:18)
+	at picocli.CommandLine.executeUserObject(CommandLine.java:1953)
+	at picocli.CommandLine.access$1300(CommandLine.java:145)
+	at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2352)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2346)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2311)
+	at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2179)
+	at picocli.CommandLine.execute(CommandLine.java:2078)
+	at com.askimed.nf.test.App.run(App.java:39)
+	at com.askimed.nf.test.App.main(App.java:46)
+Jan-20 14:49:08.385 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '20ba564e: full ensembl workflow -stub'. type: com.askimed.nf.test.lang.pipeline.PipelineTest
+Jan-20 14:52:12.781 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshot 'full ensembl workflow -stub' not found.
+Jan-20 14:52:12.783 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Created snapshot 'full ensembl workflow -stub'
+Jan-20 14:52:12.824 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Wrote snapshots to file '/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/full_ensembl.nf.test.snap'
+Jan-20 14:52:12.824 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '20ba564e: full ensembl workflow -stub' finished. status: PASSED
+Jan-20 14:52:12.825 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Testsuite 'Test pipeline with full ensembl database generation' finished. snapshot file: true, skipped tests: false, failed tests: true
+Jan-20 14:52:12.825 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Running testsuite 'Test full pipeline' from file '/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/full_pipeline.nf.test'.
+Jan-20 14:52:12.825 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test 'aa7cf53c: full pipeline test'. type: com.askimed.nf.test.lang.pipeline.PipelineTest
+Jan-20 14:52:54.865 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Load snapshots from file '/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/full_pipeline.nf.test.snap'
+Jan-20 14:52:54.918 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshots 'full pipeline test' do not match.
+Jan-20 14:52:54.919 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test 'aa7cf53c: full pipeline test' finished. status: FAILED
+org.codehaus.groovy.runtime.powerassert.PowerAssertionError: 2 of 2 assertions failed
+	at com.askimed.nf.test.lang.extensions.GlobalMethods.assertAll(GlobalMethods.java:48)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.invoke(StaticMetaMethodSite.java:44)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.callStatic(StaticMetaMethodSite.java:100)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallStatic(CallSiteArray.java:55)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:217)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:240)
+	at full_pipeline_nf$_run_closure1$_closure2$_closure5.doCall(full_pipeline.nf.test:61)
+	at full_pipeline_nf$_run_closure1$_closure2$_closure5.doCall(full_pipeline.nf.test)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:274)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1030)
+	at groovy.lang.Closure.call(Closure.java:427)
+	at groovy.lang.Closure.call(Closure.java:406)
+	at com.askimed.nf.test.lang.TestCode.execute(TestCode.java:16)
+	at com.askimed.nf.test.lang.pipeline.PipelineTest.execute(PipelineTest.java:135)
+	at com.askimed.nf.test.core.TestExecutionEngine.execute(TestExecutionEngine.java:172)
+	at com.askimed.nf.test.commands.RunTestsCommand.execute(RunTestsCommand.java:322)
+	at com.askimed.nf.test.commands.AbstractCommand.call(AbstractCommand.java:43)
+	at com.askimed.nf.test.commands.AbstractCommand.call(AbstractCommand.java:18)
+	at picocli.CommandLine.executeUserObject(CommandLine.java:1953)
+	at picocli.CommandLine.access$1300(CommandLine.java:145)
+	at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2352)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2346)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2311)
+	at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2179)
+	at picocli.CommandLine.execute(CommandLine.java:2078)
+	at com.askimed.nf.test.App.run(App.java:39)
+	at com.askimed.nf.test.App.main(App.java:46)
+Jan-20 14:52:54.925 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '2a0ecaf6: full pipeline test -stub'. type: com.askimed.nf.test.lang.pipeline.PipelineTest
+Jan-20 14:53:23.564 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshot 'full pipeline test -stub' not found.
+Jan-20 14:53:23.564 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Created snapshot 'full pipeline test -stub'
+Jan-20 14:53:23.590 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Wrote snapshots to file '/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/full_pipeline.nf.test.snap'
+Jan-20 14:53:23.590 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '2a0ecaf6: full pipeline test -stub' finished. status: FAILED
+org.codehaus.groovy.runtime.powerassert.PowerAssertionError: 1 of 2 assertions failed
+	at com.askimed.nf.test.lang.extensions.GlobalMethods.assertAll(GlobalMethods.java:48)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.invoke(StaticMetaMethodSite.java:44)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.callStatic(StaticMetaMethodSite.java:100)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallStatic(CallSiteArray.java:55)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:217)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:240)
+	at full_pipeline_nf$_run_closure1$_closure3$_closure10.doCall(full_pipeline.nf.test:133)
+	at full_pipeline_nf$_run_closure1$_closure3$_closure10.doCall(full_pipeline.nf.test)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:274)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1030)
+	at groovy.lang.Closure.call(Closure.java:427)
+	at groovy.lang.Closure.call(Closure.java:406)
+	at com.askimed.nf.test.lang.TestCode.execute(TestCode.java:16)
+	at com.askimed.nf.test.lang.pipeline.PipelineTest.execute(PipelineTest.java:135)
+	at com.askimed.nf.test.core.TestExecutionEngine.execute(TestExecutionEngine.java:172)
+	at com.askimed.nf.test.commands.RunTestsCommand.execute(RunTestsCommand.java:322)
+	at com.askimed.nf.test.commands.AbstractCommand.call(AbstractCommand.java:43)
+	at com.askimed.nf.test.commands.AbstractCommand.call(AbstractCommand.java:18)
+	at picocli.CommandLine.executeUserObject(CommandLine.java:1953)
+	at picocli.CommandLine.access$1300(CommandLine.java:145)
+	at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2352)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2346)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2311)
+	at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2179)
+	at picocli.CommandLine.execute(CommandLine.java:2078)
+	at com.askimed.nf.test.App.run(App.java:39)
+	at com.askimed.nf.test.App.main(App.java:46)
+Jan-20 14:53:23.591 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Testsuite 'Test full pipeline' finished. snapshot file: true, skipped tests: false, failed tests: true
+Jan-20 14:53:23.591 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Running testsuite 'Test pipeline with full rnaseq database generation' from file '/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/full_rnaseq.nf.test'.
+Jan-20 14:53:23.591 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '5cb93097: full rnaseq test'. type: com.askimed.nf.test.lang.pipeline.PipelineTest
+Jan-20 14:53:52.903 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Load snapshots from file '/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/full_rnaseq.nf.test.snap'
+Jan-20 14:53:52.926 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshots 'full rnaseq test' do not match.
+Jan-20 14:53:52.926 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '5cb93097: full rnaseq test' finished. status: FAILED
+org.codehaus.groovy.runtime.powerassert.PowerAssertionError: 2 of 2 assertions failed
+	at com.askimed.nf.test.lang.extensions.GlobalMethods.assertAll(GlobalMethods.java:48)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.invoke(StaticMetaMethodSite.java:44)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.callStatic(StaticMetaMethodSite.java:100)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallStatic(CallSiteArray.java:55)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:217)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:240)
+	at full_rnaseq_nf$_run_closure1$_closure2$_closure5.doCall(full_rnaseq.nf.test:30)
+	at full_rnaseq_nf$_run_closure1$_closure2$_closure5.doCall(full_rnaseq.nf.test)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:274)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1030)
+	at groovy.lang.Closure.call(Closure.java:427)
+	at groovy.lang.Closure.call(Closure.java:406)
+	at com.askimed.nf.test.lang.TestCode.execute(TestCode.java:16)
+	at com.askimed.nf.test.lang.pipeline.PipelineTest.execute(PipelineTest.java:135)
+	at com.askimed.nf.test.core.TestExecutionEngine.execute(TestExecutionEngine.java:172)
+	at com.askimed.nf.test.commands.RunTestsCommand.execute(RunTestsCommand.java:322)
+	at com.askimed.nf.test.commands.AbstractCommand.call(AbstractCommand.java:43)
+	at com.askimed.nf.test.commands.AbstractCommand.call(AbstractCommand.java:18)
+	at picocli.CommandLine.executeUserObject(CommandLine.java:1953)
+	at picocli.CommandLine.access$1300(CommandLine.java:145)
+	at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2352)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2346)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2311)
+	at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2179)
+	at picocli.CommandLine.execute(CommandLine.java:2078)
+	at com.askimed.nf.test.App.run(App.java:39)
+	at com.askimed.nf.test.App.main(App.java:46)
+Jan-20 14:53:52.928 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '2d3d795e: full rnaseq test -stub'. type: com.askimed.nf.test.lang.pipeline.PipelineTest
+Jan-20 14:54:15.291 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshot 'full rnaseq test -stub' not found.
+Jan-20 14:54:15.291 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Created snapshot 'full rnaseq test -stub'
+Jan-20 14:54:15.321 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Wrote snapshots to file '/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/full_rnaseq.nf.test.snap'
+Jan-20 14:54:15.322 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '2d3d795e: full rnaseq test -stub' finished. status: FAILED
+org.codehaus.groovy.runtime.powerassert.PowerAssertionError: 1 of 2 assertions failed
+	at com.askimed.nf.test.lang.extensions.GlobalMethods.assertAll(GlobalMethods.java:48)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.invoke(StaticMetaMethodSite.java:44)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.callStatic(StaticMetaMethodSite.java:100)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallStatic(CallSiteArray.java:55)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:217)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:240)
+	at full_rnaseq_nf$_run_closure1$_closure3$_closure10.doCall(full_rnaseq.nf.test:70)
+	at full_rnaseq_nf$_run_closure1$_closure3$_closure10.doCall(full_rnaseq.nf.test)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:274)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1030)
+	at groovy.lang.Closure.call(Closure.java:427)
+	at groovy.lang.Closure.call(Closure.java:406)
+	at com.askimed.nf.test.lang.TestCode.execute(TestCode.java:16)
+	at com.askimed.nf.test.lang.pipeline.PipelineTest.execute(PipelineTest.java:135)
+	at com.askimed.nf.test.core.TestExecutionEngine.execute(TestExecutionEngine.java:172)
+	at com.askimed.nf.test.commands.RunTestsCommand.execute(RunTestsCommand.java:322)
+	at com.askimed.nf.test.commands.AbstractCommand.call(AbstractCommand.java:43)
+	at com.askimed.nf.test.commands.AbstractCommand.call(AbstractCommand.java:18)
+	at picocli.CommandLine.executeUserObject(CommandLine.java:1953)
+	at picocli.CommandLine.access$1300(CommandLine.java:145)
+	at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2352)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2346)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2311)
+	at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2179)
+	at picocli.CommandLine.execute(CommandLine.java:2078)
+	at com.askimed.nf.test.App.run(App.java:39)
+	at com.askimed.nf.test.App.main(App.java:46)
+Jan-20 14:54:15.323 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Testsuite 'Test pipeline with full rnaseq database generation' finished. snapshot file: true, skipped tests: false, failed tests: true
+Jan-20 14:54:15.324 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Running testsuite 'Test pipeline with gnomad/genecode database generation' from file '/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/gnomad.nf.test'.
+Jan-20 14:54:15.324 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test 'c8ddfef7: params: --skip_gnomaddb false'. type: com.askimed.nf.test.lang.pipeline.PipelineTest
+Jan-20 14:54:39.251 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Load snapshots from file '/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/gnomad.nf.test.snap'
+Jan-20 14:54:39.270 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshots 'params: --skip_gnomaddb false' do not match.
+Jan-20 14:54:39.271 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test 'c8ddfef7: params: --skip_gnomaddb false' finished. status: FAILED
+org.codehaus.groovy.runtime.powerassert.PowerAssertionError: 1 of 2 assertions failed
+	at com.askimed.nf.test.lang.extensions.GlobalMethods.assertAll(GlobalMethods.java:48)
+	at jdk.internal.reflect.GeneratedMethodAccessor13.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.invoke(StaticMetaMethodSite.java:44)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.callStatic(StaticMetaMethodSite.java:100)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallStatic(CallSiteArray.java:55)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:217)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:240)
+	at gnomad_nf$_run_closure1$_closure2$_closure5.doCall(gnomad.nf.test:26)
+	at gnomad_nf$_run_closure1$_closure2$_closure5.doCall(gnomad.nf.test)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:274)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1030)
+	at groovy.lang.Closure.call(Closure.java:427)
+	at groovy.lang.Closure.call(Closure.java:406)
+	at com.askimed.nf.test.lang.TestCode.execute(TestCode.java:16)
+	at com.askimed.nf.test.lang.pipeline.PipelineTest.execute(PipelineTest.java:135)
+	at com.askimed.nf.test.core.TestExecutionEngine.execute(TestExecutionEngine.java:172)
+	at com.askimed.nf.test.commands.RunTestsCommand.execute(RunTestsCommand.java:322)
+	at com.askimed.nf.test.commands.AbstractCommand.call(AbstractCommand.java:43)
+	at com.askimed.nf.test.commands.AbstractCommand.call(AbstractCommand.java:18)
+	at picocli.CommandLine.executeUserObject(CommandLine.java:1953)
+	at picocli.CommandLine.access$1300(CommandLine.java:145)
+	at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2352)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2346)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2311)
+	at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2179)
+	at picocli.CommandLine.execute(CommandLine.java:2078)
+	at com.askimed.nf.test.App.run(App.java:39)
+	at com.askimed.nf.test.App.main(App.java:46)
+Jan-20 14:54:39.271 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test 'c64c9524: params: --skip_gnomaddb false -stub'. type: com.askimed.nf.test.lang.pipeline.PipelineTest
+Jan-20 14:55:02.348 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshot 'params: --skip_gnomaddb false -stub' not found.
+Jan-20 14:55:02.349 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Created snapshot 'params: --skip_gnomaddb false -stub'
+Jan-20 14:55:02.375 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Wrote snapshots to file '/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/gnomad.nf.test.snap'
+Jan-20 14:55:02.376 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test 'c64c9524: params: --skip_gnomaddb false -stub' finished. status: PASSED
+Jan-20 14:55:02.376 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Testsuite 'Test pipeline with gnomad/genecode database generation' finished. snapshot file: true, skipped tests: false, failed tests: true
+Jan-20 14:55:02.376 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Running testsuite 'Test pipeline with rnaseq database generation' from file '/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/rna_seq.nf.test'.
+Jan-20 14:55:02.376 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test 'f0bcc8bf: params: --skip_rnaseqdb false'. type: com.askimed.nf.test.lang.pipeline.PipelineTest
+Jan-20 14:55:27.007 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Load snapshots from file '/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/rna_seq.nf.test.snap'
+Jan-20 14:55:27.034 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshots 'params: --skip_rnaseqdb false' do not match.
+Jan-20 14:55:27.034 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test 'f0bcc8bf: params: --skip_rnaseqdb false' finished. status: FAILED
+org.codehaus.groovy.runtime.powerassert.PowerAssertionError: 2 of 2 assertions failed
+	at com.askimed.nf.test.lang.extensions.GlobalMethods.assertAll(GlobalMethods.java:48)
+	at jdk.internal.reflect.GeneratedMethodAccessor13.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.invoke(StaticMetaMethodSite.java:44)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.callStatic(StaticMetaMethodSite.java:100)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallStatic(CallSiteArray.java:55)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:217)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:240)
+	at rna_seq_nf$_run_closure1$_closure2$_closure5.doCall(rna_seq.nf.test:28)
+	at rna_seq_nf$_run_closure1$_closure2$_closure5.doCall(rna_seq.nf.test)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:274)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1030)
+	at groovy.lang.Closure.call(Closure.java:427)
+	at groovy.lang.Closure.call(Closure.java:406)
+	at com.askimed.nf.test.lang.TestCode.execute(TestCode.java:16)
+	at com.askimed.nf.test.lang.pipeline.PipelineTest.execute(PipelineTest.java:135)
+	at com.askimed.nf.test.core.TestExecutionEngine.execute(TestExecutionEngine.java:172)
+	at com.askimed.nf.test.commands.RunTestsCommand.execute(RunTestsCommand.java:322)
+	at com.askimed.nf.test.commands.AbstractCommand.call(AbstractCommand.java:43)
+	at com.askimed.nf.test.commands.AbstractCommand.call(AbstractCommand.java:18)
+	at picocli.CommandLine.executeUserObject(CommandLine.java:1953)
+	at picocli.CommandLine.access$1300(CommandLine.java:145)
+	at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2352)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2346)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2311)
+	at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2179)
+	at picocli.CommandLine.execute(CommandLine.java:2078)
+	at com.askimed.nf.test.App.run(App.java:39)
+	at com.askimed.nf.test.App.main(App.java:46)
+Jan-20 14:55:27.040 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '43bee9cf: params: --skip_rnaseqdb false -stub'. type: com.askimed.nf.test.lang.pipeline.PipelineTest
+Jan-20 14:55:57.022 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshot 'params: --skip_rnaseqdb false -stub' not found.
+Jan-20 14:55:57.022 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Created snapshot 'params: --skip_rnaseqdb false -stub'
+Jan-20 14:55:57.051 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Wrote snapshots to file '/exports/eddie/scratch/s2215490/proteogenomicsdb/tests/rna_seq.nf.test.snap'
+Jan-20 14:55:57.052 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '43bee9cf: params: --skip_rnaseqdb false -stub' finished. status: FAILED
+org.codehaus.groovy.runtime.powerassert.PowerAssertionError: 1 of 2 assertions failed
+	at com.askimed.nf.test.lang.extensions.GlobalMethods.assertAll(GlobalMethods.java:48)
+	at jdk.internal.reflect.GeneratedMethodAccessor13.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.invoke(StaticMetaMethodSite.java:44)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.callStatic(StaticMetaMethodSite.java:100)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallStatic(CallSiteArray.java:55)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:217)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:240)
+	at rna_seq_nf$_run_closure1$_closure3$_closure10.doCall(rna_seq.nf.test:66)
+	at rna_seq_nf$_run_closure1$_closure3$_closure10.doCall(rna_seq.nf.test)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:107)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:323)
+	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:274)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1030)
+	at groovy.lang.Closure.call(Closure.java:427)
+	at groovy.lang.Closure.call(Closure.java:406)
+	at com.askimed.nf.test.lang.TestCode.execute(TestCode.java:16)
+	at com.askimed.nf.test.lang.pipeline.PipelineTest.execute(PipelineTest.java:135)
+	at com.askimed.nf.test.core.TestExecutionEngine.execute(TestExecutionEngine.java:172)
+	at com.askimed.nf.test.commands.RunTestsCommand.execute(RunTestsCommand.java:322)
+	at com.askimed.nf.test.commands.AbstractCommand.call(AbstractCommand.java:43)
+	at com.askimed.nf.test.commands.AbstractCommand.call(AbstractCommand.java:18)
+	at picocli.CommandLine.executeUserObject(CommandLine.java:1953)
+	at picocli.CommandLine.access$1300(CommandLine.java:145)
+	at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2352)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2346)
+	at picocli.CommandLine$RunLast.handle(CommandLine.java:2311)
+	at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2179)
+	at picocli.CommandLine.execute(CommandLine.java:2078)
+	at com.askimed.nf.test.App.run(App.java:39)
+	at com.askimed.nf.test.App.main(App.java:46)
+Jan-20 14:55:57.054 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Testsuite 'Test pipeline with rnaseq database generation' finished. snapshot file: true, skipped tests: false, failed tests: true
+Jan-20 14:55:57.054 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Executed 20 tests. 14 tests failed. Done!

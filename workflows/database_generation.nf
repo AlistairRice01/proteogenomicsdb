@@ -7,7 +7,7 @@
 
 include { RNASEQDB        } from '../subworkflows/local/rnaseq_workflow/rnaseq_workflow.nf'
 include { ENSEMBLDB       } from '../subworkflows/local/ensembl_workflow/ensembl_workflow.nf'
-include { COSMICDB        } from '../subworkflows/local/cosmic_workflow/cosmic_workflow.nf'
+include { COSMICDB        } from '../subworkflows/local/cosmic_workflow/cosmic_workflow_2.nf'
 include { GNOMADDB        } from '../subworkflows/local/gnomad_workflow/gnomad_workflow.nf'
 include { CBIOPORTALDB    } from '../subworkflows/local/cbioportal_workflow/cbioportal_workflow.nf'
 include { MERGEDB         } from '../subworkflows/local/merge_workflow/merge_workflow.nf'
@@ -43,6 +43,10 @@ take:
     cosmic_config
     username
     password
+    cosmic_genes_url
+    cosmic_mutations_url
+    cosmic_celllines_genes_url
+    cosmic_celllines_mutations_url
 
     //gnomad/genecodedb
     genecode_transcripts_url
@@ -138,16 +142,24 @@ main:
 
     //conditional execution based on wether the workflow is turned on or off in the config file
     if (!params.skip_cosmicdb) {
-
-        cosmic_config_ch = Channel.fromPath(cosmic_config)
-        username_ch      = Channel.from(username)
-        password_ch      = Channel.from(password)
+    
+        cosmic_config                  = Channel.fromPath(cosmic_config)
+        username_ch                    = Channel.from(username) 
+        password_ch                    = Channel.from(password)
+        cosmic_url_genes               = Channel.from(cosmic_genes_url)
+        cosmic_url_mutations           = Channel.from(cosmic_mutations_url)
+        cosmic_url_celllines_genes     = Channel.from(cosmic_celllines_genes_url)
+        cosmic_url_celllines_mutations = Channel.from(cosmic_celllines_mutations_url)
 
         //pass the channels into the COSMICDB subworkflow - this downloads data FROM COSMIC to create a protein database
         COSMICDB (
-            cosmic_config_ch,
+            cosmic_config,
             username_ch,
-            password_ch
+            password_ch,
+            cosmic_url_genes,
+            cosmic_url_mutations,
+            cosmic_url_celllines_genes,
+            cosmic_url_celllines_mutations
         )
         //extract the version information from the subworkflow
         versions_ch = versions_ch.mix(COSMICDB.out.versions_ch).collect()   

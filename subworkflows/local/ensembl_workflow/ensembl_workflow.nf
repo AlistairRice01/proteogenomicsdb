@@ -6,13 +6,13 @@
 */
 
 //modules for downloading databases from ENSEMBL
-include { PYPGATK_ENSEMBL_DOWNLOAD } from '../../../modules/local/pypgatk_ensembl_downloader/main.nf'
+include { PYPGATK_ENSEMBL_DOWNLOAD } from '../../../modules/local/pypgatk/ensembl_downloader/main.nf'
 include { CAT_CAT as CAT_DNA       } from '../../../modules/nf-core/cat/cat/main.nf'
 
 //modules for optional database generation
-include { PYPGATKDNA as PYPGATK_NCRNA       } from '../../../modules/local/pypgatk_dna/main.nf'
-include { PYPGATKDNA as PYPGATK_PSEUDOGENES } from '../../../modules/local/pypgatk_dna/main.nf'
-include { PYPGATKDNA as PYPGATK_ALRORFS     } from '../../../modules/local/pypgatk_dna/main.nf'
+include { PYPGATKDNA as PYPGATK_NCRNA       } from '../../../modules/local/pypgatk/dnaseq_to_proteindb/main.nf'
+include { PYPGATKDNA as PYPGATK_PSEUDOGENES } from '../../../modules/local/pypgatk/dnaseq_to_proteindb/main.nf'
+include { PYPGATKDNA as PYPGATK_ALRORFS     } from '../../../modules/local/pypgatk/dnaseq_to_proteindb/main.nf'
 
 //modules for the generation of the main ENSEMBL database
 include { BCFTOOLS_SORT       } from '../../../modules/nf-core/bcftools/sort/main.nf'
@@ -20,7 +20,7 @@ include { BCFTOOLS_CONCAT     } from '../../../modules/nf-core/bcftools/concat/m
 include { TABIX_BGZIP         } from '../../../modules/nf-core/tabix/bgzip/main.nf'
 include { BCFTOOLS_INDEX      } from '../../../modules/nf-core/bcftools/index/main.nf'
 include { CAT_CAT as CAT_VCF  } from '../../../modules/nf-core/cat/cat/main.nf'
-include { PYPGATK_VCF         } from '../../../modules/local/pypgatk_vcf/main.nf'
+include { PYPGATK_VCF         } from '../../../modules/local/pypgatk/vcf_to_proteindb/main.nf'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

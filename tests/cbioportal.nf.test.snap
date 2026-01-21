@@ -20,5 +20,58 @@
             "nextflow": "25.10.2"
         },
         "timestamp": "2026-01-16T15:52:08.944183564"
+    },
+    "params: --skip_cbioportaldb false -stub": {
+        "content": [
+            6,
+            null,
+            [
+                "cat",
+                "cat/final_database.fa",
+                "execution_report_2026-01-20_14-35-41.html",
+                "execution_timeline_2026-01-20_14-35-41.html",
+                "gunzip",
+                "gunzip/grch38.grch38",
+                "pipeline_dag_2026-01-20_14-35-41.html",
+                "pipeline_info",
+                "pypgatk",
+                "pypgatk/cbio_samples.fa",
+                "pypgatk/cbioportal_allstudies_data_clinical_sample.txt",
+                "pypgatk/cbioportal_allstudies_data_mutations.txt",
+                "pypgatk/cleaned_database.fa",
+                "wget",
+                "wget/grch38.gz"
+            ],
+            [
+                "final_database.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "execution_report_2026-01-20_14-35-41.html:md5,48cf0b43dee7f942641ec32d8a2c1448",
+                "execution_timeline_2026-01-20_14-35-41.html:md5,46ecd5de5a8191b18c660218b9729c48",
+                "grch38.grch38:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "pipeline_dag_2026-01-20_14-35-41.html:md5,0f62e934897f8edf2add0dab7915fb60",
+                "cbio_samples.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "cbioportal_allstudies_data_clinical_sample.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "cbioportal_allstudies_data_mutations.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "cleaned_database.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
+                {
+                    "directory": false,
+                    "file": true,
+                    "freeSpace": 201029425561600,
+                    "canonicalPath": "/exports/eddie/scratch/s2215490/proteogenomicsdb/.nf-test/tests/5728af5336cc8d074a3d6dd473c1028e/output/wget/grch38.gz",
+                    "usableSpace": 201029425561600,
+                    "hidden": false,
+                    "totalSpace": 268829984817152,
+                    "path": "/exports/eddie/scratch/s2215490/proteogenomicsdb/.nf-test/tests/5728af5336cc8d074a3d6dd473c1028e/output/wget/grch38.gz",
+                    "name": "grch38.gz",
+                    "absolute": true,
+                    "absolutePath": "/exports/eddie/scratch/s2215490/proteogenomicsdb/.nf-test/tests/5728af5336cc8d074a3d6dd473c1028e/output/wget/grch38.gz",
+                    "parent": "/exports/eddie/scratch/s2215490/proteogenomicsdb/.nf-test/tests/5728af5336cc8d074a3d6dd473c1028e/output/wget"
+                }
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-20T14:37:51.724631943"
     }
 }

@@ -17,7 +17,6 @@ name "Test pipeline with cbioportal database generation"
             
             }
         }
-    }
 
         then {
             // stable_name: All files + folders in ${params.outdir}/ with a stable name
@@ -38,6 +37,7 @@ name "Test pipeline with cbioportal database generation"
                 ).match() }
             )
         }
+    }
 
     test("params: --skip_cbioportaldb false -stub") {
 
@@ -54,7 +54,6 @@ name "Test pipeline with cbioportal database generation"
             
             }
         }
-    }
 
         then {
             // stable_name: All files + folders in ${params.outdir}/ with a stable name
@@ -76,3 +75,4 @@ name "Test pipeline with cbioportal database generation"
             )
         }
     }
+}

@@ -20,5 +20,27 @@
             "nextflow": "25.10.2"
         },
         "timestamp": "2026-01-16T16:00:49.115850417"
+    },
+    "full pipeline test -stub": {
+        "content": [
+            0,
+            null,
+            [
+                "execution_report_2026-01-20_14-53-09.html",
+                "execution_timeline_2026-01-20_14-53-09.html",
+                "pipeline_dag_2026-01-20_14-53-09.html",
+                "pipeline_info"
+            ],
+            [
+                "execution_report_2026-01-20_14-53-09.html:md5,600451d64df3aa8b6dede59b3a649d8e",
+                "execution_timeline_2026-01-20_14-53-09.html:md5,d249e6bb9da0c8fdb0f5fb32455b6198",
+                "pipeline_dag_2026-01-20_14-53-09.html:md5,2d3fd3acaa68ec0f9799c44ebb9ea2f9"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.2"
+        },
+        "timestamp": "2026-01-20T14:53:23.564392699"
     }
 }
