@@ -32,7 +32,8 @@ process PYPGATK_CBIOPORTAL {
         --config_file ${cbioportal_config} \\
         --input_mutation ${cbio_mutations} \\
         --input_cds ${grch38_cdna} \\
-        --clinical_sample_file ${cbio_samples} \\
+        --filter_column 'Histology subtype 1' \\
+        --acceoted_values 'all' \\
         --output_db ${name} \\
  
     cat <<-END_VERSIONS > versions.yml
@@ -54,3 +55,4 @@ process PYPGATK_CBIOPORTAL {
     END_VERSIONS
     """
 }
+        --clinical_sample_file ${cbio_samples} \\

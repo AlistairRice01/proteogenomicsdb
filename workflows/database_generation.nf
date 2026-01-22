@@ -7,7 +7,7 @@
 
 include { RNASEQDB        } from '../subworkflows/local/rnaseq_workflow/rnaseq_workflow.nf'
 include { ENSEMBLDB       } from '../subworkflows/local/ensembl_workflow/ensembl_workflow.nf'
-include { COSMICDB        } from '../subworkflows/local/cosmic_workflow/cosmic_workflow_2.nf'
+include { COSMICDB        } from '../subworkflows/local/cosmic_workflow/cosmic_workflow.nf'
 include { GNOMADDB        } from '../subworkflows/local/gnomad_workflow/gnomad_workflow.nf'
 include { CBIOPORTALDB    } from '../subworkflows/local/cbioportal_workflow/cbioportal_workflow.nf'
 include { MERGEDB         } from '../subworkflows/local/merge_workflow/merge_workflow.nf'
@@ -55,9 +55,10 @@ take:
     gnomad_config
 
     //cbioportaldb
+    cbioportal_url
     grch38_url
-    cbio_config
-    cbio_study
+    cbioportal_sample_id
+    cbioportal_config
 
     //mergedb
     minimum_aa
@@ -203,15 +204,17 @@ main:
     //conditional execution based on wether the workflow is turned on or off in the config file
     if (!params.skip_cbioportaldb) {
 
-        grch38_url_ch  = Channel.from(grch38_url)
-        cbio_study_ch  = Channel.from(cbio_study)
-        cbio_config_ch = Channel.fromPath(cbio_config)
+        cbioportal_url_ch    = Channel.from(cbioportal_url)
+        grch38_url_ch        = Channel.from(grch38_url)
+        cbioportal_study_ch  = Channel.from(cbioportal_sample_id)
+        cbioportal_config_ch = Channel.fromPath(cbioportal_config)
         
         //pass the channels into the CBIOPORTALDB subworkflow - this downloads data FROM CBIOPORTAL to create a protein database
         CBIOPORTALDB (
+            cbioportal_url_ch,
             grch38_url_ch,
-            cbio_config_ch,
-            cbio_study_ch
+            cbioportal_study_ch,
+            cbioportal_config_ch
         )
         //extract the version information from the subworkflow
         versions_ch = versions_ch.mix(CBIOPORTALDB.out.versions_ch).collect()
