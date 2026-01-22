@@ -115,6 +115,16 @@
                         "git_sha": "1b32b48b7d2803ae78a1beb20b7e9657dbcda776",
                         "installed_by": ["modules"]
                     },
+                    "untar": {
+                        "branch": "master",
+                        "git_sha": "00ee87ebb541af0008596400ce6d5f66d79d5408",
+                        "installed_by": ["modules"]
+                    },
+                    "untarfiles": {
+                        "branch": "master",
+                        "git_sha": "bc71bfe17a9c2057f1781b5b16987dcc14d1063f",
+                        "installed_by": ["modules"]
+                    },
                     "wget": {
                         "branch": "master",
                         "git_sha": "41dfa3f7c0ffabb96a6a813fe321c6d1cc5b6e46",

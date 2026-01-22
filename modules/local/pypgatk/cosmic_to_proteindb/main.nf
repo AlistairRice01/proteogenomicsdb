@@ -31,7 +31,7 @@ process PYPGATK_COSMICDB {
         --input_mutation ${cosmic_mutations} \\
         --input_genes ${cosmic_genes} \\
         --filter_column 'Histology subtype 1' \\
-        --accepted_values ${params.cosmic_cancer_type} \\
+        --accepted_values all \\
         --output_db ${name} \\
  
     cat <<-END_VERSIONS > versions.yml
