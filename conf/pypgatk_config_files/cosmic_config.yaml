@@ -21,4 +21,3 @@ proteindb:
       accepted_values: "all"
       split_by_filter_column: False
       clinical_sample_file: ''
-

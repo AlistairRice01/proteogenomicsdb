@@ -1,46 +1,46 @@
 {
     "params: --skip_rnaseqdb false": {
         "content": [
-            4,
+            0,
             null,
             [
-                "execution_report_2026-01-16_16-02-23.html",
-                "execution_timeline_2026-01-16_16-02-23.html",
-                "pipeline_dag_2026-01-16_16-02-23.html",
+                "execution_report_2026-01-27_11-21-08.html",
+                "execution_timeline_2026-01-27_11-21-08.html",
+                "pipeline_dag_2026-01-27_11-21-08.html",
                 "pipeline_info"
             ],
             [
-                "execution_report_2026-01-16_16-02-23.html:md5,e46667be0b6b8924e3f0de13184fa3aa",
-                "execution_timeline_2026-01-16_16-02-23.html:md5,c7b5202695abc6d7bca0f15309657b21",
-                "pipeline_dag_2026-01-16_16-02-23.html:md5,09edc16e5ed6ddbcd83c3c0caae26b21"
+                "execution_report_2026-01-27_11-21-08.html:md5,f7102af7bd03fec6625ab2d3af8a723b",
+                "execution_timeline_2026-01-27_11-21-08.html:md5,8ef5c8100d77f7fb7ae26464c8163a4e",
+                "pipeline_dag_2026-01-27_11-21-08.html:md5,2d3fd3acaa68ec0f9799c44ebb9ea2f9"
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.3"
         },
-        "timestamp": "2026-01-16T16:02:54.39475865"
+        "timestamp": "2026-01-27T11:21:21.004854404"
     },
     "params: --skip_rnaseqdb false -stub": {
         "content": [
             0,
             null,
             [
-                "execution_report_2026-01-20_14-55-44.html",
-                "execution_timeline_2026-01-20_14-55-44.html",
-                "pipeline_dag_2026-01-20_14-55-44.html",
+                "execution_report_2026-01-27_11-21-30.html",
+                "execution_timeline_2026-01-27_11-21-30.html",
+                "pipeline_dag_2026-01-27_11-21-30.html",
                 "pipeline_info"
             ],
             [
-                "execution_report_2026-01-20_14-55-44.html:md5,d4bb0ae289120794e9460dcbbbc0596e",
-                "execution_timeline_2026-01-20_14-55-44.html:md5,9560859e0826fbd342237fd0285360ef",
-                "pipeline_dag_2026-01-20_14-55-44.html:md5,2d3fd3acaa68ec0f9799c44ebb9ea2f9"
+                "execution_report_2026-01-27_11-21-30.html:md5,5a5f32a956bcf402f83d1bf888413497",
+                "execution_timeline_2026-01-27_11-21-30.html:md5,20401d1ba94364092fee1a6a89f12722",
+                "pipeline_dag_2026-01-27_11-21-30.html:md5,2d3fd3acaa68ec0f9799c44ebb9ea2f9"
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.3"
         },
-        "timestamp": "2026-01-20T14:55:57.022883471"
+        "timestamp": "2026-01-27T11:21:42.897881328"
     }
 }

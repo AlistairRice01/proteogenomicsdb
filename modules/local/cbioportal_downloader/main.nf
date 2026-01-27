@@ -44,7 +44,8 @@ process CBIOPORTAL_DOWNLOAD {
     def prefix = task.ext.prefix ?: ""
     
     """
-    touch cosmic_genes.tsv
+    touch cbioportal_allstudies_data_mutations.txt
+    touch cbioportal_allstudies_data_clinical_sample.txt
 
     """
 }

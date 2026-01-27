@@ -5,11 +5,11 @@
             null,
             [
                 "cat",
+                "cat/Total_cDNA.fa",
                 "cat/final_database.fa",
-                "cat/total_cDNA.fa",
-                "execution_report_2026-01-20_14-49-30.html",
-                "execution_timeline_2026-01-20_14-49-30.html",
-                "pipeline_dag_2026-01-20_14-49-30.html",
+                "execution_report_2026-01-27_11-14-02.html",
+                "execution_timeline_2026-01-27_11-14-02.html",
+                "pipeline_dag_2026-01-27_11-14-02.html",
                 "pipeline_info",
                 "pypgatk",
                 "pypgatk/Altorfs_database.fa",
@@ -24,11 +24,11 @@
                 "pypgatk/pseudogenes.fa"
             ],
             [
+                "Total_cDNA.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "final_database.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
-                "total_cDNA.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
-                "execution_report_2026-01-20_14-49-30.html:md5,c1e97b269b5355dc6039937aaeb362b2",
-                "execution_timeline_2026-01-20_14-49-30.html:md5,822e8cd834f66997e1a5501aaadc04f2",
-                "pipeline_dag_2026-01-20_14-49-30.html:md5,316ef660bc8e38d398c3d8a5dee2a29e",
+                "execution_report_2026-01-27_11-14-02.html:md5,7ca1d04f2760149627d48f3dfa6602af",
+                "execution_timeline_2026-01-27_11-14-02.html:md5,e1fb72b108aeae894d9ad380e867cd8e",
+                "pipeline_dag_2026-01-27_11-14-02.html:md5,b8dc0627cda1c5f6734667a42ea95b98",
                 "Altorfs_database.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "cleaned_database.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "ensembl.dna_test.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
@@ -43,30 +43,56 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.3"
         },
-        "timestamp": "2026-01-20T14:52:12.783312102"
+        "timestamp": "2026-01-27T11:14:53.609229856"
     },
     "full ensembl workflow": {
         "content": [
-            9,
+            7,
             null,
             [
-                "execution_report_2026-01-16_15-54-36.html",
-                "execution_timeline_2026-01-16_15-54-36.html",
-                "pipeline_dag_2026-01-16_15-54-36.html",
-                "pipeline_info"
+                "cat",
+                "cat/Total_cDNA.fa",
+                "cat/final_database.fa",
+                "execution_report_2026-01-27_11-12-35.html",
+                "execution_timeline_2026-01-27_11-12-35.html",
+                "pipeline_dag_2026-01-27_11-12-35.html",
+                "pipeline_info",
+                "pypgatk",
+                "pypgatk/Altorfs_database.fa",
+                "pypgatk/Saccharomyces_cerevisiae.R64-1-1.115.gtf",
+                "pypgatk/Saccharomyces_cerevisiae.R64-1-1.cdna.all.fa",
+                "pypgatk/Saccharomyces_cerevisiae.R64-1-1.dna_sm.toplevel.fa",
+                "pypgatk/Saccharomyces_cerevisiae.R64-1-1.ncrna.fa",
+                "pypgatk/Saccharomyces_cerevisiae.R64-1-1.pep.all.fa",
+                "pypgatk/cleaned_database.fa",
+                "pypgatk/ncRNA.fa",
+                "pypgatk/pseudogenes.fa",
+                "pypgatk/saccharomyces_cerevisiae_incl_consequences.vcf"
             ],
             [
-                "execution_report_2026-01-16_15-54-36.html:md5,c148a52cd8c639182336e73128177ee7",
-                "execution_timeline_2026-01-16_15-54-36.html:md5,4d425c39c0c250ef542ad2959b4fd9f3",
-                "pipeline_dag_2026-01-16_15-54-36.html:md5,c165e554955c2916335d2dc46e97da5a"
+                "Total_cDNA.fa:md5,9dc953dfa91b9fe8376fb9c90326db36",
+                "final_database.fa:md5,20b3e39c5e3491510fce85cb98266e74",
+                "execution_report_2026-01-27_11-12-35.html:md5,4e9fe0725380a73d261ce24c23c8ce56",
+                "execution_timeline_2026-01-27_11-12-35.html:md5,21d1ad6403c4baba03cf90bb2855099d",
+                "pipeline_dag_2026-01-27_11-12-35.html:md5,b8dc0627cda1c5f6734667a42ea95b98",
+                "Altorfs_database.fa:md5,0a202ec36445d58fbfab3f6bd5427d4e",
+                "Saccharomyces_cerevisiae.R64-1-1.115.gtf:md5,4546e64e896da01448bd1c207f4bb3c6",
+                "Saccharomyces_cerevisiae.R64-1-1.cdna.all.fa:md5,f9b7b0b77d3320f1d46e97a4f99c3650",
+                "Saccharomyces_cerevisiae.R64-1-1.dna_sm.toplevel.fa:md5,d49ac26e0a4e2719ae9a8e32f37be17b",
+                "Saccharomyces_cerevisiae.R64-1-1.ncrna.fa:md5,bfaed63bb741fd5f6f0a4a12c52d54ed",
+                "Saccharomyces_cerevisiae.R64-1-1.pep.all.fa:md5,f0e468e7bd05e9b8c7ceb49b7a687c2d",
+                "cleaned_database.fa:md5,438f810f209ad48872c0699cebbc2096",
+                "ncRNA.fa:md5,4408aa78fb81956fdd4f7e928df9f190",
+                "pseudogenes.fa:md5,4408aa78fb81956fdd4f7e928df9f190",
+                "saccharomyces_cerevisiae_incl_consequences.vcf:md5,5f89b8bfb7c05c15fdec9b5a51ed0bdd"
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.3"
         },
-        "timestamp": "2026-01-16T15:56:12.719669799"
+        "timestamp": "2026-01-27T11:13:38.008711233"
     }
 }

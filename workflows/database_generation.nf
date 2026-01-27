@@ -8,7 +8,7 @@
 include { RNASEQDB        } from '../subworkflows/local/rnaseq_workflow/rnaseq_workflow.nf'
 include { ENSEMBLDB       } from '../subworkflows/local/ensembl_workflow/ensembl_workflow.nf'
 include { COSMICDB        } from '../subworkflows/local/cosmic_workflow/cosmic_workflow.nf'
-include { GNOMADDB        } from '../subworkflows/local/gnomad_workflow/gnomad_workflow.nf'
+include { GENECODEDB      } from '../subworkflows/local/genecode_workflow/genecode_workflow.nf'
 include { CBIOPORTALDB    } from '../subworkflows/local/cbioportal_workflow/cbioportal_workflow.nf'
 include { MERGEDB         } from '../subworkflows/local/merge_workflow/merge_workflow.nf'
 
@@ -21,72 +21,72 @@ include { MERGEDB         } from '../subworkflows/local/merge_workflow/merge_wor
 workflow DATABASE_GENERATION {
 
 take:
-    //proteogenomicsdb
-    samplesheet
-    reference
-    annotation
-    transcripts
-    custom_config
-    dna_config            
-    faidx_get_genome_sizes     
-    samtools_sort_index       
+    //inputs rnaseqdb subworkflow
+    samplesheet            //channel: [val(meta), [ samplesheet ] ]
+    reference              //channel: /path/to/reference genome
+    annotation             //channel: /path/to/genome annotation
+    transcripts            //channel: /path/to/cdna transcripts
+    custom_config          //channel: /path/to/custom config file
+    dna_config             //channel: /path/to/dna config file
+    faidx_get_genome_sizes //boolean: whether FAIDX gets genome sizes
+    samtools_sort_index    //string: index sorting type
 
-    //ensembldb
-    ensembl_downloader_config
-    species_id 
-    ensembl_config 
-    altorfs_config 
-    pseudogenes_config
-    ncrna_config 
+    //inputs for ensembldb subworkflow
+    ensembl_downloader_config //channel: /path/to/ensembl downloader config
+    species_id                //string: ENSEMBL species ID
+    ensembl_config            //channel: /path/to/ensembl config
+    altorfs_config            //channel: /path/to/altorfs config
+    pseudogenes_config        //channel: /path/to/pseudogenes config
+    ncrna_config              //channel: /path/to/ncrna config
 
-    //cosmicdb
-    cosmic_config
-    username
-    password
-    cosmic_genes_url
-    cosmic_mutations_url
-    cosmic_celllines_genes_url
-    cosmic_celllines_mutations_url
+    //inputs for cosmicdb subworkflow
+    cosmic_config                  //channel: /path/to/cosmic config
+    username                       //string: COSMIC username
+    password                       //string: COSMIC password 
+    cosmic_genes_url               //string: cosmic genes url
+    cosmic_mutations_url           //string: cosmic mutations url
+    cosmic_celllines_genes_url     //string: cosmic celllines genes url
+    cosmic_celllines_mutations_url //string: cosmic celllines mutations url
 
-    //gnomad/genecodedb
-    genecode_transcripts_url
-    genecode_annotations_url
-    gnomad_url
-    gnomad_config
+    //inuts for genecodedb subworkflow
+    genecode_transcripts_url //string: genecode transcripts url
+    genecode_annotations_url //string: genecode annotations url
+    gnomad_url               //string: gnomad vcf url
+    genecode_config          //channel: /path/to/genecode config
 
-    //cbioportaldb
-    cbioportal_url
-    grch38_url
-    cbioportal_sample_id
-    cbioportal_config
+    //inputs for cbioportaldb subworkflow 
+    cbioportal_url       //string: cbioportal study url
+    grch38_url           //string: gr38 url
+    cbioportal_sample_id //string: cbioportal sample ID 
+    cbioportal_config    //channel: /path/to/cbioportal config
 
-    //mergedb
-    minimum_aa
-    stop_codons
-    clean_config
-    decoy_config
+    //inputs for mergedb subworkflow
+    clean_config //channel: /path/to/clean config
+    decoy_config //channel: /path/to/decoy config
 
-    //multiqc
-    multiqc_config
+    //multiqc inputs
+    multiqc_config //channel: /path/to/multiqc config
 
 main:
 
-    //create an empty channel which will later contain the version information for each of the tools
+    //creates empty channels for tool versions, the peptide database, and the multiqc report
     versions_ch        = Channel.empty()
     mixed_databases_ch = Channel.empty()
     multiqc_report_ch  = channel.empty()
 
-    //conditional execution based on wether the workflow is turned on or off in the config file 
+    //conditional execution based on if skip_rnaseqdb is true or false
     if (!params.skip_rnaseqdb) {
 
-        reference_ch     = Channel.fromPath(reference)
-        annotation_ch    = Channel.fromPath(annotation)
-        transcripts_ch   = Channel.fromPath(transcripts)
-        custom_config_ch = Channel.fromPath(custom_config)
-        dna_config_ch    = Channel.fromPath(dna_config)
-        multiqc_config_ch = Channel.fromPath(multiqc_config)
+        //inputs for the rnaseqdb workflow 
+        reference_ch           = Channel.fromPath(reference)
+        annotation_ch          = Channel.fromPath(annotation)
+        transcripts_ch         = Channel.fromPath(transcripts)
+        custom_config_ch       = Channel.fromPath(custom_config)
+        dna_config_ch          = Channel.fromPath(dna_config)
+        multiqc_config_ch      = Channel.fromPath(multiqc_config)
+        samtools_sort_index_ch = Channel.from(samtools_sort_index)
 
-        //pass the channels into the PROTEOGENOMICSDB subworkflow - this takes sequencing data to produce a novel protein database
+        //pass the channels into the RNASEQDB subworkflow - this takes rna sequencing data and produce a protein database
         RNASEQDB (
             samplesheet,
             annotation_ch,
@@ -95,10 +95,10 @@ main:
             dna_config_ch,
             transcripts_ch,               
             faidx_get_genome_sizes,     
-            samtools_sort_index,
-            multiqc_config
+            samtools_sort_index_ch,
+            multiqc_config_ch
         )
-        //extract the version information from the subworkflow
+        //extract tool versions, the peptide database, and the multiqc report from rnaseqdb
         versions_ch        = versions_ch.mix(RNASEQDB.out.versions_ch).collect()
         mixed_databases_ch = mixed_databases_ch.mix(RNASEQDB.out.merged_databases_ch).collect()
         multiqc_report_ch  = RNASEQDB.out.multiqc_report_ch
@@ -107,12 +107,13 @@ main:
 
     else {
         //bypass the subworkflow
-        log.info "proteogenomicsdb subworkflow skipped."
+        log.info "rnaseqdb subworkflow skipped."
     }
 
-    //conditional execution based on wether the workflow is turned on or off in the config file
+    //conditional execution based on if skip_ensembldb is true or false
     if (!params.skip_ensembldb) {
 
+        //inputs for the ensembldb workflow
         ensembl_downloader_config_ch = Channel.fromPath(ensembl_downloader_config)        
         ensembl_config_ch            = Channel.fromPath(ensembl_config)    
         altorfs_config_ch            = Channel.fromPath(altorfs_config)
@@ -129,9 +130,8 @@ main:
             pseudogenes_config_ch,
             ncrna_config_ch
         )
-        //extract the version information from the subworkflow
+        //extract tool versions and the peptide database from ensembldb
         versions_ch = versions_ch.mix(ENSEMBLDB.out.versions_ch).collect()
-        //extract the databases from ENSEMBLDB and add them to mixed_databases_ch
         mixed_databases_ch = mixed_databases_ch.mix(ENSEMBLDB.out.mixed_databases).collect()
 
     }
@@ -141,9 +141,10 @@ main:
         log.info "ensembldb subworkflow skipped."
     }
 
-    //conditional execution based on wether the workflow is turned on or off in the config file
+    //conditional execution based on if skip_cosmicdb is true or false
     if (!params.skip_cosmicdb) {
     
+        //inputs for the cosmicdb workflow
         cosmic_config                  = Channel.fromPath(cosmic_config)
         username_ch                    = Channel.from(username) 
         password_ch                    = Channel.from(password)
@@ -162,9 +163,8 @@ main:
             cosmic_url_celllines_genes,
             cosmic_url_celllines_mutations
         )
-        //extract the version information from the subworkflow
+        //extract tool versions and the peptide database from cosmicdb
         versions_ch = versions_ch.mix(COSMICDB.out.versions_ch).collect()   
-        //extract the databases from COSMICDB and add them to mixed_databases
         mixed_databases_ch = mixed_databases_ch.mix(COSMICDB.out.cosmic_database).collect()
 
     }
@@ -174,36 +174,37 @@ main:
         log.info "cosmicdb subworkflow skipped."
     }
     
-    //conditional execution based on wether the workflow is turned on or off in the config file
-    if (!params.skip_gnomaddb) {
+    //conditional execution based on if skip_genecodedb is true or false
+    if (!params.skip_genecodedb) {
 
+        //inputs for the genecodedb workflow
         genecode_transcripts_url_ch = Channel.from(genecode_transcripts_url)
         genecode_annotations_url_ch = Channel.from(genecode_annotations_url)        
         gnomad_url_ch               = Channel.from(gnomad_url)
-        gnomad_config_ch            = Channel.fromPath(gnomad_config)
+        genecode_config_ch          = Channel.fromPath(genecode_config)
         
-        //pass the channels into the GNOMADDB subworkflow - this downloads data FROM GENECODE and GNOMAD to create a protein database
-        GNOMADDB (
+        //pass the channels into the GENECODEDB subworkflow - this downloads data FROM GENECODE and GNOMAD to create a protein database
+        GENECODEDB (
             genecode_transcripts_url_ch,
             genecode_annotations_url_ch,
             gnomad_url_ch,
-            gnomad_config_ch
+            genecode_config_ch
         )
-        //extract the version information from the subworkflow
-        versions_ch = versions_ch.mix(GNOMADDB.out.versions_ch).collect()
-        //extract the databases from GNOMADDB and add them to mixed_databases_ch
-        mixed_databases_ch = mixed_databases_ch.mix(GNOMADDB.out.gnomad_database).collect()
+        //extract tool versions and the peptide database from genecodedb
+        versions_ch = versions_ch.mix(GENECODEDB.out.versions_ch).collect()
+        mixed_databases_ch = mixed_databases_ch.mix(GENECODEDB.out.genecode_database).collect()
 
     }
 
     else {
         //bypass the subworkflow
-        log.info "gnomaddb subworkflow skipped."
+        log.info "genecodedb subworkflow skipped."
     }
 
-    //conditional execution based on wether the workflow is turned on or off in the config file
+    //conditional execution based on if skip_cbioportaldb is true or false
     if (!params.skip_cbioportaldb) {
 
+        //inputs for the cbioportaldb workflow
         cbioportal_url_ch    = Channel.from(cbioportal_url)
         grch38_url_ch        = Channel.from(grch38_url)
         cbioportal_study_ch  = Channel.from(cbioportal_sample_id)
@@ -216,9 +217,8 @@ main:
             cbioportal_study_ch,
             cbioportal_config_ch
         )
-        //extract the version information from the subworkflow
+        //extract tool versions and the peptide database from cbioportaldb
         versions_ch = versions_ch.mix(CBIOPORTALDB.out.versions_ch).collect()
-        //extract the databases from CBIOPORTALDB and add them to mixed_databases_ch
         mixed_databases_ch = mixed_databases_ch.mix(CBIOPORTALDB.out.cbioportal_database).collect()
 
     }
@@ -228,8 +228,11 @@ main:
         log.info "cbioportaldb subworkflow skipped."
     }
 
+        //inputs for the mergedb workflow
         clean_config_ch   = Channel.from(clean_config)
         decoy_config_ch   = Channel.fromPath(decoy_config)
+
+        decoy_database_ch = Channel.empty()
 
     //pass the channels into the MERGEDB subworkflow - this merges all of the databases together
     MERGEDB (
@@ -237,24 +240,19 @@ main:
         clean_config_ch,
         decoy_config_ch
     )
-    //extract the version information from the subworkflow
+        //extract tool versions, the peptide database, and the decoy database from mergedb
     versions_ch = versions_ch.mix(MERGEDB.out.versions_ch).collect()
-
-    //extract the databases from MERGEDB and add overwrite mixed_databases
     mixed_databases_ch = MERGEDB.out.databases.collect()
-    
-    //create a channel containing the decoy database
-    decoy_database_ch = Channel.empty()
     decoy_database_ch = MERGEDB.out.decoy.collect()
 
 
 emit:
 
     //emit the final files from the workflow
-    mixed_databases_ch   //channel: contains the final peptide database
-    decoy_database_ch    //channel: contains the decoy database
-    versions_ch          //channel: contains the version information for each of the tools used in the pipeline
-    multiqc_report_ch    //channel: contains the multiqc report
+    mixed_databases_ch //channel: [ val(meta), [ database ] ]
+    decoy_database_ch  //channel: [ val(meta), [ decoy ] ]
+    versions_ch        //channel: [ path(versions.yml) ]
+    multiqc_report_ch  //channel: /path/to/multiqc_report.html
 
 }
 

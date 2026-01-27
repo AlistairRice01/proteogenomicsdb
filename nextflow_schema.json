@@ -12,7 +12,7 @@
             "description": "Define where the pipeline should find input data and save output data.",
             "required": ["outdir"],
             "properties": {
-                "input": {
+                "samplesheet": {
                     "type": "string",
                     "format": "file-path",
                     "exists": true,
@@ -95,51 +95,6 @@
                     "type": "string",
                     "default": "master",
                     "description": "placeholder text"
-                }
-            }
-        },
-        "pipeline_options": {
-            "title": "pipeline_options",
-            "type": "object",
-            "description": "Paramiters for running the pipeline.",
-            "properties": {
-                "dna_config": {
-                    "type": "string",
-                    "description": "placeholder text",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/dna_config.yaml"
-                },
-                "custom_config": {
-                    "type": "string",
-                    "description": "placeholder text",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/custom_config.yaml"
-                },
-                "reference": {
-                    "type": "string",
-                    "description": "placeholder text"
-                },
-                "username": {
-                    "type": "string",
-                    "description": "placeholder text",
-                    "default": "s2215490@ed.ac.uk"
-                },
-                "password": {
-                    "type": "string",
-                    "description": "placeholder text",
-                    "default": "BeepBoop8294!"
-                },
-                "gnomad_config": {
-                    "type": "string",
-                    "description": "placeholder text",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/gnomad_config.yaml"
-                },
-                "cbio_config": {
-                    "type": "string",
-                    "description": "placeholder text",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/cbioportal_config.yaml"
-                },
-                "stop_codons": {
-                    "type": "boolean",
-                    "description": "placeholder text"
                 },
                 "igenomes_base": {
                     "type": "string",
@@ -148,24 +103,6 @@
                 },
                 "igenomes_ignore": {
                     "type": "boolean",
-                    "description": "placeholder text"
-                },
-                "multiqc_config": {
-                    "type": "string",
-                    "description": "placeholder text",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/assets/multiqc_config.yaml"
-                },
-                "multiqc_logo": {
-                    "type": "string",
-                    "description": "placeholder text"
-                },
-                "max_multiqc_email_size": {
-                    "type": "string",
-                    "default": "25.MB",
-                    "description": "placeholder text"
-                },
-                "multiqc_methods_description": {
-                    "type": "string",
                     "description": "placeholder text"
                 },
                 "publish_dir_mode": {
@@ -193,48 +130,155 @@
                 "config_profile_url": {
                     "type": "string",
                     "description": "placeholder text"
-                },
-                "annotation": {
+                }
+            }
+        },
+        "multiqc_options": {
+            "title": "multiqc_options",
+            "type": "object",
+            "description": "Paramiters for running multiqc.",
+            "properties": {
+                "multiqc_logo": {
                     "type": "string",
                     "description": "placeholder text"
                 },
-                "transcripts": {
+                "max_multiqc_email_size": {
+                    "type": "string",
+                    "default": "25.MB",
+                    "description": "placeholder text"
+                },
+                "multiqc_methods_description": {
                     "type": "string",
                     "description": "placeholder text"
                 },
-                "ensembl_downloader_config": {
+                "multiqc_config": {
                     "type": "string",
-                    "description": "placeholder text",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/ensembl_downloader_config.yaml"
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/assets/multiqc_config.yaml",
+                    "description": "placeholder text"
+                }
+            }
+        },
+        "skip_options": {
+            "title": "skip_options",
+            "type": "object",
+            "description": "Paramiters that decide which processes to skip.",
+            "properties": {
+                "skip_rnaseqdb": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "placeholder text"
                 },
-                "ensembl_config": {
-                    "type": "string",
-                    "description": "placeholder text",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/ensembl_config.yaml"
+                "skip_dnaseq": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "placeholder text"
                 },
-                "species_id": {
+                "skip_vcf": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "placeholder text"
+                },
+                "skip_ensembldb": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "placeholder text"
+                },
+                "skip_proteome": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "placeholder text"
+                },
+                "skip_ncrna": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "placeholder text"
+                },
+                "skip_pseudogenes": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "placeholder text"
+                },
+                "skip_altorfs": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "placeholder text"
+                },
+                "skip_ensembl_vcf": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "placeholder text"
+                },
+                "skip_cosmicdb": {
+                    "type": "boolean",
+                    "description": "placeholder text",
+                    "default": true
+                },
+                "skip_celllines": {
+                    "type": "boolean",
+                    "description": "placeholder text",
+                    "default": true
+                },
+                "skip_cosmic": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "placeholder text"
+                },
+                "skip_gnomaddb": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "placeholder text"
+                },
+                "skip_cbioportaldb": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "placeholder text"
+                },
+                "skip_decoy": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "placeholder text"
+                },
+                "skip_fastqc": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "placeholder text"
+                },
+                "skip_trimming": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "placeholder text"
+                }
+            }
+        },
+        "download_urls": {
+            "title": "download_urls",
+            "type": "object",
+            "description": "Paramiters difining which files are downloaded.",
+            "properties": {
+                "cbioportal_url": {
                     "type": "string",
                     "description": "placeholder text"
                 },
-                "ncrna_config": {
+                "grch38_url": {
                     "type": "string",
-                    "description": "placeholder text",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/ncrna_config.yaml"
+                    "default": "ftp://ftp.ensembl.org/pub/release-115/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz",
+                    "description": "placeholder text"
                 },
-                "pseudogenes_config": {
+                "cosmic_genes_url": {
                     "type": "string",
-                    "description": "placeholder text",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/pseudogenes_config.yaml"
+                    "description": "placeholder text"
                 },
-                "altorfs_config": {
+                "cosmic_mutations_url": {
                     "type": "string",
-                    "description": "placeholder text",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/altorfs_config.yaml"
+                    "description": "placeholder text"
                 },
-                "cosmic_config": {
+                "cosmic_celllines_genes_url": {
                     "type": "string",
-                    "description": "placeholder text",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/cosmic_config.yaml"
+                    "description": "placeholder text"
+                },
+                "cosmic_celllines_mutations_url": {
+                    "type": "string",
+                    "description": "placeholder text"
                 },
                 "genecode_transcripts_url": {
                     "type": "string",
@@ -247,92 +291,123 @@
                 "gnomad_url": {
                     "type": "string",
                     "description": "placeholder text"
+                }
+            }
+        },
+        "pypgatk_config_files": {
+            "title": "pypgatk_config_files",
+            "type": "object",
+            "description": "Paramiters containing the config files for running the pypgatk modules.",
+            "properties": {
+                "dna_config": {
+                    "type": "string",
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/dna_config.yaml",
+                    "description": "placeholder text"
+                },
+                "custom_config": {
+                    "type": "string",
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/custom_config.yaml",
+                    "description": "placeholder text"
+                },
+                "genecode_config": {
+                    "type": "string",
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/genecode_config.yaml",
+                    "description": "placeholder text"
+                },
+                "cbio_config": {
+                    "type": "string",
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/cbioportal_config.yaml",
+                    "description": "placeholder text"
+                },
+                "ensembl_downloader_config": {
+                    "type": "string",
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/ensembl_downloader_config.yaml",
+                    "description": "placeholder text"
+                },
+                "ensembl_config": {
+                    "type": "string",
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/ensembl_config.yaml",
+                    "description": "placeholder text"
+                },
+                "ncrna_config": {
+                    "type": "string",
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/ncrna_config.yaml",
+                    "description": "placeholder text"
+                },
+                "pseudogenes_config": {
+                    "type": "string",
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/pseudogenes_config.yaml",
+                    "description": "placeholder text"
+                },
+                "altorfs_config": {
+                    "type": "string",
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/altorfs_config.yaml",
+                    "description": "placeholder text"
+                },
+                "cosmic_config": {
+                    "type": "string",
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/cosmic_config.yaml",
+                    "description": "placeholder text"
+                },
+                "clean_config": {
+                    "type": "string",
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/clean_config.yaml",
+                    "description": "placeholder text"
+                },
+                "decoy_config": {
+                    "type": "string",
+                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/protein_decoy.yaml",
+                    "description": "placeholder text"
+                }
+            }
+        },
+        "pipeline_inputs": {
+            "title": "pipeline_inputs",
+            "type": "object",
+            "description": "paramiters for inputting into the pipeline.",
+            "properties": {
+                "annotation": {
+                    "type": "string",
+                    "description": "placeholder text"
+                },
+                "reference": {
+                    "type": "string",
+                    "description": "placeholder text"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "placeholder text"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "placeholder text"
+                },
+                "transcripts": {
+                    "type": "string",
+                    "description": "placeholder text"
+                },
+                "species_id": {
+                    "type": "string",
+                    "description": "placeholder text"
                 },
                 "cbio_study": {
                     "type": "string",
                     "description": "placeholder text"
                 },
-                "minimum_aa": {
-                    "type": "integer",
+                "faidx_get_genome_sizes": {
+                    "type": "boolean",
+                    "default": true,
                     "description": "placeholder text"
                 },
-                "clean_config": {
+                "samtools_sort_index": {
                     "type": "string",
-                    "description": "placeholder text",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/clean_config.yaml"
+                    "default": "bai",
+                    "description": "placeholder text"
                 },
-                "decoy_config": {
+                "cosmic_cancer_type": {
                     "type": "string",
-                    "description": "placeholder text",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/protein_decoy.yaml"
-                }
-            }
-        },
-        "skip_options": {
-            "title": "skip_options",
-            "type": "object",
-            "description": "Paramiters for running the pipeline.",
-            "properties": {
-                "skip_rnaseqdb": {
-                    "type": "boolean",
-                    "default": true
-                },
-                "skip_dnaseq": {
-                    "type": "boolean",
-                    "default": true
-                },
-                "skip_vcf": {
-                    "type": "boolean",
-                    "default": true
-                },
-                "skip_ensembldb": {
-                    "type": "boolean",
-                    "default": true
-                },
-                "skip_proteome": {
-                    "type": "boolean",
-                    "default": true
-                },
-                "skip_ncrna": {
-                    "type": "boolean",
-                    "default": true
-                },
-                "skip_pseudogenes": {
-                    "type": "boolean",
-                    "default": true
-                },
-                "skip_altorfs": {
-                    "type": "boolean",
-                    "default": true
-                },
-                "skip_ensembl_vcf": {
-                    "type": "boolean",
-                    "default": true
-                },
-                "skip_cosmicdb": {
-                    "type": "boolean"
-                },
-                "skip_gnomaddb": {
-                    "type": "boolean",
-                    "default": true
-                },
-                "skip_cbioportaldb": {
-                    "type": "boolean",
-                    "default": true
-                },
-                "skip_decoy": {
-                    "type": "boolean",
-                    "default": true
-                },
-                "skip_fastqc": {
-                    "type": "boolean",
-                    "description": "placeholder text",
-                    "default": true
-                },
-                "skip_trimming": {
-                    "type": "boolean",
-                    "description": "placeholder text",
-                    "default": true
+                    "default": "all",
+                    "description": "placeholder text"
                 }
             }
         }
@@ -348,71 +423,19 @@
             "$ref": "#/$defs/other_options"
         },
         {
-            "$ref": "#/$defs/pipeline_options"
+            "$ref": "#/$defs/multiqc_options"
         },
         {
             "$ref": "#/$defs/skip_options"
+        },
+        {
+            "$ref": "#/$defs/download_urls"
+        },
+        {
+            "$ref": "#/$defs/pypgatk_config_files"
+        },
+        {
+            "$ref": "#/$defs/pipeline_inputs"
         }
-    ],
-    "properties": {
-        "fasta_index": {
-            "type": "string"
-        },
-        "faidx_get_genome_sizes": {
-            "type": "boolean",
-            "default": true
-        },
-        "samtools_sort_index": {
-            "type": "string",
-            "default": "bai"
-        },
-        "freebayes_limit_analysis": {
-            "type": "string"
-        },
-        "freebayes_populations": {
-            "type": "string"
-        },
-        "freebayes_copy_number_bed": {
-            "type": "string"
-        },
-        "multiqc_extra_config": {
-            "type": "string"
-        },
-        "multiqc_replace_names": {
-            "type": "string"
-        },
-        "multiqc_sample_names": {
-            "type": "string"
-        },
-        "grch38_url": {
-            "type": "string",
-            "default": "ftp://ftp.ensembl.org/pub/release-115/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz"
-        },
-        "skip_celllines": {
-            "type": "boolean"
-        },
-        "skip_cosmic": {
-            "type": "boolean"
-        },
-        "cosmic_genes_url": {
-            "type": "string",
-            "default": "https://cancer.sanger.ac.uk/api/mono/products/v1/downloads/scripted?path=grch38/cosmic/v103/Cosmic_Genes_Tsv_v103_GRCh38.tar&bucket=downloads"
-        },
-        "cosmic_mutations_url": {
-            "type": "string",
-            "default": "https://cancer.sanger.ac.uk/api/mono/products/v1/downloads/scripted?path=grch38/cosmic/v103/Cosmic_GenomeScreensMutant_Tsv_v103_GRCh38.tar&bucket=downloads"
-        },
-        "cosmic_celllines_genes_url": {
-            "type": "string",
-            "default": "https://cancer.sanger.ac.uk/api/mono/products/v1/downloads/scripted?path=grch38/cell_lines/v103/CellLinesProject_CompleteGeneExpression_Tsv_v103_GRCh38.tar&bucket=downloads"
-        },
-        "cosmic_celllines_mutations_url": {
-            "type": "string",
-            "default": "https://cancer.sanger.ac.uk/api/mono/products/v1/downloads/scripted?path=grch38/cell_lines/v103/CellLinesProject_MutationTracking_Tsv_v103_GRCh38.tar&bucket=downloads"
-        },
-        "cosmic_cancer_type": {
-            "type": "string",
-            "default": "all"
-        }
-    }
+    ]
 }

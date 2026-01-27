@@ -80,15 +80,13 @@ workflow NFCORE_PROTEOGENOMICSDB {
         params.genecode_transcripts_url,    //
         params.genecode_annotations_url,    //
         params.gnomad_url,                  //
-        params.gnomad_config,               //path to the gnomad_config
+        params.genecode_config,               //path to the gnomad_config
         //cbioportal paramaters
         params.cbioportal_url,
         params.grch38_url,      //      
         params.cbio_study,
         params.cbio_config,     //path to the cbioportal_config
         //merge paramaters
-        params.minimum_aa,      //
-        params.stop_codons,
         params.clean_config,     //
         params.decoy_config,     //path to the decoy_config
         //multiqc

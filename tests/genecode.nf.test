@@ -4,12 +4,12 @@ name "Test pipeline with gnomad/genecode database generation"
     script "../main.nf"
     tag "pipeline"
 
-    test("params: --skip_gnomaddb false") {
+    test("params: --skip_genecodedb false") {
 
         when {
             params {
 
-                skip_rnaseq              = false
+                skip_genecodedb              = false
                 genecode_transcripts_url = 'https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.transcripts.fa.gz'
                 genecode_annotations_url = 'https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.annotation.gtf.gz'
                 gnomad_url               =  'gs://gcp-public-data--gnomad/release/2.1.1/vcf/exomes/gnomad.exomes.r2.1.1.sites.18.vcf.bgz'
@@ -39,14 +39,14 @@ name "Test pipeline with gnomad/genecode database generation"
         }
     }
 
-    test("params: --skip_gnomaddb false -stub") {
+    test("params: --skip_genecodedb false -stub") {
 
         options "-stub"
 
         when {
             params {
 
-                skip_rnaseq              = false
+                skip_genecode              = false
                 genecode_transcripts_url = 'https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.transcripts.fa.gz'
                 genecode_annotations_url = 'https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.annotation.gtf.gz'
                 gnomad_url               =  'gs://gcp-public-data--gnomad/release/2.1.1/vcf/exomes/gnomad.exomes.r2.1.1.sites.18.vcf.bgz'

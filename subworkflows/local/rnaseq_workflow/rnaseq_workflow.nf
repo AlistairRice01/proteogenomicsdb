@@ -37,29 +37,31 @@ workflow RNASEQDB {
 
 take:
 
-    // inputs from the main workflow
-    samplesheet           //channel: contains the samplesheet of rna-seq reads
-    annotation      //channel: contains the annotation (gtf) file 
-    reference       //channel: contains the reference genome (fasta) file
-    config          //channel: contains the vcf database config file
-    dna_config      //channel: contains the DNA database config file
-    cdna            //channel: contains the cdna reference (fasta) file
-    faidx_get_genome_sizes     
-    samtools_sort_index        
-    multiqc_config
-    
+    //inputs from the main workflow
+    samplesheet            //channel: [val(meta), [ samplesheet ] ]
+    annotation             //channel: /path/to/genome annotation
+    reference              //channel: /path/to/reference genome
+    config                 //channel: /path/to/custom config file
+    dna_config             //channel: /path/to/dna config file
+    cdna                   //channel: /path/to/cdna transcripts
+    faidx_get_genome_sizes //boolean: whether FAIDX gets genome sizes
+    samtools_sort_index    //string: index sorting type     
+    multiqc_config         //channel: /path/to/multiqc config
+
 
 main:
 
-    //creates an empty channel to combine the two databases generated in this workflow
+    //creates empty channels for tool versions, the peptide database, and the multiqc report
     merged_databases_ch = Channel.empty()
     multiqc_report_ch   = Channel.empty()
     versions_ch         = Channel.empty()
 
+    //FASTQC_WORKFLOW takes the sample sheet and mutltiqc and runs the reads through fastqc, trimgalore, and multiqc
     FASTQC_WORKFLOW (
     samplesheet,
     multiqc_config
     )
+    //extract tool versions and the multiqc report from FASTQC_WOKFLOW
     versions_ch       = versions_ch.mix(FASTQC_WORKFLOW.out.versions_ch).collect()
     multiqc_report_ch = FASTQC_WORKFLOW.out.multiqc_report_ch.collect()
         
@@ -68,22 +70,25 @@ main:
         START OF THE ALIGNMENT OF READS TO A REFERENCE PATHWAY
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
+    //creating empty channels used in the alignment pathway
+    splicesites_ch    = Channel.empty()
+    index_ch          = Channel.empty()
+    samtools_input_ch = Channel.empty()
+    bam_sorted_ch     = Channel.empty()
 
-    //applies a map to the gene annotation
+    //applies a map to the genome annotation
     annotation.map { genome ->
-        def meta = [ id: 'genome' ]
+        def meta = [ id: 'Genome' ]
         return [ meta, genome ] }
     .set { annotation_ch}
     .collect()
 
-    //HISAT2_EXTRACTSPLICESITES is taking the genome annotation and using it to generate a file containing all of the splicesites in the genome
+    //HISAT2_EXTRACTSPLICESITES takes the genome annotation and using it to 
+    //generate a file containing all of the splicesites in the genome
     HISAT2_EXTRACTSPLICESITES (
         annotation_ch
     )
-    versions_ch = versions_ch.mix(HISAT2_EXTRACTSPLICESITES.out.versions)
-
-    //this is creating an empty channel which will then be populated with the splicesites data
-    splicesites_ch = Channel.empty()  
+    versions_ch = versions_ch.mix(HISAT2_EXTRACTSPLICESITES.out.versions) 
     splicesites_ch = HISAT2_EXTRACTSPLICESITES.out.txt.collect()
 
     //applies a map to the genome reference
@@ -93,47 +98,38 @@ main:
     .set{ reference_ch }
     .collect()
 
-    //HISAT2_BUILD generates hisat2 index files (.ht2) from the fasta reference, genome annotation, and splicesites 
+    //HISAT2_BUILD generates hisat2 index files (.ht2) 
+    //from the fasta reference, genome annotation, and splicesites 
     HISAT2_BUILD (
         reference_ch, 
         annotation_ch, 
         splicesites_ch
     )
     versions_ch = versions_ch.mix(HISAT2_BUILD.out.versions)
-
-    //creates an empty channel which will then be populated with the genome index files
-    index_ch = Channel.empty()
     index_ch = HISAT2_BUILD.out.index.collect()
 
 
-    //HISAT2 is taking the fastq files and aligning them to a reference genome using the index files and splicesites 
+    //HISAT2 is taking the fastq files and aligning them to a 
+    //reference genome using the index files and splicesites 
     HISAT2_ALIGN (
         samplesheet, 
         index_ch, 
         splicesites_ch
     )
     versions_ch = versions_ch.mix(HISAT2_ALIGN.out.versions)
-
-    //creates an empty channel which will then be populated with the HISAT2 alignment data (bam files) 
-    samtools_input_ch = Channel.empty()
     samtools_input_ch = HISAT2_ALIGN.out.bam
         .map { meta, bam ->
-            def meta1 = [ id: 'bam_1' ]
+            def meta1 = [ id: 'Bam_1' ]
             return [ meta1, bam ] }
-    
-    //creates a channel containing the string 'bai' for specifiying the files produced in SAMTOOLS_SORT
-    samtools_sort_index_ch = Channel.from(samtools_sort_index)
         
-    //SAMTOOLS_SORT is taking the HISAT2 alignment data and using the genome reference to sort the files
+    //SAMTOOLS_SORT is taking the HISAT2 alignment 
+    //data and using the genome reference to sort the files
     SAMTOOLS_SORT (
         samtools_input_ch,
         reference_ch,
-        samtools_sort_index_ch
+        samtools_sort_index
     )
     versions_ch = versions_ch.mix(SAMTOOLS_SORT.out.versions_samtools)
-
-    //creates an empty channel which will then be populated with the sorted bam files form SAMTOOLS_SORT
-    bam_sorted_ch = Channel.empty()
     bam_sorted_ch = SAMTOOLS_SORT.out.bam
 
 /*
@@ -147,17 +143,23 @@ main:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
+//conditional execution based on if skip_dnaseq is true or false
 if (!params.skip_dnaseq) {
 
-    //STRINGTIE is taking the genome annotation and the HISAT2 Bam file to assemble the RNA-seq alignments into a potential transcript
+    //creating empty channels used in the dna database generation pathway
+    stringtie_gtf_ch        = Channel.empty()
+    stringtie_gtf_merged_ch = Channel.empty()
+    fasta_fai_ch            = Channel.empty()
+    gffcompare_ch           = Channel.empty()
+    gffout                  = Channel.empty()
+
+    //STRINGTIE is taking the genome annotation and the HISAT2 Bam file 
+    //to assemble the RNA-seq alignments into a potential transcript
     STRINGTIE_STRINGTIE (
         bam_sorted_ch,
         annotation
     )
     versions_ch = versions_ch.mix(STRINGTIE_STRINGTIE.out.versions)
-
-    //creates an empty channel that will then be populated with the STRINGTIE outputs (gtf)
-    stringtie_gtf_ch = Channel.empty()
     stringtie_gtf_ch = STRINGTIE_STRINGTIE.out.transcript_gtf.map { meta, transcript_gtf ->
         [transcript_gtf] }.collect()
 
@@ -167,27 +169,23 @@ if (!params.skip_dnaseq) {
         annotation
     )
         versions_ch = versions_ch.mix(STRINGTIE_MERGE.out.versions)
-
-    //creates an empty channel that will then be populated with the output from STRINGTIE_MERGE (gtf)
-    stringtie_gtf_merged_ch = Channel.empty()
     stringtie_gtf_merged_ch = STRINGTIE_MERGE.out.gtf
         .map { gtf_file ->
-            def meta = [ id: 'stringtie_merged' ]
+            def meta = [ id: 'Stringtie_merged' ]
             return [ meta, gtf_file ] }
 
-    //SAMTOOLS_FAIDX takes the reference genome (fasta) and generates a fasta index file (fai)
+    //SAMTOOLS_FAIDX takes the reference genome (fasta) 
+    //and generates a fasta index file (fai)
     SAMTOOLS_FAIDX (
         reference_ch,
         [ [], [] ],
         faidx_get_genome_sizes  
     )
     versions_ch = versions_ch.mix(SAMTOOLS_FAIDX.out.versions_samtools)
-
-    //creates an empty channel that will then be populated with the fasta index (fai) from SAMTOOLS_FAIDX
-    fasta_fai_ch = Channel.empty()
     fasta_fai_ch = SAMTOOLS_FAIDX.out.fai.collect()
 
-    //cerates an empty channel that will combine the genome fasta and genome fasta index channels
+    //cerates an empty channel that will combine the 
+    //genome fasta and genome fasta index channels
     fasta_meta_fai_ch = Channel.empty()
     fasta_meta_fai_ch = reference_ch.combine(fasta_fai_ch)
         .map { map1, fasta, map2, fai ->
@@ -195,33 +193,30 @@ if (!params.skip_dnaseq) {
             return [ meta, fasta, fai ] }
 
 
-    //GFFCOMPARE is taking the genome fasta, genome annotation, and comparing it to the output of StringTie to evaluate the assembly
+    //GFFCOMPARE is taking the genome fasta, genome annotation, and the 
+    //output of StringTie to evaluate the assembly
     GFFCOMPARE (
         stringtie_gtf_merged_ch,
         fasta_meta_fai_ch,
         annotation_ch
     )
     versions_ch = versions_ch.mix(GFFCOMPARE.out.versions)
-
-    //creates an empty channel that will then be populated with the gffcompare output (gtf)
-    gffcompare_ch = Channel.empty()
     gffcompare_ch = GFFCOMPARE.out.annotated_gtf.collect()
             .map { meta, gtf_file ->
             def meta1 = [ id: 'gtf_file', single_end:true ]
             return [ meta1, gtf_file ] }
 
-    //GFFREAD takes the GFFCOMPARE output (gtf) and using the reference genome converts it into transcript sequences
+    //GFFREAD takes the GFFCOMPARE output (gtf) and using 
+    //the reference genome converts it into transcript sequences
     GFFREAD (
         gffcompare_ch,
         reference
     )
     versions_ch = versions_ch.mix(GFFREAD.out.versions)
-    
-    //creates an empty channel that will then be populated with the output from GFFREAD (fasta)
-    gffout = Channel.empty()
     gffout = GFFREAD.out.gffread_fasta.collect()
 
-    //PYPGATK takes the GFFREAD output (FASTA) and using the dna_config file generates a database from the fasta transcripts 
+    //PYPGATK takes the GFFREAD output (FASTA) and using the dna_config 
+    //file generates a database from the fasta transcripts 
     PYPGATKDNA (
         gffout,
         dna_config
@@ -250,7 +245,13 @@ else {
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-    if (!params.skip_vcf) {
+//conditional execution based on if skip_vcf is true or false
+if (!params.skip_vcf) {
+
+        
+        genome_bai_ch     = Channel.empty()
+        genome_bam_bai_ch = Channel.empty()
+        freebayes_ch      = Channel.empty()
 
 
     //SAMTOOLS_INDEX takes the sorted bam file and generates a bam index file (bai)
@@ -258,15 +259,11 @@ else {
         bam_sorted_ch
     )
     versions_ch = versions_ch.mix(SAMTOOLS_INDEX.out.versions)
-
-    //creates an empty channel that will then be populated with the bam index (bai) generated by SAMTOOLS_INDEX
-    genome_bai_ch = Channel.empty()
     genome_bai_ch = SAMTOOLS_INDEX.out.bai
     .map { bam, bai ->
             return [ bai ] }
 
-    //creates an empty channel that will combine the bam and bam index files into a single channel 
-    genome_bam_bai_ch = Channel.empty()
+    //combines the bam and bam index files into a single channel
     genome_bam_bai_ch = bam_sorted_ch.combine(genome_bai_ch)
         .map { meta, bam, bai ->
             return [ meta, bam, bai, [], [], [] ] }
@@ -281,9 +278,6 @@ else {
     [ [], [] ]
     )
     versions_ch = versions_ch.mix(FREEBAYES.out.versions)
-
-    //creates an empty channel that will be populated with the gzipped vcf file generated by FREEBAYES
-    freebayes_ch = Channel.empty()
     freebayes_ch = FREEBAYES.out.vcf.collect()
 
     //GUNZIP_VCF unzips the vcf file generated by FREEBAYES
@@ -303,7 +297,8 @@ else {
     .set{ cdna_ch }
     .collect()
 
-    //PYPGATKCUSTOM takes the vcf file generated by FREEBAYES and using cdna transcripts and the genome annotation it generates a variant peptide database
+    //PYPGATKCUSTOM takes the vcf file generated by FREEBAYES and using cdna 
+    //transcripts and the genome annotation it generates a variant peptide database
     PYPGATK_VCF (
         vcf_unzipped,
         annotation_ch,
@@ -315,12 +310,12 @@ else {
     //takes the database generated with PYPGATK and combines it with the other database
     merged_databases_ch = merged_databases_ch.mix(PYPGATK_VCF.out.database).collect()
 
-    }
+}
 
-    else {
-        //bypass the subworkflow
-        log.info "rna-seq vcf database skipped."
-    }
+else {
+    //bypass the subworkflow
+    log.info "rna-seq vcf database skipped."
+}
 
 /*
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -331,10 +326,10 @@ else {
 
 emit:
 
-    // emits to the main workflow
-    merged_databases_ch      //channel: contains the databases generated from this workflow
-    versions_ch              //channel: contains versions.yml holding the version information for each of the tools
-    multiqc_report_ch
+    //emits to the main workflow
+    merged_databases_ch //channel: [ val(meta), [ database ] ]
+    versions_ch         //channel: [ path(versions.yml) ]
+    multiqc_report_ch   //channel: /path/to/multiqc_report.html
 
 }
 

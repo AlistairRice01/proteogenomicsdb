@@ -9,3 +9,4 @@ testing*
 null/
 *.fastq.gz
 assets/test_files
+.nf-test/

@@ -10,7 +10,8 @@ name "Test full pipeline"
             params {
 
              //samplesheet
-            input = "$projectDir/assets/samplesheet.csv"
+            input = params.pipelines_testdata_base_path + "/genomics/eukaryotes/saccharomyces_cerevisiae/samplesheet.csv"
+            https://github.com/nf-core/test-datasets/tree/rnaseq/reference
 
             //skip options
             skip_fastqc   = false
@@ -27,14 +28,14 @@ name "Test full pipeline"
             skip_altorfs     = false
 
             skip_cosmicdb     = true
-            skip_gnomaddb     = false
+            skip_genecodedb     = false
             skip_cbioportaldb = false
             skip_decoy        = false
 
             //PROTEOGENOMICSDB inputs
-            annotation  = "/exports/eddie/scratch/s2215490/nextflow/proteogenomicsDB_inputs/Saccharomyces_cerevisiae.R64-1-1.115.gtf"
-            reference   = "/exports/eddie/scratch/s2215490/nextflow/proteogenomicsDB_inputs/Saccharomyces_cerevisiae.R64-1-1.dna.toplevel.fa"
-            transcripts = "/exports/eddie/scratch/s2215490/nextflow/proteogenomicsDB_inputs/Saccharomyces_cerevisiae.R64-1-1.cdna.all.fa"
+            annotation  = "/exports/eddie/scratch/s2215490/proteogenomicsdb/assets/test_files/Saccharomyces_cerevisiae.R64-1-1.115.gtf"
+            reference   = "/exports/eddie/scratch/s2215490/proteogenomicsdb/assets/test_files/Saccharomyces_cerevisiae.R64-1-1.dna.toplevel.fa"
+            transcripts = "/exports/eddie/scratch/s2215490/proteogenomicsdb/assets/test_files/Saccharomyces_cerevisiae.R64-1-1.cdna.all.fa"
 
             //ENSEMBLDB inputs
             species_id = '559292'
@@ -45,9 +46,10 @@ name "Test full pipeline"
             gnomad_url               =  'gs://gcp-public-data--gnomad/release/2.1.1/vcf/exomes/gnomad.exomes.r2.1.1.sites.18.vcf.bgz'
 
             //CBIOPORTALDB inputs
-            //params.grch38_url = 'ftp://ftp.ensembl.org/pub/release-75/fasta/homo_sapiens/cds/Homo_sapiens.GRCh37.75.cds.all.fa.gz'
-            params.grch38_url = 'ftp://ftp.ensembl.org/pub/release-115/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz'
+            cbioportal_url = 'https://datahub.assets.cbioportal.org/es_iocurie_2014.tar.gz'
+            grch38_url = 'ftp://ftp.ensembl.org/pub/release-115/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz'
             params.cbio_study = 'es_iocurie_2014'
+            
             outdir            = "${outputDir}"
 
             }
