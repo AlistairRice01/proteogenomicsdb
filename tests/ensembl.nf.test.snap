@@ -6,9 +6,9 @@
             [
                 "cat",
                 "cat/Total_cDNA.fa",
-                "execution_report_2026-01-27_11-09-51.html",
-                "execution_timeline_2026-01-27_11-09-51.html",
-                "pipeline_dag_2026-01-27_11-09-51.html",
+                "execution_report_2026-01-28_10-29-33.html",
+                "execution_timeline_2026-01-28_10-29-33.html",
+                "pipeline_dag_2026-01-28_10-29-33.html",
                 "pipeline_info",
                 "pypgatk",
                 "pypgatk/Saccharomyces_cerevisiae.R64-1-1.115.gtf",
@@ -20,9 +20,9 @@
             ],
             [
                 "Total_cDNA.fa:md5,9dc953dfa91b9fe8376fb9c90326db36",
-                "execution_report_2026-01-27_11-09-51.html:md5,10e4056aefd6864333b37595e9fd371a",
-                "execution_timeline_2026-01-27_11-09-51.html:md5,2a362441a3e99b832047c1c0d2f9981a",
-                "pipeline_dag_2026-01-27_11-09-51.html:md5,a095f394bba1c4bd9bcc4d56c1266220",
+                "execution_report_2026-01-28_10-29-33.html:md5,4bb48c4940f2d974fc01116fb063e49b",
+                "execution_timeline_2026-01-28_10-29-33.html:md5,9e1b53f00a7dc6a541e5d17a69ce745b",
+                "pipeline_dag_2026-01-28_10-29-33.html:md5,a095f394bba1c4bd9bcc4d56c1266220",
                 "Saccharomyces_cerevisiae.R64-1-1.115.gtf:md5,4546e64e896da01448bd1c207f4bb3c6",
                 "Saccharomyces_cerevisiae.R64-1-1.cdna.all.fa:md5,f9b7b0b77d3320f1d46e97a4f99c3650",
                 "Saccharomyces_cerevisiae.R64-1-1.dna_sm.toplevel.fa:md5,d49ac26e0a4e2719ae9a8e32f37be17b",
@@ -35,7 +35,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.3"
         },
-        "timestamp": "2026-01-27T11:11:01.130245259"
+        "timestamp": "2026-01-28T10:29:53.215268891"
     },
     "params: --skip_ensembl false -stub": {
         "content": [
@@ -44,9 +44,9 @@
             [
                 "cat",
                 "cat/Total_cDNA.fa",
-                "execution_report_2026-01-27_11-11-21.html",
-                "execution_timeline_2026-01-27_11-11-21.html",
-                "pipeline_dag_2026-01-27_11-11-21.html",
+                "execution_report_2026-01-28_10-30-03.html",
+                "execution_timeline_2026-01-28_10-30-03.html",
+                "pipeline_dag_2026-01-28_10-30-03.html",
                 "pipeline_info",
                 "pypgatk",
                 "pypgatk/ensembl.dna_test.fa",
@@ -58,9 +58,9 @@
             ],
             [
                 "Total_cDNA.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
-                "execution_report_2026-01-27_11-11-21.html:md5,4dd4b2c9632e412802582a175b1cf511",
-                "execution_timeline_2026-01-27_11-11-21.html:md5,de37f803da7b4a2a9b54ac1370de038b",
-                "pipeline_dag_2026-01-27_11-11-21.html:md5,a095f394bba1c4bd9bcc4d56c1266220",
+                "execution_report_2026-01-28_10-30-03.html:md5,c13544431d8aefb3be4af188c278ef64",
+                "execution_timeline_2026-01-28_10-30-03.html:md5,edd36cee5d0e0b76efde5abfb85543cf",
+                "pipeline_dag_2026-01-28_10-30-03.html:md5,a095f394bba1c4bd9bcc4d56c1266220",
                 "ensembl.dna_test.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "ensembl.gtf:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "ensembl.pep.all.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
@@ -73,6 +73,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.3"
         },
-        "timestamp": "2026-01-27T11:11:37.947328778"
+        "timestamp": "2026-01-28T10:30:19.729598668"
     }
 }

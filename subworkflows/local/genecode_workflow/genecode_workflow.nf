@@ -32,7 +32,7 @@ take:
 main:
 
     //creates empty channels for tool versions and the peptide database
-    versions_ch     = Channel.empty()
+    versions_ch       = Channel.empty()
     genecode_database = Channel.empty()
 
     //creates empty channels used in the GENECODEDB workflow

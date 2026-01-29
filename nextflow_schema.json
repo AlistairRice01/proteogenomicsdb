@@ -233,6 +233,11 @@
                     "default": true,
                     "description": "placeholder text"
                 },
+                "skip_additional_database": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "placeholder text"
+                },
                 "skip_decoy": {
                     "type": "boolean",
                     "default": true,

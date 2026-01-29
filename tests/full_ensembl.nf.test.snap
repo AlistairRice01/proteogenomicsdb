@@ -7,9 +7,9 @@
                 "cat",
                 "cat/Total_cDNA.fa",
                 "cat/final_database.fa",
-                "execution_report_2026-01-27_11-14-02.html",
-                "execution_timeline_2026-01-27_11-14-02.html",
-                "pipeline_dag_2026-01-27_11-14-02.html",
+                "execution_report_2026-01-28_10-32-09.html",
+                "execution_timeline_2026-01-28_10-32-09.html",
+                "pipeline_dag_2026-01-28_10-32-09.html",
                 "pipeline_info",
                 "pypgatk",
                 "pypgatk/Altorfs_database.fa",
@@ -26,9 +26,9 @@
             [
                 "Total_cDNA.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "final_database.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
-                "execution_report_2026-01-27_11-14-02.html:md5,7ca1d04f2760149627d48f3dfa6602af",
-                "execution_timeline_2026-01-27_11-14-02.html:md5,e1fb72b108aeae894d9ad380e867cd8e",
-                "pipeline_dag_2026-01-27_11-14-02.html:md5,b8dc0627cda1c5f6734667a42ea95b98",
+                "execution_report_2026-01-28_10-32-09.html:md5,e40f831d7f86ef9ce075f74855ebe85d",
+                "execution_timeline_2026-01-28_10-32-09.html:md5,c483bc84cb9205ddf6ece64c7d6d9aa4",
+                "pipeline_dag_2026-01-28_10-32-09.html:md5,b8dc0627cda1c5f6734667a42ea95b98",
                 "Altorfs_database.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "cleaned_database.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "ensembl.dna_test.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
@@ -45,7 +45,7 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.3"
         },
-        "timestamp": "2026-01-27T11:14:53.609229856"
+        "timestamp": "2026-01-28T10:32:30.454052798"
     },
     "full ensembl workflow": {
         "content": [
@@ -55,9 +55,9 @@
                 "cat",
                 "cat/Total_cDNA.fa",
                 "cat/final_database.fa",
-                "execution_report_2026-01-27_11-12-35.html",
-                "execution_timeline_2026-01-27_11-12-35.html",
-                "pipeline_dag_2026-01-27_11-12-35.html",
+                "execution_report_2026-01-28_10-31-15.html",
+                "execution_timeline_2026-01-28_10-31-15.html",
+                "pipeline_dag_2026-01-28_10-31-15.html",
                 "pipeline_info",
                 "pypgatk",
                 "pypgatk/Altorfs_database.fa",
@@ -74,9 +74,9 @@
             [
                 "Total_cDNA.fa:md5,9dc953dfa91b9fe8376fb9c90326db36",
                 "final_database.fa:md5,20b3e39c5e3491510fce85cb98266e74",
-                "execution_report_2026-01-27_11-12-35.html:md5,4e9fe0725380a73d261ce24c23c8ce56",
-                "execution_timeline_2026-01-27_11-12-35.html:md5,21d1ad6403c4baba03cf90bb2855099d",
-                "pipeline_dag_2026-01-27_11-12-35.html:md5,b8dc0627cda1c5f6734667a42ea95b98",
+                "execution_report_2026-01-28_10-31-15.html:md5,f8a853d6edcbfaa97cbc9fdcfab7eac1",
+                "execution_timeline_2026-01-28_10-31-15.html:md5,0a620a841069ed6f0644aa516ff159e1",
+                "pipeline_dag_2026-01-28_10-31-15.html:md5,b8dc0627cda1c5f6734667a42ea95b98",
                 "Altorfs_database.fa:md5,0a202ec36445d58fbfab3f6bd5427d4e",
                 "Saccharomyces_cerevisiae.R64-1-1.115.gtf:md5,4546e64e896da01448bd1c207f4bb3c6",
                 "Saccharomyces_cerevisiae.R64-1-1.cdna.all.fa:md5,f9b7b0b77d3320f1d46e97a4f99c3650",
@@ -93,6 +93,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.3"
         },
-        "timestamp": "2026-01-27T11:13:38.008711233"
+        "timestamp": "2026-01-28T10:31:58.505788437"
     }
 }

@@ -10,8 +10,8 @@ name "Test full pipeline"
             params {
 
              //samplesheet
-            input = params.pipelines_testdata_base_path + "/genomics/eukaryotes/saccharomyces_cerevisiae/samplesheet.csv"
-            https://github.com/nf-core/test-datasets/tree/rnaseq/reference
+            input = "$projectDir/assets/test_files/samplesheet.csv"
+            //input = params.pipelines_testdata_base_path + "/genomics/eukaryotes/saccharomyces_cerevisiae/samplesheet.csv"
 
             //skip options
             skip_fastqc   = false

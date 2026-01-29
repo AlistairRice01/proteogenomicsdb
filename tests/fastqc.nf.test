@@ -11,8 +11,8 @@ name "Test pipeline with fastqc and trimming"
 
                 skip_fastqc   = false
                 skip_trimming = false
-                //input         = "$projectDir/assets/samplesheet.csv"
-                input         = params.pipelines_testdata_base_path + "/genomics/eukaryotes/saccharomyces_cerevisiae/samplesheet.csv"
+                input         = "$projectDir/assets/test_files/samplesheet.csv"
+                //input         = params.pipelines_testdata_base_path + "/genomics/eukaryotes/saccharomyces_cerevisiae/samplesheet.csv"
                 outdir        = "${outputDir}"
             
             }

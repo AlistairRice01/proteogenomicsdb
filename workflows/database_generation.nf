@@ -228,10 +228,29 @@ main:
         log.info "cbioportaldb subworkflow skipped."
     }
 
+    //conditional execution based on if skip_additional_database is true or false
+    if (!params.skip_additional_database) {
+
+        //create a channel to contain the additional database
+        additional_database_ch = Channel.from(additional_database)
+            ..map { database ->
+            def meta = [ id: 'addtional database' ]
+            return [ meta, database ] }
+        
+        //add additional database to the mixed database channel
+        mixed_databases_ch = mixed_databases_ch.mip(additional_database_ch) 
+
+    }
+
+    else {
+        //bypass the process
+        log.info "additional database skipped."
+    }
+
+
         //inputs for the mergedb workflow
         clean_config_ch   = Channel.from(clean_config)
         decoy_config_ch   = Channel.fromPath(decoy_config)
-
         decoy_database_ch = Channel.empty()
 
     //pass the channels into the MERGEDB subworkflow - this merges all of the databases together
