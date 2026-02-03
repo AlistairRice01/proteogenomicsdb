@@ -1,13 +1,11 @@
 nextflow_pipeline {
 
-    name "Test pypgatk_cosmic"
+    name "Test cbioportal_downloader"
     script "../main.nf"
     tag "module"
-    process "PYPGATK_COSMIC"
+    process "CBIOPORTAL_DOWNLOADER"
 
-    test("-profile pypgatk_cosmic test") {
-
-        options "-stub"
+    test("-profile cbioportal_downloader test") {
 
         when {
             params {
@@ -16,12 +14,13 @@ nextflow_pipeline {
             process {
                 """
                 input[0] = Channel.of([
-                    file('params.cosmic_config, checkIfExists: true')
+                    [ id: 'cbioportal_config' ],
+                    file('params.cbio_config, checkIfExists: true')
                 ])
-                input[1] = ['username']
-                input[2] = ['password']
+                input[1] = ['es_iocurie_2014']
 
                 """
+
             }
         }
 
@@ -34,3 +33,7 @@ nextflow_pipeline {
             )
         }
     }
+
+
+
+}

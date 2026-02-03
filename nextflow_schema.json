@@ -12,17 +12,6 @@
             "description": "Define where the pipeline should find input data and save output data.",
             "required": ["outdir"],
             "properties": {
-                "samplesheet": {
-                    "type": "string",
-                    "format": "file-path",
-                    "exists": true,
-                    "schema": "assets/schema_input.json",
-                    "mimetype": "text/csv",
-                    "pattern": "^\\S+\\.csv$",
-                    "description": "Path to comma-separated file containing information about the samples in the experiment.",
-                    "help_text": "You will need to create a design file with information about the samples in your experiment before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 3 columns, and a header row.",
-                    "fa_icon": "fas fa-file-csv"
-                },
                 "outdir": {
                     "type": "string",
                     "format": "directory-path",
@@ -154,7 +143,7 @@
                 "multiqc_config": {
                     "type": "string",
                     "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/assets/multiqc_config.yaml",
-                    "description": "placeholder text"
+                    "description": "config file used in the multiqc process"
                 }
             }
         },
@@ -166,92 +155,82 @@
                 "skip_rnaseqdb": {
                     "type": "boolean",
                     "default": true,
-                    "description": "placeholder text"
+                    "description": "option to skip the rnaseqdb workflow"
                 },
                 "skip_dnaseq": {
                     "type": "boolean",
                     "default": true,
-                    "description": "placeholder text"
+                    "description": "option to skip generating a database from cdna files generated from the sequening data"
                 },
                 "skip_vcf": {
                     "type": "boolean",
                     "default": true,
-                    "description": "placeholder text"
+                    "description": "option to skip generating a database from a vcf file based on the sequencing data"
                 },
                 "skip_ensembldb": {
                     "type": "boolean",
                     "default": true,
-                    "description": "placeholder text"
+                    "description": "option to skip the ensembldb workflow"
                 },
                 "skip_proteome": {
                     "type": "boolean",
                     "default": true,
-                    "description": "placeholder text"
+                    "description": "option to skip adding the ENSEMBL proteome data to the final database"
                 },
                 "skip_ncrna": {
                     "type": "boolean",
                     "default": true,
-                    "description": "placeholder text"
+                    "description": "option to skip database generation from non-coding rna data"
                 },
                 "skip_pseudogenes": {
                     "type": "boolean",
                     "default": true,
-                    "description": "placeholder text"
+                    "description": "option to skip database generation from pseudogene data"
                 },
                 "skip_altorfs": {
                     "type": "boolean",
                     "default": true,
-                    "description": "placeholder text"
+                    "description": "option to skip database generation from alternate reading frame data"
                 },
                 "skip_ensembl_vcf": {
                     "type": "boolean",
                     "default": true,
-                    "description": "placeholder text"
+                    "description": "option to skip database generation from an ENSEMBL vcf file"
                 },
                 "skip_cosmicdb": {
                     "type": "boolean",
-                    "description": "placeholder text",
+                    "description": "option to skip the cosmicdb workflow",
                     "default": true
                 },
-                "skip_celllines": {
-                    "type": "boolean",
-                    "description": "placeholder text",
-                    "default": true
-                },
-                "skip_cosmic": {
+                "skip_genecodedb": {
                     "type": "boolean",
                     "default": true,
-                    "description": "placeholder text"
-                },
-                "skip_gnomaddb": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "placeholder text"
+                    "description": "option to skip the genecodedb workflow"
                 },
                 "skip_cbioportaldb": {
                     "type": "boolean",
                     "default": true,
-                    "description": "placeholder text"
+                    "description": "option to skip the cbioportaldb workflow"
                 },
                 "skip_additional_database": {
                     "type": "boolean",
                     "default": true,
-                    "description": "placeholder text"
+                    "description": "option to skip the addition of an additional database"
                 },
                 "skip_decoy": {
                     "type": "boolean",
                     "default": true,
-                    "description": "placeholder text"
+                    "description": "option to skip decoy generation"
                 },
                 "skip_fastqc": {
                     "type": "boolean",
                     "default": true,
-                    "description": "placeholder text"
+                    "description": "option to skip fastqc on the sample sheet"
                 },
                 "skip_trimming": {
                     "type": "boolean",
                     "default": true,
-                    "description": "placeholder text"
+                    "description": "option to skip trimming on the samplesheet"
                 }
             }
         },
@@ -267,35 +246,27 @@
                 "grch38_url": {
                     "type": "string",
                     "default": "ftp://ftp.ensembl.org/pub/release-115/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz",
-                    "description": "placeholder text"
+                    "description": "Download url for the human geneome GRCh38"
                 },
                 "cosmic_genes_url": {
                     "type": "string",
-                    "description": "placeholder text"
+                    "description": "download url for the COSMIC gene data"
                 },
                 "cosmic_mutations_url": {
                     "type": "string",
-                    "description": "placeholder text"
-                },
-                "cosmic_celllines_genes_url": {
-                    "type": "string",
-                    "description": "placeholder text"
-                },
-                "cosmic_celllines_mutations_url": {
-                    "type": "string",
-                    "description": "placeholder text"
+                    "description": "download url for the COSMIC mutations data"
                 },
                 "genecode_transcripts_url": {
                     "type": "string",
-                    "description": "placeholder text"
+                    "description": "download url for genecode transcripts data"
                 },
                 "genecode_annotations_url": {
                     "type": "string",
-                    "description": "placeholder text"
+                    "description": "download url for genecode annotation data"
                 },
                 "gnomad_url": {
                     "type": "string",
-                    "description": "placeholder text"
+                    "description": "download url for gnomad vcf data"
                 }
             }
         },
@@ -307,62 +278,62 @@
                 "dna_config": {
                     "type": "string",
                     "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/dna_config.yaml",
-                    "description": "placeholder text"
+                    "description": "config file used in the RNASEQDB workflow in the PYPGATK_DNA process"
                 },
                 "custom_config": {
                     "type": "string",
                     "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/custom_config.yaml",
-                    "description": "placeholder text"
+                    "description": "config file used in the RNASEQDB workflow in the PYPGATK_VCF process"
                 },
                 "genecode_config": {
                     "type": "string",
                     "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/genecode_config.yaml",
-                    "description": "placeholder text"
+                    "description": "config file used in the GENECODEDB workflow in the PYPGATK_VCF process"
                 },
                 "cbio_config": {
                     "type": "string",
                     "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/cbioportal_config.yaml",
-                    "description": "placeholder text"
+                    "description": "config file used in the CBIOPORTALDB workflow in the PYPGATK_CBIOPORTAL process"
                 },
                 "ensembl_downloader_config": {
                     "type": "string",
                     "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/ensembl_downloader_config.yaml",
-                    "description": "placeholder text"
+                    "description": "config file used in the ENSEMBLDB workflow in the PYPGATK_ENSEMBL_DOWNLOADER process"
                 },
                 "ensembl_config": {
                     "type": "string",
                     "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/ensembl_config.yaml",
-                    "description": "placeholder text"
+                    "description": "config file used in the ENSEMBLDB workflow in the PYPGATK_VCF process"
                 },
                 "ncrna_config": {
                     "type": "string",
                     "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/ncrna_config.yaml",
-                    "description": "placeholder text"
+                    "description": "config file used in the ENSEMBLDB workflow in the PYPGATK_NCRNA process"
                 },
                 "pseudogenes_config": {
                     "type": "string",
                     "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/pseudogenes_config.yaml",
-                    "description": "placeholder text"
+                    "description": "config file used in the ENSEMBLDB workflow in the PYPGATK_PSEUDOGENES process"
                 },
                 "altorfs_config": {
                     "type": "string",
                     "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/altorfs_config.yaml",
-                    "description": "placeholder text"
+                    "description": "config file used in the ENSEMBLDB workflow in the PYPGATK_ALTORFS process"
                 },
                 "cosmic_config": {
                     "type": "string",
                     "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/cosmic_config.yaml",
-                    "description": "placeholder text"
+                    "description": "config file used in the COSMICDB workflow in the PYPGATK_COSMIC process"
                 },
                 "clean_config": {
                     "type": "string",
                     "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/clean_config.yaml",
-                    "description": "placeholder text"
+                    "description": "config file used in the MERGEDB workflow in the ENSEMBL_CHECK process"
                 },
                 "decoy_config": {
                     "type": "string",
                     "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/protein_decoy.yaml",
-                    "description": "placeholder text"
+                    "description": "config file used in the MERGEDB workflow in the PYPGATK_DECOY process"
                 }
             }
         },
@@ -371,48 +342,51 @@
             "type": "object",
             "description": "paramiters for inputting into the pipeline.",
             "properties": {
+                "input": {
+                "type": "string",
+                "description": "samplesheet contaning fastq reads"
+                },
                 "annotation": {
                     "type": "string",
-                    "description": "placeholder text"
+                    "description": "annotation (.gtf) file for RNASEQDB"
                 },
                 "reference": {
                     "type": "string",
-                    "description": "placeholder text"
+                    "description": "genome reference (.fa) file for RNASEQDB"
                 },
                 "username": {
                     "type": "string",
-                    "description": "placeholder text"
+                    "description": "COSMIC username"
                 },
                 "password": {
                     "type": "string",
-                    "description": "placeholder text"
+                    "description": "COSMIC password"
                 },
                 "transcripts": {
                     "type": "string",
-                    "description": "placeholder text"
+                    "description": "gene transcripts (.fa) file for RNASEQDB"
                 },
                 "species_id": {
                     "type": "string",
-                    "description": "placeholder text"
+                    "description": "ENSEMBL species id"
                 },
                 "cbio_study": {
                     "type": "string",
-                    "description": "placeholder text"
+                    "description": "name of the cBioPortal study"
                 },
                 "faidx_get_genome_sizes": {
                     "type": "boolean",
-                    "default": true,
-                    "description": "placeholder text"
+                    "description": "boolean defining if the faidx should get the genome sized"
                 },
                 "samtools_sort_index": {
                     "type": "string",
                     "default": "bai",
-                    "description": "placeholder text"
+                    "description": "string defining which index samtool sort should produce (bai)"
                 },
                 "cosmic_cancer_type": {
                     "type": "string",
                     "default": "all",
-                    "description": "placeholder text"
+                    "description": "string difining which cancer types to include in the cosmic database"
                 }
             }
         }

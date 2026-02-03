@@ -1,78 +1,70 @@
 {
     "params: --skip_ensembl false": {
         "content": [
-            2,
+            0,
             null,
             [
-                "cat",
-                "cat/Total_cDNA.fa",
-                "execution_report_2026-01-28_10-29-33.html",
-                "execution_timeline_2026-01-28_10-29-33.html",
-                "pipeline_dag_2026-01-28_10-29-33.html",
-                "pipeline_info",
-                "pypgatk",
-                "pypgatk/Saccharomyces_cerevisiae.R64-1-1.115.gtf",
-                "pypgatk/Saccharomyces_cerevisiae.R64-1-1.cdna.all.fa",
-                "pypgatk/Saccharomyces_cerevisiae.R64-1-1.dna_sm.toplevel.fa",
-                "pypgatk/Saccharomyces_cerevisiae.R64-1-1.ncrna.fa",
-                "pypgatk/Saccharomyces_cerevisiae.R64-1-1.pep.all.fa",
-                "pypgatk/saccharomyces_cerevisiae_incl_consequences.vcf"
+                "execution_report_2026-01-30_14-41-44.html",
+                "execution_timeline_2026-01-30_14-41-44.html",
+                "pipeline_dag_2026-01-30_14-41-44.html",
+                "pipeline_info"
             ],
             [
-                "Total_cDNA.fa:md5,9dc953dfa91b9fe8376fb9c90326db36",
-                "execution_report_2026-01-28_10-29-33.html:md5,4bb48c4940f2d974fc01116fb063e49b",
-                "execution_timeline_2026-01-28_10-29-33.html:md5,9e1b53f00a7dc6a541e5d17a69ce745b",
-                "pipeline_dag_2026-01-28_10-29-33.html:md5,a095f394bba1c4bd9bcc4d56c1266220",
-                "Saccharomyces_cerevisiae.R64-1-1.115.gtf:md5,4546e64e896da01448bd1c207f4bb3c6",
-                "Saccharomyces_cerevisiae.R64-1-1.cdna.all.fa:md5,f9b7b0b77d3320f1d46e97a4f99c3650",
-                "Saccharomyces_cerevisiae.R64-1-1.dna_sm.toplevel.fa:md5,d49ac26e0a4e2719ae9a8e32f37be17b",
-                "Saccharomyces_cerevisiae.R64-1-1.ncrna.fa:md5,bfaed63bb741fd5f6f0a4a12c52d54ed",
-                "Saccharomyces_cerevisiae.R64-1-1.pep.all.fa:md5,f0e468e7bd05e9b8c7ceb49b7a687c2d",
-                "saccharomyces_cerevisiae_incl_consequences.vcf:md5,5f89b8bfb7c05c15fdec9b5a51ed0bdd"
+                "execution_report_2026-01-30_14-41-44.html:md5,9c262f8be6bd6858b78a94099380b878",
+                "execution_timeline_2026-01-30_14-41-44.html:md5,163046e3efa592365b9e74b7a1954775",
+                "pipeline_dag_2026-01-30_14-41-44.html:md5,c302bef11b51606e93fd4dce26e8c386"
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.3"
+            "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-28T10:29:53.215268891"
+        "timestamp": "2026-01-30T14:41:58.129993053"
     },
     "params: --skip_ensembl false -stub": {
         "content": [
-            2,
+            6,
             null,
             [
                 "cat",
                 "cat/Total_cDNA.fa",
-                "execution_report_2026-01-28_10-30-03.html",
-                "execution_timeline_2026-01-28_10-30-03.html",
-                "pipeline_dag_2026-01-28_10-30-03.html",
+                "cat/concatenated_vcf.vcf",
+                "cat/final_database.fa",
+                "execution_report_2026-01-30_14-42-08.html",
+                "execution_timeline_2026-01-30_14-42-08.html",
+                "pipeline_dag_2026-01-30_14-42-08.html",
                 "pipeline_info",
                 "pypgatk",
+                "pypgatk/cleaned_database.fa",
                 "pypgatk/ensembl.dna_test.fa",
                 "pypgatk/ensembl.gtf",
                 "pypgatk/ensembl.pep.all.fa",
                 "pypgatk/ensembl.vcf",
                 "pypgatk/ensembl_cdna.all.fa",
-                "pypgatk/ensembl_ncrna.fa"
+                "pypgatk/ensembl_ncrna.fa",
+                "pypgatk/ensembl_vcf.fa"
             ],
             [
                 "Total_cDNA.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
-                "execution_report_2026-01-28_10-30-03.html:md5,c13544431d8aefb3be4af188c278ef64",
-                "execution_timeline_2026-01-28_10-30-03.html:md5,edd36cee5d0e0b76efde5abfb85543cf",
-                "pipeline_dag_2026-01-28_10-30-03.html:md5,a095f394bba1c4bd9bcc4d56c1266220",
+                "concatenated_vcf.vcf:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "final_database.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "execution_report_2026-01-30_14-42-08.html:md5,2859971678ba59628a2a07e0f4a32a93",
+                "execution_timeline_2026-01-30_14-42-08.html:md5,5f28e36397dad85dabd1a187bc15cabf",
+                "pipeline_dag_2026-01-30_14-42-08.html:md5,c302bef11b51606e93fd4dce26e8c386",
+                "cleaned_database.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "ensembl.dna_test.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "ensembl.gtf:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "ensembl.pep.all.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "ensembl.vcf:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "ensembl_cdna.all.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
-                "ensembl_ncrna.fa:md5,d41d8cd98f00b204e9800998ecf8427e"
+                "ensembl_ncrna.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "ensembl_vcf.fa:md5,d41d8cd98f00b204e9800998ecf8427e"
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.3"
+            "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-28T10:30:19.729598668"
+        "timestamp": "2026-01-30T14:42:24.948039554"
     }
 }

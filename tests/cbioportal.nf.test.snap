@@ -1,44 +1,36 @@
 {
     "params: --skip_cbioportaldb false": {
         "content": [
-            6,
+            3,
             null,
             [
-                "cat",
-                "cat/final_database.fa",
                 "cbioportal",
                 "cbioportal/cbioportal_allstudies_data_clinical_sample.txt",
                 "cbioportal/cbioportal_allstudies_data_mutations.txt",
-                "execution_report_2026-01-28_10-26-07.html",
-                "execution_timeline_2026-01-28_10-26-07.html",
+                "execution_report_2026-01-30_14-34-58.html",
+                "execution_timeline_2026-01-30_14-34-58.html",
                 "gunzip",
                 "gunzip/grch38.grch38",
-                "pipeline_dag_2026-01-28_10-26-07.html",
+                "pipeline_dag_2026-01-30_14-34-58.html",
                 "pipeline_info",
-                "pypgatk",
-                "pypgatk/cbio_samples.fa",
-                "pypgatk/cleaned_database.fa",
                 "wget",
                 "wget/grch38.gz"
             ],
             [
-                "final_database.fa:md5,dd50b768ec244b06a754ae3a662f56c5",
                 "cbioportal_allstudies_data_clinical_sample.txt:md5,4ce53453c8d794fe2ee194ca4d6ca2cf",
                 "cbioportal_allstudies_data_mutations.txt:md5,141b7dd89416015113a2f801c7b7a8be",
-                "execution_report_2026-01-28_10-26-07.html:md5,ef4c66372509e750a6083ebaf35a805c",
-                "execution_timeline_2026-01-28_10-26-07.html:md5,00dd770ea41d02307a62110731b57991",
+                "execution_report_2026-01-30_14-34-58.html:md5,64f206a77833f32d4e2dbaba83d1bd66",
+                "execution_timeline_2026-01-30_14-34-58.html:md5,e72d26dce4ef1ed617d93f963c96cbc4",
                 "grch38.grch38:md5,64ca420fd2f82bdb443f8690b950ce9e",
-                "pipeline_dag_2026-01-28_10-26-07.html:md5,dfd59599edf51a7196e93b56d89425cb",
-                "cbio_samples.fa:md5,dd50b768ec244b06a754ae3a662f56c5",
-                "cleaned_database.fa:md5,c1b404aee65a55f7f0b4b6fc00167e85",
+                "pipeline_dag_2026-01-30_14-34-58.html:md5,dfd59599edf51a7196e93b56d89425cb",
                 "grch38.gz:md5,64ca420fd2f82bdb443f8690b950ce9e"
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.3"
+            "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-28T10:26:52.130492503"
+        "timestamp": "2026-01-30T14:35:38.0310119"
     },
     "params: --skip_cbioportaldb false -stub": {
         "content": [
@@ -50,11 +42,11 @@
                 "cbioportal",
                 "cbioportal/cbioportal_allstudies_data_clinical_sample.txt",
                 "cbioportal/cbioportal_allstudies_data_mutations.txt",
-                "execution_report_2026-01-28_10-27-18.html",
-                "execution_timeline_2026-01-28_10-27-18.html",
+                "execution_report_2026-01-30_14-36-09.html",
+                "execution_timeline_2026-01-30_14-36-09.html",
                 "gunzip",
                 "gunzip/grch38.grch38",
-                "pipeline_dag_2026-01-28_10-27-18.html",
+                "pipeline_dag_2026-01-30_14-36-09.html",
                 "pipeline_info",
                 "pypgatk",
                 "pypgatk/cbio_samples.fa",
@@ -66,18 +58,18 @@
                 "final_database.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "cbioportal_allstudies_data_clinical_sample.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "cbioportal_allstudies_data_mutations.txt:md5,d41d8cd98f00b204e9800998ecf8427e",
-                "execution_report_2026-01-28_10-27-18.html:md5,6f69643aa6e57b2a76319ddf501b0725",
-                "execution_timeline_2026-01-28_10-27-18.html:md5,bfc023c9e6b43e015493e5fe550b1364",
+                "execution_report_2026-01-30_14-36-09.html:md5,a0fe213317a39e677dfb9372132f3bae",
+                "execution_timeline_2026-01-30_14-36-09.html:md5,a01d032dd4052762ba94f81521f32110",
                 "grch38.grch38:md5,d41d8cd98f00b204e9800998ecf8427e",
-                "pipeline_dag_2026-01-28_10-27-18.html:md5,dfd59599edf51a7196e93b56d89425cb",
+                "pipeline_dag_2026-01-30_14-36-09.html:md5,dfd59599edf51a7196e93b56d89425cb",
                 "cbio_samples.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "cleaned_database.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
                 {
                     "directory": false,
                     "file": true,
-                    "freeSpace": 188177692229632,
+                    "freeSpace": 186627150315520,
                     "canonicalPath": "/exports/eddie/scratch/s2215490/proteogenomicsdb/.nf-test/tests/5728af5336cc8d074a3d6dd473c1028e/output/wget/grch38.gz",
-                    "usableSpace": 188177692229632,
+                    "usableSpace": 186627150315520,
                     "hidden": false,
                     "totalSpace": 268829984817152,
                     "path": "/exports/eddie/scratch/s2215490/proteogenomicsdb/.nf-test/tests/5728af5336cc8d074a3d6dd473c1028e/output/wget/grch38.gz",
@@ -90,8 +82,8 @@
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.3"
+            "nextflow": "25.10.2"
         },
-        "timestamp": "2026-01-28T10:27:37.355092348"
+        "timestamp": "2026-01-30T14:36:25.641134969"
     }
 }

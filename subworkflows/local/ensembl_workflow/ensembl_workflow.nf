@@ -15,10 +15,10 @@ include { PYPGATKDNA as PYPGATK_PSEUDOGENES } from '../../../modules/local/pypga
 include { PYPGATKDNA as PYPGATK_ALRORFS     } from '../../../modules/local/pypgatk/dnaseq_to_proteindb/main.nf'
 
 //modules for the generation of the main ENSEMBL database
-include { BCFTOOLS_SORT       } from '../../../modules/nf-core/bcftools/sort/main.nf'
-include { BCFTOOLS_CONCAT     } from '../../../modules/nf-core/bcftools/concat/main.nf'
-include { TABIX_BGZIP         } from '../../../modules/nf-core/tabix/bgzip/main.nf'
-include { BCFTOOLS_INDEX      } from '../../../modules/nf-core/bcftools/index/main.nf'
+//include { BCFTOOLS_SORT       } from '../../../modules/nf-core/bcftools/sort/main.nf'
+//include { BCFTOOLS_CONCAT     } from '../../../modules/nf-core/bcftools/concat/main.nf'
+//include { TABIX_BGZIP         } from '../../../modules/nf-core/tabix/bgzip/main.nf'
+//include { BCFTOOLS_INDEX      } from '../../../modules/nf-core/bcftools/index/main.nf'
 include { CAT_CAT as CAT_VCF  } from '../../../modules/nf-core/cat/cat/main.nf'
 include { PYPGATK_VCF         } from '../../../modules/local/pypgatk/vcf_to_proteindb/main.nf'
 
@@ -192,7 +192,7 @@ if (!params.skip_ensembl_vcf) {
 
     //populates ensembl_vcf with the vcf file downloaded from ENSEMBL
     ensembl_vcf = ensembl_vcf.mix(PYPGATK_ENSEMBL_DOWNLOAD.out.vcf).collect()
-        .map { [ [id: 'concatenated_vcf' ], it, [] ] }
+        .map { [ [id: 'concatenated_vcf' ], it ] }
     
     //populates ensembl_gtf with the gtf file downloaded from ENSEMBL 
     ensembl_gtf = PYPGATK_ENSEMBL_DOWNLOAD.out.gtf.collect()
