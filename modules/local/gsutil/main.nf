@@ -25,7 +25,7 @@ process GSUTIL {
     """
     gsutil cp \\
      ${url} \\
-     ./copy.vcf.bgz \\
+     ./${prefix}.vcf.bgz \\
 
         cat <<-END_VERSIONS > versions.yml
     "${task.process}":

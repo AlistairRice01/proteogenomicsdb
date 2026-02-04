@@ -12,7 +12,6 @@ name "Test pipeline with cbioportal database generation"
                 skip_cbioportaldb  = false
                 cbioportal_url = 'https://datahub.assets.cbioportal.org/es_iocurie_2014.tar.gz'
                 grch38_url = 'ftp://ftp.ensembl.org/pub/release-115/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz'
-                //grch37_url  = 'ftp://ftp.ensembl.org/pub/release-75/fasta/homo_sapiens/cds/Homo_sapiens.GRCh37.75.cds.all.fa.gz'
                 cbio_study  = 'es_iocurie_2014'
                 outdir      = "${outputDir}" 
             
@@ -50,7 +49,6 @@ name "Test pipeline with cbioportal database generation"
                 skip_cbioportaldb  = false
                 cbioportal_url = 'https://datahub.assets.cbioportal.org/es_iocurie_2014.tar.gz'
                 grch38_url = 'ftp://ftp.ensembl.org/pub/release-115/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz'
-                //grch37_url  = 'ftp://ftp.ensembl.org/pub/release-75/fasta/homo_sapiens/cds/Homo_sapiens.GRCh37.75.cds.all.fa.gz'
                 cbio_study  = 'es_iocurie_2014'
                 outdir      = "${outputDir}" 
             

@@ -23,6 +23,7 @@ take:
     mixed_databases     //channel: [ [ val(meta), [ database ] ], ... , [ val(meta), database ] ]
     clean_config        //channel: /path/to/clean config
     decoy_config        //channel: /path/to/decoy config
+    skip_decoy
 
 main:
 
@@ -60,7 +61,7 @@ main:
     versions_ch = versions_ch.mix(PYPGATK_CLEAN.out.versions).collect()
 
 //conditional execution based on if skip_decoy is true or false
-if (!params.skip_decoy) {
+if (!skip_decoy) {
 
     //PYPGATK_DECOY generates a decoy database from the cleaned database using the decoy_config
     PYPGATK_DECOY (

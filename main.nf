@@ -47,44 +47,64 @@ workflow {
     // WORKFLOW: Run pipeline
     //
     DATABASE_GENERATION (
-        //proteogenomics paramiters
+        //RNASEQDB paramiters
         params.bam_file,
-        params.bam_index,            //samplesheet containing the rna-seq transcripts
+        params.bam_index,       //
         params.reference,       //
         params.annotation,      //
         params.transcripts,     //
         params.custom_config,   //path to the custom_config
         params.dna_config,      //path to the dna_config              
-        params.faidx_get_genome_sizes,     
-        params.samtools_sort_index,       
-        //ensembl paramaters
+        params.faidx_get_genome_sizes,
+
+        //ENSEMBLDB paramaters
         params.ensembl_downloader_config,   //path to the ensembl_downloader_config
         params.species_id,                  //species id to download from ensembl
         params.ensembl_config,              //path to the ensembl_config
         params.altorfs_config,              //path to the altorfs_config
         params.pseudogenes_config,          //path to the pseudogenes_config
         params.ncrna_config,                //path to the ncrna_config
-        //cosmic paramiters
+        
+        //COSMICDB paramiters
         params.cosmic_config,   //path to the cosmic_config
         params.username,        //            
         params.password, 
         params.cosmic_genes_url,
         params.cosmic_mutations_url,
-        params.cosmic_celllines_genes_url,
-        params.cosmic_celllines_mutations_url,   //
-        //genecode/gnomad paramaters
+        params.cosmic_cancer_type,
+
+        //GENECODEDB paramaters
         params.genecode_transcripts_url,    //
         params.genecode_annotations_url,    //
         params.gnomad_url,                  //
         params.genecode_config,               //path to the gnomad_config
-        //cbioportal paramaters
+        
+        //CBIOPORTALDB paramaters
         params.cbioportal_url,
         params.grch38_url,      //      
         params.cbio_study,
         params.cbio_config,     //path to the cbioportal_config
-        //merge paramaters
+        
+        //MERGEDB paramaters
         params.clean_config,     //
         params.decoy_config,     //path to the decoy_config
+        params.additional_database,
+        
+        //skip options
+        params.skip_rnaseqdb,
+        params.skip_dnaseq, 
+        params.skip_vcf,   
+        params.skip_ensembldb, 
+        params.skip_proteome,   
+        params.skip_ncrna,      
+        params.skip_pseudogenes,
+        params.skip_altorfs,   
+        params.skip_ensembl_vcf,
+        params.skip_cosmicdb,   
+        params.skip_genecodedb,  
+        params.skip_cbioportaldb,
+        params.skip_decoy, 
+        params.skip_additional_database
 
     )
 

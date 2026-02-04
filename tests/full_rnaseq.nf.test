@@ -11,15 +11,18 @@ nextflow_pipeline {
             params {
 
                 skip_rnaseqdb = false
-                skip_fastqc   = false
-                skip_trimming = false
-                //input         = params.pipelines_testdata_base_path + "/genomics/eukaryotes/saccharomyces_cerevisiae/samplesheet.csv"
-                input = "$projectDir/assets/test_files/samplesheet.csv"
-                annotation    = "/exports/eddie/scratch/s2215490/proteogenomicsdb/assets/test_files/Saccharomyces_cerevisiae.R64-1-1.115.gtf"
-                reference     = "/exports/eddie/scratch/s2215490/proteogenomicsdb/assets/test_files/Saccharomyces_cerevisiae.R64-1-1.dna.toplevel.fa"
-                transcripts   = "/exports/eddie/scratch/s2215490/proteogenomicsdb/assets/test_files/Saccharomyces_cerevisiae.R64-1-1.cdna.all.fa"
+                skip_dnaseq   = false
+                skip_vcf      = false
+
+                //RNASEQDB inputs
+                bam_file  = "$projectDir/assets/test_files/input_1.sorted.bam"
+                bam_index  = "$projectDir/assets/test_files/input_1.sorted.bam.bai"
+                annotation  = "$projectDir/assets/test_files/Saccharomyces_cerevisiae.R64-1-1.115.gtf"
+                reference   = "$projectDir/assets/test_files/Saccharomyces_cerevisiae.R64-1-1.dna.toplevel.fa"
+                transcripts = "$projectDir/assets/test_files/Saccharomyces_cerevisiae.R64-1-1.cdna.all.fa"
+
                 outdir        = "${outputDir}" 
-            
+
             }
         }
 
@@ -52,12 +55,16 @@ nextflow_pipeline {
             params {
 
                 skip_rnaseqdb = false
-                skip_fastqc   = false
-                skip_trimming = false
-                input         = "$projectDir/assets/samplesheet.csv"
-                annotation    = "/exports/eddie/scratch/s2215490/nextflow/proteogenomicsDB_inputs/Saccharomyces_cerevisiae.R64-1-1.115.gtf"
-                reference     = "/exports/eddie/scratch/s2215490/nextflow/proteogenomicsDB_inputs/Saccharomyces_cerevisiae.R64-1-1.dna.toplevel.fa"
-                transcripts   = "/exports/eddie/scratch/s2215490/nextflow/proteogenomicsDB_inputs/Saccharomyces_cerevisiae.R64-1-1.cdna.all.fa"
+                skip_dnaseq   = false
+                skip_vcf      = false
+
+                //RNASEQDB inputs
+                bam_file  = "$projectDir/assets/test_files/input_1.sorted.bam"
+                bam_index  = "$projectDir/assets/test_files/input_1.sorted.bam.bai"
+                annotation  = "$projectDir/assets/test_files/Saccharomyces_cerevisiae.R64-1-1.115.gtf"
+                reference   = "$projectDir/assets/test_files/Saccharomyces_cerevisiae.R64-1-1.dna.toplevel.fa"
+                transcripts = "$projectDir/assets/test_files/Saccharomyces_cerevisiae.R64-1-1.cdna.all.fa"
+                
                 outdir        = "${outputDir}" 
             
             }

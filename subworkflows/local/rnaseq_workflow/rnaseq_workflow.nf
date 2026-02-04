@@ -35,12 +35,15 @@ take:
     dna_config             //channel: /path/to/dna config file
     cdna                   //channel: /path/to/cdna transcripts
     faidx_get_genome_sizes //boolean: whether FAIDX gets genome sizes
-    samtools_sort_index    //string: index sorting type
+    skip_dnaseq, 
+    skip_vcf
 
 main:
 
     merged_databases_ch = Channel.empty()
     versions_ch         = Channel.empty()
+    
+    fasta_fai_ch        = Channel.empty()
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -69,12 +72,21 @@ main:
     .set{ reference_ch }
     .collect()
 
+    //SAMTOOLS_FAIDX takes the reference genome (fasta) 
+    //and generates a fasta index file (fai)
+    SAMTOOLS_FAIDX (
+        reference_ch,
+        [ [], [] ],
+        false  
+    )
+    versions_ch = versions_ch.mix(SAMTOOLS_FAIDX.out.versions_samtools)
+    fasta_fai_ch = SAMTOOLS_FAIDX.out.fai.collect()
+
 //conditional execution based on if skip_dnaseq is true or false
-if (!params.skip_dnaseq) {
+if (!skip_dnaseq) {
 
     //creating empty channels used in the dna database generation pathway
     stringtie_gtf_ch        = Channel.empty()
-    fasta_fai_ch            = Channel.empty()
     gffcompare_ch           = Channel.empty()
     gffout                  = Channel.empty()
 
@@ -86,16 +98,6 @@ if (!params.skip_dnaseq) {
     )
     versions_ch = versions_ch.mix(STRINGTIE_STRINGTIE.out.versions)
     stringtie_gtf_ch = STRINGTIE_STRINGTIE.out.transcript_gtf
-
-    //SAMTOOLS_FAIDX takes the reference genome (fasta) 
-    //and generates a fasta index file (fai)
-    SAMTOOLS_FAIDX (
-        reference_ch,
-        [ [], [] ],
-        false  
-    )
-    versions_ch = versions_ch.mix(SAMTOOLS_FAIDX.out.versions_samtools)
-    fasta_fai_ch = SAMTOOLS_FAIDX.out.fai.collect()
 
     //cerates an empty channel that will combine the 
     //genome fasta and genome fasta index channels
@@ -159,7 +161,7 @@ else {
 */
 
 //conditional execution based on if skip_vcf is true or false
-if (!params.skip_vcf) {
+if (!skip_vcf) {
         
     genome_bam_bai_ch = Channel.empty()
     freebayes_ch      = Channel.empty()

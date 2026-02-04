@@ -39,6 +39,11 @@ take:
     altorfs_config            //channel: /path/to/altorfs config
     pseudogenes_config        //channel: /path/to/pseudogenes config
     ncrna_config              //channel: /path/to/ncrna config
+    skip_proteome,   
+    skip_ncrna,      
+    skip_pseudogenes,
+    skip_altorfs,   
+    skip_ensembl_vcf
 
 main:
 
@@ -89,7 +94,7 @@ main:
 */
 
 //conditional execution based on if skip_proteome is true or false
-if (!params.skip_proteome) {
+if (!skip_proteome) {
 
     //creates an empty channel that will then be populated with the protein files downloaded from ENSEMBL
     reference_proteome = Channel.empty()
@@ -106,7 +111,7 @@ else {
     }
 
 //conditional execution based on if skip_ncrna is true or false
-if (!params.skip_ncrna) {
+if (!skip_ncrna) {
 
     //PYPGATK_NCRNA takes the total_cdna and the ncrna_config to generate a peptide database
     PYPGATK_NCRNA (
@@ -126,7 +131,7 @@ else {
     }
 
 //conditional execution based on if skip_pseudogenes is true or false
-if (!params.skip_pseudogenes) {
+if (!skip_pseudogenes) {
 
     //PYPGATK_PSEUDOGENES takes the total_cdna and the pseudogenes_config to generate a peptide database
     PYPGATK_PSEUDOGENES (
@@ -146,7 +151,7 @@ else {
     }
 
 //conditional execution based on if skip_altorfs is true or false
-if (!params.skip_altorfs) {
+if (!skip_altorfs) {
 
     //creates an empty channel that will then be populated with the cdna files downloaded from ENSEMBL
     cdna_database = Channel.empty()
@@ -183,7 +188,7 @@ else {
 */
 
 //conditional execution based on if skip_ensembl_vcf is true or false
-if (!params.skip_ensembl_vcf) {
+if (!skip_ensembl_vcf) {
 
     //creating empty channels used in the ENSEMBL vcf database generation pathway
     ensembl_vcf = Channel.empty()

@@ -1,31 +1,34 @@
 nextflow_workflow {
 
-    name "Test Subworkflow CBIOPORTALDB"
-    script "../main.nf"
-    workflow "CBIOPORTALDB"
+    name "Test Subworkflow COSMICDB"
+    script "../cosmic_workflow.nf"
+    workflow "COSMICDB"
     config "./nextflow.config"
 
-    test("default options") {
+    test("--skip_cosmicdb false") {
 
         when {
             workflow {
                 """
-                gencode                  = false
-                featurecounts_group_type = 'gene_biotype'
-                aligner                  = 'star_salmon,star_rsem,hisat2'
-                pseudo_aligner           = 'salmon,kallisto'
-                skip_gtf_filter          = false
-                skip_bbsplit             = false
-                skip_sortmerna           = true
-                skip_alignment           = false
-                skip_pseudo_alignment    = false
-                use_sentieon_star        = false
 
-                input[0]  = file(params.pipelines_testdata_base_path + 'reference/genome.fasta', checkIfExists: true)
-                input[1]  = file(params.pipelines_testdata_base_path + 'reference/genes_with_empty_tid.gtf', checkIfExists: true)
-                input[2]  = file(params.pipelines_testdata_base_path + 'reference/genes.gff', checkIfExists: true)
-                input[3]  = file(params.pipelines_testdata_base_path + 'reference/gfp.fa', checkIfExists: true)
-                input[4]  = file(params.pipelines_testdata_base_path + 'reference/transcriptome.fasta', checkIfExists: true)
+                input[0]  = file('$projectDir/conf/pypgatk_config_files/cosmic_config.yaml', checkIfExists: true)
+                input[1]  = 'username'
+                input[2]  = 'password'
+                input[3]  = 'https://cancer.sanger.ac.uk/api/mono/products/v1/downloads/scripted?path=grch38/cosmic/v103/Cosmic_Genes_Fasta_v103_GRCh38.tar&bucket=downloads'
+                input[4]  = 'https://cancer.sanger.ac.uk/api/mono/products/v1/downloads/scripted?path=grch38/cosmic/v103/Cosmic_GenomeScreensMutant_Tsv_v103_GRCh38.tar&bucket=downloads'
+                
+ //GNOMADDB inputs
+  genecode_transcripts_url = 'https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.transcripts.fa.gz'
+  genecode_annotations_url = 'https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.annotation.gtf.gz'
+  gnomad_url               =  'gs://gcp-public-data--gnomad/release/2.1.1/vcf/exomes/gnomad.exomes.r2.1.1.sites.18.vcf.bgz'
+  genecode_config            = "$projectDir/conf/pypgatk_config_files/genecode_config.yaml"
+
+
+            genecode_transcripts_url_ch,
+            genecode_annotations_url_ch,
+            gnomad_url_ch,
+            genecode_config_ch
+
                 """
             }
         }
@@ -34,21 +37,36 @@ nextflow_workflow {
             assertAll(
                 { assert workflow.success},
                 { assert snapshot(
-                    workflow.out.transcript_fasta,
-                    workflow.out.salmon_index,
-                    workflow.out.fasta,
-                    workflow.out.gtf,
-                    workflow.out.fai,
-                    workflow.out.gene_bed,
-                    workflow.out.chrom_sizes,
-                    workflow.out.splicesites,
-                    workflow.out.sortmerna_index,
-                    workflow.out.star_index,
-                    workflow.out.rsem_index,
-                    workflow.out.hisat2_index,
-                    workflow.out.kallisto_index,
-                    workflow.out.versions
+                    workflow.out.versions_ch,
+                    workflow.out.cbioportal_database
                 ).match() }
             )
         }
     }
+
+    test("--skip_cosmicdb false -stub") {
+
+        when {
+            workflow {
+                """
+                input[0]  = file('$projectDir/conf/pypgatk_config_files/cosmic_config.yaml', checkIfExists: true)
+                input[1]  = 'username'
+                input[2]  = 'password'
+                input[3]  = 'https://cancer.sanger.ac.uk/api/mono/products/v1/downloads/scripted?path=grch38/cosmic/v103/Cosmic_Genes_Fasta_v103_GRCh38.tar&bucket=downloads'
+                input[4]  = 'https://cancer.sanger.ac.uk/api/mono/products/v1/downloads/scripted?path=grch38/cosmic/v103/Cosmic_GenomeScreensMutant_Tsv_v103_GRCh38.tar&bucket=downloads'
+
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success},
+                { assert snapshot(
+                    workflow.out.versions_ch,
+                    workflow.out.cbioportal_database
+                ).match() }
+            )
+        }
+    }
+}

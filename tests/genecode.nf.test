@@ -9,10 +9,12 @@ name "Test pipeline with gnomad/genecode database generation"
         when {
             params {
 
-                skip_genecodedb              = false
+                skip_genecodedb = false
+                //GENECODEDB inputs
                 genecode_transcripts_url = 'https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.transcripts.fa.gz'
                 genecode_annotations_url = 'https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.annotation.gtf.gz'
                 gnomad_url               =  'gs://gcp-public-data--gnomad/release/2.1.1/vcf/exomes/gnomad.exomes.r2.1.1.sites.18.vcf.bgz'
+                
                 outdir                   = "${outputDir}"
             
             }
@@ -46,10 +48,12 @@ name "Test pipeline with gnomad/genecode database generation"
         when {
             params {
 
-                skip_genecode              = false
+                skip_genecodedb = false
+                //GENECODEDB inputs
                 genecode_transcripts_url = 'https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.transcripts.fa.gz'
                 genecode_annotations_url = 'https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.annotation.gtf.gz'
                 gnomad_url               =  'gs://gcp-public-data--gnomad/release/2.1.1/vcf/exomes/gnomad.exomes.r2.1.1.sites.18.vcf.bgz'
+                
                 outdir                   = "${outputDir}"
             
             }

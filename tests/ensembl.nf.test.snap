@@ -4,67 +4,59 @@
             0,
             null,
             [
-                "execution_report_2026-01-30_14-41-44.html",
-                "execution_timeline_2026-01-30_14-41-44.html",
-                "pipeline_dag_2026-01-30_14-41-44.html",
+                "execution_report_2026-02-04_13-07-00.html",
+                "execution_timeline_2026-02-04_13-07-00.html",
+                "pipeline_dag_2026-02-04_13-07-00.html",
                 "pipeline_info"
             ],
             [
-                "execution_report_2026-01-30_14-41-44.html:md5,9c262f8be6bd6858b78a94099380b878",
-                "execution_timeline_2026-01-30_14-41-44.html:md5,163046e3efa592365b9e74b7a1954775",
-                "pipeline_dag_2026-01-30_14-41-44.html:md5,c302bef11b51606e93fd4dce26e8c386"
+                "execution_report_2026-02-04_13-07-00.html:md5,e5672d7b19f8c9662e49be2d16e61ff8",
+                "execution_timeline_2026-02-04_13-07-00.html:md5,7e286732644f85dd2a115251af29f750",
+                "pipeline_dag_2026-02-04_13-07-00.html:md5,7b0122074940767d6250b1951bee74af"
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.3"
         },
-        "timestamp": "2026-01-30T14:41:58.129993053"
+        "timestamp": "2026-02-04T13:07:27.211075538"
     },
     "params: --skip_ensembl false -stub": {
         "content": [
-            6,
+            2,
             null,
             [
                 "cat",
                 "cat/Total_cDNA.fa",
-                "cat/concatenated_vcf.vcf",
-                "cat/final_database.fa",
-                "execution_report_2026-01-30_14-42-08.html",
-                "execution_timeline_2026-01-30_14-42-08.html",
-                "pipeline_dag_2026-01-30_14-42-08.html",
+                "execution_report_2026-02-04_13-07-36.html",
+                "execution_timeline_2026-02-04_13-07-36.html",
+                "pipeline_dag_2026-02-04_13-07-36.html",
                 "pipeline_info",
                 "pypgatk",
-                "pypgatk/cleaned_database.fa",
                 "pypgatk/ensembl.dna_test.fa",
                 "pypgatk/ensembl.gtf",
                 "pypgatk/ensembl.pep.all.fa",
                 "pypgatk/ensembl.vcf",
                 "pypgatk/ensembl_cdna.all.fa",
-                "pypgatk/ensembl_ncrna.fa",
-                "pypgatk/ensembl_vcf.fa"
+                "pypgatk/ensembl_ncrna.fa"
             ],
             [
                 "Total_cDNA.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
-                "concatenated_vcf.vcf:md5,d41d8cd98f00b204e9800998ecf8427e",
-                "final_database.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
-                "execution_report_2026-01-30_14-42-08.html:md5,2859971678ba59628a2a07e0f4a32a93",
-                "execution_timeline_2026-01-30_14-42-08.html:md5,5f28e36397dad85dabd1a187bc15cabf",
-                "pipeline_dag_2026-01-30_14-42-08.html:md5,c302bef11b51606e93fd4dce26e8c386",
-                "cleaned_database.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
+                "execution_report_2026-02-04_13-07-36.html:md5,6990d0eeb530f9ac1428c961c7787074",
+                "execution_timeline_2026-02-04_13-07-36.html:md5,173339a65de601316ce36ad1f87bf810",
+                "pipeline_dag_2026-02-04_13-07-36.html:md5,7b0122074940767d6250b1951bee74af",
                 "ensembl.dna_test.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "ensembl.gtf:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "ensembl.pep.all.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "ensembl.vcf:md5,d41d8cd98f00b204e9800998ecf8427e",
                 "ensembl_cdna.all.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
-                "ensembl_ncrna.fa:md5,d41d8cd98f00b204e9800998ecf8427e",
-                "ensembl_vcf.fa:md5,d41d8cd98f00b204e9800998ecf8427e"
+                "ensembl_ncrna.fa:md5,d41d8cd98f00b204e9800998ecf8427e"
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
-            "nextflow": "25.10.2"
+            "nextflow": "25.10.3"
         },
-        "timestamp": "2026-01-30T14:42:24.948039554"
+        "timestamp": "2026-02-04T13:08:02.535320703"
     }
 }

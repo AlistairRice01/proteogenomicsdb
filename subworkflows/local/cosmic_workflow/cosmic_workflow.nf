@@ -6,7 +6,6 @@
 
 include { COSMIC_DOWNLOAD           } from '../../../modules/local/cosmic_downloader/main.nf'
 include { PYPGATK_COSMICDB          } from '../../../modules/local/pypgatk/cosmic_to_proteindb/main.nf'
-include { PYPGATK_COSMICDB as PYPGATK_COSMICDB_CELLINES } from '../../../modules/local/pypgatk/cosmic_to_proteindb/main.nf'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -24,8 +23,7 @@ take:
     password_ch                    //string: COSMIC password
     cosmic_url_genes               //string: cosmic genes url
     cosmic_url_mutations           //string: cosmic mutations url
-    cosmic_url_celllines_genes     //string: cosmic celllines genes url
-    cosmic_url_celllines_mutations //string: cosmic celllines mutations url
+    cosmic_cancer_type_ch
 
 main:
 
@@ -52,6 +50,7 @@ main:
     PYPGATK_COSMICDB ( 
         cosmic_genes.map { [ [:], it ] },
         cosmic_mutations.map { [ [:], it ] },
+        cosmic_cancer_type,
         cosmic_config
     )   
     versions_ch = versions_ch.mix(PYPGATK_COSMICDB.out.versions).collect()

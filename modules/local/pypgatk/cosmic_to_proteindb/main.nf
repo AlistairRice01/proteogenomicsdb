@@ -11,6 +11,7 @@ process PYPGATK_COSMICDB {
     input:
     tuple val(meta), path(cosmic_genes)
     tuple val(meta), path(cosmic_mutations)
+    val cosmic_cancer_type
     path cosmic_config
 
     output:
@@ -31,7 +32,7 @@ process PYPGATK_COSMICDB {
         --input_mutation ${cosmic_mutations} \\
         --input_genes ${cosmic_genes} \\
         --filter_column 'Histology subtype 1' \\
-        --accepted_values all \\
+        --accepted_values ${cosmic_cancer_type} \\
         --output_db ${name} \\
  
     cat <<-END_VERSIONS > versions.yml
