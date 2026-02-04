@@ -122,31 +122,6 @@
                 }
             }
         },
-        "multiqc_options": {
-            "title": "multiqc_options",
-            "type": "object",
-            "description": "Paramiters for running multiqc.",
-            "properties": {
-                "multiqc_logo": {
-                    "type": "string",
-                    "description": "placeholder text"
-                },
-                "max_multiqc_email_size": {
-                    "type": "string",
-                    "default": "25.MB",
-                    "description": "placeholder text"
-                },
-                "multiqc_methods_description": {
-                    "type": "string",
-                    "description": "placeholder text"
-                },
-                "multiqc_config": {
-                    "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/assets/multiqc_config.yaml",
-                    "description": "config file used in the multiqc process"
-                }
-            }
-        },
         "skip_options": {
             "title": "skip_options",
             "type": "object",
@@ -221,16 +196,6 @@
                     "type": "boolean",
                     "default": true,
                     "description": "option to skip decoy generation"
-                },
-                "skip_fastqc": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "option to skip fastqc on the sample sheet"
-                },
-                "skip_trimming": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "option to skip trimming on the samplesheet"
                 }
             }
         },
@@ -342,10 +307,6 @@
             "type": "object",
             "description": "paramiters for inputting into the pipeline.",
             "properties": {
-                "input": {
-                "type": "string",
-                "description": "samplesheet contaning fastq reads"
-                },
                 "annotation": {
                     "type": "string",
                     "description": "annotation (.gtf) file for RNASEQDB"
@@ -378,11 +339,6 @@
                     "type": "boolean",
                     "description": "boolean defining if the faidx should get the genome sized"
                 },
-                "samtools_sort_index": {
-                    "type": "string",
-                    "default": "bai",
-                    "description": "string defining which index samtool sort should produce (bai)"
-                },
                 "cosmic_cancer_type": {
                     "type": "string",
                     "default": "all",
@@ -402,9 +358,6 @@
             "$ref": "#/$defs/other_options"
         },
         {
-            "$ref": "#/$defs/multiqc_options"
-        },
-        {
             "$ref": "#/$defs/skip_options"
         },
         {
@@ -416,5 +369,13 @@
         {
             "$ref": "#/$defs/pipeline_inputs"
         }
-    ]
+    ],
+    "properties": {
+        "bam_file": {
+            "type": "string"
+        },
+        "bam_index": {
+            "type": "string"
+        }
+    }
 }

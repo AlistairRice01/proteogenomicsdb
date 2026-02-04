@@ -1,29 +1,20 @@
-
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         IMPORT MODULES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-include { FASTQC_WORKFLOW } from '../fastqc_workflow/fastqc_workflow.nf'
-
-//modules involved in alignment of the reads to the reference genome
-include { HISAT2_EXTRACTSPLICESITES } from '../../../modules/nf-core/hisat2/extractsplicesites/main.nf'
-include { HISAT2_BUILD              } from '../../../modules/nf-core/hisat2/build/main.nf'
-include { HISAT2_ALIGN              } from '../../../modules/nf-core/hisat2/align/main.nf'
-
 //modules involved in the generation of a database from a DNA sequence
-include { SAMTOOLS_SORT       } from '../../../modules/nf-core/samtools/sort/main.nf'
-include { STRINGTIE_STRINGTIE } from '../../../modules/nf-core/stringtie/stringtie/main.nf'
-include { SAMTOOLS_FAIDX      } from '../../../modules/nf-core/samtools/faidx/main.nf'
-include { GFFCOMPARE          } from '../../../modules/nf-core/gffcompare/main.nf'
-include { GFFREAD             } from '../../../modules/nf-core/gffread/main.nf'
-include { PYPGATKDNA          } from '../../../modules/local/pypgatk/dnaseq_to_proteindb/main.nf'
+include { STRINGTIE_STRINGTIE } from '/exports/eddie/scratch/s2215490/proteogenomicsdb/modules/nf-core/stringtie/stringtie/main.nf'
+include { SAMTOOLS_FAIDX      } from '/exports/eddie/scratch/s2215490/proteogenomicsdb/modules/nf-core/samtools/faidx/main.nf'
+include { GFFCOMPARE          } from '/exports/eddie/scratch/s2215490/proteogenomicsdb/modules/nf-core/gffcompare/main.nf'
+include { GFFREAD             } from '/exports/eddie/scratch/s2215490/proteogenomicsdb/modules/nf-core/gffread/main.nf'
+include { PYPGATKDNA          } from '/exports/eddie/scratch/s2215490/proteogenomicsdb/modules/local/pypgatk/dnaseq_to_proteindb/main.nf'
 
 //modules involved in the generation of a database from a VCF file
-include { FREEBAYES            } from '../../../modules/nf-core/freebayes/main.nf'
-include { GUNZIP as GUNZIP_VCF } from '../../../modules/nf-core/gunzip/main.nf'
-include { PYPGATK_VCF         } from '../../../modules/local/pypgatk/vcf_to_proteindb/main.nf'
+include { FREEBAYES            } from '/exports/eddie/scratch/s2215490/proteogenomicsdb/modules/nf-core/freebayes/main.nf'
+include { GUNZIP as GUNZIP_VCF } from '/exports/eddie/scratch/s2215490/proteogenomicsdb/modules/nf-core/gunzip/main.nf'
+include { PYPGATK_VCF         } from '/exports/eddie/scratch/s2215490/proteogenomicsdb/modules/local/pypgatk/vcf_to_proteindb/main.nf'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -36,113 +27,47 @@ workflow RNASEQDB {
 take:
 
     //inputs from the main workflow
-    samplesheet            //channel: [val(meta), [ samplesheet ] ]
+    bam
+    bai
     annotation             //channel: /path/to/genome annotation
     reference              //channel: /path/to/reference genome
     config                 //channel: /path/to/custom config file
     dna_config             //channel: /path/to/dna config file
     cdna                   //channel: /path/to/cdna transcripts
     faidx_get_genome_sizes //boolean: whether FAIDX gets genome sizes
-    samtools_sort_index    //string: index sorting type     
-    multiqc_config         //channel: /path/to/multiqc config
-
+    samtools_sort_index    //string: index sorting type
 
 main:
 
-    //creates empty channels for tool versions, the peptide database, and the multiqc report
     merged_databases_ch = Channel.empty()
-    multiqc_report_ch   = Channel.empty()
     versions_ch         = Channel.empty()
 
-    //FASTQC_WORKFLOW takes the sample sheet and mutltiqc and runs the reads through fastqc, trimgalore, and multiqc
-    FASTQC_WORKFLOW (
-    samplesheet,
-    multiqc_config
-    )
-    //extract tool versions and the multiqc report from FASTQC_WOKFLOW
-    versions_ch       = versions_ch.mix(FASTQC_WORKFLOW.out.versions_ch).collect()
-    multiqc_report_ch = FASTQC_WORKFLOW.out.multiqc_report_ch.collect()
-        
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        START OF THE ALIGNMENT OF READS TO A REFERENCE PATHWAY
+        START OF THE DNA DATABASE GENERATION PATHWAY
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
-    //creating empty channels used in the alignment pathway
-    splicesites_ch   = Channel.empty()
-    index_ch         = Channel.empty()
-    bam_alignment_ch = Channel.empty()
-    bam_sorted_ch    = Channel.empty()
 
-    //applies a map to the genome annotation
+    bam.map { bam ->
+    def meta = [id: "bam" ]
+    return [meta, bam ]
+    }
+    .set { bam_sorted_ch }
+    .collect()
+
     annotation.map { genome ->
         def meta = [ id: 'Genome' ]
         return [ meta, genome ] }
     .set { annotation_ch}
     .collect()
 
-    //HISAT2_EXTRACTSPLICESITES takes the genome annotation and using it to 
-    //generate a file containing all of the splicesites in the genome
-    HISAT2_EXTRACTSPLICESITES (
-        annotation_ch
-    )
-    versions_ch = versions_ch.mix(HISAT2_EXTRACTSPLICESITES.out.versions) 
-    splicesites_ch = HISAT2_EXTRACTSPLICESITES.out.txt.collect()
-
     //applies a map to the genome reference
+
     reference.map { genome ->
         def meta = [ id: 'genome' ]
         return [ meta, genome ] }
     .set{ reference_ch }
     .collect()
-
-    //HISAT2_BUILD generates hisat2 index files (.ht2) 
-    //from the fasta reference, genome annotation, and splicesites 
-    HISAT2_BUILD (
-        reference_ch, 
-        annotation_ch, 
-        splicesites_ch
-    )
-    versions_ch = versions_ch.mix(HISAT2_BUILD.out.versions)
-    index_ch = HISAT2_BUILD.out.index.collect()
-
-
-    //HISAT2 is taking the fastq files and aligning them to a 
-    //reference genome using the index files and splicesites 
-    HISAT2_ALIGN (
-        samplesheet, 
-        index_ch, 
-        splicesites_ch
-    )
-    versions_ch = versions_ch.mix(HISAT2_ALIGN.out.versions)
-    bam_alignment_ch = HISAT2_ALIGN.out.bam
-        .map { meta, bam ->
-            def meta1 = [ id: 'Bam_1' ]
-            return [ meta1, bam ] }
-
-    
-    //SAMTOOLS_SORT is taking the HISAT2 alignment 
-    //data and using the genome reference to sort the files
-    SAMTOOLS_SORT (
-        bam_alignment_ch,
-        reference_ch,
-        samtools_sort_index
-    )
-    versions_ch = versions_ch.mix(SAMTOOLS_SORT.out.versions_samtools)
-    bam_sorted_ch = SAMTOOLS_SORT.out.bam
-
-
-
-/*
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        END OF THE ALIGNMENT OF READS TO A REFERENCE PATHWAY
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-        START OF THE DNA DATABASE GENERATION PATHWAY
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-*/
 
 //conditional execution based on if skip_dnaseq is true or false
 if (!params.skip_dnaseq) {
@@ -167,7 +92,7 @@ if (!params.skip_dnaseq) {
     SAMTOOLS_FAIDX (
         reference_ch,
         [ [], [] ],
-        faidx_get_genome_sizes  
+        false  
     )
     versions_ch = versions_ch.mix(SAMTOOLS_FAIDX.out.versions_samtools)
     fasta_fai_ch = SAMTOOLS_FAIDX.out.fai.collect()
@@ -235,19 +160,12 @@ else {
 
 //conditional execution based on if skip_vcf is true or false
 if (!params.skip_vcf) {
-
         
-    genome_bai_ch     = Channel.empty()
     genome_bam_bai_ch = Channel.empty()
     freebayes_ch      = Channel.empty()
 
-    //take the index (bai) file generated by SAMTOOLS_SORT
-    genome_bai_ch = SAMTOOLS_SORT.out.bai
-        .map { meta, bai ->
-            return [ bai ] }
-
     //combines the bam and bam index files into a single channel
-    genome_bam_bai_ch = bam_sorted_ch.combine(genome_bai_ch)
+    genome_bam_bai_ch = bam_sorted_ch.combine(bai)
         .map { meta, bam, bai ->
             return [ meta, bam, bai, [], [], [] ] }
 
@@ -306,13 +224,11 @@ else {
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-
 emit:
 
     //emits to the main workflow
     merged_databases_ch //channel: [ val(meta), [ database ] ]
     versions_ch         //channel: [ path(versions.yml) ]
-    multiqc_report_ch   //channel: /path/to/multiqc_report.html
 
 }
 

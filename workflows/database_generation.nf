@@ -22,7 +22,8 @@ workflow DATABASE_GENERATION {
 
 take:
     //inputs rnaseqdb subworkflow
-    samplesheet            //channel: [val(meta), [ samplesheet ] ]
+    bam_file
+    bam_index
     reference              //channel: /path/to/reference genome
     annotation             //channel: /path/to/genome annotation
     transcripts            //channel: /path/to/cdna transcripts
@@ -64,31 +65,29 @@ take:
     clean_config //channel: /path/to/clean config
     decoy_config //channel: /path/to/decoy config
 
-    //multiqc inputs
-    multiqc_config //channel: /path/to/multiqc config
-
 main:
 
     //creates empty channels for tool versions, the peptide database, and the multiqc report
     versions_ch        = Channel.empty()
     mixed_databases_ch = Channel.empty()
-    multiqc_report_ch  = channel.empty()
 
     //conditional execution based on if skip_rnaseqdb is true or false
     if (!params.skip_rnaseqdb) {
 
         //inputs for the rnaseqdb workflow 
+        bam_file_ch            = Channel.fromPath(bam_file)
+        bam_index_ch           = Channel.fromPath(bam_index)
         reference_ch           = Channel.fromPath(reference)
         annotation_ch          = Channel.fromPath(annotation)
         transcripts_ch         = Channel.fromPath(transcripts)
         custom_config_ch       = Channel.fromPath(custom_config)
         dna_config_ch          = Channel.fromPath(dna_config)
-        multiqc_config_ch      = Channel.fromPath(multiqc_config)
         samtools_sort_index_ch = Channel.from(samtools_sort_index)
 
         //pass the channels into the RNASEQDB subworkflow - this takes rna sequencing data and produce a protein database
         RNASEQDB (
-            samplesheet,
+            bam_file_ch,
+            bam_index_ch,
             annotation_ch,
             reference_ch,
             custom_config_ch,
@@ -96,12 +95,10 @@ main:
             transcripts_ch,               
             faidx_get_genome_sizes,     
             samtools_sort_index_ch,
-            multiqc_config_ch
         )
         //extract tool versions, the peptide database, and the multiqc report from rnaseqdb
         versions_ch        = versions_ch.mix(RNASEQDB.out.versions_ch).collect()
         mixed_databases_ch = mixed_databases_ch.mix(RNASEQDB.out.merged_databases_ch).collect()
-        multiqc_report_ch  = RNASEQDB.out.multiqc_report_ch
 
     } 
 
@@ -271,7 +268,6 @@ emit:
     mixed_databases_ch //channel: [ val(meta), [ database ] ]
     decoy_database_ch  //channel: [ val(meta), [ decoy ] ]
     versions_ch        //channel: [ path(versions.yml) ]
-    multiqc_report_ch  //channel: /path/to/multiqc_report.html
 
 }
 

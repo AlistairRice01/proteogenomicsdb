@@ -41,19 +41,15 @@ params.annotation = getGenomeAttribute('gtf')
 //
 // WORKFLOW: Run main analysis pipeline depending on type of input
 //
-workflow NFCORE_PROTEOGENOMICSDB {
-
-    take:
-    samplesheet // channel: samplesheet read in from --input
-
-    main:
+workflow {
 
     //
     // WORKFLOW: Run pipeline
     //
     DATABASE_GENERATION (
         //proteogenomics paramiters
-        samplesheet,            //samplesheet containing the rna-seq transcripts
+        params.bam_file,
+        params.bam_index,            //samplesheet containing the rna-seq transcripts
         params.reference,       //
         params.annotation,      //
         params.transcripts,     //
@@ -89,23 +85,15 @@ workflow NFCORE_PROTEOGENOMICSDB {
         //merge paramaters
         params.clean_config,     //
         params.decoy_config,     //path to the decoy_config
-        //multiqc
-        params.multiqc_config
+
     )
-    emit:
 
-        multiqc_report  = DATABASE_GENERATION.out.multiqc_report_ch  // channel: /path/to/multiqc_report.html
-
-}
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     RUN MAIN WORKFLOW
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-workflow {
-
-    main:
     //
     // SUBWORKFLOW: Run initialisation tasks
     //
@@ -115,17 +103,9 @@ workflow {
         params.monochrome_logs,
         args,
         params.outdir,
-        params.input,
         params.help,
         params.help_full,
         params.show_hidden
-    )
-
-    //
-    // WORKFLOW: Run main workflow
-    //
-    NFCORE_PROTEOGENOMICSDB (
-        PIPELINE_INITIALISATION.out.samplesheet
     )
     //
     // SUBWORKFLOW: Run completion tasks
@@ -136,9 +116,9 @@ workflow {
         params.plaintext_email,
         params.outdir,
         params.monochrome_logs,
-        params.hook_url,
-        NFCORE_PROTEOGENOMICSDB.out.multiqc_report
+        params.hook_url     
     )
+
 }
 
 /*
