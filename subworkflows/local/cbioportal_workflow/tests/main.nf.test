@@ -32,6 +32,8 @@ nextflow_workflow {
 
     test("--skip_cbioportaldb false -stub") {
 
+        options "-stub"
+
         when {
             workflow {
                 """

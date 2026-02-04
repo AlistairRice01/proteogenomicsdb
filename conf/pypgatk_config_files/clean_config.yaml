@@ -1,8 +1,8 @@
 
-ensembl_translation:
+ensembl_clean:
 translation_table: 1
 proteindb_output_file: 'peptide-database.db'
-ensembl_translation:
+ensembl_clean:
   mito_translation_table: 2
   protein_prefix: "var_"
   report_ref_seq: False

@@ -45,7 +45,6 @@ take:
     password                       //string: COSMIC password 
     cosmic_genes_url               //string: cosmic genes url
     cosmic_mutations_url           //string: cosmic mutations url
-    cosmic_cancer_type
 
     //inuts for genecodedb subworkflow
     genecode_transcripts_url //string: genecode transcripts url
@@ -169,7 +168,6 @@ main:
         password_ch           = Channel.from(password)
         cosmic_url_genes      = Channel.from(cosmic_genes_url)
         cosmic_url_mutations  = Channel.from(cosmic_mutations_url)
-        cosmic_cancer_type_ch = Channel.from(cosmic_cancer_type)
 
         //pass the channels into the COSMICDB subworkflow - this downloads data FROM COSMIC to create a protein database
         COSMICDB (
@@ -177,8 +175,7 @@ main:
             username_ch,
             password_ch,
             cosmic_url_genes,
-            cosmic_url_mutations,
-            cosmic_cancer_type_ch
+            cosmic_url_mutations
         )
         //extract tool versions and the peptide database from cosmicdb
         versions_ch = versions_ch.mix(COSMICDB.out.versions_ch).collect()   

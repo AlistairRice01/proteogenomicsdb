@@ -71,7 +71,6 @@ workflow {
         params.password, 
         params.cosmic_genes_url,
         params.cosmic_mutations_url,
-        params.cosmic_cancer_type,
 
         //GENECODEDB paramaters
         params.genecode_transcripts_url,    //

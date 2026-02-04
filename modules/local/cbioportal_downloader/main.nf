@@ -41,6 +41,11 @@ process CBIOPORTAL_DOWNLOAD {
         if(j==1 && s==0){gsub("CANCER_TYPE_DETAILED", "CANCER_TYPE");} print;}' \\
         > cbioportal_allstudies_data_clinical_sample.txt
 
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        wget: \$(wget --version | head -1 | cut -d ' ' -f 3)
+    END_VERSIONS
+
 
     """
 
@@ -51,6 +56,11 @@ process CBIOPORTAL_DOWNLOAD {
     """
     touch cbioportal_allstudies_data_mutations.txt
     touch cbioportal_allstudies_data_clinical_sample.txt
+
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        wget: \$(wget --version | head -1 | cut -d ' ' -f 3)
+    END_VERSIONS
 
     """
 }

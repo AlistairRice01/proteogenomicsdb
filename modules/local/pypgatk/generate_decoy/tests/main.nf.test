@@ -15,10 +15,10 @@ nextflow_pipeline {
                 """
                 input[0] = Channel.of([
                     [ id: 'database' ], 
-                    file('$projectDir/assets/test_files/database.fa, checkIfExists: true')
+                    file('$projectDir/assets/test_files/mergedb/ensembl_vcf.fa', checkIfExists: true)
                 ])
                 input[1] = Channel.of([ 
-                    file('params.decoy_config, checkIfExists: true')
+                    file('params.decoy_config', checkIfExists: true)
                 ])
 
                 """
@@ -47,10 +47,10 @@ nextflow_pipeline {
                 """
                 input[0] = Channel.of([
                     [ id: 'database' ], 
-                    file('$projectDir/assets/test_files/database.fa, checkIfExists: true')
+                    file('$projectDir/assets/test_files/mergedb/ensembl_vcf.fa', checkIfExists: true)
                 ])
                 input[1] = Channel.of([ 
-                    file('params.decoy_config, checkIfExists: true')
+                    file('params.decoy_config', checkIfExists: true)
                 ])
 
                 """

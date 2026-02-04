@@ -53,17 +53,17 @@ nextflow_pipeline {
                 """
                 input[0] = Channel.of([
                     [ id: 'vcf' ], 
-                    file(', checkIfExists: true')
+                    file('$projectDir/assets/test_files/ensembldb/saccharomyces_cerevisiae_incl_consequences.vcf', checkIfExists: true)
                 ])
                 input[1] = Channel.of([
                     [ id: 'annotation' ], 
-                    file(', checkIfExists: true')
+                    file('$projectDir/assets/test_files/ensembldb/Saccharomyces_cerevisiae.R64-1-1.115.gtf', checkIfExists: true)
                 ])
                 input[2] = Channel.of([
                     [ id: 'transcripts' ], 
-                    file(', checkIfExists: true')
+                    file('$projectDir/assets/test_files/ensembldb/Saccharomyces_cerevisiae.R64-1-1.cdna.all.fa', checkIfExists: true)
                 ])
-                input[3] = Channel.of(file('params.custom_config, checkIfExists: true'))
+                input[3] = Channel.of(file('params.custom_config', checkIfExists: true))
 
                 """
             }

@@ -23,7 +23,6 @@ take:
     password_ch                    //string: COSMIC password
     cosmic_url_genes               //string: cosmic genes url
     cosmic_url_mutations           //string: cosmic mutations url
-    cosmic_cancer_type_ch
 
 main:
 
@@ -50,7 +49,6 @@ main:
     PYPGATK_COSMICDB ( 
         cosmic_genes.map { [ [:], it ] },
         cosmic_mutations.map { [ [:], it ] },
-        cosmic_cancer_type,
         cosmic_config
     )   
     versions_ch = versions_ch.mix(PYPGATK_COSMICDB.out.versions).collect()

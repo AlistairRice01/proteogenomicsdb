@@ -15,7 +15,7 @@ nextflow_pipeline {
             process {
                 """
                 input[0] = Channel.of([ 
-                    file('params.ensembl_downloader_config, checkIfExists: true')
+                    file('params.ensembl_downloader_config', checkIfExists: true)
                 ])
                 input[1] = ['559292']
 
@@ -45,7 +45,7 @@ nextflow_pipeline {
             process {
                 """
                 input[0] = Channel.of([ 
-                    file('params.ensembl_downloader_config, checkIfExists: true')
+                    file('params.ensembl_downloader_config', checkIfExists: true)
                 ])
                 input[1] = ['559292']
 

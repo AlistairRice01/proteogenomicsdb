@@ -15,15 +15,15 @@ nextflow_pipeline {
                 """
                 input[0] = Channel.of([
                     [ id: 'cdna' ], 
-                    file(', checkIfExists: true')
+                    file('$projectDir/assets/test_files/cbioportaldb/grch38.gz', checkIfExists: true)
                 ])
                 input[1] = Channel.of([
                     [ id: 'mutations' ], 
-                    file(', checkIfExists: true')
+                    file('$projectDir/assets/test_files/cbioportaldb/cbioportal_allstudies_data_mutations.txt', checkIfExists: true)
                 ])
                 input[2] = Channel.of([
                     [ id: 'samples' ], 
-                    file(', checkIfExists: true')
+                    file('$projectDir/assets/test_files/cbioportaldb/cbioportal_allstudies_data_clinical_sample.txt', checkIfExists: true)
                 ])
                 input[3] = Channel.of([
                     file('params.cbioportal_config, checkIfExists: true')
@@ -59,19 +59,19 @@ nextflow_pipeline {
             process {
                 """
                 input[0] = Channel.of([
-                    [ id: 'grch38_dna' ], 
-                    file('test_file.fa')
+                    [ id: 'cdna' ], 
+                    file('$projectDir/assets/test_files/cbioportaldb/grch38.gz', checkIfExists: true)
                 ])
                 input[1] = Channel.of([
-                    [ id: 'cbioportal_mutations' ], 
-                    file('mutations.txt')
+                    [ id: 'mutations' ], 
+                    file('$projectDir/assets/test_files/cbioportaldb/cbioportal_allstudies_data_mutations.txt', checkIfExists: true)
                 ])
                 input[2] = Channel.of([
-                    [ id: 'cbioportal_samples' ], 
-                    file('samples.txt')
+                    [ id: 'samples' ], 
+                    file('$projectDir/assets/test_files/cbioportaldb/cbioportal_allstudies_data_clinical_sample.txt', checkIfExists: true)
                 ])
                 input[3] = Channel.of([
-                    file('cbioportal.config')
+                    file('params.cbioportal_config, checkIfExists: true')
                 ])
 
                 """
@@ -89,8 +89,3 @@ nextflow_pipeline {
         }
     }
 }
-
-    tuple val(meta), path(grch38_cdna)
-    tuple val(meta), path(cbio_mutations)
-    tuple val(meta), path(cbio_samples)
-    path cbioportal_config

@@ -15,11 +15,10 @@ test("-profile pypgatk_clean test") {
                 """
                 input[0] = Channel.of([
                     [ id: 'database' ], 
-                    file('$projectDir/assets/test_files/database.fa, checkIfExists: true')
+                    file('$projectDir/assets/test_files/mergedb/ensembl_vcf.fa', checkIfExists: true)
                 ])
                 input[1] = Channel.of([
-                    file('params.clean_config, checkIfExists: true')
-
+                    file('params.clean_config', checkIfExists: true)
                 ])
 
                 """
@@ -49,11 +48,10 @@ test("-profile pypgatk_clean test") {
                 """
                 input[0] = Channel.of([
                     [ id: 'database' ], 
-                    file('$projectDir/assets/test_files/database.fa, checkIfExists: true')
+                    file('$projectDir/assets/test_files/mergedb/ensembl_vcf.fa', checkIfExists: true)
                 ])
                 input[1] = Channel.of([
-                    file('params.clean_config, checkIfExists: true')
-
+                    file('params.clean_config', checkIfExists: true)
                 ])
 
                 """

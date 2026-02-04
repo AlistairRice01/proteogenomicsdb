@@ -15,7 +15,7 @@ nextflow_pipeline {
                 """
                 input[0] = Channel.of([
                     [ id: 'url' ], 
-                    path('params.gnomad_url')
+                   "ftp://ftp.ensembl.org/pub/release-115/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz",
                 ])
 
                 """
@@ -45,7 +45,7 @@ nextflow_pipeline {
                 """
                 input[0] = Channel.of([
                     [ id: 'url' ], 
-                    path('params.gnomad_url')
+                   "ftp://ftp.ensembl.org/pub/release-115/fasta/homo_sapiens/cdna/Homo_sapiens.GRCh38.cdna.all.fa.gz",
                 ])
 
                 """

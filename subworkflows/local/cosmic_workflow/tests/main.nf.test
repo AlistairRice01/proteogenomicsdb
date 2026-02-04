@@ -26,7 +26,7 @@ nextflow_workflow {
                 { assert workflow.success},
                 { assert snapshot(
                     workflow.out.versions_ch,
-                    workflow.out.cbioportal_database
+                    workflow.out.cosmic_database
                 ).match() }
             )
         }
@@ -52,7 +52,7 @@ nextflow_workflow {
                 { assert workflow.success},
                 { assert snapshot(
                     workflow.out.versions_ch,
-                    workflow.out.cbioportal_database
+                    workflow.out.cosmic_database
                 ).match() }
             )
         }

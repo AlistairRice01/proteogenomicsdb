@@ -15,10 +15,10 @@ nextflow_pipeline {
                 """
                 input[0] = Channel.of([
                     [ id: 'sequences' ], 
-                    file('$projectDir/assets/test_files/dna_gtf_file.fasta, checkIfExists: true')
+                    file('$projectDir/assets/test_files/cosmicdb/Saccharomyces_cerevisiae.R64-1-1.cdn.all.fa', checkIfExists: true)
                 
                 input[1] = Channel.of([
-                    file('params.dna_config, checkIfExists: true')
+                    file('params.dna_config', checkIfExists: true)
                 ])
 
                 """
@@ -49,7 +49,7 @@ tuple val(meta), path(file)
                 """
                 input[0] = Channel.of([
                     [ id: 'sequences' ], 
-                    file('$projectDir/assets/test_files/dna_gtf_file.fasta, checkIfExists: true')
+                    file('$projectDir/assets/test_files/cosmicdb/Saccharomyces_cerevisiae.R64-1-1.cdn.all.fa, checkIfExists: true')
                 
                 input[1] = Channel.of([
                     file('params.dna_config, checkIfExists: true')
