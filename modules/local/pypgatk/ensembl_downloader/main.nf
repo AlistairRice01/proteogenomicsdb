@@ -10,6 +10,7 @@ process PYPGATK_ENSEMBL_DOWNLOAD {
     input:
     path ensembl_downloader_config
     val species_taxonomy
+    val skip_ensembl_vcf
 
     output:
 
@@ -26,13 +27,18 @@ process PYPGATK_ENSEMBL_DOWNLOAD {
 
     script:
     def args   = task.ext.args ?: ''
-
+    def vcf    = ''
+    
+    if (skip_ensembl_vcf) {
+        vcf = '-sv' 
+        }
+                
     """
     pypgatk_cli.py ensembl-downloader \\
         --config_file ${ensembl_downloader_config} \\
         --output_directory . \\
         --taxonomy ${species_taxonomy} \\
-        -sc
+        -sc ${vcf}
  
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":

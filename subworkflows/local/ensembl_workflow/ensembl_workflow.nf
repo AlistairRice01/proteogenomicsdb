@@ -60,7 +60,8 @@ main:
     //PYPGATK_ENSEMBL uses the ensembl species ID to downloads files from ENSEMBL
     PYPGATK_ENSEMBL_DOWNLOAD (
         ensembl_downloader_config,
-        species_name
+        species_name,
+        skip_ensembl_vcf
     )
     versions_ch = versions_ch.mix(PYPGATK_ENSEMBL_DOWNLOAD.out.versions).collect()
     cdna_mixed = PYPGATK_ENSEMBL_DOWNLOAD.out.cdna.mix(PYPGATK_ENSEMBL_DOWNLOAD.out.ncrna).collect()
