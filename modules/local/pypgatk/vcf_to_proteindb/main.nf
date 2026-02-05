@@ -36,7 +36,7 @@ process PYPGATK_VCF {
  
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        pypgatk: \$(echo \$(pypgatk --version 2>&1) | sed 's/^pypgatk v//')
+        pypgatk: \$(pypgatk --version | head -1 | cut -d ' ' -f 3)
     END_VERSIONS
     """
 
@@ -48,43 +48,7 @@ process PYPGATK_VCF {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        pypgatk: \$(echo \$(pypgatk --version 2>&1) | sed 's/^pypgatk v//')
+        pypgatk: \$(pypgatk --version | head -1 | cut -d ' ' -f 3)
     END_VERSIONS
     """
 }
-    /*   
-pypgatk_cli.py vcf-to-proteindb \\
-        --config_file ${pypgatk_config} \\
-        --vcf ${vcf.baseName}_changedChrNames.vcf \\
-        --input_fasta ${dna} \\
-        --gene_annotations_gtf ${gtf} \\
-        --output_proteindb ${name} \\
-        --translation_table 1 \\
-        --mito_translation_table 2 \\
-        --protein_prefix 'testvar_' \\
-        --annotation_field_name '' \\
-        --af_field '' \\
-        --af_threshold 0.01 \\
-        --transcript_str 'FEATURE' \\
-        --consequence_str 'CONSEQUENCE' \\
-        --accepted_filters 'PASS' \\
-        --exclude_consequences 'downstream_gene_variant, upstream_gene_variant, intergenic_variant, intron_variant, synonymous_variant, regulatory_region_variant' \\
-        --include_consequences 'all' \\
-        --biotype_str transcript_biotype \\
-        --exclude_biotypes '' \\
-        --include_biotypes 'protein_coding,polymorphic_pseudogene,non_stop_decay,nonsense_mediated_decay,IG_C_gene,IG_D_gene,IG_J_gene,IG_V_gene,TR_C_gene,TR_D_gene,TR_J_gene,TR_V_gene,TEC,mRNA' \\
-
- python pypgatk_cli.py vcf-to-proteindb
-   --vcf sample.vcf
-   --input_fasta transcripts.fa
-   --gene_annotations_gtf genes.gtf
-   --annotation_field_name ''
-   --output_proteindb var_peptides.fa
-
-        --vcf ${vcf.baseName}_changedChrNames.vcf \\
-
-
-    awk 'BEGIN{FS=OFS="\t"}{if(\$1=="chrM") \$1="MT"; gsub("chr","",\$1); print}' \\
-        ${vcf} > ${vcf.baseName}_changedChrNames.vcf
-
-*/

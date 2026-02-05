@@ -1,6 +1,5 @@
 process COSMIC_DOWNLOAD {
-    
-    tag "${name}"
+
     label 'process_medium'
     label 'process_single_thread'
 
@@ -46,7 +45,7 @@ process COSMIC_DOWNLOAD {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        gffcompare: \$(echo \$(gffcompare --version 2>&1) | sed 's/^gffcompare v//')
+        curl: \$(curl --version | head -1 | cut -d ' ' -f 2)
     END_VERSIONS
 
     """
@@ -60,7 +59,7 @@ process COSMIC_DOWNLOAD {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        gffcompare: \$(echo \$(gffcompare --version 2>&1) | sed 's/^gffcompare v//')
+        curl: \$(curl --version | head -1 | cut -d ' ' -f 2)
     END_VERSIONS
 
     """

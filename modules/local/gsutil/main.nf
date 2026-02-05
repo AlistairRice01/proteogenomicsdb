@@ -27,9 +27,9 @@ process GSUTIL {
      ${url} \\
      ./${prefix}.vcf.bgz \\
 
-        cat <<-END_VERSIONS > versions.yml
+    cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        pypgatk: \$(echo \$(pypgatk --version 2>&1) | sed 's/^pypgatk v//')
+        gsutil: \$(pypgatk --version | head -1 | cut -d ' ' -f 3)
     END_VERSIONS
 
     """
@@ -42,7 +42,7 @@ process GSUTIL {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        pypgatk: \$(echo \$(pypgatk --version 2>&1) | sed 's/^pypgatk v//')
+        gsutil: \$(pypgatk --version | head -1 | cut -d ' ' -f 3)
     END_VERSIONS
     """
 }

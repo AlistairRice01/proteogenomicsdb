@@ -342,6 +342,14 @@
                 "additional_database": {
                     "type": "string",
                     "description": "Additional database to merge into final database"
+                },
+                "input": {
+                    "type": "string",
+                    "description": "sorted bam file"
+                },
+                "bam_index": {
+                    "type": "string",
+                    "description": "bam index file"
                 }
             }
         }
@@ -368,13 +376,5 @@
         {
             "$ref": "#/$defs/pipeline_inputs"
         }
-    ],
-    "properties": {
-        "bam_file": {
-            "type": "string"
-        },
-        "bam_index": {
-            "type": "string"
-        }
-    }
+    ]
 }

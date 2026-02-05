@@ -1,6 +1,5 @@
 process CBIOPORTAL_DOWNLOAD {
 
-    tag = "${name}"
     label 'process_medium'
     label 'process_single_thread'
 

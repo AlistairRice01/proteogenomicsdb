@@ -48,7 +48,7 @@ main:
     GUNZIP(
         grch38_ch
     )
-    versions_ch = versions_ch.mix(GUNZIP.out.versions).collect()
+    versions_ch = versions_ch.mix(GUNZIP.out.versions_gunzip).collect()
     grch38_unzipped = GUNZIP.out.gunzip.collect()
 
     //PYPGATK_CBIOPORTAL_DOWNLOAD downloads the specified samples fromt he cBioPortal database

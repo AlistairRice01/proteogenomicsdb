@@ -39,7 +39,7 @@ process PYPGATK_CBIOPORTAL {
  
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        pypgatk: \$(echo \$(pypgatk --version 2>&1) | sed 's/^pypgatk v//')
+        pypgatk: \$(pypgatk --version | head -1 | cut -d ' ' -f 3)
     END_VERSIONS
     """
 
@@ -52,7 +52,7 @@ process PYPGATK_CBIOPORTAL {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        pypgatk: \$(echo \$(pypgatk --version 2>&1) | sed 's/^pypgatk v//')
+        pypgatk: \$(pypgatk --version | head -1 | cut -d ' ' -f 3)
     END_VERSIONS
     """
 }

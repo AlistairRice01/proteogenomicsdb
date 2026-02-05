@@ -48,7 +48,7 @@ workflow {
     //
     DATABASE_GENERATION (
         //RNASEQDB paramiters
-        params.bam_file,
+        params.input,
         params.bam_index,       //
         params.reference,       //
         params.annotation,      //

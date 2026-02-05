@@ -55,7 +55,7 @@ main:
     GUNZIP_TRANSCRIPTS (
         genecode_transcripts_ch
     )
-    versions_ch = versions_ch.mix(GUNZIP_TRANSCRIPTS.out.versions).collect()
+    versions_ch = versions_ch.mix(GUNZIP_TRANSCRIPTS.out.versions_gunzip).collect()
     genecode_transcripts_gunzipped = GUNZIP_TRANSCRIPTS.out.gunzip.collect()
 
     //WGET_ANNOTATION downloads the annotation files from genecode 
@@ -69,7 +69,7 @@ main:
     GUNZIP_ANNOTATION (
         genecode_annotation_ch
     )
-    versions_ch = versions_ch.mix(GUNZIP_ANNOTATION.out.versions).collect()
+    versions_ch = versions_ch.mix(GUNZIP_ANNOTATION.out.versions_gunzip).collect()
     genecode_annotation_gunzipped = GUNZIP_ANNOTATION.out.gunzip.collect()
     
     //GSUTIL downloads the vcf file from gnomad 
@@ -83,7 +83,7 @@ main:
     TABIX_BGZIP (
         vcf_compressed
     )
-    versions_ch = versions_ch.mix(TABIX_BGZIP.out.versions).collect()  
+    versions_ch = versions_ch.mix(TABIX_BGZIP.out.versions_tabix).collect()  
     gnomad_vcf_extracted = TABIX_BGZIP.out.output.collect()
 
     //PYPGATK takes the unzipped vcf, annotation, and transcript along with the 

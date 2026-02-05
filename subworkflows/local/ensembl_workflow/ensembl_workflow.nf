@@ -35,10 +35,10 @@ take:
     altorfs_config            //channel: /path/to/altorfs config
     pseudogenes_config        //channel: /path/to/pseudogenes config
     ncrna_config              //channel: /path/to/ncrna config
-    skip_proteome,   
-    skip_ncrna,      
-    skip_pseudogenes,
-    skip_altorfs,   
+    skip_proteome   
+    skip_ncrna      
+    skip_pseudogenes
+    skip_altorfs   
     skip_ensembl_vcf
 
 main:

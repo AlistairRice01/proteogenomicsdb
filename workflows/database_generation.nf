@@ -66,19 +66,19 @@ take:
     additional_database //channel: /path/to/an additional database
 
     //input skip options
-    skip_rnaseqdb,
-    skip_dnaseq, 
-    skip_vcf,   
-    skip_ensembldb, 
-    skip_proteome,   
-    skip_ncrna,      
-    skip_pseudogenes,
-    skip_altorfs,   
-    skip_ensembl_vcf,
-    skip_cosmicdb,   
-    skip_genecodedb,  
-    skip_cbioportaldb,
-    skip_decoy, 
+    skip_rnaseqdb
+    skip_dnaseq 
+    skip_vcf   
+    skip_ensembldb 
+    skip_proteome   
+    skip_ncrna      
+    skip_pseudogenes
+    skip_altorfs   
+    skip_ensembl_vcf
+    skip_cosmicdb   
+    skip_genecodedb  
+    skip_cbioportaldb
+    skip_decoy 
     skip_additional_database
 
 main:

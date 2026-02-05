@@ -1,6 +1,5 @@
 process PYPGATK_ENSEMBL_DOWNLOAD {
 
-    tag "${name}"
     label 'process_medium'
     label 'process_single_thread'
 
@@ -30,7 +29,6 @@ process PYPGATK_ENSEMBL_DOWNLOAD {
     script:
     def args = task.ext.args ?: ''
     def vcf  = ''
-    def name = "${species_taxonomy}"
     
     if (skip_ensembl_vcf) {
         vcf = '-sv' 
@@ -45,7 +43,7 @@ process PYPGATK_ENSEMBL_DOWNLOAD {
  
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        pypgatk: \$(echo \$(pypgatk --version 2>&1) | sed 's/^pypgatk v//')
+        pypgatk: \$(pypgatk --version | head -1 | cut -d ' ' -f 3)
     END_VERSIONS
     """
 
@@ -61,7 +59,7 @@ process PYPGATK_ENSEMBL_DOWNLOAD {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        pypgatk: \$(echo \$(pypgatk --version 2>&1) | sed 's/^pypgatk v//')
+        pypgatk: \$(pypgatk --version | head -1 | cut -d ' ' -f 3)
     END_VERSIONS
     """
 }
