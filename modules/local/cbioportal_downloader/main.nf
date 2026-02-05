@@ -1,4 +1,6 @@
 process CBIOPORTAL_DOWNLOAD {
+
+    tag = "${name}"
     label 'process_medium'
     label 'process_single_thread'
 
@@ -23,7 +25,7 @@ process CBIOPORTAL_DOWNLOAD {
     script:
     def args   = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: ""
-    def name   = "${cbioportal_download_url}"
+    def name   = "${sample_id}"
 
     """
 
@@ -46,14 +48,13 @@ process CBIOPORTAL_DOWNLOAD {
         wget: \$(wget --version | head -1 | cut -d ' ' -f 3)
     END_VERSIONS
 
-
     """
 
 
     stub:
-    def prefix = task.ext.prefix ?: ""
     
     """
+
     touch cbioportal_allstudies_data_mutations.txt
     touch cbioportal_allstudies_data_clinical_sample.txt
 

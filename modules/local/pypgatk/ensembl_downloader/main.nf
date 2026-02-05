@@ -1,4 +1,6 @@
 process PYPGATK_ENSEMBL_DOWNLOAD {
+
+    tag "${name}"
     label 'process_medium'
     label 'process_single_thread'
 
@@ -26,8 +28,9 @@ process PYPGATK_ENSEMBL_DOWNLOAD {
     task.ext.when == null || task.ext.when
 
     script:
-    def args   = task.ext.args ?: ''
-    def vcf    = ''
+    def args = task.ext.args ?: ''
+    def vcf  = ''
+    def name = "${species_taxonomy}"
     
     if (skip_ensembl_vcf) {
         vcf = '-sv' 

@@ -1,4 +1,6 @@
 process COSMIC_DOWNLOAD {
+    
+    tag "${name}"
     label 'process_medium'
     label 'process_single_thread'
 
@@ -42,6 +44,11 @@ process COSMIC_DOWNLOAD {
     mv \$mutations_name cosmic_mutations.tsv.gz
     gunzip cosmic_mutations.tsv.gz
 
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        gffcompare: \$(echo \$(gffcompare --version 2>&1) | sed 's/^gffcompare v//')
+    END_VERSIONS
+
     """
 
     stub:
@@ -50,6 +57,11 @@ process COSMIC_DOWNLOAD {
     """
     touch cosmic_genes.fasta
     touch cosmic_mutations.tsv
+
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        gffcompare: \$(echo \$(gffcompare --version 2>&1) | sed 's/^gffcompare v//')
+    END_VERSIONS
 
     """
 }

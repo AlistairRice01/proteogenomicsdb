@@ -339,10 +339,9 @@
                     "type": "boolean",
                     "description": "boolean defining if the faidx should get the genome sized"
                 },
-                "cosmic_cancer_type": {
+                "additional_database": {
                     "type": "string",
-                    "default": "all",
-                    "description": "string difining which cancer types to include in the cosmic database"
+                    "description": "Additional database to merge into final database"
                 }
             }
         }
