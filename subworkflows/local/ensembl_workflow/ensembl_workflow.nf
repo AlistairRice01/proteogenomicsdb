@@ -7,7 +7,7 @@
 
 //modules for downloading databases from ENSEMBL
 include { PYPGATK_ENSEMBL_DOWNLOAD } from '../../../modules/local/pypgatk/ensembl_downloader/main.nf'
-include { CAT_CAT as CAT_DNA       } from '../../../modules/nf-core/cat/cat/main.nf'
+include { CAT_CAT                  } from '../../../modules/nf-core/cat/cat/main.nf'
 
 //modules for optional database generation
 include { PYPGATKDNA as PYPGATK_NCRNA       } from '../../../modules/local/pypgatk/dnaseq_to_proteindb/main.nf'
@@ -15,8 +15,8 @@ include { PYPGATKDNA as PYPGATK_PSEUDOGENES } from '../../../modules/local/pypga
 include { PYPGATKDNA as PYPGATK_ALRORFS     } from '../../../modules/local/pypgatk/dnaseq_to_proteindb/main.nf'
 
 //modules for the generation of the main ENSEMBL database
-include { CAT_CAT as CAT_VCF  } from '../../../modules/nf-core/cat/cat/main.nf'
-include { PYPGATK_VCF         } from '../../../modules/local/pypgatk/vcf_to_proteindb/main.nf'
+include { CAT_CAT as CAT_VCF } from '../../../modules/nf-core/cat/cat/main.nf'
+include { PYPGATK_VCF        } from '../../../modules/local/pypgatk/vcf_to_proteindb/main.nf'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -67,12 +67,11 @@ main:
     cdna_mixed = PYPGATK_ENSEMBL_DOWNLOAD.out.cdna.mix(PYPGATK_ENSEMBL_DOWNLOAD.out.ncrna).collect()
         .map { [ [id: 'Total_cDNA' ], it ] }
 
-    //CAT_DNA concatinates the cdna filed downloaded from ENSEMBL into a single file
-    CAT_DNA (
+    CAT_CAT (
         cdna_mixed
     )
-    versions_ch = versions_ch.mix(CAT_DNA.out.versions_cat).collect()
-    total_cdna = CAT_DNA.out.file_out.collect()
+    versions_ch = versions_ch.mix(CAT_CAT.out.versions_cat).collect()
+    total_cdna = CAT_CAT.out.file_out.collect()
         .map { meta, it ->
             return [it] }
 
@@ -188,29 +187,29 @@ else {
 if (!skip_ensembl_vcf) {
 
     //creating empty channels used in the ENSEMBL vcf database generation pathway
-    ensembl_vcf = Channel.empty()
-    total_vcf   = Channel.empty()
-    ensembl_gtf = Channel.empty()
+    ensembl_vcf  = Channel.empty()
+    vcf_index_ch = Channel.empty()
+    ensembl_gtf  = Channel.empty()
 
     //populates ensembl_vcf with the vcf file downloaded from ENSEMBL
-    ensembl_vcf = ensembl_vcf.mix(PYPGATK_ENSEMBL_DOWNLOAD.out.vcf).collect()
+    ensembl_vcf = PYPGATK_ENSEMBL_DOWNLOAD.out.vcf.collect()
         .map { [ [id: 'concatenated_vcf' ], it ] }
     
     //populates ensembl_gtf with the gtf file downloaded from ENSEMBL 
     ensembl_gtf = PYPGATK_ENSEMBL_DOWNLOAD.out.gtf.collect()
         .map { [ [id: 'gtf' ], it ] } 
 
-    //CAT_VCF concatenates the vcf files downloaded from ENSEMBL into a single file 
     CAT_VCF (
         ensembl_vcf
-    )
-    versions_ch = versions_ch.mix(CAT_VCF.out.versions_cat).collect()
-    total_vcf = CAT_VCF.out.file_out.collect()
+        )
+    versions_ch = versions_ch.mix(CAT_VCF.out.versions_cat)
+    vcf_file_ch = CAT_VCF.out.file_out.collect()
+
 
     //PYPGATK takes the concatenated vcf file, the gtf file, and the 
     //concatenated cDNA along with the ensembl_config to generate a peptide database
     PYPGATK_VCF (
-        total_vcf,
+        vcf_file_ch,
         ensembl_gtf,
         total_cdna.map { [ [id: 'ensembl_vcf'], it ] },
         ensembl_config

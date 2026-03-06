@@ -9,8 +9,14 @@ include { WGET   as WGET_TRANSCRIPTS   } from '../../../modules/nf-core/wget/mai
 include { GUNZIP as GUNZIP_TRANSCRIPTS } from '../../../modules/nf-core/gunzip/main.nf'
 include { WGET as WGET_ANNOTATION      } from '../../../modules/nf-core/wget/main.nf'
 include { GUNZIP as GUNZIP_ANNOTATION  } from '../../../modules/nf-core/gunzip/main.nf'
+
+include { WGET as WGET_REFERENCE      } from '../../../modules/nf-core/wget/main.nf'
+include { GUNZIP as GUNZIP_REFERENCE  } from '../../../modules/nf-core/gunzip/main.nf'
+include { SAMTOOLS_FAIDX              } from '../../../modules/nf-core/samtools/faidx/main.nf'
+
 include { GSUTIL                       } from '../../../modules/local/gsutil/main.nf'
-include { TABIX_BGZIP                  } from '../../../modules/nf-core/tabix/bgzip/main.nf'
+include { BCFTOOLS_INDEX               } from '../../../modules/nf-core/bcftools/index/main.nf'
+include { BCFTOOLS_MERGE               } from '../../../modules/nf-core/bcftools/merge/main.nf'
 include { PYPGATK_VCF                  } from '../../../modules/local/pypgatk/vcf_to_proteindb/main.nf'
 
 /*
@@ -26,6 +32,7 @@ take:
     //inputs from the main workflow
     genecode_transcripts_url //string: genecode transcripts url
     genecode_annotation_url  //string: genecode annotations url
+    genecode_reference_url
     gnomad_url               //string: gnomad vcf url
     genecode_config          //channel: /path/to/genecode config
 
@@ -36,12 +43,21 @@ main:
     genecode_database = Channel.empty()
 
     //creates empty channels used in the GENECODEDB workflow
-    genecode_transcripts_ch        = Channel.empty()
-    genecode_annotation_ch         = Channel.empty()
-    vcf_compressed                 = Channel.empty()
-    gnomad_vcf_extracted           = Channel.empty()
+    genecode_transcripts_ch = Channel.empty()
+    genecode_annotation_ch  = Channel.empty()
+    genecode_reference_ch   = Channel.empty()
+
     genecode_annotation_gunzipped  = Channel.empty()
     genecode_transcripts_gunzipped = Channel.empty()
+    genecode_reference_gunzipped   = Channel.empty()
+
+    fasta_fai_ch = Channel.empty()
+
+    vcf_compressed_ch = Channel.empty()
+    vcf_file_ch       = Channel.empty()
+    vcf_index_ch      = Channel.empty()
+    merged_vcf        = Channel.empty()
+
 
 
     //WGET_TRANSCRIPTS downloads the transcript files from genecode 
@@ -71,25 +87,69 @@ main:
     )
     versions_ch = versions_ch.mix(GUNZIP_ANNOTATION.out.versions_gunzip).collect()
     genecode_annotation_gunzipped = GUNZIP_ANNOTATION.out.gunzip.collect()
+
+    WGET_REFERENCE (
+        genecode_reference_url.map { [ [id: 'reference.fa' ], it ] }
+    )
+    versions_ch = versions_ch.mix(WGET_REFERENCE.out.versions).collect()
+    genecode_reference_ch = WGET_REFERENCE.out.outfile.collect()
+
+    //GUNZIP_ANNOTATION unzipps the annotation files downloaded from genecode
+    GUNZIP_REFERENCE (
+        genecode_reference_ch
+    )
+    versions_ch = versions_ch.mix(GUNZIP_REFERENCE.out.versions_gunzip).collect()
+    genecode_reference_gunzipped = GUNZIP_REFERENCE.out.gunzip.collect()
+
+    SAMTOOLS_FAIDX (
+        genecode_reference_gunzipped,
+        [ [], [] ],
+        false  
+    )
+    versions_ch = versions_ch.mix(SAMTOOLS_FAIDX.out.versions_samtools)
+    fasta_fai_ch = SAMTOOLS_FAIDX.out.fai.collect()
     
     //GSUTIL downloads the vcf file from gnomad 
     GSUTIL (
         gnomad_url.map { [ [id: 'gnomad.vcf' ], it ] }
     )
     versions_ch = versions_ch.mix(GSUTIL.out.versions).collect()
-    vcf_compressed = GSUTIL.out.vcf.collect()
+    vcf_compressed = GSUTIL.out.vcf
+        .map { meta, vcf -> 
+            return vcf }
+        .flatten()
 
-    //TABIX_BGZIP unzips the vcf file downloaded from gnomad
-    TABIX_BGZIP (
-        vcf_compressed
+    BCFTOOLS_INDEX (
+        vcf_compressed.map { [ [ id: 'vcf' ], it ] }
     )
-    versions_ch = versions_ch.mix(TABIX_BGZIP.out.versions_tabix).collect()  
-    gnomad_vcf_extracted = TABIX_BGZIP.out.output.collect()
+    versions_ch = versions_ch.mix(BCFTOOLS_INDEX.out.versions_bcftools)
+    vcf_index_ch = BCFTOOLS_INDEX.out.tbi
+        .map { meta, index ->
+            return index }
+        .collect()
+        .map { index ->
+            def meta2 = [ id: 'key' ]
+            return [ meta2, index ] }
+    merged_vcf = vcf_compressed.collect()
+            .map { vcf ->
+                def meta = [ id: 'key' ]
+                return [ meta, vcf ] }
+
+    vcf_merge_ch = merged_vcf.join(vcf_index_ch).collect()
+
+    BCFTOOLS_MERGE (
+        vcf_merge_ch,
+        genecode_reference_gunzipped,
+        fasta_fai_ch,
+        [ [], [] ]
+    )
+    versions_ch = versions_ch.mix(BCFTOOLS_MERGE.out.versions_bcftools)
+    vcf_file_ch = BCFTOOLS_MERGE.out.vcf
 
     //PYPGATK takes the unzipped vcf, annotation, and transcript along with the 
     //genecode config to generate a peptide database
     PYPGATK_VCF (
-        gnomad_vcf_extracted,
+        vcf_file_ch,
         genecode_annotation_gunzipped,
         genecode_transcripts_gunzipped,
         genecode_config  

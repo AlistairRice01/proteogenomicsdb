@@ -47,8 +47,8 @@ main:
 
     //PYPGATK_COSMICDB generates a database using the COSMIC data downloaded
     PYPGATK_COSMICDB ( 
-        cosmic_genes.map { [ [:], it ] },
-        cosmic_mutations.map { [ [:], it ] },
+        cosmic_genes.map { [ [id: 'genes' ], it ] },
+        cosmic_mutations.map { [ [ id: 'mutations' ], it ] },
         cosmic_config
     )   
     versions_ch = versions_ch.mix(PYPGATK_COSMICDB.out.versions).collect()

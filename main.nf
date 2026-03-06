@@ -41,15 +41,20 @@ params.annotation = getGenomeAttribute('gtf')
 //
 // WORKFLOW: Run main analysis pipeline depending on type of input
 //
-workflow {
+workflow NFCORE_PROTEOGENOMICSDB {
 
+take:
+    bam_files
+    bam_index
+
+main:
     //
     // WORKFLOW: Run pipeline
     //
     DATABASE_GENERATION (
         //RNASEQDB paramiters
-        params.input,
-        params.bam_index,       //
+        bam_files,
+        bam_index,       //
         params.reference,       //
         params.annotation,      //
         params.transcripts,     //
@@ -75,6 +80,7 @@ workflow {
         //GENECODEDB paramaters
         params.genecode_transcripts_url,    //
         params.genecode_annotations_url,    //
+        params.genecode_reference_url,
         params.gnomad_url,                  //
         params.genecode_config,               //path to the gnomad_config
         
@@ -107,11 +113,13 @@ workflow {
 
     )
 
+}
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     RUN MAIN WORKFLOW
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
+workflow {
 
     //
     // SUBWORKFLOW: Run initialisation tasks
@@ -125,6 +133,11 @@ workflow {
         params.help,
         params.help_full,
         params.show_hidden
+    )
+
+    NFCORE_PROTEOGENOMICSDB (
+        PIPELINE_INITIALISATION.out.bam_samplesheet,
+        PIPELINE_INITIALISATION.out.bai_samplesheet
     )
     //
     // SUBWORKFLOW: Run completion tasks

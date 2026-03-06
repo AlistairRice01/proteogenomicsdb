@@ -328,7 +328,7 @@
                     "description": "gene transcripts (.fa) file for RNASEQDB"
                 },
                 "species_id": {
-                    "type": "string",
+                    "type": "integer",
                     "description": "ENSEMBL species id"
                 },
                 "cbio_study": {

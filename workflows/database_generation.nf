@@ -49,6 +49,7 @@ take:
     //inuts for genecodedb subworkflow
     genecode_transcripts_url //string: genecode transcripts url
     genecode_annotations_url //string: genecode annotations url
+    genecode_reference_url
     gnomad_url               //string: gnomad vcf url
     genecode_config          //channel: /path/to/genecode config
 
@@ -91,18 +92,16 @@ main:
     if (!skip_rnaseqdb) {
 
         //inputs for the rnaseqdb workflow 
-        bam_file_ch            = Channel.fromPath(bam_file)
-        bam_index_ch           = Channel.fromPath(bam_index)
-        reference_ch           = Channel.fromPath(reference)
-        annotation_ch          = Channel.fromPath(annotation)
-        transcripts_ch         = Channel.fromPath(transcripts)
-        custom_config_ch       = Channel.fromPath(custom_config)
-        dna_config_ch          = Channel.fromPath(dna_config)
+        reference_ch           = Channel.value(file(reference, checkIfExists: true))
+        annotation_ch          = Channel.value(file(annotation, checkIfExists: true))
+        transcripts_ch         = Channel.value(file(transcripts, checkIfExists: true))
+        custom_config_ch       = Channel.value(file(custom_config, checkIfExists: true))
+        dna_config_ch          = Channel.value(file(dna_config, checkIfExists: true))
 
         //pass the channels into the RNASEQDB subworkflow - this takes rna sequencing data and produce a protein database
         RNASEQDB (
-            bam_file_ch,
-            bam_index_ch,
+            bam_file,
+            bam_index,
             annotation_ch,
             reference_ch,
             custom_config_ch,
@@ -193,7 +192,8 @@ main:
 
         //inputs for the genecodedb workflow
         genecode_transcripts_url_ch = Channel.from(genecode_transcripts_url)
-        genecode_annotations_url_ch = Channel.from(genecode_annotations_url)        
+        genecode_annotations_url_ch = Channel.from(genecode_annotations_url)  
+        genecode_reference_url_ch   = Channel.from(genecode_reference_url)
         gnomad_url_ch               = Channel.from(gnomad_url)
         genecode_config_ch          = Channel.fromPath(genecode_config)
         
@@ -201,6 +201,7 @@ main:
         GENECODEDB (
             genecode_transcripts_url_ch,
             genecode_annotations_url_ch,
+            genecode_reference_url_ch,
             gnomad_url_ch,
             genecode_config_ch
         )
