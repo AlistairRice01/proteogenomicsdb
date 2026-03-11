@@ -5,7 +5,7 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-include { CAT_CAT                  } from '../../../modules/nf-core/cat/cat/main.nf'
+include { CAT_CAT       } from '../../../modules/nf-core/cat/cat/main.nf'
 include { PYPGATK_CLEAN } from '../../../modules/local/pypgatk/ensembl_check/main.nf'
 include { PYPGATK_DECOY } from '../../../modules/local/pypgatk/generate_decoy/main.nf'
 
@@ -23,7 +23,7 @@ take:
     mixed_databases     //channel: [ [ val(meta), [ database ] ], ... , [ val(meta), database ] ]
     clean_config        //channel: /path/to/clean config
     decoy_config        //channel: /path/to/decoy config
-    skip_decoy
+    skip_decoy          //boolean: decides if decoy generation will be skiped
 
 main:
 
@@ -40,7 +40,6 @@ main:
     //this is to remove the metadata from each database
     flat_databases = mixed_databases.flatten().filter{it instanceof java.nio.file.Path && it.isFile()}
 
-    //this collects the flattened databases 
     collected_databases = flat_databases.collect()
 
     //CAT_CAT concatenates all of the databases into a single database
@@ -74,10 +73,9 @@ if (!skip_decoy) {
 }
 
 else {
-        //bypass the subworkflow
+        //bypass decoy
         log.info "decoy generation skipped."
     }
-    //creates an empty channel that will then be populated with the decoy database 
 
 emit:
 
