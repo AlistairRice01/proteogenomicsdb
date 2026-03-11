@@ -252,62 +252,62 @@
             "properties": {
                 "dna_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/dna_config.yaml",
+                    "default": "$projectDir/conf/pypgatk_config_files/dna_config.yaml",
                     "description": "config file used in the RNASEQDB workflow in the PYPGATK_DNA process"
                 },
                 "custom_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/custom_config.yaml",
+                    "default": "$projectDir/conf/pypgatk_config_files/custom_config.yaml",
                     "description": "config file used in the RNASEQDB workflow in the PYPGATK_VCF process"
                 },
                 "gencode_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/gencode_config.yaml",
+                    "default": "$projectDir/conf/pypgatk_config_files/gencode_config.yaml",
                     "description": "config file used in the gencodeDB workflow in the PYPGATK_VCF process"
                 },
                 "cbio_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/cbioportal_config.yaml",
+                    "default": "$projectDir/conf/pypgatk_config_files/cbioportal_config.yaml",
                     "description": "config file used in the CBIOPORTALDB workflow in the PYPGATK_CBIOPORTAL process"
                 },
                 "ensembl_downloader_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/ensembl_downloader_config.yaml",
+                    "default": "$projectDir/conf/pypgatk_config_files/ensembl_downloader_config.yaml",
                     "description": "config file used in the ENSEMBLDB workflow in the PYPGATK_ENSEMBL_DOWNLOADER process"
                 },
                 "ensembl_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/ensembl_config.yaml",
+                    "default": "$projectDir/conf/pypgatk_config_files/ensembl_config.yaml",
                     "description": "config file used in the ENSEMBLDB workflow in the PYPGATK_VCF process"
                 },
                 "ncrna_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/ncrna_config.yaml",
+                    "default": "$projectDir/conf/pypgatk_config_files/ncrna_config.yaml",
                     "description": "config file used in the ENSEMBLDB workflow in the PYPGATK_NCRNA process"
                 },
                 "pseudogenes_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/pseudogenes_config.yaml",
+                    "default": "$projectDir/conf/pypgatk_config_files/pseudogenes_config.yaml",
                     "description": "config file used in the ENSEMBLDB workflow in the PYPGATK_PSEUDOGENES process"
                 },
                 "altorfs_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/altorfs_config.yaml",
+                    "default": "$projectDir/conf/pypgatk_config_files/altorfs_config.yaml",
                     "description": "config file used in the ENSEMBLDB workflow in the PYPGATK_ALTORFS process"
                 },
                 "cosmic_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/cosmic_config.yaml",
+                    "default": "$projectDir/conf/pypgatk_config_files/cosmic_config.yaml",
                     "description": "config file used in the COSMICDB workflow in the PYPGATK_COSMIC process"
                 },
                 "clean_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/clean_config.yaml",
+                    "default": "$projectDir/conf/pypgatk_config_files/clean_config.yaml",
                     "description": "config file used in the MERGEDB workflow in the ENSEMBL_CHECK process"
                 },
                 "decoy_config": {
                     "type": "string",
-                    "default": "/exports/eddie/scratch/s2215490/proteogenomicsdb/conf/pypgatk_config_files/protein_decoy.yaml",
+                    "default": "$projectDir/conf/pypgatk_config_files/protein_decoy.yaml",
                     "description": "config file used in the MERGEDB workflow in the PYPGATK_DECOY process"
                 }
             }
